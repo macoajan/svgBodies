@@ -17,6 +17,9 @@ export const HEAD_R = 4.5;
 export const PLATE = { r: 6.5, w: 2.2 };
 export const BAR_FLOOR = GROUND - 0.6 - PLATE.w / 2 - PLATE.r; // bar height with plates on the floor
 export const KB = { bell: 7.2, r: 4.2 };                        // kettlebell: bell centre below the grip, radius
+export const DB = { half: 4.2, r: 2.6, w: 1.4 };                // dumbbell: half length, head radius, head half-width
+// Box props span z in [z0, z1] (default ±hz).
+export const boxZ = pr => [pr.z0 ?? -pr.hz, pr.z1 ?? pr.hz];
 
 export const rad = d => d * Math.PI / 180;
 export const deg = r => r * 180 / Math.PI;
@@ -72,14 +75,19 @@ export function footFromShin(knee, ankle, plantar = 0) {
 // `neck` turns the head relative to the trunk. neckDir/headDir (absolute, same convention as
 // alpha) bend the cervical spine and set the head, e.g. to rest the head on the floor.
 // at(along, front) gives a point on the trunk: `along` from the hip, `front` towards the chest.
-export function trunk(hip, alpha, neck = 0, { neckDir = alpha, headDir = null } = {}) {
+// shift moves the whole trunk sideways (z); twist turns the shoulders about the trunk axis
+// (positive = right shoulder back), e.g. for a woodchop.
+export function trunk(hip, alpha, neck = 0, { neckDir = alpha, headDir = null, shift = 0, twist = 0 } = {}) {
   const s = Math.sin(rad(alpha)), c = Math.cos(rad(alpha));
-  const at = (al, front = 0) => V(hip.x + al * s + front * c, hip.y - al * c + front * s, 0);
-  const pelvis = V(hip.x, hip.y, 0);
+  const at = (al, front = 0) => V(hip.x + al * s + front * c, hip.y - al * c + front * s, shift);
+  const pelvis = V(hip.x, hip.y, shift);
   const shoulderC = at(L.sh);
   const neckTop = along(shoulderC, up(neckDir), L.neck);
   const head = along(neckTop, up(headDir ?? neckDir + neck), L.head);
-  return { alpha, pelvis, shoulderC, shoulder: { ...shoulderC, z: Z.shoulder }, neckTop, head, at };
+  // Shoulder offset turned about the trunk axis u = (s, -c, 0): cos·z + sin·(u × z).
+  const shoulderOf = sg => V(shoulderC.x - sg * Z.shoulder * Math.sin(rad(twist)) * c, shoulderC.y - sg * Z.shoulder * Math.sin(rad(twist)) * s,
+    shift + sg * Z.shoulder * Math.cos(rad(twist)));
+  return { alpha, pelvis, shoulderC, shoulder: shoulderOf(1), shoulderOf, neckTop, head, at, shift, twist };
 }
 
 // Sagittal reach of a straight arm whose hand sits at lateral offset handZ.
@@ -120,8 +128,8 @@ export function circles(P, rP, Q, rQ) {
 // toe and hand, and either the elbow or a pole vector for the elbow IK. z of the given
 // joints must already carry the side's sign.
 function limbs(t, sg, { knee, ankle, toe, hand, elbow, pole }) {
-  const hip = V(t.pelvis.x, t.pelvis.y, sg * Z.hip);
-  const shoulder = V(t.shoulderC.x, t.shoulderC.y, sg * Z.shoulder);
+  const hip = V(t.pelvis.x, t.pelvis.y, t.pelvis.z + sg * Z.hip);
+  const shoulder = t.shoulderOf(sg);
   return { hip, knee, ankle, toe, shoulder, elbow: elbow ?? elbowIK(shoulder, hand, pole ?? V(0, 1, 0.3 * sg)), hand };
 }
 export const mirrorSide = s => Object.fromEntries(Object.entries(s).map(([k, v]) => [k, v && typeof v === 'object' ? mirror(v) : v]));
@@ -141,6 +149,20 @@ export function pose({ legs: lg, trunk: t, hand, pole = V(0, 1, 0.3), objects = 
   const r = { knee: lg.knee, ankle: lg.ankle, toe: footFlat(lg.ankle), hand, pole };
   return { ...poseLR({ trunk: t, r, l: mirrorSide(r), objects, load }), upright: true };
 }
+
+// Applies f to every point of a pose (joints and objects): rigid moves such as rolling the body
+// onto its side. The caller keeps f rigid so segment lengths are preserved.
+export function transformPose(p, f) {
+  const side = q => Object.fromEntries(Object.entries(q).map(([k, v]) => [k, f(v)]));
+  const obj = o => ({ ...o, ...(o.at ? { at: f(o.at) } : {}), ...(o.a ? { a: f(o.a), b: f(o.b) } : {}), ...(o.points ? { points: o.points.map(f) } : {}) });
+  return { ...p, pelvis: f(p.pelvis), shoulderC: f(p.shoulderC), neckTop: f(p.neckTop), head: f(p.head), r: side(p.r), l: side(p.l), objects: p.objects.map(obj) };
+}
+// Rotation about an axis parallel to x (roll) or z (in the sagittal plane), through point c.
+export const rollX = (deg_, c) => q => {
+  const a = rad(deg_), y = q.y - c.y, z = q.z - c.z;
+  return V(q.x, c.y + y * Math.cos(a) - z * Math.sin(a), c.z + y * Math.sin(a) + z * Math.cos(a));
+};
+export const rotZ = (deg_, c) => q => { const r = rot2(V(q.x - c.x, q.y - c.y), deg_); return V(c.x + r.x, c.y + r.y, q.z); };
 
 // Segment mass fractions (both sides together for paired segments), anthropometric tables.
 const M = { head: 0.081, trunk: 0.497, upper: 0.056, fore: 0.044, thigh: 0.2, shin: 0.093, foot: 0.029 };
@@ -248,9 +270,10 @@ export function validate(ex, frames) {
     if (p.upright && p.pelvis.x > p.r.knee.x + 0.5) throw new Error(`${ex.id}: hip in front of the knee @${t.toFixed(2)}`);
     for (const pr of ex.props || []) {
       if (pr.type !== 'box') continue;
+      const [z0, z1] = boxZ(pr);
       for (const s of ['r', 'l']) for (const j of ['knee', 'ankle', 'toe', 'hand']) {
         const q = p[s][j];
-        if (q.x > pr.x0 - 0.8 && q.x < pr.x1 + 0.8 && q.y > pr.top - 1.6 && Math.abs(q.z) < pr.hz)
+        if (q.x > pr.x0 - 0.8 && q.x < pr.x1 + 0.8 && q.y > pr.top - 1.6 && q.z > z0 && q.z < z1)
           throw new Error(`${ex.id}: ${s}.${j} inside the box @${t.toFixed(2)}`);
       }
     }
@@ -258,6 +281,12 @@ export function validate(ex, frames) {
       if (o.type === 'rope') {
         const low = Math.max(...o.points.map(q => q.y));
         if (low > FLOOR_TOP - 0.3) throw new Error(`${ex.id}: rope through the floor @${t.toFixed(2)}`);
+        continue;
+      }
+      if (o.type === 'cord') continue;
+      if (o.type === 'ball' || o.type === 'wheel' || o.type === 'db') {
+        const r0 = o.type === 'db' ? DB.r : o.r;
+        if (o.at.y + r0 > FLOOR_TOP + 0.1) throw new Error(`${ex.id}: ${o.type} through the floor @${t.toFixed(2)}`);
         continue;
       }
       const bottom = o.type === 'barbell' ? o.at.y + PLATE.r + PLATE.w / 2
@@ -342,6 +371,16 @@ const jointDot = key => `<circle class="k-${key}" r="1.7" fill="${INK}" stroke="
 const kbBell = key => `<circle class="k-${key}" r="${KB.r}" fill="${IRON}" stroke="none"></circle>`;
 const kbGlyph = key => `<g class="k-${key}"><path d="M-2.8 3 C-2.8 -1.4 2.8 -1.4 2.8 3" stroke="${IRON}" stroke-width="1.8"></path><circle cy="${KB.bell}" r="${KB.r}" fill="${IRON}" stroke="none"></circle></g>`;
 
+// Short cylinder along z (radius r, from z0 to z1 relative to its centre): outline = hull of both faces.
+function cylinder(cam, r, z0, z1, fill, sw) {
+  const outline = [];
+  for (const z of [z0, z1]) for (let k = 0; k < 24; k++) {
+    const a = k * Math.PI / 12;
+    outline.push(cam.dir(r * Math.cos(a), r * Math.sin(a), z));
+  }
+  return `<polygon points="${pts(hull(outline))}" fill="${fill}" stroke="${IRON}" stroke-width="${sw}"></polygon>`;
+}
+
 // Half a barbell (sg = -1 left, 1 right) drawn around the bar centre. The plate is a short
 // cylinder: its outline is the hull of both faces, so it keeps its thickness edge-on.
 function barHalf(key, cam, sg) {
@@ -359,20 +398,25 @@ function barHalf(key, cam, sg) {
 // Static props, drawn behind the figure so contacts (feet on a box, hands on a bar) stay visible.
 function propSvg(pr, cam) {
   if (pr.type === 'box') {
-    const { x0, x1, top, hz } = pr, y1 = FLOOR_TOP;
+    const { x0, x1, top } = pr, [z0, z1] = boxZ(pr), y1 = pr.bottom ?? FLOOR_TOP;
     const P = (x, y, z) => cam.proj(V(x, y, z));
     const faces = [];
     const v = cam;
     const syw = Math.sin(rad(v.yaw)), cyw = Math.cos(rad(v.yaw));
-    if (cyw > 0.01) faces.push([BOX_FILL.side, [P(x0, top, hz), P(x1, top, hz), P(x1, y1, hz), P(x0, y1, hz)]]);
-    if (syw > 0.01) faces.push([BOX_FILL.front, [P(x1, top, -hz), P(x1, top, hz), P(x1, y1, hz), P(x1, y1, -hz)]]);
-    if (v.pitch > 0.5) faces.push([BOX_FILL.top, [P(x0, top, -hz), P(x1, top, -hz), P(x1, top, hz), P(x0, top, hz)]]);
+    if (cyw > 0.01) faces.push([BOX_FILL.side, [P(x0, top, z1), P(x1, top, z1), P(x1, y1, z1), P(x0, y1, z1)]]);
+    if (syw > 0.01) faces.push([BOX_FILL.front, [P(x1, top, z0), P(x1, top, z1), P(x1, y1, z1), P(x1, y1, z0)]]);
+    if (v.pitch > 0.5) faces.push([BOX_FILL.top, [P(x0, top, z0), P(x1, top, z0), P(x1, top, z1), P(x0, top, z1)]]);
     return faces.map(([fill, q]) => `<polygon points="${pts(q)}" fill="${fill}" stroke="${IRON}" stroke-width="1.2"></polygon>`).join('');
   }
   if (pr.type === 'pullbar') {
     const a = cam.proj(V(pr.x, pr.y, -pr.hz)), b = cam.proj(V(pr.x, pr.y, pr.hz)), c = cam.proj(V(pr.x, pr.y, 0));
     return `<line x1="${r2(a.x)}" y1="${r2(a.y)}" x2="${r2(b.x)}" y2="${r2(b.y)}" stroke="${IRON}" stroke-width="2.4"></line>`
       + `<circle cx="${r2(c.x)}" cy="${r2(c.y)}" r="1.6" fill="${IRON}" stroke="none"></circle>`;
+  }
+  if (pr.type === 'lines') {
+    // Static bars and frames: [[from, to], ...] in 3D, painted far to near.
+    const segs = pr.segs.map(([a, b]) => [cam.proj(a), cam.proj(b), (cam.depth(a) + cam.depth(b)) / 2]).sort((u, w) => u[2] - w[2]);
+    return segs.map(([a, b]) => `<line x1="${r2(a.x)}" y1="${r2(a.y)}" x2="${r2(b.x)}" y2="${r2(b.y)}" stroke="${IRON}" stroke-width="${pr.w ?? 2.4}"></line>`).join('');
   }
   throw new Error(`unknown prop ${pr.type}`);
 }
@@ -406,7 +450,18 @@ function elements(p0, cam) {
     if (o.type === 'rope') {
       // A rope changes shape, so it is a chain of short segments animated like the limbs.
       for (let k = 0; k < o.points.length - 1; k++)
-        segE(`o${i}s${k}`, p => p.objects[i].points[k], p => p.objects[i].points[k + 1], 5, ` stroke="${IRON}" stroke-width="${ROPE.width}"`);
+        segE(`o${i}s${k}`, p => p.objects[i].points[k], p => p.objects[i].points[k + 1], 5, ` stroke="${IRON}" stroke-width="${o.w ?? ROPE.width}"`);
+    } else if (o.type === 'cord') {
+      segE(`o${i}`, p => p.objects[i].a, p => p.objects[i].b, 20, ` stroke="${IRON}" stroke-width="1.1"`);
+    } else if (o.type === 'ball') {
+      ptE(`o${i}`, p => p.objects[i].at, `<circle class="k-o${i}" r="${o.r}" fill="${IRON}" stroke="none"></circle>`);
+    } else if (o.type === 'wheel') {
+      ptE(`o${i}`, p => p.objects[i].at, `<g class="k-o${i}">${cylinder(cam, o.r, -o.hw, o.hw, PLATE_FILL, 1.6)}</g>`);
+    } else if (o.type === 'db') {
+      // Dumbbell across the hand (along z): handle plus two short cylinders.
+      const a = cam.dir(0, 0, -DB.half), b = cam.dir(0, 0, DB.half);
+      const head = z => `<g transform="translate(${r2(cam.dir(0, 0, z).x)} ${r2(cam.dir(0, 0, z).y)})">${cylinder(cam, DB.r, -DB.w, DB.w, IRON, 0.6)}</g>`;
+      ptE(`o${i}`, p => p.objects[i].at, `<g class="k-o${i}"><line x1="${r2(a.x)}" y1="${r2(a.y)}" x2="${r2(b.x)}" y2="${r2(b.y)}" stroke="${IRON}" stroke-width="1.6"></line>${head(-DB.half)}${head(DB.half)}</g>`, 0.1);
     } else if (o.type === 'barbell') {
       for (const sg of [-1, 1]) {
         const key = `o${i}${sg < 0 ? 'l' : 'r'}`, at = p => V(p.objects[i].at.x, p.objects[i].at.y, 0);
@@ -482,8 +537,9 @@ export function poseData(ex, { T, frames }) {
     frames: frames.map(({ t, p }) => ({
       t: r2(t),
       joints: { pelvis: r(p.pelvis), shoulderC: r(p.shoulderC), neckTop: r(p.neckTop), head: r(p.head), r: sideOf(p.r), l: sideOf(p.l) },
-      objects: p.objects.map(o => (o.type === 'rope' ? { type: 'rope', points: o.points.map(r) }
-        : { type: o.type, at: r(o.at), ...(o.phi !== undefined ? { phi: r2(o.phi) } : {}) })),
+      objects: p.objects.map(o => (o.type === 'rope' ? { type: 'rope', points: o.points.map(r), ...(o.w ? { w: o.w } : {}) }
+        : o.type === 'cord' ? { type: 'cord', a: r(o.a), b: r(o.b) }
+          : { type: o.type, at: r(o.at), ...(o.phi !== undefined ? { phi: r2(o.phi) } : {}), ...(o.r ? { r: o.r } : {}), ...(o.hw ? { hw: o.hw } : {}) })),
     })),
   };
 }

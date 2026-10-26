@@ -54,10 +54,12 @@
     const J = {};
     for (const j of ['pelvis', 'shoulderC', 'neckTop', 'head']) J[j] = lerp3(a.joints[j], b.joints[j], k);
     for (const s of ['r', 'l']) { J[s] = {}; for (const j of SIDE_J) J[s][j] = lerp3(a.joints[s][j], b.joints[s][j], k); }
-    const objects = a.objects.map((o, n) => (o.type === 'rope' ? { type: 'rope', points: o.points.map((q, m) => lerp3(q, b.objects[n].points[m], k)) } : {
-      type: o.type, at: lerp3(o.at, b.objects[n].at, k),
-      phi: o.phi === undefined ? 0 : o.phi + (b.objects[n].phi - o.phi) * k,
-    }));
+    const objects = a.objects.map((o, n) => {
+      const ob = b.objects[n];
+      if (o.type === 'rope') return { ...o, points: o.points.map((q, m) => lerp3(q, ob.points[m], k)) };
+      if (o.type === 'cord') return { ...o, a: lerp3(o.a, ob.a, k), b: lerp3(o.b, ob.b, k) };
+      return { ...o, at: lerp3(o.at, ob.at, k), phi: o.phi === undefined ? 0 : o.phi + (ob.phi - o.phi) * k };
+    });
     return { J, objects };
   }
 
@@ -82,6 +84,19 @@
       items.push({ e, update: (p, c) => { const P = c.proj(get(p)); e.setAttribute('cx', f2(P.x)); e.setAttribute('cy', f2(P.y)); return P.d + bias; } });
     };
     const dot = get => disc(get, 1.7, { fill: INK, stroke: 'none' }, 0.05);
+    // Short cylinder along z centred on get(p), from z0 to z1 (relative): hull of both faces.
+    const cyl = (get, r, z0, z1, attrs, bias = 0) => {
+      const e = node('polygon', { 'stroke-linejoin': 'round', ...attrs }, layer);
+      items.push({ e, update: (p, c) => {
+        const at = get(p), P = [];
+        for (const z of [z0, z1]) for (let k = 0; k < 24; k++) {
+          const a = k * Math.PI / 12;
+          P.push(c.proj({ x: at.x + r * Math.cos(a), y: at.y + r * Math.sin(a), z: at.z + z }));
+        }
+        e.setAttribute('points', ptsAttr(hull(P)));
+        return c.depth(at) + bias;
+      } });
+    };
 
     for (const s of ['r', 'l']) {
       const J = j => p => p.J[s][j];
@@ -102,7 +117,16 @@
     ex.frames[0].objects.forEach((o, n) => {
       if (o.type === 'rope') {
         for (let m = 0; m < o.points.length - 1; m++)
-          seg(p => p.objects[n].points[m], p => p.objects[n].points[m + 1], { stroke: IRON, 'stroke-width': 1.3 });
+          seg(p => p.objects[n].points[m], p => p.objects[n].points[m + 1], { stroke: IRON, 'stroke-width': o.w || 1.3 });
+      } else if (o.type === 'cord') {
+        seg(p => p.objects[n].a, p => p.objects[n].b, { stroke: IRON, 'stroke-width': 1.1 });
+      } else if (o.type === 'ball') {
+        disc(p => p.objects[n].at, o.r, { fill: IRON, stroke: 'none' });
+      } else if (o.type === 'wheel') {
+        cyl(p => p.objects[n].at, o.r, -o.hw, o.hw, { fill: PLATE_FILL, stroke: IRON, 'stroke-width': 1.6 });
+      } else if (o.type === 'db') {
+        seg(p => ({ ...p.objects[n].at, z: p.objects[n].at.z - 4.2 }), p => ({ ...p.objects[n].at, z: p.objects[n].at.z + 4.2 }), { stroke: IRON, 'stroke-width': 1.6 });
+        for (const dz of [-4.2, 4.2]) cyl(p => ({ ...p.objects[n].at, z: p.objects[n].at.z + dz }), 2.6, -1.4, 1.4, { fill: IRON, stroke: IRON, 'stroke-width': 0.6 }, 0.1);
       } else if (o.type === 'barbell') {
         for (const s of [1, -1]) {
           seg(p => ({ ...p.objects[n].at, z: 0 }), p => ({ ...p.objects[n].at, z: 30 * s }), { stroke: IRON, 'stroke-width': 2 });
@@ -139,18 +163,22 @@
       node('polygon', { points: ptsAttr([[-gx, -gz], [gx, -gz], [gx, gz], [-gx, gz]].map(([dx, dz]) => c.proj({ x: x0 + dx, y: GROUND, z: dz }))), fill: FLOOR_FILL, stroke: 'none' }, back);
       for (const pr of ex.props || []) {
         if (pr.type === 'box') {
-          const P = (x, y, z) => c.proj({ x, y, z }), y1 = FLOOR_TOP, { x0: a, x1: b, top, hz } = pr;
+          const P = (x, y, z) => c.proj({ x, y, z }), y1 = pr.bottom ?? FLOOR_TOP, { x0: a, x1: b, top } = pr;
+          const z0 = pr.z0 ?? -pr.hz, z1 = pr.z1 ?? pr.hz;
           const faces = [];
           // Visible faces of the box for this camera (normal towards the viewer).
-          if (c.cy > 0.01) faces.push([BOX_FILL.side, [P(a, top, hz), P(b, top, hz), P(b, y1, hz), P(a, y1, hz)]]);
-          if (c.cy < -0.01) faces.push([BOX_FILL.side, [P(a, top, -hz), P(b, top, -hz), P(b, y1, -hz), P(a, y1, -hz)]]);
-          if (c.sy > 0.01) faces.push([BOX_FILL.front, [P(b, top, -hz), P(b, top, hz), P(b, y1, hz), P(b, y1, -hz)]]);
-          if (c.sy < -0.01) faces.push([BOX_FILL.front, [P(a, top, -hz), P(a, top, hz), P(a, y1, hz), P(a, y1, -hz)]]);
-          if (c.pitch > 0.5) faces.push([BOX_FILL.top, [P(a, top, -hz), P(b, top, -hz), P(b, top, hz), P(a, top, hz)]]);
+          if (c.cy > 0.01) faces.push([BOX_FILL.side, [P(a, top, z1), P(b, top, z1), P(b, y1, z1), P(a, y1, z1)]]);
+          if (c.cy < -0.01) faces.push([BOX_FILL.side, [P(a, top, z0), P(b, top, z0), P(b, y1, z0), P(a, y1, z0)]]);
+          if (c.sy > 0.01) faces.push([BOX_FILL.front, [P(b, top, z0), P(b, top, z1), P(b, y1, z1), P(b, y1, z0)]]);
+          if (c.sy < -0.01) faces.push([BOX_FILL.front, [P(a, top, z0), P(a, top, z1), P(a, y1, z1), P(a, y1, z0)]]);
+          if (c.pitch > 0.5) faces.push([BOX_FILL.top, [P(a, top, z0), P(b, top, z0), P(b, top, z1), P(a, top, z1)]]);
           for (const [fill, q] of faces) node('polygon', { points: ptsAttr(q), fill, stroke: IRON, 'stroke-width': 1.2 }, back);
         } else if (pr.type === 'pullbar') {
           const A1 = c.proj({ x: pr.x, y: pr.y, z: -pr.hz }), B1 = c.proj({ x: pr.x, y: pr.y, z: pr.hz });
           node('line', { x1: f2(A1.x), y1: f2(A1.y), x2: f2(B1.x), y2: f2(B1.y), stroke: IRON, 'stroke-width': 2.4 }, back);
+        } else if (pr.type === 'lines') {
+          const segs = pr.segs.map(([u, v]) => [c.proj(u), c.proj(v), (c.depth(u) + c.depth(v)) / 2]).sort((m, n) => m[2] - n[2]);
+          for (const [u, v] of segs) node('line', { x1: f2(u.x), y1: f2(u.y), x2: f2(v.x), y2: f2(v.y), stroke: IRON, 'stroke-width': pr.w || 2.4 }, back);
         }
       }
     }

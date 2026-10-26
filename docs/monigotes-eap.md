@@ -163,3 +163,9 @@ motor en vez de escritas a mano. Detalle en `README.md`. Diferencias respecto a 
   y el otro avanza en arco) para que el bucle cierre. La comba es una cadena de 14 segmentos que
   se anima igual que las extremidades. La validación comprueba también que ningún pie, rodilla
   o mano atraviese el cajón.
+- **Lote D: más grados de libertad.** El tronco puede desplazarse de lado y girar los hombros
+  sobre su eje; una postura entera puede rodarse o inclinarse como sólido rígido (plancha
+  lateral). Secuencias largas como el turkish get-up se escriben como posturas clave con
+  apoyos explícitos y se interpolan con cinemática inversa. Objetos nuevos: mancuerna, balón,
+  rueda, polea (cable) y cuerdas de batida; apoyos: bancos, pared, barras paralelas y trineo.
+  La galería se divide en una página por lote.

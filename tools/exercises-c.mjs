@@ -82,18 +82,28 @@ function footCycle(ph) {
   const k = (ph - FW.duty) / (1 - FW.duty);                 // swing: forward with the toes clear
   return { x: FW.x - FW.stride + 2 * FW.stride * smooth(k), lift: FW.lift * bump(k), p: 25 * (1 - smooth(k)) };
 }
-function farmer(s) {
+// Loaded carry. Each hand: 'kb' (bell hanging at the side), 'free' (natural arm swing) or
+// 'overhead' (bell locked out above the shoulder).
+export function carry(s, hands = { r: 'kb', l: 'kb' }) {
   const t = trunk(V(FW.x, 32.6 - 0.4 * Math.cos(4 * Math.PI * s)), 2);
-  const side = (sg, ph) => {
+  const objects = [];
+  const side = (sg, ph, mode) => {
     const f = footCycle(ph);
     const ankle = V(f.x, F - f.lift - L.foot * Math.sin(rad(f.p)), sg * FW.z);
-    const phi = -4 * sg * Math.sin(2 * Math.PI * s);
-    return { ...legTo(t, sg, ankle, footAt(ankle, f.p)), hand: straight(sideShoulder(t, sg), phi, sg * FW.handZ), phi };
+    const S = sideShoulder(t, sg);
+    let hand, phi = 0;
+    if (mode === 'overhead') hand = V(S.x + 0.5, S.y - Math.sqrt((L.upper + L.fore - 0.02) ** 2 - 0.25), S.z);
+    else {
+      phi = (mode === 'free' ? -14 : -4) * sg * Math.sin(2 * Math.PI * s);
+      hand = straight(S, phi, sg * FW.handZ);
+    }
+    if (mode !== 'free') objects.push({ type: 'kb', at: hand, phi });
+    return { ...legTo(t, sg, ankle, footAt(ankle, f.p)), hand, pole: V(0.2, 1, 0.3 * sg) };
   };
-  const r = side(1, s), l = side(-1, (s + 0.5) % 1);
-  const kb = q => ({ type: 'kb', at: q.hand, phi: q.phi });
-  return poseLR({ trunk: t, r, l, objects: [kb(r), kb(l)] });
+  const r = side(1, s, hands.r), l = side(-1, (s + 0.5) % 1, hands.l);
+  return poseLR({ trunk: t, r, l, objects });
 }
+const farmer = s => carry(s);
 
 // ---------- Box jump: dip, jump, land soft on the box, stand, step down ----------
 const BJ = { onX: A + 15, onY: 41, z: 4.5 };
