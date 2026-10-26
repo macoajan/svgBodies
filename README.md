@@ -15,6 +15,7 @@ Produce en `library/`:
 |---|---|
 | `index.html` | Galería con todos los ejercicios en ambas vistas; pausa, velocidad y control de posición. |
 | `svg/<id>-lateral.svg`, `svg/<id>-frontal.svg` | SVG autónomos (CSS dentro), utilizables en web o WebView. |
+| `iso.html` | Prueba: las mismas posturas proyectadas en isométrico (cámara a 40°/30°). |
 | `poses.json` | Posturas muestreadas en 3D (lado derecho; el izquierdo es −z) para renderizar en nativo. |
 
 ## Estructura

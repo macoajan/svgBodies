@@ -13,7 +13,7 @@ const OUT = join(dirname(fileURLToPath(import.meta.url)), '..', 'library');
 rmSync(join(OUT, 'svg'), { recursive: true, force: true });
 mkdirSync(join(OUT, 'svg'), { recursive: true });
 
-const cards = [], data = [];
+const cards = [], isoCards = [], data = [];
 for (const ex of EXERCISES) {
   const s = sample(ex);
   validate(ex, s.frames);
@@ -23,6 +23,7 @@ for (const ex of EXERCISES) {
   cards.push(`<article class="card"><h2>${ex.name}</h2><p>${ex.cue}</p><div class="views">`
     + `<figure>${renderView(ex, 'side', s, 200)}<figcaption>Lateral</figcaption></figure>`
     + `<figure>${renderView(ex, 'front', s, 200)}<figcaption>Frontal</figcaption></figure></div></article>`);
+  isoCards.push(`<figure class="card">${renderView(ex, 'iso', s, 260)}<figcaption>${ex.name}</figcaption></figure>`);
   console.log(`${ex.id}: ${s.T.toFixed(2)} s, ${s.frames.length} muestras`);
 }
 writeFileSync(join(OUT, 'poses.json'), JSON.stringify({
@@ -86,6 +87,35 @@ ${cards.join('\n')}
   scrub.addEventListener('input', () => anims().forEach(a => (a.currentTime = (scrub.value / 1000) * a.effect.getTiming().duration)));
 })();
 </script>
+</body>
+</html>
+`);
+// Test page: isometric projection of the same 3D poses.
+writeFileSync(join(OUT, 'iso.html'), `<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vista isométrica</title>
+<style>
+body{margin:0;background:#F3F6F5;color:#0F2A3D;font-family:system-ui,'Segoe UI',Arial,sans-serif;padding:24px 16px}
+main{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+h1{margin:0;font-size:26px}
+p{margin:0;color:#44596B;line-height:1.4}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:14px}
+.card{margin:0;background:#fff;border-radius:18px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:4px}
+.card svg{width:100%;height:auto;max-width:260px;overflow:visible}
+figcaption{font-weight:700}
+</style>
+</head>
+<body>
+<main>
+<h1>Prueba · vista isométrica</h1>
+<p>Las mismas posturas 3D del motor, proyectadas con la cámara girada 40° y elevada 30°. El lado derecho queda delante; los discos tapan lo que tienen detrás.</p>
+<div class="grid">
+${isoCards.join('\n')}
+</div>
+</main>
 </body>
 </html>
 `);

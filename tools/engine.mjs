@@ -251,6 +251,70 @@ function frontElements(objs) {
   return els;
 }
 
+
+// Isometric-style view: camera turned ISO.yaw degrees towards the figure's front and right
+// side, raised ISO.pitch degrees. The right side (+z) is the near side; the left is -z.
+const ISO = { yaw: 40, pitch: 30, cx: 30, cy: 54 };
+const cyaw = Math.cos(rad(ISO.yaw)), syaw = Math.sin(rad(ISO.yaw));
+const cpit = Math.cos(rad(ISO.pitch)), spit = Math.sin(rad(ISO.pitch));
+export function isoProject(q) {
+  const x = q.x - A, depth = x * syaw + q.z * cyaw;
+  return { x: ISO.cx + x * cyaw - q.z * syaw, y: ISO.cy + (q.y - ANKLE_Y) * cpit + depth * spit };
+}
+const isoDir = (dx, dy, dz) => ({ x: dx * cyaw - dz * syaw, y: dy * cpit + (dx * syaw + dz * cyaw) * spit });
+const PLATE_FILL = '#DCE4EA';
+
+// Half a barbell (far: sg = -1, near: sg = 1), drawn around the bar centre.
+function barHalf(key, sg) {
+  const end = isoDir(0, 0, 30 * sg), pc = isoDir(0, 0, 25.2 * sg), ex = isoDir(1, 0, 0), ey = isoDir(0, 1, 0);
+  const m = `matrix(${r2(ex.x)},${r2(ex.y)},${r2(ey.x)},${r2(ey.y)},${r2(pc.x)},${r2(pc.y)})`;
+  return `<g class="k-${key}"><line x1="0" y1="0" x2="${r2(end.x)}" y2="${r2(end.y)}" stroke="${IRON}" stroke-width="2"></line>`
+    + `<circle r="${PLATE.r}" transform="${m}" fill="${PLATE_FILL}" stroke="${IRON}" stroke-width="${PLATE.w}"></circle>`
+    + `<circle r="1.4" transform="${m}" fill="${IRON}" stroke="none"></circle></g>`;
+}
+
+function isoElements(objs) {
+  const J = (j, sg = 1) => p => isoProject({ x: p[j].x, y: p[j].y, z: sg * p[j].z });
+  const seg = (key, P, Q, L0) => ({ key, kind: 'seg', svg: line0(key, L0), at: p => segParams(P(p), Q(p), L0) });
+  const pt = (key, f, svg) => ({ key, kind: 'pt', svg, at: p => { const q = f(p); return { tx: q.x, ty: q.y }; } });
+  const leg = (s, sg) => [
+    seg(`shin-${s}`, J('knee', sg), J('ankle', sg), L.shin),
+    seg(`thigh-${s}`, J('hip', sg), J('knee', sg), L.thigh),
+    pt(`knee-${s}`, J('knee', sg), jointDot(`knee-${s}`)),
+  ];
+  const arm = (s, sg) => [
+    seg(`upper-${s}`, J('shoulder', sg), J('elbow', sg), L.upper),
+    seg(`fore-${s}`, J('elbow', sg), J('hand', sg), L.fore),
+    pt(`elbow-${s}`, J('elbow', sg), jointDot(`elbow-${s}`)),
+    pt(`hand-${s}`, J('hand', sg), jointDot(`hand-${s}`)),
+  ];
+  const centre = (p, i) => isoProject({ ...p.objects[i].at, z: 0 });
+  const bell = (p, i) => {
+    const o = p.objects[i], ph = rad(o.phi || 0);
+    return isoProject({ x: o.at.x + KB.bell * Math.sin(ph), y: o.at.y + KB.bell * Math.cos(ph), z: 0 });
+  };
+  const objEls = (pred, half) => objs.flatMap((o, i) => {
+    if (!pred(o)) return [];
+    if (o.type === 'barbell') return [pt(`o${i}-${half}`, p => centre(p, i), barHalf(`o${i}-${half}`, half === 'far' ? -1 : 1))];
+    return half === 'near' ? [pt(`o${i}`, p => bell(p, i), kbFront(`o${i}`))] : [];
+  });
+  const hipC = p => isoProject({ x: p.hip.x, y: p.hip.y, z: 0 });
+  const neckC = p => isoProject({ x: p.neckTop.x, y: p.neckTop.y, z: 0 });
+  return [
+    ...objEls(o => o.type === 'barbell', 'far'),
+    ...leg('l', -1),
+    ...arm('l', -1),
+    ...objEls(o => o.layer === 'behind', 'near'),
+    seg('pelvis', J('hip', -1), J('hip', 1), 2 * Z.hip),
+    seg('spine', neckC, hipC, L.neck),
+    seg('shoulders', J('shoulder', -1), J('shoulder', 1), 2 * Z.shoulder),
+    pt('head', J('head'), `<circle class="k-head" r="${HEAD_R}"></circle>`),
+    ...leg('r', 1),
+    ...objEls(o => o.layer !== 'behind', 'near'),
+    ...arm('r', 1),
+  ];
+}
+
 const line0 = (key, L0) => `<line class="k-${key}" x1="0" y1="0" x2="0" y2="${L0}"></line>`;
 const jointDot = key => `<circle class="k-${key}" r="1.7" fill="${INK}" stroke="none"></circle>`;
 const plateSide = key => `<g class="k-${key}" stroke="${IRON}"><circle r="${PLATE.r}" stroke-width="${PLATE.w}"></circle><circle r="1.4" fill="${IRON}" stroke="none"></circle></g>`;
@@ -269,7 +333,7 @@ function barFront(key) {
 export function renderView(ex, view, { T, frames }, size) {
   const cls = `ex-${ex.id}-${view}`;
   const p0 = frames[0].p;
-  const els = view === 'side' ? sideElements(p0.objects) : frontElements(p0.objects);
+  const els = view === 'side' ? sideElements(p0.objects) : view === 'iso' ? isoElements(p0.objects) : frontElements(p0.objects);
   const stillIdx = Math.max(0, frames.findIndex(f => f.t >= (ex.still || 0) - 1e-9));
   let css = `.${cls} *{transform-box:view-box;transform-origin:0 0}\n`;
   for (const el of els) {
@@ -290,12 +354,22 @@ export function renderView(ex, view, { T, frames }, size) {
   }
   css += `@media (prefers-reduced-motion: reduce){.${cls} *{animation:none !important}}`;
 
-  const ground = `<line x1="-7" y1="${GROUND}" x2="71" y2="${GROUND}" stroke="${FLOOR}" stroke-width="1.2"></line>`;
   const stance = p0.ankle.z;
-  const feet = view === 'side'
-    ? `<line x1="${A - 2}" y1="${ANKLE_Y}" x2="${A + 6}" y2="${ANKLE_Y}"></line>`
-    : [-1, 1].map(sg => `<line x1="${32 + sg * (stance - 1.2)}" y1="${ANKLE_Y}" x2="${32 + sg * (stance + 1.8)}" y2="${ANKLE_Y}"></line>`).join('');
-  const title = `${ex.name} — vista ${view === 'side' ? 'lateral' : 'frontal'}`;
+  let ground, feet;
+  if (view === 'iso') {
+    const g = 17, corners = [[-g, -g], [g, -g], [g, g], [-g, g]].map(([dx, dz]) => isoProject({ x: A + 2 + dx, y: GROUND, z: dz }));
+    ground = `<polygon points="${corners.map(c => `${r2(c.x)},${r2(c.y)}`).join(' ')}" fill="#E2EAEF" stroke="none"></polygon>`;
+    feet = [-1, 1].map(sg => {
+      const a = isoProject({ x: A - 2, y: ANKLE_Y, z: sg * stance }), b = isoProject({ x: A + 6, y: ANKLE_Y, z: sg * stance });
+      return `<line x1="${r2(a.x)}" y1="${r2(a.y)}" x2="${r2(b.x)}" y2="${r2(b.y)}"></line>`;
+    }).join('');
+  } else {
+    ground = `<line x1="-7" y1="${GROUND}" x2="71" y2="${GROUND}" stroke="${FLOOR}" stroke-width="1.2"></line>`;
+    feet = view === 'side'
+      ? `<line x1="${A - 2}" y1="${ANKLE_Y}" x2="${A + 6}" y2="${ANKLE_Y}"></line>`
+      : [-1, 1].map(sg => `<line x1="${32 + sg * (stance - 1.2)}" y1="${ANKLE_Y}" x2="${32 + sg * (stance + 1.8)}" y2="${ANKLE_Y}"></line>`).join('');
+  }
+  const title = `${ex.name} — vista ${{ side: 'lateral', front: 'frontal', iso: 'isométrica' }[view]}`;
   return `<svg xmlns="http://www.w3.org/2000/svg" class="ex ${cls}" width="${size}" height="${size}" viewBox="${VIEWBOX}" fill="none" stroke="${INK}" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="${title}"><title>${title}</title><style>\n${css}\n</style>${ground}${feet}${els.map(e => e.svg).join('')}</svg>`;
 }
 
