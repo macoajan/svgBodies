@@ -1,14 +1,17 @@
 // Stick-figure exercise engine.
-// Body model: sagittal plane (x forward, y down) plus a lateral offset z for the paired
-// joints, in viewBox units (ground at y = 60.5). Exercises describe poses through the
-// helpers below; the renderer turns sampled poses into self-contained animated SVGs
-// (side and front view) using the eap-web method: inline SVG + CSS @keyframes.
+// Body model in viewBox units: x forward, y down, z lateral (right side +z, left side -z).
+// Ground at y = 60.5; joints resting on the floor sit on the contact line y = 58.
+// Exercises describe poses through the helpers below; the renderer projects the sampled 3D
+// poses with a camera per view (side, front, iso) and writes self-contained animated SVGs
+// using the eap-web method: inline SVG + CSS @keyframes.
 
-export const A = 28;                 // side view: ankle x
+export const A = 28;                 // standing exercises: ankle x
 export const MF = A + 2;             // midfoot x
 export const GROUND = 60.5;
-export const ANKLE_Y = 58;
-export const L = { shin: 13.5, thigh: 13.5, sh: 15, neck: 19, head: 5, upper: 11.5, fore: 9.5 };
+export const FLOOR_TOP = GROUND - 0.6;
+export const ANKLE_Y = 58;           // contact line: centre of a stroke resting on the floor
+export const MAX_Y = FLOOR_TOP - 1.7 + 0.05;
+export const L = { shin: 13.5, thigh: 13.5, sh: 15, neck: 4, head: 5, upper: 11.5, fore: 9.5, foot: 6, heel: 2 };
 export const Z = { hip: 4, shoulder: 7.5 };
 export const HEAD_R = 4.5;
 export const PLATE = { r: 6.5, w: 2.2 };
@@ -24,18 +27,27 @@ export const smoother = t => { t = clamp01(t); return t * t * t * (t * (t * 6 - 
 export const bump = t => Math.sin(Math.PI * clamp01(t));
 
 export const V = (x, y, z = 0) => ({ x, y, z });
-const add = (a, b) => V(a.x + b.x, a.y + b.y, a.z + b.z);
-const sub = (a, b) => V(a.x - b.x, a.y - b.y, a.z - b.z);
-const mul = (a, k) => V(a.x * k, a.y * k, a.z * k);
+export const add = (a, b) => V(a.x + b.x, a.y + b.y, a.z + b.z);
+export const sub = (a, b) => V(a.x - b.x, a.y - b.y, a.z - b.z);
+export const mul = (a, k) => V(a.x * k, a.y * k, a.z * k);
 const dot = (a, b) => a.x * b.x + a.y * b.y + a.z * b.z;
-const len = a => Math.sqrt(dot(a, a));
+export const len = a => Math.sqrt(dot(a, a));
 const unit = a => mul(a, 1 / len(a));
 export const vlerp = (a, b, t) => V(lerp(a.x, b.x, t), lerp(a.y, b.y, t), lerp(a.z, b.z, t));
+export const mirror = q => V(q.x, q.y, -q.z);
+
+// 2D directions in the sagittal plane. up(a): a degrees from straight up, positive = forward.
+// down(a): a degrees from hanging, positive = forward. rot2 turns a direction by a degrees
+// (positive = clockwise on screen, e.g. from "down" towards "back").
+export const up = a => V(Math.sin(rad(a)), -Math.cos(rad(a)));
+export const down = a => V(Math.sin(rad(a)), Math.cos(rad(a)));
+export const rot2 = (v, a) => V(v.x * Math.cos(rad(a)) - v.y * Math.sin(rad(a)), v.x * Math.sin(rad(a)) + v.y * Math.cos(rad(a)), v.z);
+export const along = (P, d, k) => V(P.x + d.x * k, P.y + d.y * k, P.z);
 
 // ---------- Pose helpers ----------
 
-// Angles in degrees from vertical; positive = upper end towards +x (the figure faces right).
-// Knees open sideways in proportion to knee flexion (full `out` at 120 degrees).
+// Standing legs rooted at the ankle. Angles in degrees from vertical; positive = upper end
+// forward. Knees open sideways in proportion to knee flexion (full `out` at 120 degrees).
 export function legs({ shin = 0, thigh = 0, stance = 5, out = 2 }) {
   const ankle = V(A, ANKLE_Y, stance);
   const flex = clamp01((shin - thigh) / 120);
@@ -44,20 +56,34 @@ export function legs({ shin = 0, thigh = 0, stance = 5, out = 2 }) {
   return { ankle, knee, hip };
 }
 
-// Trunk from the hip at `alpha` degrees of forward lean; `neck` rotates the head relative to it.
+// Foot from the ankle along the 2D direction (dx, dy), toes turned slightly out.
+export function foot(ankle, dx, dy, splay = 0.2) {
+  const s = Math.sign(ankle.z) || 1;
+  return add(ankle, mul(unit(V(dx, dy, s * splay * Math.hypot(dx, dy))), L.foot));
+}
+export const footFlat = ankle => foot(ankle, 1, 0);
+// Foot relative to the shin: plantar 0 = foot at right angles to the shin, positive = pointed.
+export function footFromShin(knee, ankle, plantar = 0) {
+  const d = rot2(unit(V(ankle.x - knee.x, ankle.y - knee.y)), -90 + plantar);
+  return foot(ankle, d.x, d.y);
+}
+
+// Trunk from the hip centre at `alpha` degrees of forward lean (90 = face down, -90 = face up).
+// `neck` turns the head relative to the trunk. neckDir/headDir (absolute, same convention as
+// alpha) bend the cervical spine and set the head, e.g. to rest the head on the floor.
 // at(along, front) gives a point on the trunk: `along` from the hip, `front` towards the chest.
-export function trunk(hip, alpha, neck = 0) {
+export function trunk(hip, alpha, neck = 0, { neckDir = alpha, headDir = null } = {}) {
   const s = Math.sin(rad(alpha)), c = Math.cos(rad(alpha));
-  const at = (along, front = 0) => V(hip.x + along * s + front * c, hip.y - along * c + front * s, 0);
-  const shoulder = { ...at(L.sh), z: Z.shoulder };
-  const neckTop = at(L.neck);
-  const h = rad(alpha + neck);
-  const head = V(neckTop.x + L.head * Math.sin(h), neckTop.y - L.head * Math.cos(h), 0);
-  return { alpha, shoulder, neckTop, head, at };
+  const at = (al, front = 0) => V(hip.x + al * s + front * c, hip.y - al * c + front * s, 0);
+  const pelvis = V(hip.x, hip.y, 0);
+  const shoulderC = at(L.sh);
+  const neckTop = along(shoulderC, up(neckDir), L.neck);
+  const head = along(neckTop, up(headDir ?? neckDir + neck), L.head);
+  return { alpha, pelvis, shoulderC, shoulder: { ...shoulderC, z: Z.shoulder }, neckTop, head, at };
 }
 
 // Sagittal reach of a straight arm whose hand sits at lateral offset handZ.
-export const reach = handZ => Math.sqrt((L.upper + L.fore) ** 2 - (handZ - Z.shoulder) ** 2);
+export const reach = handZ => Math.sqrt((L.upper + L.fore) ** 2 - (Math.abs(handZ) - Z.shoulder) ** 2);
 
 // Straight arm at `phi` degrees from hanging (positive = forward, 90 = horizontal, 180 = overhead).
 export function straight(S, phi, handZ) {
@@ -65,41 +91,72 @@ export function straight(S, phi, handZ) {
   return V(S.x + R * Math.sin(rad(phi)), S.y + R * Math.cos(rad(phi)), handZ);
 }
 
-// Two-bone IK: elbow on the circle of solutions, on the side the pole vector points to.
-export function elbowIK(S, H, pole) {
-  const a = L.upper, b = L.fore;
-  const d = sub(H, S);
+// Two-bone IK: middle joint on the circle of solutions, on the side the pole vector points to.
+export function twoBone(root, end, a, b, pole, what = 'limb') {
+  const d = sub(end, root);
   let dist = len(d);
-  if (dist > a + b + 0.05) throw new Error(`hand out of reach (${dist.toFixed(2)})`);
+  if (dist > a + b + 0.05) throw new Error(`${what} out of reach (${dist.toFixed(2)})`);
   dist = Math.min(dist, a + b);
   const u = unit(d);
   const x = (a * a - b * b + dist * dist) / (2 * dist);
   const r = Math.sqrt(Math.max(0, a * a - x * x));
   let p = sub(pole, mul(u, dot(pole, u)));
   if (len(p) < 1e-9) p = V(0, 1, 0);
-  return add(add(S, mul(u, x)), mul(unit(p), r));
+  return add(add(root, mul(u, x)), mul(unit(p), r));
+}
+export const elbowIK = (S, H, pole) => twoBone(S, H, L.upper, L.fore, pole, 'hand');
+export const kneeIK = (hip, ankle, pole) => twoBone(hip, ankle, L.thigh, L.shin, pole, 'foot');
+
+// Intersections of two circles in the sagittal plane (z taken from P).
+export function circles(P, rP, Q, rQ) {
+  const dx = Q.x - P.x, dy = Q.y - P.y, dist = Math.hypot(dx, dy);
+  const a = (dist * dist + rP * rP - rQ * rQ) / (2 * dist);
+  const off = Math.sqrt(Math.max(0, rP * rP - a * a));
+  const mx = P.x + a * dx / dist, my = P.y + a * dy / dist;
+  return [V(mx - off * dy / dist, my + off * dx / dist, P.z), V(mx + off * dy / dist, my - off * dx / dist, P.z)];
 }
 
-// objects: [{ type: 'barbell' | 'kb', at: V, phi?: deg (kettlebell hang angle), layer: 'front' | 'back' | 'behind' }]
+// One side of the body. Hip and shoulder come from the trunk; the caller gives knee, ankle,
+// toe and hand, and either the elbow or a pole vector for the elbow IK. z of the given
+// joints must already carry the side's sign.
+function limbs(t, sg, { knee, ankle, toe, hand, elbow, pole }) {
+  const hip = V(t.pelvis.x, t.pelvis.y, sg * Z.hip);
+  const shoulder = V(t.shoulderC.x, t.shoulderC.y, sg * Z.shoulder);
+  return { hip, knee, ankle, toe, shoulder, elbow: elbow ?? elbowIK(shoulder, hand, pole ?? V(0, 1, 0.3 * sg)), hand };
+}
+export const mirrorSide = s => Object.fromEntries(Object.entries(s).map(([k, v]) => [k, v && typeof v === 'object' ? mirror(v) : v]));
+
+// General pose: right side `r`, left side `l` (left joints with negative z).
+// objects: [{ type: 'barbell' | 'kb', at: V, phi?: deg (kettlebell hang angle) }]
 // load: { m: mass as a fraction of body mass, x } for the balance solver.
+export function poseLR({ trunk: t, r, l, objects = [], load = null }) {
+  return {
+    alpha: t.alpha, pelvis: t.pelvis, shoulderC: t.shoulderC, neckTop: t.neckTop, head: t.head,
+    r: limbs(t, 1, r), l: limbs(t, -1, l), objects, load,
+  };
+}
+
+// Symmetric standing pose (batch A): legs from legs(), left side mirrored.
 export function pose({ legs: lg, trunk: t, hand, pole = V(0, 1, 0.3), objects = [], load = null }) {
-  const elbow = elbowIK(t.shoulder, hand, pole);
-  return { ...lg, alpha: t.alpha, shoulder: t.shoulder, neckTop: t.neckTop, head: t.head, elbow, hand, objects, load };
+  const r = { knee: lg.knee, ankle: lg.ankle, toe: footFlat(lg.ankle), hand, pole };
+  return { ...poseLR({ trunk: t, r, l: mirrorSide(r), objects, load }), upright: true };
 }
 
 // Segment mass fractions (both sides together for paired segments), anthropometric tables.
 const M = { head: 0.081, trunk: 0.497, upper: 0.056, fore: 0.044, thigh: 0.2, shin: 0.093, foot: 0.029 };
 export function com(p) {
   let m = 0, x = 0;
-  const acc = (mm, px) => { m += mm; x += mm * px; };
-  acc(M.head, p.head.x);
-  acc(M.trunk, (p.hip.x + p.shoulder.x) / 2);
-  acc(M.upper, (p.shoulder.x + p.elbow.x) / 2);
-  acc(M.fore, (p.elbow.x + p.hand.x) / 2);
-  acc(M.thigh, (p.hip.x + p.knee.x) / 2);
-  acc(M.shin, (p.knee.x + p.ankle.x) / 2);
-  acc(M.foot, MF);
-  if (p.load) acc(p.load.m, p.load.x);
+  const acc = (mm, a, b = a) => { m += mm; x += mm * (a.x + b.x) / 2; };
+  acc(M.head, p.head);
+  acc(M.trunk, p.pelvis, p.shoulderC);
+  for (const s of [p.r, p.l]) {
+    acc(M.upper / 2, s.shoulder, s.elbow);
+    acc(M.fore / 2, s.elbow, s.hand);
+    acc(M.thigh / 2, s.hip, s.knee);
+    acc(M.shin / 2, s.knee, s.ankle);
+    acc(M.foot / 2, s.ankle, s.toe);
+  }
+  if (p.load) { m += p.load.m; x += p.load.m * p.load.x; }
   return x / m;
 }
 
@@ -126,9 +183,20 @@ export function balance(build, lo = -25, hi = 100, target = standingCom()) {
   return build((lo + hi) / 2);
 }
 
+// Root finding for monotone f on [lo, hi] (bisection).
+export function solve(f, lo, hi) {
+  const flo = f(lo);
+  for (let i = 0; i < 60; i++) {
+    const mid = (lo + hi) / 2;
+    if ((f(mid) > 0) === (flo > 0)) lo = mid; else hi = mid;
+  }
+  return (lo + hi) / 2;
+}
+
 // ---------- Sampling and validation ----------
 
 const PER_MOVE = 12;   // samples per moving phase
+const SIDE_J = ['hip', 'knee', 'ankle', 'toe', 'shoulder', 'elbow', 'hand'];
 
 export function sample(ex) {
   const T = ex.phases.reduce((s, p) => s + p.dur, 0);
@@ -142,12 +210,12 @@ export function sample(ex) {
   }
   out.push({ t: T, p: out[0].p });
   // Phase boundaries must join: end of each phase == start of the next.
-  t0 = 0;
   ex.phases.forEach((ph, i) => {
     const next = ex.phases[(i + 1) % ex.phases.length];
     const a = ph.pose(1), b = next.pose(0);
-    for (const j of ['knee', 'hip', 'shoulder', 'head', 'elbow', 'hand']) {
-      const d = len(sub(a[j], b[j]));
+    const pairs = [['head', a.head, b.head], ...['r', 'l'].flatMap(s => SIDE_J.map(j => [`${s}.${j}`, a[s][j], b[s][j]]))];
+    for (const [j, qa, qb] of pairs) {
+      const d = len(sub(qa, qb));
       if (d > 0.05) throw new Error(`${ex.id}: phase ${i}→${(i + 1) % ex.phases.length} jumps at ${j} (${d.toFixed(2)})`);
     }
   });
@@ -155,17 +223,29 @@ export function sample(ex) {
 }
 
 export function validate(ex, frames) {
-  const near = (a, b, what) => { if (Math.abs(a - b) > 0.06 || Number.isNaN(a)) throw new Error(`${ex.id}: ${what} ${a.toFixed(3)} != ${b}`); };
   const d2 = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
+  // Segment length is checked in 3D, or in the sagittal plane for legs placed with legs().
+  const seg = (a, b, Lx, what, t) => {
+    const l3 = len(sub(a, b)), l2 = d2(a, b);
+    if (!(Math.abs(l3 - Lx) < 0.06 || Math.abs(l2 - Lx) < 0.06))
+      throw new Error(`${ex.id}: ${what} ${l3.toFixed(3)} != ${Lx} @${t.toFixed(2)}`);
+  };
   for (const { t, p } of frames) {
-    near(d2(p.ankle, p.knee), L.shin, `shin @${t.toFixed(2)}`);
-    near(d2(p.knee, p.hip), L.thigh, `thigh @${t.toFixed(2)}`);
-    near(d2(p.hip, p.shoulder), L.sh, `trunk @${t.toFixed(2)}`);
-    near(len(sub(p.shoulder, p.elbow)), L.upper, `upper arm @${t.toFixed(2)}`);
-    near(len(sub(p.elbow, p.hand)), L.fore, `forearm @${t.toFixed(2)}`);
-    if (p.hip.x > p.knee.x + 0.5) throw new Error(`${ex.id}: hip in front of the knee @${t.toFixed(2)}`);
-    for (const j of ['knee', 'hip', 'shoulder', 'head', 'elbow', 'hand'])
-      if (p[j].y > ANKLE_Y + 0.01) throw new Error(`${ex.id}: ${j} below the ankles @${t.toFixed(2)}`);
+    seg(p.pelvis, p.shoulderC, L.sh, 'trunk', t);
+    seg(p.shoulderC, p.neckTop, L.neck, 'neck', t);
+    seg(p.neckTop, p.head, L.head, 'head', t);
+    for (const s of ['r', 'l']) {
+      const q = p[s];
+      seg(q.hip, q.knee, L.thigh, `${s} thigh`, t);
+      seg(q.knee, q.ankle, L.shin, `${s} shin`, t);
+      seg(q.ankle, q.toe, L.foot, `${s} foot`, t);
+      seg(q.shoulder, q.elbow, L.upper, `${s} upper arm`, t);
+      seg(q.elbow, q.hand, L.fore, `${s} forearm`, t);
+      for (const j of SIDE_J) if (q[j].y > MAX_Y) throw new Error(`${ex.id}: ${s}.${j} below the floor @${t.toFixed(2)}`);
+    }
+    if (p.neckTop.y > MAX_Y) throw new Error(`${ex.id}: neck below the floor @${t.toFixed(2)}`);
+    if (p.head.y + HEAD_R + 1.7 > FLOOR_TOP + 0.05) throw new Error(`${ex.id}: head through the floor @${t.toFixed(2)}`);
+    if (p.upright && p.pelvis.x > p.r.knee.x + 0.5) throw new Error(`${ex.id}: hip in front of the knee @${t.toFixed(2)}`);
     for (const o of p.objects) {
       const bottom = o.type === 'barbell' ? o.at.y + PLATE.r + PLATE.w / 2
         : o.at.y + (KB.bell + KB.r) * Math.cos(rad(o.phi || 0));
@@ -174,12 +254,55 @@ export function validate(ex, frames) {
   }
 }
 
+// ---------- Cameras ----------
+
+// Every view is the same projection: the camera turns `yaw` degrees from the figure's right
+// side towards its front and rises `pitch` degrees. depth grows towards the viewer.
+export const VIEWS = {
+  side: { yaw: 0, pitch: 0, cx: 0, cy: ANKLE_Y, centre: false, label: 'lateral' },
+  front: { yaw: 90, pitch: 0, cx: 32, cy: ANKLE_Y, centre: false, label: 'frontal' },
+  iso: { yaw: 40, pitch: 30, cx: 32, cy: 54, centre: true, label: 'isométrica' },
+  top: { yaw: 0, pitch: 90, cx: 0, cy: 24, centre: false, label: 'cenital' },
+};
+export function camera(view, x0, override = null) {
+  const v = { ...VIEWS[view], ...(override || {}) };
+  const cyw = Math.cos(rad(v.yaw)), syw = Math.sin(rad(v.yaw)), cp = Math.cos(rad(v.pitch)), sp = Math.sin(rad(v.pitch));
+  const ox = v.centre ? x0 : 0;
+  const horiz = q => (q.x - ox) * syw + q.z * cyw;
+  // Towards the camera: horizontally by the yaw, and upwards as the camera rises.
+  const depth = q => horiz(q) * cp + (ANKLE_Y - q.y) * sp;
+  const dir = (dx, dy, dz) => ({ x: dx * cyw - dz * syw, y: dy * cp + (dx * syw + dz * cyw) * sp });
+  const proj = q => ({ x: v.cx + (q.x - ox) * cyw - q.z * syw, y: v.cy + (q.y - ANKLE_Y) * cp + horiz(q) * sp });
+  return { view, depth, dir, proj, yaw: v.yaw, pitch: v.pitch, sideOn: Math.abs(cyw) > 0.99 && v.pitch < 1 };
+}
+
+// Horizontal extent of the figure over the cycle (used to centre the iso view and size the floor).
+export function extent(frames) {
+  let lo = Infinity, hi = -Infinity;
+  for (const { p } of frames) for (const s of ['r', 'l']) for (const j of SIDE_J) { lo = Math.min(lo, p[s][j].x); hi = Math.max(hi, p[s][j].x); }
+  for (const { p } of frames) { lo = Math.min(lo, p.head.x - HEAD_R); hi = Math.max(hi, p.head.x + HEAD_R); }
+  return { lo, hi, mid: (lo + hi) / 2 };
+}
+
+// Convex hull (monotone chain) of 2D points.
+export function hull(pts) {
+  const P = pts.slice().sort((a, b) => a.x - b.x || a.y - b.y);
+  const cross = (o, a, b) => (a.x - o.x) * (b.y - o.y) - (a.y - o.y) * (b.x - o.x);
+  const lo = [], hi = [];
+  for (const q of P) { while (lo.length > 1 && cross(lo[lo.length - 2], lo[lo.length - 1], q) <= 0) lo.pop(); lo.push(q); }
+  for (const q of P.reverse()) { while (hi.length > 1 && cross(hi[hi.length - 2], hi[hi.length - 1], q) <= 0) hi.pop(); hi.push(q); }
+  return lo.slice(0, -1).concat(hi.slice(0, -1));
+}
+
 // ---------- Rendering ----------
 
 export const INK = '#C2410C', IRON = '#0F2A3D', FLOOR = '#AEB8C1';
+const PLATE_FILL = '#DCE4EA', FLOOR_FILL = '#E2EAEF';
+const BOX_FILL = { top: '#EEF2F5', side: '#C9D3DB', front: '#DCE4EA' };
 const VIEWBOX = '-7 -15 78 78';
 const r1 = v => (Math.abs(v) < 0.05 ? 0 : +v.toFixed(1));
 const r2 = v => +v.toFixed(2);
+const pts = list => list.map(q => `${r2(q.x)},${r2(q.y)}`).join(' ');
 
 // A segment is drawn from (0,0) to (0,L0); translate(P) rotate(θ) scaleY(|PQ|/L0) puts it on P→Q.
 // scaleY only acts along the segment, so stroke width is preserved under foreshortening.
@@ -200,141 +323,103 @@ function fmt(kind, f, useScale) {
   return `${t} rotate(${r1(f.rot)}deg)` + (useScale ? ` scaleY(${r2(f.sy)})` : '');
 }
 
-// Elements of a view: { key, kind: 'seg'|'pt'|'rot', svg, at(p) -> params }
-function sideElements(objs) {
-  const P = j => p => ({ x: p[j].x, y: p[j].y });
-  const seg = (key, a, b, L0) => ({ key, kind: 'seg', svg: line0(key, L0), at: p => segParams(P(a)(p), P(b)(p), L0) });
-  const pt = (key, j, svg) => ({ key, kind: 'pt', svg, at: p => ({ tx: p[j].x, ty: p[j].y }) });
-  const obj = (o, i) => o.type === 'barbell'
-    ? { key: `o${i}`, kind: 'pt', svg: plateSide(`o${i}`), at: p => ({ tx: p.objects[i].at.x, ty: p.objects[i].at.y }) }
-    : { key: `o${i}`, kind: 'rot', svg: kbGlyph(`o${i}`), at: p => ({ tx: p.objects[i].at.x, ty: p.objects[i].at.y, rot: -(p.objects[i].phi || 0) }) };
-  const behind = objs.map((o, i) => (o.layer === 'behind' ? obj(o, i) : null)).filter(Boolean);
-  const front = objs.map((o, i) => (o.layer !== 'behind' ? obj(o, i) : null)).filter(Boolean);
-  return [
-    ...behind,
-    seg('shin', 'knee', 'ankle', L.shin),
-    seg('thigh', 'hip', 'knee', L.thigh),
-    seg('trunk', 'neckTop', 'hip', L.neck),
-    pt('head', 'head', `<circle class="k-head" r="${HEAD_R}"></circle>`),
-    pt('knee', 'knee', jointDot('knee')),
-    ...front,
-    seg('upper', 'shoulder', 'elbow', L.upper),
-    seg('fore', 'elbow', 'hand', L.fore),
-    pt('elbow', 'elbow', jointDot('elbow')),
-    pt('hand', 'hand', jointDot('hand')),
-  ];
-}
-
-function frontElements(objs) {
-  const C = 32;
-  const F = (j, sg) => p => ({ x: C + sg * p[j].z, y: p[j].y });
-  const els = [];
-  const objEl = (o, i) => o.type === 'barbell'
-    ? { key: `o${i}`, kind: 'pt', svg: barFront(`o${i}`), at: p => ({ tx: C, ty: p.objects[i].at.y }) }
-    : { key: `o${i}`, kind: 'pt', svg: kbFront(`o${i}`), at: p => ({ tx: C, ty: p.objects[i].at.y + KB.bell * Math.cos(rad(p.objects[i].phi || 0)) }) };
-  for (const [s, sg] of [['r', -1], ['l', 1]]) {
-    els.push({ key: `shin-${s}`, kind: 'seg', svg: line0(`shin-${s}`, L.shin), at: p => segParams(F('knee', sg)(p), F('ankle', sg)(p), L.shin) });
-    els.push({ key: `thigh-${s}`, kind: 'seg', svg: line0(`thigh-${s}`, L.thigh), at: p => segParams(F('hip', sg)(p), F('knee', sg)(p), L.thigh) });
-    els.push({ key: `knee-${s}`, kind: 'pt', svg: jointDot(`knee-${s}`), at: p => ({ tx: F('knee', sg)(p).x, ty: p.knee.y }) });
-  }
-  els.push({ key: 'pelvis', kind: 'pt', svg: `<line class="k-pelvis" x1="${-Z.hip}" y1="0" x2="${Z.hip}" y2="0"></line>`, at: p => ({ tx: C, ty: p.hip.y }) });
-  objs.forEach((o, i) => { if (o.layer === 'back') els.push(objEl(o, i)); });
-  els.push({ key: 'spine', kind: 'seg', svg: line0('spine', L.neck), at: p => segParams({ x: C, y: p.neckTop.y }, { x: C, y: p.hip.y }, L.neck) });
-  els.push({ key: 'shoulders', kind: 'pt', svg: `<line class="k-shoulders" x1="${-Z.shoulder}" y1="0" x2="${Z.shoulder}" y2="0"></line>`, at: p => ({ tx: C, ty: p.shoulder.y }) });
-  els.push({ key: 'head', kind: 'pt', svg: `<circle class="k-head" r="${HEAD_R}"></circle>`, at: p => ({ tx: C, ty: p.head.y }) });
-  objs.forEach((o, i) => { if (o.layer !== 'back') els.push(objEl(o, i)); });
-  for (const [s, sg] of [['r', -1], ['l', 1]]) {
-    els.push({ key: `upper-${s}`, kind: 'seg', svg: line0(`upper-${s}`, L.upper), at: p => segParams(F('shoulder', sg)(p), F('elbow', sg)(p), L.upper) });
-    els.push({ key: `fore-${s}`, kind: 'seg', svg: line0(`fore-${s}`, L.fore), at: p => segParams(F('elbow', sg)(p), F('hand', sg)(p), L.fore) });
-    els.push({ key: `elbow-${s}`, kind: 'pt', svg: jointDot(`elbow-${s}`), at: p => ({ tx: F('elbow', sg)(p).x, ty: p.elbow.y }) });
-    els.push({ key: `hand-${s}`, kind: 'pt', svg: jointDot(`hand-${s}`), at: p => ({ tx: F('hand', sg)(p).x, ty: p.hand.y }) });
-  }
-  return els;
-}
-
-
-// Isometric-style view: camera turned ISO.yaw degrees towards the figure's front and right
-// side, raised ISO.pitch degrees. The right side (+z) is the near side; the left is -z.
-const ISO = { yaw: 40, pitch: 30, cx: 30, cy: 54 };
-const cyaw = Math.cos(rad(ISO.yaw)), syaw = Math.sin(rad(ISO.yaw));
-const cpit = Math.cos(rad(ISO.pitch)), spit = Math.sin(rad(ISO.pitch));
-export function isoProject(q) {
-  const x = q.x - A, depth = x * syaw + q.z * cyaw;
-  return { x: ISO.cx + x * cyaw - q.z * syaw, y: ISO.cy + (q.y - ANKLE_Y) * cpit + depth * spit };
-}
-const isoDir = (dx, dy, dz) => ({ x: dx * cyaw - dz * syaw, y: dy * cpit + (dx * syaw + dz * cyaw) * spit });
-const PLATE_FILL = '#DCE4EA';
-
-// Half a barbell (far: sg = -1, near: sg = 1), drawn around the bar centre.
-function barHalf(key, sg) {
-  const end = isoDir(0, 0, 30 * sg), pc = isoDir(0, 0, 25.2 * sg), ex = isoDir(1, 0, 0), ey = isoDir(0, 1, 0);
-  const m = `matrix(${r2(ex.x)},${r2(ex.y)},${r2(ey.x)},${r2(ey.y)},${r2(pc.x)},${r2(pc.y)})`;
-  return `<g class="k-${key}"><line x1="0" y1="0" x2="${r2(end.x)}" y2="${r2(end.y)}" stroke="${IRON}" stroke-width="2"></line>`
-    + `<circle r="${PLATE.r}" transform="${m}" fill="${PLATE_FILL}" stroke="${IRON}" stroke-width="${PLATE.w}"></circle>`
-    + `<circle r="1.4" transform="${m}" fill="${IRON}" stroke="none"></circle></g>`;
-}
-
-function isoElements(objs) {
-  const J = (j, sg = 1) => p => isoProject({ x: p[j].x, y: p[j].y, z: sg * p[j].z });
-  const seg = (key, P, Q, L0) => ({ key, kind: 'seg', svg: line0(key, L0), at: p => segParams(P(p), Q(p), L0) });
-  const pt = (key, f, svg) => ({ key, kind: 'pt', svg, at: p => { const q = f(p); return { tx: q.x, ty: q.y }; } });
-  const leg = (s, sg) => [
-    seg(`shin-${s}`, J('knee', sg), J('ankle', sg), L.shin),
-    seg(`thigh-${s}`, J('hip', sg), J('knee', sg), L.thigh),
-    pt(`knee-${s}`, J('knee', sg), jointDot(`knee-${s}`)),
-  ];
-  const arm = (s, sg) => [
-    seg(`upper-${s}`, J('shoulder', sg), J('elbow', sg), L.upper),
-    seg(`fore-${s}`, J('elbow', sg), J('hand', sg), L.fore),
-    pt(`elbow-${s}`, J('elbow', sg), jointDot(`elbow-${s}`)),
-    pt(`hand-${s}`, J('hand', sg), jointDot(`hand-${s}`)),
-  ];
-  const centre = (p, i) => isoProject({ ...p.objects[i].at, z: 0 });
-  const bell = (p, i) => {
-    const o = p.objects[i], ph = rad(o.phi || 0);
-    return isoProject({ x: o.at.x + KB.bell * Math.sin(ph), y: o.at.y + KB.bell * Math.cos(ph), z: 0 });
-  };
-  const objEls = (pred, half) => objs.flatMap((o, i) => {
-    if (!pred(o)) return [];
-    if (o.type === 'barbell') return [pt(`o${i}-${half}`, p => centre(p, i), barHalf(`o${i}-${half}`, half === 'far' ? -1 : 1))];
-    return half === 'near' ? [pt(`o${i}`, p => bell(p, i), kbFront(`o${i}`))] : [];
-  });
-  const hipC = p => isoProject({ x: p.hip.x, y: p.hip.y, z: 0 });
-  const neckC = p => isoProject({ x: p.neckTop.x, y: p.neckTop.y, z: 0 });
-  return [
-    ...objEls(o => o.type === 'barbell', 'far'),
-    ...leg('l', -1),
-    ...arm('l', -1),
-    ...objEls(o => o.layer === 'behind', 'near'),
-    seg('pelvis', J('hip', -1), J('hip', 1), 2 * Z.hip),
-    seg('spine', neckC, hipC, L.neck),
-    seg('shoulders', J('shoulder', -1), J('shoulder', 1), 2 * Z.shoulder),
-    pt('head', J('head'), `<circle class="k-head" r="${HEAD_R}"></circle>`),
-    ...leg('r', 1),
-    ...objEls(o => o.layer !== 'behind', 'near'),
-    ...arm('r', 1),
-  ];
-}
-
 const line0 = (key, L0) => `<line class="k-${key}" x1="0" y1="0" x2="0" y2="${L0}"></line>`;
 const jointDot = key => `<circle class="k-${key}" r="1.7" fill="${INK}" stroke="none"></circle>`;
-const plateSide = key => `<g class="k-${key}" stroke="${IRON}"><circle r="${PLATE.r}" stroke-width="${PLATE.w}"></circle><circle r="1.4" fill="${IRON}" stroke="none"></circle></g>`;
-// Front view: the bell is a sphere (round from any angle); the handle is hidden behind the hands.
-const kbFront = key => `<circle class="k-${key}" r="${KB.r}" fill="${IRON}" stroke="none"></circle>`;
+const kbBell = key => `<circle class="k-${key}" r="${KB.r}" fill="${IRON}" stroke="none"></circle>`;
 const kbGlyph = key => `<g class="k-${key}"><path d="M-2.8 3 C-2.8 -1.4 2.8 -1.4 2.8 3" stroke="${IRON}" stroke-width="1.8"></path><circle cy="${KB.bell}" r="${KB.r}" fill="${IRON}" stroke="none"></circle></g>`;
-function barFront(key) {
-  const h = 2 * PLATE.r + PLATE.w;
-  return `<g class="k-${key}"><line x1="-30" y1="0" x2="30" y2="0" stroke="${IRON}" stroke-width="2"></line>`
-    + `<rect x="-27" y="${-h / 2}" width="3.6" height="${h}" rx="0.8" fill="${IRON}" stroke="none"></rect>`
-    + `<rect x="23.4" y="${-h / 2}" width="3.6" height="${h}" rx="0.8" fill="${IRON}" stroke="none"></rect>`
-    + `<line x1="-21" y1="-2.4" x2="-21" y2="2.4" stroke="${IRON}" stroke-width="1.6"></line>`
-    + `<line x1="21" y1="-2.4" x2="21" y2="2.4" stroke="${IRON}" stroke-width="1.6"></line></g>`;
+
+// Half a barbell (sg = -1 left, 1 right) drawn around the bar centre. The plate is a short
+// cylinder: its outline is the hull of both faces, so it keeps its thickness edge-on.
+function barHalf(key, cam, sg) {
+  const end = cam.dir(0, 0, 30 * sg), outline = [];
+  for (const z of [23.4, 27]) for (let k = 0; k < 24; k++) {
+    const a = k * Math.PI / 12;
+    outline.push(cam.dir(PLATE.r * Math.cos(a), PLATE.r * Math.sin(a), z * sg));
+  }
+  const hub = cam.dir(0, 0, 27 * sg);
+  return `<g class="k-${key}"><line x1="0" y1="0" x2="${r2(end.x)}" y2="${r2(end.y)}" stroke="${IRON}" stroke-width="2"></line>`
+    + `<polygon points="${pts(hull(outline))}" fill="${cam.sideOn ? 'none' : PLATE_FILL}" stroke="${IRON}" stroke-width="${PLATE.w}"></polygon>`
+    + (cam.sideOn ? `<circle cx="${r2(hub.x)}" cy="${r2(hub.y)}" r="1.4" fill="${IRON}" stroke="none"></circle>` : '') + '</g>';
+}
+
+// Static props, drawn behind the figure so contacts (feet on a box, hands on a bar) stay visible.
+function propSvg(pr, cam) {
+  if (pr.type === 'box') {
+    const { x0, x1, top, hz } = pr, y1 = FLOOR_TOP;
+    const P = (x, y, z) => cam.proj(V(x, y, z));
+    const faces = [];
+    const v = cam;
+    const syw = Math.sin(rad(v.yaw)), cyw = Math.cos(rad(v.yaw));
+    if (cyw > 0.01) faces.push([BOX_FILL.side, [P(x0, top, hz), P(x1, top, hz), P(x1, y1, hz), P(x0, y1, hz)]]);
+    if (syw > 0.01) faces.push([BOX_FILL.front, [P(x1, top, -hz), P(x1, top, hz), P(x1, y1, hz), P(x1, y1, -hz)]]);
+    if (v.pitch > 0.5) faces.push([BOX_FILL.top, [P(x0, top, -hz), P(x1, top, -hz), P(x1, top, hz), P(x0, top, hz)]]);
+    return faces.map(([fill, q]) => `<polygon points="${pts(q)}" fill="${fill}" stroke="${IRON}" stroke-width="1.2"></polygon>`).join('');
+  }
+  if (pr.type === 'pullbar') {
+    const a = cam.proj(V(pr.x, pr.y, -pr.hz)), b = cam.proj(V(pr.x, pr.y, pr.hz)), c = cam.proj(V(pr.x, pr.y, 0));
+    return `<line x1="${r2(a.x)}" y1="${r2(a.y)}" x2="${r2(b.x)}" y2="${r2(b.y)}" stroke="${IRON}" stroke-width="2.4"></line>`
+      + `<circle cx="${r2(c.x)}" cy="${r2(c.y)}" r="1.6" fill="${IRON}" stroke="none"></circle>`;
+  }
+  throw new Error(`unknown prop ${pr.type}`);
+}
+
+// Elements of a view: { key, kind: 'seg'|'pt'|'rot', svg, at(p) -> params, depth(p) }.
+function elements(p0, cam) {
+  const els = [];
+  const segE = (key, P, Q, L0) => els.push({
+    key, kind: 'seg', svg: line0(key, L0),
+    at: p => segParams(cam.proj(P(p)), cam.proj(Q(p)), L0), depth: p => (cam.depth(P(p)) + cam.depth(Q(p))) / 2,
+  });
+  const ptE = (key, P, svg, bias = 0) => els.push({
+    key, kind: 'pt', svg, at: p => { const q = cam.proj(P(p)); return { tx: q.x, ty: q.y }; }, depth: p => cam.depth(P(p)) + bias,
+  });
+  for (const s of ['l', 'r']) {
+    const J = j => p => p[s][j];
+    const heel = p => { const a = p[s].ankle; return add(a, mul(sub(a, p[s].toe), L.heel / L.foot)); };
+    segE(`foot-${s}`, heel, J('toe'), L.foot + L.heel);
+    segE(`shin-${s}`, J('knee'), J('ankle'), L.shin);
+    segE(`thigh-${s}`, J('hip'), J('knee'), L.thigh);
+    segE(`upper-${s}`, J('shoulder'), J('elbow'), L.upper);
+    segE(`fore-${s}`, J('elbow'), J('hand'), L.fore);
+    for (const j of ['knee', 'elbow', 'hand']) ptE(`${j}-${s}`, J(j), jointDot(`${j}-${s}`), 0.05);
+  }
+  segE('pelvis', p => p.l.hip, p => p.r.hip, 2 * Z.hip);
+  segE('trunk', p => p.shoulderC, p => p.pelvis, L.sh);
+  segE('neck', p => p.neckTop, p => p.shoulderC, L.neck);
+  segE('shoulders', p => p.l.shoulder, p => p.r.shoulder, 2 * Z.shoulder);
+  ptE('head', p => p.head, `<circle class="k-head" r="${HEAD_R}"></circle>`, 0.2);
+  p0.objects.forEach((o, i) => {
+    if (o.type === 'barbell') {
+      for (const sg of [-1, 1]) {
+        const key = `o${i}${sg < 0 ? 'l' : 'r'}`, at = p => V(p.objects[i].at.x, p.objects[i].at.y, 0);
+        els.push({
+          key, kind: 'pt', svg: barHalf(key, cam, sg),
+          at: p => { const q = cam.proj(at(p)); return { tx: q.x, ty: q.y }; },
+          depth: p => cam.depth(V(p.objects[i].at.x, p.objects[i].at.y, 15 * sg)),
+        });
+      }
+    } else if (cam.sideOn) {
+      els.push({
+        key: `o${i}`, kind: 'rot', svg: kbGlyph(`o${i}`),
+        at: p => { const o2 = p.objects[i], q = cam.proj(o2.at); return { tx: q.x, ty: q.y, rot: -(o2.phi || 0) }; },
+        depth: p => cam.depth(p.objects[i].at),
+      });
+    } else {
+      const bell = p => { const o2 = p.objects[i]; return add(o2.at, mul(down(o2.phi || 0), KB.bell)); };
+      ptE(`o${i}`, bell, kbBell(`o${i}`));
+    }
+  });
+  return els;
 }
 
 export function renderView(ex, view, { T, frames }, size) {
   const cls = `ex-${ex.id}-${view}`;
-  const p0 = frames[0].p;
-  const els = view === 'side' ? sideElements(p0.objects) : view === 'iso' ? isoElements(p0.objects) : frontElements(p0.objects);
+  const ext = extent(frames);
+  const cam = camera(view, ext.mid, view === 'iso' ? ex.isoCam : null);
+  const els = elements(frames[0].p, cam);
+  // Back-to-front order: mean depth over the cycle (fixed, so it can live in static SVG).
+  const meanDepth = new Map(els.map(e => [e, frames.reduce((s, f) => s + e.depth(f.p), 0) / frames.length]));
+  els.sort((a, b) => meanDepth.get(a) - meanDepth.get(b));
   const stillIdx = Math.max(0, frames.findIndex(f => f.t >= (ex.still || 0) - 1e-9));
   let css = `.${cls} *{transform-box:view-box;transform-origin:0 0}\n`;
   for (const el of els) {
@@ -355,34 +440,31 @@ export function renderView(ex, view, { T, frames }, size) {
   }
   css += `@media (prefers-reduced-motion: reduce){.${cls} *{animation:none !important}}`;
 
-  const stance = p0.ankle.z;
-  let ground, feet;
-  if (view === 'iso') {
-    const g = 17, corners = [[-g, -g], [g, -g], [g, g], [-g, g]].map(([dx, dz]) => isoProject({ x: A + 2 + dx, y: GROUND, z: dz }));
-    ground = `<polygon points="${corners.map(c => `${r2(c.x)},${r2(c.y)}`).join(' ')}" fill="#E2EAEF" stroke="none"></polygon>`;
-    feet = [-1, 1].map(sg => {
-      const a = isoProject({ x: A - 2, y: ANKLE_Y, z: sg * stance }), b = isoProject({ x: A + 6, y: ANKLE_Y, z: sg * stance });
-      return `<line x1="${r2(a.x)}" y1="${r2(a.y)}" x2="${r2(b.x)}" y2="${r2(b.y)}"></line>`;
-    }).join('');
+  let ground;
+  if (cam.pitch > 0) {
+    const gx = Math.max(17, (ext.hi - ext.lo) / 2 + 3), gz = 17;
+    ground = `<polygon points="${pts([[-gx, -gz], [gx, -gz], [gx, gz], [-gx, gz]].map(([dx, dz]) => cam.proj(V(ext.mid + dx, GROUND, dz))))}" fill="${FLOOR_FILL}" stroke="none"></polygon>`;
   } else {
     ground = `<line x1="-7" y1="${GROUND}" x2="71" y2="${GROUND}" stroke="${FLOOR}" stroke-width="1.2"></line>`;
-    feet = view === 'side'
-      ? `<line x1="${A - 2}" y1="${ANKLE_Y}" x2="${A + 6}" y2="${ANKLE_Y}"></line>`
-      : [-1, 1].map(sg => `<line x1="${32 + sg * (stance - 1.2)}" y1="${ANKLE_Y}" x2="${32 + sg * (stance + 1.8)}" y2="${ANKLE_Y}"></line>`).join('');
   }
-  const title = `${ex.name} — vista ${{ side: 'lateral', front: 'frontal', iso: 'isométrica' }[view]}`;
-  return `<svg xmlns="http://www.w3.org/2000/svg" class="ex ${cls}" width="${size}" height="${size}" viewBox="${VIEWBOX}" fill="none" stroke="${INK}" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="${title}"><title>${title}</title><style>\n${css}\n</style>${ground}${feet}${els.map(e => e.svg).join('')}</svg>`;
+  const props = (ex.props || []).map(pr => propSvg(pr, cam)).join('');
+  const title = `${ex.name} — vista ${VIEWS[view].label}`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" class="ex ${cls}" width="${size}" height="${size}" viewBox="${VIEWBOX}" fill="none" stroke="${INK}" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="${title}"><title>${title}</title><style>\n${css}\n</style>${ground}${props}${els.map(e => e.svg).join('')}</svg>`;
 }
 
-// Pose data for native renderers: 3D joints of the right side (mirror z for the left).
+// Pose data for native renderers: 3D joints of both sides (left side has negative z).
 export function poseData(ex, { T, frames }) {
   const r = v => ({ x: r2(v.x), y: r2(v.y), z: r2(v.z) });
-  const J = ['ankle', 'knee', 'hip', 'shoulder', 'neckTop', 'head', 'elbow', 'hand'];
+  const sideOf = q => Object.fromEntries(SIDE_J.map(j => [j, r(q[j])]));
+  const ext = extent(frames);
   return {
-    id: ex.id, name: ex.name, duration: r2(T), still: ex.still || 0,
+    id: ex.id, name: ex.name, batch: ex.batch, duration: r2(T), still: ex.still || 0,
+    centre: r2(ext.mid), extent: { lo: r2(ext.lo), hi: r2(ext.hi) }, props: ex.props || [],
+    camera: { ...{ yaw: VIEWS.iso.yaw, pitch: VIEWS.iso.pitch }, ...(ex.isoCam || {}) },
     frames: frames.map(({ t, p }) => ({
-      t: r2(t), joints: Object.fromEntries(J.map(j => [j, r(p[j])])),
-      objects: p.objects.map(o => ({ type: o.type, at: r(o.at), ...(o.phi !== undefined ? { phi: r2(o.phi) } : {}), layer: o.layer })),
+      t: r2(t),
+      joints: { pelvis: r(p.pelvis), shoulderC: r(p.shoulderC), neckTop: r(p.neckTop), head: r(p.head), r: sideOf(p.r), l: sideOf(p.l) },
+      objects: p.objects.map(o => ({ type: o.type, at: r(o.at), ...(o.phi !== undefined ? { phi: r2(o.phi) } : {}) })),
     })),
   };
 }

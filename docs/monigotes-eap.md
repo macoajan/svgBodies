@@ -148,3 +148,13 @@ motor en vez de escritas a mano. Detalle en `README.md`. Diferencias respecto a 
   lado derecho). Para cualquier ángulo, `tools/viewer.js` proyecta `poses.json` en vivo y
   reordena las formas por profundidad en cada fotograma; los discos son cilindros (envolvente
   convexa de sus dos caras) para conservar el grosor de canto.
+- **Lote B: cuerpo con dos lados y contactos libres.** Cada lado lleva sus propias articulaciones
+  (cadera, rodilla, tobillo, punta del pie, hombro, codo, mano) y el pie es un segmento. Los
+  apoyos se resuelven por ejercicio: puntas y manos fijas (flexión), codos y puntas (plancha),
+  hombros y pies (puente), rodillas y manos (bird dog), manos en la barra (dominada) o pies en
+  el cajón (step-up), con cinemática inversa de dos huesos e intersección de circunferencias.
+  Tumbado, el cuello se dobla para que la cabeza apoye en el suelo.
+- **Una sola proyección para todas las vistas** (lateral, frontal, iso, cenital), con orden de
+  pintado por profundidad media del ciclo; la profundidad tiene en cuenta la altura de la cámara.
+  Los ejercicios de suelo usan vista cenital en lugar de frontal. Cajón y barra se dibujan
+  detrás de la figura para que los apoyos se vean siempre.

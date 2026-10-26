@@ -7,8 +7,11 @@
 import { writeFileSync, readFileSync, mkdirSync, rmSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { sample, validate, renderView, poseData } from './engine.mjs';
+import { sample, validate, renderView, poseData, VIEWS } from './engine.mjs';
 import { EXERCISES } from './exercises.mjs';
+import { EXERCISES_B } from './exercises-b.mjs';
+
+const BATCHES = [['A', 'Lote A · de pie, simétricos', EXERCISES], ['B', 'Lote B · suelo, suspensión y una pierna', EXERCISES_B]];
 
 const TOOLS = dirname(fileURLToPath(import.meta.url));
 const OUT = join(TOOLS, '..', 'library');
@@ -17,16 +20,17 @@ rmSync(join(OUT, 'svg'), { recursive: true, force: true });
 rmSync(join(OUT, 'iso.html'), { force: true });
 mkdirSync(join(OUT, 'svg'), { recursive: true });
 
-const cards = [], data = [];
-for (const ex of EXERCISES) {
+const cards = { A: [], B: [] }, data = [];
+for (const [batch, , list] of BATCHES) for (const ex0 of list) {
+  const ex = { ...ex0, batch };
   const s = sample(ex);
   validate(ex, s.frames);
-  for (const [view, file] of [['side', 'lateral'], ['front', 'frontal'], ['iso', 'iso']])
-    writeFileSync(join(OUT, 'svg', `${ex.id}-${file}.svg`), renderView(ex, view, s, 64) + '\n');
+  const views = [...(ex.views || ['side', 'front']), 'iso'];
+  for (const view of views)
+    writeFileSync(join(OUT, 'svg', `${ex.id}-${view === 'iso' ? 'iso' : VIEWS[view].label}.svg`), renderView(ex, view, s, 64) + '\n');
   data.push(poseData(ex, s));
-  cards.push(`<article class="card"><h2>${ex.name}</h2><p>${ex.cue}</p><div class="views">`
-    + `<figure>${renderView(ex, 'side', s, 200)}<figcaption>Lateral</figcaption></figure>`
-    + `<figure>${renderView(ex, 'front', s, 200)}<figcaption>Frontal</figcaption></figure>`
+  cards[batch].push(`<article class="card"><h2>${ex.name}</h2><p>${ex.cue}</p><div class="views">`
+    + views.filter(v => v !== 'iso').map(v => `<figure>${renderView(ex, v, s, 200)}<figcaption>${VIEWS[v].label}</figcaption></figure>`).join('')
     + `<figure><svg class="ex3d" data-ex="${ex.id}" width="200" height="200" viewBox="-7 -15 78 78" fill="none" stroke="#C2410C" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="${ex.name} — vista 3D"></svg><figcaption>Iso · arrastra</figcaption></figure></div></article>`);
   console.log(`${ex.id}: ${s.T.toFixed(2)} s, ${s.frames.length} muestras`);
 }
@@ -49,6 +53,7 @@ writeFileSync(join(OUT, 'index.html'), `<!doctype html>
 body{margin:0;background:var(--ground);color:var(--ink);font-family:system-ui,'Segoe UI',Arial,sans-serif;padding:24px 16px}
 main{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
 h1{margin:0;font-size:28px}
+.batch{margin:12px 0 0;font-size:20px;color:var(--muted)}
 .lead{margin:0;color:var(--muted);line-height:1.4}
 .bar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;background:var(--card);border-radius:14px;padding:10px 14px;position:sticky;top:8px;z-index:2;box-shadow:0 4px 16px rgba(15,42,61,.08)}
 .bar button{font:inherit;font-weight:700;border:0;border-radius:10px;padding:8px 14px;background:var(--accent);color:#fff;cursor:pointer;min-width:96px}
@@ -67,16 +72,14 @@ figcaption{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:upp
 </head>
 <body>
 <main>
-<h1>Ejercicios funcionales · lote A</h1>
+<h1>Ejercicios funcionales</h1>
 <p class="lead">Monigotes SVG animados con CSS, generados por <code>tools/build.mjs</code>. La vista iso se calcula en vivo a partir de las posturas 3D: arrastra para girar la cámara y haz doble clic para volver al isométrico. Pausa para recorrer el ciclo con el control de posición.</p>
 <div class="bar">
 <button id="play" type="button">Pausa</button>
 <label>Velocidad <select id="speed"><option value="0.5">0,5×</option><option value="1" selected>1×</option><option value="1.5">1,5×</option></select></label>
 <label>Posición <input id="scrub" type="range" min="0" max="1000" value="0" disabled></label>
 </div>
-<div class="grid">
-${cards.join('\n')}
-</div>
+${BATCHES.map(([b, title]) => `<h2 class="batch">${title}</h2>\n<div class="grid">\n${cards[b].join('\n')}\n</div>`).join('\n')}
 </main>
 <script>
 ${VIEWER}
