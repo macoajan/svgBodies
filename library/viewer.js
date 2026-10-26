@@ -54,7 +54,7 @@
     const J = {};
     for (const j of ['pelvis', 'shoulderC', 'neckTop', 'head']) J[j] = lerp3(a.joints[j], b.joints[j], k);
     for (const s of ['r', 'l']) { J[s] = {}; for (const j of SIDE_J) J[s][j] = lerp3(a.joints[s][j], b.joints[s][j], k); }
-    const objects = a.objects.map((o, n) => ({
+    const objects = a.objects.map((o, n) => (o.type === 'rope' ? { type: 'rope', points: o.points.map((q, m) => lerp3(q, b.objects[n].points[m], k)) } : {
       type: o.type, at: lerp3(o.at, b.objects[n].at, k),
       phi: o.phi === undefined ? 0 : o.phi + (b.objects[n].phi - o.phi) * k,
     }));
@@ -100,7 +100,10 @@
     disc(p => p.J.head, HEAD_R, {}, 0.2);
 
     ex.frames[0].objects.forEach((o, n) => {
-      if (o.type === 'barbell') {
+      if (o.type === 'rope') {
+        for (let m = 0; m < o.points.length - 1; m++)
+          seg(p => p.objects[n].points[m], p => p.objects[n].points[m + 1], { stroke: IRON, 'stroke-width': 1.3 });
+      } else if (o.type === 'barbell') {
         for (const s of [1, -1]) {
           seg(p => ({ ...p.objects[n].at, z: 0 }), p => ({ ...p.objects[n].at, z: 30 * s }), { stroke: IRON, 'stroke-width': 2 });
           // Plate: a short cylinder along z; its outline is the hull of both faces.

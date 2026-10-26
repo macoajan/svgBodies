@@ -10,8 +10,9 @@ import { fileURLToPath } from 'node:url';
 import { sample, validate, renderView, poseData, VIEWS } from './engine.mjs';
 import { EXERCISES } from './exercises.mjs';
 import { EXERCISES_B } from './exercises-b.mjs';
+import { EXERCISES_C } from './exercises-c.mjs';
 
-const BATCHES = [['A', 'Lote A · de pie, simétricos', EXERCISES], ['B', 'Lote B · suelo, suspensión y una pierna', EXERCISES_B]];
+const BATCHES = [['A', 'Lote A · de pie, simétricos', EXERCISES], ['B', 'Lote B · suelo, suspensión y una pierna', EXERCISES_B], ['C', 'Lote C · saltos, desplazamiento y material en movimiento', EXERCISES_C]];
 
 const TOOLS = dirname(fileURLToPath(import.meta.url));
 const OUT = join(TOOLS, '..', 'library');
@@ -20,7 +21,7 @@ rmSync(join(OUT, 'svg'), { recursive: true, force: true });
 rmSync(join(OUT, 'iso.html'), { force: true });
 mkdirSync(join(OUT, 'svg'), { recursive: true });
 
-const cards = { A: [], B: [] }, data = [];
+const cards = { A: [], B: [], C: [] }, data = [];
 for (const [batch, , list] of BATCHES) for (const ex0 of list) {
   const ex = { ...ex0, batch };
   const s = sample(ex);

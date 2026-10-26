@@ -158,3 +158,8 @@ motor en vez de escritas a mano. Detalle en `README.md`. Diferencias respecto a 
   pintado por profundidad media del ciclo; la profundidad tiene en cuenta la altura de la cámara.
   Los ejercicios de suelo usan vista cenital en lugar de frontal. Cajón y barra se dibujan
   detrás de la figura para que los apoyos se vean siempre.
+- **Lote C: vuelo, marcha y material que cambia de forma.** Las fases aéreas son posturas con
+  los dos pies en el aire; la marcha se hace en el sitio (el pie de apoyo se desliza hacia atrás
+  y el otro avanza en arco) para que el bucle cierre. La comba es una cadena de 14 segmentos que
+  se anima igual que las extremidades. La validación comprueba también que ningún pie, rodilla
+  o mano atraviese el cajón.

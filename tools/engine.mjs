@@ -246,7 +246,20 @@ export function validate(ex, frames) {
     if (p.neckTop.y > MAX_Y) throw new Error(`${ex.id}: neck below the floor @${t.toFixed(2)}`);
     if (p.head.y + HEAD_R + 1.7 > FLOOR_TOP + 0.05) throw new Error(`${ex.id}: head through the floor @${t.toFixed(2)}`);
     if (p.upright && p.pelvis.x > p.r.knee.x + 0.5) throw new Error(`${ex.id}: hip in front of the knee @${t.toFixed(2)}`);
+    for (const pr of ex.props || []) {
+      if (pr.type !== 'box') continue;
+      for (const s of ['r', 'l']) for (const j of ['knee', 'ankle', 'toe', 'hand']) {
+        const q = p[s][j];
+        if (q.x > pr.x0 - 0.8 && q.x < pr.x1 + 0.8 && q.y > pr.top - 1.6 && Math.abs(q.z) < pr.hz)
+          throw new Error(`${ex.id}: ${s}.${j} inside the box @${t.toFixed(2)}`);
+      }
+    }
     for (const o of p.objects) {
+      if (o.type === 'rope') {
+        const low = Math.max(...o.points.map(q => q.y));
+        if (low > FLOOR_TOP - 0.3) throw new Error(`${ex.id}: rope through the floor @${t.toFixed(2)}`);
+        continue;
+      }
       const bottom = o.type === 'barbell' ? o.at.y + PLATE.r + PLATE.w / 2
         : o.at.y + (KB.bell + KB.r) * Math.cos(rad(o.phi || 0));
       if (bottom > GROUND - 0.5) throw new Error(`${ex.id}: ${o.type} goes through the floor @${t.toFixed(2)}`);
@@ -323,7 +336,8 @@ function fmt(kind, f, useScale) {
   return `${t} rotate(${r1(f.rot)}deg)` + (useScale ? ` scaleY(${r2(f.sy)})` : '');
 }
 
-const line0 = (key, L0) => `<line class="k-${key}" x1="0" y1="0" x2="0" y2="${L0}"></line>`;
+const line0 = (key, L0, attrs = '') => `<line class="k-${key}" x1="0" y1="0" x2="0" y2="${L0}"${attrs}></line>`;
+export const ROPE = { segments: 14, width: 1.3 };
 const jointDot = key => `<circle class="k-${key}" r="1.7" fill="${INK}" stroke="none"></circle>`;
 const kbBell = key => `<circle class="k-${key}" r="${KB.r}" fill="${IRON}" stroke="none"></circle>`;
 const kbGlyph = key => `<g class="k-${key}"><path d="M-2.8 3 C-2.8 -1.4 2.8 -1.4 2.8 3" stroke="${IRON}" stroke-width="1.8"></path><circle cy="${KB.bell}" r="${KB.r}" fill="${IRON}" stroke="none"></circle></g>`;
@@ -366,8 +380,8 @@ function propSvg(pr, cam) {
 // Elements of a view: { key, kind: 'seg'|'pt'|'rot', svg, at(p) -> params, depth(p) }.
 function elements(p0, cam) {
   const els = [];
-  const segE = (key, P, Q, L0) => els.push({
-    key, kind: 'seg', svg: line0(key, L0),
+  const segE = (key, P, Q, L0, attrs = '') => els.push({
+    key, kind: 'seg', svg: line0(key, L0, attrs),
     at: p => segParams(cam.proj(P(p)), cam.proj(Q(p)), L0), depth: p => (cam.depth(P(p)) + cam.depth(Q(p))) / 2,
   });
   const ptE = (key, P, svg, bias = 0) => els.push({
@@ -389,7 +403,11 @@ function elements(p0, cam) {
   segE('shoulders', p => p.l.shoulder, p => p.r.shoulder, 2 * Z.shoulder);
   ptE('head', p => p.head, `<circle class="k-head" r="${HEAD_R}"></circle>`, 0.2);
   p0.objects.forEach((o, i) => {
-    if (o.type === 'barbell') {
+    if (o.type === 'rope') {
+      // A rope changes shape, so it is a chain of short segments animated like the limbs.
+      for (let k = 0; k < o.points.length - 1; k++)
+        segE(`o${i}s${k}`, p => p.objects[i].points[k], p => p.objects[i].points[k + 1], 5, ` stroke="${IRON}" stroke-width="${ROPE.width}"`);
+    } else if (o.type === 'barbell') {
       for (const sg of [-1, 1]) {
         const key = `o${i}${sg < 0 ? 'l' : 'r'}`, at = p => V(p.objects[i].at.x, p.objects[i].at.y, 0);
         els.push({
@@ -464,7 +482,8 @@ export function poseData(ex, { T, frames }) {
     frames: frames.map(({ t, p }) => ({
       t: r2(t),
       joints: { pelvis: r(p.pelvis), shoulderC: r(p.shoulderC), neckTop: r(p.neckTop), head: r(p.head), r: sideOf(p.r), l: sideOf(p.l) },
-      objects: p.objects.map(o => ({ type: o.type, at: r(o.at), ...(o.phi !== undefined ? { phi: r2(o.phi) } : {}) })),
+      objects: p.objects.map(o => (o.type === 'rope' ? { type: 'rope', points: o.points.map(r) }
+        : { type: o.type, at: r(o.at), ...(o.phi !== undefined ? { phi: r2(o.phi) } : {}) })),
     })),
   };
 }

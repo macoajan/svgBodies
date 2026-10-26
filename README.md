@@ -22,7 +22,7 @@ Produce en `library/`:
 
 - `tools/engine.mjs` — modelo corporal, ayudas de postura (`legs`, `trunk`, `straight`, `elbowIK`,
   `balance`), muestreo, validación y render de las dos vistas.
-- `tools/exercises.mjs` (lote A) y `tools/exercises-b.mjs` (lote B) — definición de cada ejercicio:
+- `tools/exercises.mjs`, `tools/exercises-b.mjs` y `tools/exercises-c.mjs` (lotes A, B y C) — definición de cada ejercicio:
   fases (duración y función de postura), postura fija para `prefers-reduced-motion`, vistas
   (`views`), cámara iso propia (`isoCam`) y elementos fijos (`props`: cajón, barra de dominadas).
 - `tools/viewer.js` — visor 3D en tiempo de ejecución (se copia a `library/`).
@@ -32,7 +32,7 @@ Produce en `library/`:
 1. Escribir una función `pose(s)` con las ayudas del motor: `pose()` para ejercicios de pie
    simétricos o `poseLR()` con cada lado por separado; piernas por ángulos (`legs`, `legFrom`) o
    por cinemática inversa (`kneeIK`), tronco por ángulo o por equilibrio (`balance`), manos por
-   objetivo + polo del codo, pies (`foot`, `footFlat`, `footFromShin`) y objetos `barbell`/`kb`.
+   objetivo + polo del codo, pies (`foot`, `footFlat`, `footFromShin`) y objetos `barbell`, `kb` y `rope` (cadena de puntos 3D).
 2. Añadir la entrada en `EXERCISES` con sus fases.
 3. `node tools/build.mjs`: si una postura es imposible (mano fuera de alcance, objeto bajo el
    suelo, salto entre fases) el generador se detiene con el motivo.
@@ -43,3 +43,5 @@ Produce en `library/`:
   sentadilla goblet, sentadilla trasera, press militar, remo con barra y thruster.
 - **B** (suelo, suspensión, una pierna): flexión, plancha, puente de glúteo, dead bug, bird dog,
   zancada atrás, step-up al cajón y dominada.
+- **C** (saltos, desplazamiento, material en movimiento): jumping jacks, comba, paseo del
+  granjero (marcha en el sitio), salto al cajón y burpee.

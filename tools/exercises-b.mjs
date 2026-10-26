@@ -139,7 +139,7 @@ function lunge(e, lead) {
 
 // ---------- Step-up onto a box: lead foot up, drive, trail foot joins; then step down ----------
 const SU = { stance: 4, onX: A + 12, onY: 45, lift: 9 };
-const BOX = { type: 'box', x0: A + 7, x1: A + 25, top: SU.onY + 1.9, hz: 13 };
+const BOX = { type: 'box', x0: A + 8.5, x1: A + 26.5, top: SU.onY + 1.9, hz: 13 };
 // Keeps an ankle within reach of its hip (the foot lifts instead of overstretching the leg).
 function within(hip, ankle) {
   const d = sub(ankle, hip), l = len(d), max = L.thigh + L.shin - 0.02;
@@ -155,7 +155,11 @@ function stepPose(hip, alpha, rAnkle, lAnkle, swing) {
 }
 const floorAnkle = sg => V(A, F, sg * SU.stance);
 const boxAnkle = sg => V(SU.onX, SU.onY, sg * SU.stance);
-const arc = (a, b, e) => add(vlerp(a, b, smooth(e)), V(0, -SU.lift * bump(e), 0));
+// Foot path onto/off the box: it rises first and moves forward later, clearing the front edge.
+const arc = (a, b, e) => {
+  const fx = smooth((e - 0.25) / 0.75), fy = smooth(e / 0.8);
+  return V(lerp(a.x, b.x, fx), lerp(a.y, b.y, fy) - SU.lift * bump(e), lerp(a.z, b.z, fx));
+};
 function stepLead(e) {                            // right foot onto the box
   return stepPose(V(A + e, 31), 4 * e, arc(floorAnkle(1), boxAnkle(1), e), floorAnkle(-1), 0);
 }
