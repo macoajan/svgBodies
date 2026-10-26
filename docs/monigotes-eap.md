@@ -124,3 +124,24 @@ corredor se coloca estático al 40 % de la pista.
 6. Postura global (inclinación) como `transform` estático en un grupo externo; bote en otro grupo.
 7. Variar velocidad con `playbackRate` en vez de duplicar keyframes.
 8. Respetar `prefers-reduced-motion`.
+
+## 8. Extensión: peso muerto (`deadlift/`, generado por `tools/deadlift.mjs`)
+
+Mismo método (SVG en línea, `<g>` anidados, `@keyframes`), con dos añadidos porque un
+levantamiento no es un ciclo simétrico como la marcha:
+
+- **Keyframes calculados, no a mano.** El generador resuelve la cinemática inversa en 16
+  muestras por fase: la barra sube en vertical sobre el mediopié, las rodillas retroceden hasta
+  que la barra las supera y después extiende la cadera; la cadera sale de cortar dos
+  circunferencias (muslo desde la rodilla, tronco desde el hombro). Todas las articulaciones
+  comparten tiempos y `linear`, así que entre muestras la postura interpola de forma coherente.
+  Una comprobación de cinemática directa aborta si la mano no cae sobre la barra.
+- **Lateral**: cadena con raíz en el tobillo (`shin > thigh > torso > arm`), pose de reposo =
+  bloqueo de pie. El disco es un círculo centrado en la mano, así que la rotación del brazo no
+  le afecta.
+- **Frontal**: no hay rotaciones visibles, sólo escorzo. Cada segmento usa
+  `translate(P−P0) skewX(a) scaleY(s)` alrededor de su punto superior en reposo, que lleva el
+  segmento de reposo a sus extremos actuales (las alturas salen de la vista lateral). Como
+  `scaleY` aplasta los remates redondos, rodillas y manos llevan un punto relleno encima.
+- Ciclo de 4,4 s: preparación 0,5 · tirón 1,3 · bloqueo 0,7 · bajada 1,4 · suelo 0,5.
+- Regenerar: `node tools/deadlift.mjs`.
