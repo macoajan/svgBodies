@@ -13,10 +13,10 @@ Produce en `library/`:
 
 | Fichero | Uso |
 |---|---|
-| `index.html` | Galería con todos los ejercicios en ambas vistas; pausa, velocidad y control de posición. |
-| `svg/<id>-lateral.svg`, `svg/<id>-frontal.svg` | SVG autónomos (CSS dentro), utilizables en web o WebView. |
-| `iso.html` | Prueba: las mismas posturas proyectadas en isométrico (cámara a 40°/30°). |
+| `index.html` | Galería: lateral y frontal (CSS) y vista iso en vivo con cámara libre (arrastrar para girar, doble clic para volver); pausa, velocidad y control de posición comunes. |
+| `svg/<id>-{lateral,frontal,iso}.svg` | SVG autónomos (CSS dentro, sin JavaScript), utilizables en web o WebView. |
 | `poses.json` | Posturas muestreadas en 3D (lado derecho; el izquierdo es −z) para renderizar en nativo. |
+| `viewer.js` | Visor sin dependencias de `poses.json` con cámara libre: `PoseViewer.mount(svg, ejercicio, { yaw, pitch })` y `render(t)`. Ordena las formas por profundidad en cada fotograma (pintor). Referencia para portar a la app. |
 
 ## Estructura
 
@@ -24,6 +24,7 @@ Produce en `library/`:
   `balance`), muestreo, validación y render de las dos vistas.
 - `tools/exercises.mjs` — definición de cada ejercicio: fases (duración y función de postura) y
   postura fija para `prefers-reduced-motion`.
+- `tools/viewer.js` — visor 3D en tiempo de ejecución (se copia a `library/`).
 
 ## Añadir un ejercicio
 

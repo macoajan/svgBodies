@@ -143,3 +143,8 @@ motor en vez de escritas a mano. Detalle en `README.md`. Diferencias respecto a 
   carga) queda donde está el de la postura erguida.
 - Validación al generar: longitudes de segmento constantes, nada bajo el suelo, fases que
   enlazan sin saltos.
+- **Vista iso y cámara libre.** Como las posturas son 3D, `isoProject` (cámara girada 40° y
+  elevada 30°) genera un SVG isométrico CSS con orden de pintado fijo (lado izquierdo, tronco,
+  lado derecho). Para cualquier ángulo, `tools/viewer.js` proyecta `poses.json` en vivo y
+  reordena las formas por profundidad en cada fotograma; los discos son cilindros (envolvente
+  convexa de sus dos caras) para conservar el grosor de canto.

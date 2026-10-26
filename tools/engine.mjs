@@ -163,6 +163,7 @@ export function validate(ex, frames) {
     near(d2(p.hip, p.shoulder), L.sh, `trunk @${t.toFixed(2)}`);
     near(len(sub(p.shoulder, p.elbow)), L.upper, `upper arm @${t.toFixed(2)}`);
     near(len(sub(p.elbow, p.hand)), L.fore, `forearm @${t.toFixed(2)}`);
+    if (p.hip.x > p.knee.x + 0.5) throw new Error(`${ex.id}: hip in front of the knee @${t.toFixed(2)}`);
     for (const j of ['knee', 'hip', 'shoulder', 'head', 'elbow', 'hand'])
       if (p[j].y > ANKLE_Y + 0.01) throw new Error(`${ex.id}: ${j} below the ankles @${t.toFixed(2)}`);
     for (const o of p.objects) {
@@ -378,7 +379,7 @@ export function poseData(ex, { T, frames }) {
   const r = v => ({ x: r2(v.x), y: r2(v.y), z: r2(v.z) });
   const J = ['ankle', 'knee', 'hip', 'shoulder', 'neckTop', 'head', 'elbow', 'hand'];
   return {
-    id: ex.id, name: ex.name, duration: r2(T),
+    id: ex.id, name: ex.name, duration: r2(T), still: ex.still || 0,
     frames: frames.map(({ t, p }) => ({
       t: r2(t), joints: Object.fromEntries(J.map(j => [j, r(p[j])])),
       objects: p.objects.map(o => ({ type: o.type, at: r(o.at), ...(o.phi !== undefined ? { phi: r2(o.phi) } : {}), layer: o.layer })),

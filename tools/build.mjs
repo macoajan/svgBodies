@@ -1,35 +1,41 @@
 // Builds the exercise library:
-//   library/svg/<id>-lateral.svg, library/svg/<id>-frontal.svg  (self-contained animated SVGs)
-//   library/poses.json                                          (sampled 3D poses for native renderers)
-//   library/index.html                                          (gallery)
+//   library/svg/<id>-{lateral,frontal,iso}.svg  (self-contained animated SVGs, CSS only)
+//   library/poses.json                          (sampled 3D poses for native renderers)
+//   library/viewer.js                           (free-camera renderer for poses.json)
+//   library/index.html                          (gallery: CSS views + free-camera 3D view)
 // Usage: node tools/build.mjs
-import { writeFileSync, mkdirSync, rmSync } from 'node:fs';
+import { writeFileSync, readFileSync, mkdirSync, rmSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { sample, validate, renderView, poseData } from './engine.mjs';
 import { EXERCISES } from './exercises.mjs';
 
-const OUT = join(dirname(fileURLToPath(import.meta.url)), '..', 'library');
+const TOOLS = dirname(fileURLToPath(import.meta.url));
+const OUT = join(TOOLS, '..', 'library');
+const VIEWER = readFileSync(join(TOOLS, 'viewer.js'), 'utf8');
 rmSync(join(OUT, 'svg'), { recursive: true, force: true });
+rmSync(join(OUT, 'iso.html'), { force: true });
 mkdirSync(join(OUT, 'svg'), { recursive: true });
 
-const cards = [], isoCards = [], data = [];
+const cards = [], data = [];
 for (const ex of EXERCISES) {
   const s = sample(ex);
   validate(ex, s.frames);
-  for (const [view, file] of [['side', 'lateral'], ['front', 'frontal']])
+  for (const [view, file] of [['side', 'lateral'], ['front', 'frontal'], ['iso', 'iso']])
     writeFileSync(join(OUT, 'svg', `${ex.id}-${file}.svg`), renderView(ex, view, s, 64) + '\n');
   data.push(poseData(ex, s));
   cards.push(`<article class="card"><h2>${ex.name}</h2><p>${ex.cue}</p><div class="views">`
     + `<figure>${renderView(ex, 'side', s, 200)}<figcaption>Lateral</figcaption></figure>`
-    + `<figure>${renderView(ex, 'front', s, 200)}<figcaption>Frontal</figcaption></figure></div></article>`);
-  isoCards.push(`<figure class="card">${renderView(ex, 'iso', s, 260)}<figcaption>${ex.name}</figcaption></figure>`);
+    + `<figure>${renderView(ex, 'front', s, 200)}<figcaption>Frontal</figcaption></figure>`
+    + `<figure><svg class="ex3d" data-ex="${ex.id}" width="200" height="200" viewBox="-7 -15 78 78" fill="none" stroke="#C2410C" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="${ex.name} — vista 3D"></svg><figcaption>Iso · arrastra</figcaption></figure></div></article>`);
   console.log(`${ex.id}: ${s.T.toFixed(2)} s, ${s.frames.length} muestras`);
 }
-writeFileSync(join(OUT, 'poses.json'), JSON.stringify({
+const poses = {
   units: 'viewBox -7 -15 78 78; x hacia delante, y hacia abajo, z lateral (lado derecho; el izquierdo es -z)',
   exercises: data,
-}) + '\n');
+};
+writeFileSync(join(OUT, 'poses.json'), JSON.stringify(poses) + '\n');
+writeFileSync(join(OUT, 'viewer.js'), VIEWER);
 
 writeFileSync(join(OUT, 'index.html'), `<!doctype html>
 <html lang="es">
@@ -48,20 +54,21 @@ h1{margin:0;font-size:28px}
 .bar button{font:inherit;font-weight:700;border:0;border-radius:10px;padding:8px 14px;background:var(--accent);color:#fff;cursor:pointer;min-width:96px}
 .bar label{display:flex;gap:8px;align-items:center;font-size:14px;color:var(--muted)}
 .bar input[type=range]{width:min(260px,50vw)}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,460px),1fr));gap:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,540px),1fr));gap:16px}
 .card{background:var(--card);border-radius:18px;padding:16px 18px;display:flex;flex-direction:column;gap:8px}
 .card h2{margin:0;font-size:20px}
 .card p{margin:0;color:var(--muted);font-size:14px;line-height:1.4}
-.views{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.views{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:4px}
 figure svg{width:100%;height:auto;max-width:200px;overflow:visible}
+.ex3d{user-select:none}
 figcaption{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 </style>
 </head>
 <body>
 <main>
 <h1>Ejercicios funcionales · lote A</h1>
-<p class="lead">Monigotes SVG animados con CSS, generados por <code>tools/build.mjs</code>. Pausa para recorrer el ciclo con el control de posición.</p>
+<p class="lead">Monigotes SVG animados con CSS, generados por <code>tools/build.mjs</code>. La vista iso se calcula en vivo a partir de las posturas 3D: arrastra para girar la cámara y haz doble clic para volver al isométrico. Pausa para recorrer el ciclo con el control de posición.</p>
 <div class="bar">
 <button id="play" type="button">Pausa</button>
 <label>Velocidad <select id="speed"><option value="0.5">0,5×</option><option value="1" selected>1×</option><option value="1.5">1,5×</option></select></label>
@@ -72,6 +79,23 @@ ${cards.join('\n')}
 </div>
 </main>
 <script>
+${VIEWER}
+</script>
+<script>
+const POSES = ${JSON.stringify(poses)};
+(function () {
+  // 3D views take their clock from the CSS animations of the same card, so pause, speed and scrub apply to both.
+  const byId = Object.fromEntries(POSES.exercises.map(e => [e.id, e]));
+  const figs = [...document.querySelectorAll('.ex3d')].map(svg => {
+    const ex = byId[svg.dataset.ex];
+    const clock = svg.closest('.card').querySelector('svg.ex').getAnimations({ subtree: true })[0];
+    return { fig: PoseViewer.mount(svg, ex), ex, clock };
+  });
+  (function frame() {
+    for (const f of figs) f.fig.render(f.clock ? f.clock.currentTime / 1000 : f.ex.still);
+    requestAnimationFrame(frame);
+  })();
+})();
 (function () {
   const play = document.getElementById('play'), speed = document.getElementById('speed'), scrub = document.getElementById('scrub');
   const anims = () => document.getAnimations();
@@ -87,35 +111,6 @@ ${cards.join('\n')}
   scrub.addEventListener('input', () => anims().forEach(a => (a.currentTime = (scrub.value / 1000) * a.effect.getTiming().duration)));
 })();
 </script>
-</body>
-</html>
-`);
-// Test page: isometric projection of the same 3D poses.
-writeFileSync(join(OUT, 'iso.html'), `<!doctype html>
-<html lang="es">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Vista isométrica</title>
-<style>
-body{margin:0;background:#F3F6F5;color:#0F2A3D;font-family:system-ui,'Segoe UI',Arial,sans-serif;padding:24px 16px}
-main{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
-h1{margin:0;font-size:26px}
-p{margin:0;color:#44596B;line-height:1.4}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:14px}
-.card{margin:0;background:#fff;border-radius:18px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:4px}
-.card svg{width:100%;height:auto;max-width:260px;overflow:visible}
-figcaption{font-weight:700}
-</style>
-</head>
-<body>
-<main>
-<h1>Prueba · vista isométrica</h1>
-<p>Las mismas posturas 3D del motor, proyectadas con la cámara girada 40° y elevada 30°. El lado derecho queda delante; los discos tapan lo que tienen detrás.</p>
-<div class="grid">
-${isoCards.join('\n')}
-</div>
-</main>
 </body>
 </html>
 `);

@@ -26,7 +26,9 @@ function deadlift(u) {
   const a = (dist * dist + L.thigh ** 2 - L.sh ** 2) / (2 * dist);
   const off = Math.sqrt(Math.max(0, L.thigh ** 2 - a * a));
   const mx = knee.x + a * dx / dist, my = knee.y + a * dy / dist;
-  const hip = { x: mx - off * dy / dist, y: my + off * dx / dist };
+  const c1 = { x: mx - off * dy / dist, y: my + off * dx / dist };
+  const c2 = { x: mx + off * dy / dist, y: my - off * dx / dist };
+  const hip = c1.x < c2.x ? c1 : c2;
   const thigh = deg(Math.atan2(hip.x - knee.x, knee.y - hip.y));
   const alpha = deg(Math.atan2(S.x - hip.x, hip.y - S.y));
   const lg = legs({ shin, thigh, stance: 5 });
