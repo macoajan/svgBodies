@@ -124,3 +124,48 @@ corredor se coloca estático al 40 % de la pista.
 6. Postura global (inclinación) como `transform` estático en un grupo externo; bote en otro grupo.
 7. Variar velocidad con `playbackRate` en vez de duplicar keyframes.
 8. Respetar `prefers-reduced-motion`.
+
+## 8. Extensión: biblioteca de ejercicios (`tools/`, `library/`)
+
+Mismo método de salida (SVG en línea + `@keyframes`), pero con las posturas calculadas por un
+motor en vez de escritas a mano. Detalle en `README.md`. Diferencias respecto a eap:
+
+- **Transformaciones planas en lugar de grupos anidados.** Cada segmento se dibuja de (0,0) a
+  (0,L) y se coloca con `translate(P) rotate(θ) scaleY(|PQ|/L)`. Con keyframes densos (12 por
+  fase) las articulaciones no se separan de forma visible, y la misma técnica sirve para la
+  vista frontal, donde los segmentos se acortan por perspectiva (`scaleY` actúa sólo a lo largo
+  del segmento, así que el grosor del trazo no cambia; los puntos de articulación tapan los
+  remates aplastados).
+- **Modelo 3D mínimo**: plano sagital (x, y) más desplazamiento lateral z de rodillas, cadera,
+  hombros, codos y manos. La vista lateral muestra (x, y); la frontal, (32 ± z, y).
+- **Cinemática inversa** de brazo de dos huesos con vector polo (hacia dónde apunta el codo) y
+  **equilibrio**: el tronco se inclina hasta que el centro de masas (tablas antropométricas +
+  carga) queda donde está el de la postura erguida.
+- Validación al generar: longitudes de segmento constantes, nada bajo el suelo, fases que
+  enlazan sin saltos.
+- **Vista iso y cámara libre.** Como las posturas son 3D, `isoProject` (cámara girada 40° y
+  elevada 30°) genera un SVG isométrico CSS con orden de pintado fijo (lado izquierdo, tronco,
+  lado derecho). Para cualquier ángulo, `tools/viewer.js` proyecta `poses.json` en vivo y
+  reordena las formas por profundidad en cada fotograma; los discos son cilindros (envolvente
+  convexa de sus dos caras) para conservar el grosor de canto.
+- **Lote B: cuerpo con dos lados y contactos libres.** Cada lado lleva sus propias articulaciones
+  (cadera, rodilla, tobillo, punta del pie, hombro, codo, mano) y el pie es un segmento. Los
+  apoyos se resuelven por ejercicio: puntas y manos fijas (flexión), codos y puntas (plancha),
+  hombros y pies (puente), rodillas y manos (bird dog), manos en la barra (dominada) o pies en
+  el cajón (step-up), con cinemática inversa de dos huesos e intersección de circunferencias.
+  Tumbado, el cuello se dobla para que la cabeza apoye en el suelo.
+- **Una sola proyección para todas las vistas** (lateral, frontal, iso, cenital), con orden de
+  pintado por profundidad media del ciclo; la profundidad tiene en cuenta la altura de la cámara.
+  Los ejercicios de suelo usan vista cenital en lugar de frontal. Cajón y barra se dibujan
+  detrás de la figura para que los apoyos se vean siempre.
+- **Lote C: vuelo, marcha y material que cambia de forma.** Las fases aéreas son posturas con
+  los dos pies en el aire; la marcha se hace en el sitio (el pie de apoyo se desliza hacia atrás
+  y el otro avanza en arco) para que el bucle cierre. La comba es una cadena de 14 segmentos que
+  se anima igual que las extremidades. La validación comprueba también que ningún pie, rodilla
+  o mano atraviese el cajón.
+- **Lote D: más grados de libertad.** El tronco puede desplazarse de lado y girar los hombros
+  sobre su eje; una postura entera puede rodarse o inclinarse como sólido rígido (plancha
+  lateral). Secuencias largas como el turkish get-up se escriben como posturas clave con
+  apoyos explícitos y se interpolan con cinemática inversa. Objetos nuevos: mancuerna, balón,
+  rueda, polea (cable) y cuerdas de batida; apoyos: bancos, pared, barras paralelas y trineo.
+  La galería se divide en una página por lote.

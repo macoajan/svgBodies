@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ejercicios funcionales</title>
+<style>
+:root{--ground:#F3F6F5;--card:#FFFFFF;--ink:#0F2A3D;--muted:#44596B;--accent:#C2410C}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:system-ui,'Segoe UI',Arial,sans-serif;padding:24px 16px}
+main{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+h1{margin:0;font-size:28px}
+.batch{margin:12px 0 0;font-size:20px;color:var(--muted)}
+.lead{margin:0;color:var(--muted);line-height:1.4}
+.bar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;background:var(--card);border-radius:14px;padding:10px 14px;position:sticky;top:8px;z-index:2;box-shadow:0 4px 16px rgba(15,42,61,.08)}
+.bar button{font:inherit;font-weight:700;border:0;border-radius:10px;padding:8px 14px;background:var(--accent);color:#fff;cursor:pointer;min-width:96px}
+.bar label{display:flex;gap:8px;align-items:center;font-size:14px;color:var(--muted)}
+.bar input[type=range]{width:min(260px,50vw)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,540px),1fr));gap:16px}
+.card{background:var(--card);border-radius:18px;padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+.card h2{margin:0;font-size:20px}
+.card p{margin:0;color:var(--muted);font-size:14px;line-height:1.4}
+.views{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:4px}
+figure svg{width:100%;height:auto;max-width:200px;overflow:visible}
+.ex3d{user-select:none}
+figcaption{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.nav{display:flex;flex-wrap:wrap;gap:8px}
+.nav a{font-weight:700;color:var(--accent);text-decoration:none;padding:6px 12px;border-radius:999px;background:var(--card)}
+.nav a[aria-current]{background:var(--accent);color:#fff}
+.toc{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr));gap:16px}
+.toc section{background:var(--card);border-radius:18px;padding:16px 18px}
+.toc h2{margin:0 0 8px;font-size:18px}
+.toc ul{margin:0;padding-left:18px;line-height:1.7}
+.toc a{color:var(--ink)}
+</style>
+</head>
+<body>
+<main>
+<h1>Ejercicios funcionales</h1>
+<nav class="nav"><a href="lote-a.html">Lote A</a><a href="lote-b.html">Lote B</a><a href="lote-c.html">Lote C</a><a href="lote-d.html">Lote D</a><a href="index.html">Índice</a></nav>
+<p class="lead">46 ejercicios en 4 lotes. Cada ejercicio tiene dos vistas animadas con CSS (SVG autónomos en <code>svg/</code>) y una vista 3D con cámara libre a partir de <code>poses.json</code>.</p>
+<div class="toc">
+<section><h2><a href="lote-a.html">Lote A · de pie, simétricos</a></h2><ul><li><a href="lote-a.html#peso-muerto">Peso muerto</a></li><li><a href="lote-a.html#peso-muerto-rumano">Peso muerto rumano</a></li><li><a href="lote-a.html#swing-kettlebell">Swing con kettlebell</a></li><li><a href="lote-a.html#sentadilla">Sentadilla</a></li><li><a href="lote-a.html#sentadilla-goblet">Sentadilla goblet</a></li><li><a href="lote-a.html#sentadilla-trasera">Sentadilla trasera</a></li><li><a href="lote-a.html#press-militar">Press militar</a></li><li><a href="lote-a.html#remo-con-barra">Remo con barra</a></li><li><a href="lote-a.html#thruster">Thruster</a></li></ul></section>
+<section><h2><a href="lote-b.html">Lote B · suelo, suspensión y una pierna</a></h2><ul><li><a href="lote-b.html#flexion">Flexión</a></li><li><a href="lote-b.html#plancha">Plancha</a></li><li><a href="lote-b.html#puente-gluteo">Puente de glúteo</a></li><li><a href="lote-b.html#dead-bug">Dead bug</a></li><li><a href="lote-b.html#bird-dog">Bird dog</a></li><li><a href="lote-b.html#zancada-atras">Zancada atrás</a></li><li><a href="lote-b.html#step-up">Step-up al cajón</a></li><li><a href="lote-b.html#dominada">Dominada</a></li></ul></section>
+<section><h2><a href="lote-c.html">Lote C · saltos, desplazamiento y material en movimiento</a></h2><ul><li><a href="lote-c.html#jumping-jacks">Jumping jacks</a></li><li><a href="lote-c.html#comba">Comba</a></li><li><a href="lote-c.html#paseo-granjero">Paseo del granjero</a></li><li><a href="lote-c.html#salto-cajon">Salto al cajón</a></li><li><a href="lote-c.html#burpee">Burpee</a></li></ul></section>
+<section><h2><a href="lote-d.html">Lote D · resto del catálogo</a></h2><ul><li><a href="lote-d.html#buenos-dias">Buenos días</a></li><li><a href="lote-d.html#hip-thrust">Hip thrust</a></li><li><a href="lote-d.html#sentadilla-frontal">Sentadilla frontal</a></li><li><a href="lote-d.html#sentadilla-cajon">Sentadilla al cajón</a></li><li><a href="lote-d.html#wall-ball">Wall ball</a></li><li><a href="lote-d.html#zancada-lateral">Zancada lateral</a></li><li><a href="lote-d.html#sentadilla-bulgara">Sentadilla búlgara</a></li><li><a href="lote-d.html#peso-muerto-una-pierna">Peso muerto a una pierna</a></li><li><a href="lote-d.html#press-banca">Press de banca</a></li><li><a href="lote-d.html#fondos-paralelas">Fondos en paralelas</a></li><li><a href="lote-d.html#remo-mancuerna">Remo con mancuerna</a></li><li><a href="lote-d.html#remo-invertido">Remo invertido</a></li><li><a href="lote-d.html#suitcase-carry">Suitcase carry</a></li><li><a href="lote-d.html#overhead-carry">Overhead carry</a></li><li><a href="lote-d.html#plancha-lateral">Plancha lateral</a></li><li><a href="lote-d.html#pallof-press">Pallof press</a></li><li><a href="lote-d.html#lenador">Leñador</a></li><li><a href="lote-d.html#rueda-abdominal">Rueda abdominal</a></li><li><a href="lote-d.html#mountain-climbers">Mountain climbers</a></li><li><a href="lote-d.html#battle-ropes">Battle ropes</a></li><li><a href="lote-d.html#cargada-kettlebell">Cargada con kettlebell</a></li><li><a href="lote-d.html#turkish-get-up">Turkish get-up</a></li><li><a href="lote-d.html#bear-crawl">Bear crawl</a></li><li><a href="lote-d.html#sled-push">Sled push</a></li></ul></section>
+</div>
+</main>
+
+</body>
+</html>
