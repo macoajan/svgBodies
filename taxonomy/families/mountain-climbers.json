@@ -1,0 +1,42 @@
+{
+  "id": "mountain-climbers",
+  "name": {
+    "es": "Mountain climbers",
+    "en": "Mountain climbers"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "resistencia",
+  "position": "suelo-prono",
+  "laterality": "alterno",
+  "pattern": "antiextension",
+  "patterns2": [
+    "locomocion"
+  ],
+  "level": 1,
+  "muscles": {
+    "primary": [
+      "recto-abdominal",
+      "flexores-cadera"
+    ],
+    "secondary": [
+      "deltoides-anterior",
+      "cuadriceps"
+    ]
+  },
+  "equipment": [
+    "peso-corporal"
+  ],
+  "demands": [
+    "carga-muneca"
+  ],
+  "variants": [
+    {
+      "id": "mountain-climbers",
+      "name": {
+        "es": "Mountain climbers",
+        "en": "Mountain climbers"
+      }
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "compuesto": { "es": "Compuesto (multiarticular)", "en": "Compound" },
+  "aislado": { "es": "Aislado (monoarticular)", "en": "Isolation" },
+  "isometrico": { "es": "Isométrico", "en": "Isometric" }
+}

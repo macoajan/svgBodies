@@ -1,0 +1,15 @@
+{
+  "_note": "Exigencias mecánicas descriptivas, no contraindicaciones. Qué exigencias desaconsejan un ejercicio para cada persona es criterio clínico y se decide fuera de este vocabulario.",
+  "carga-axial": { "es": "Carga axial sobre la columna", "en": "Axial spinal load" },
+  "flexion-cadera-cargada": { "es": "Flexión de cadera con carga", "en": "Loaded hip flexion" },
+  "flexion-profunda-rodilla": { "es": "Flexión profunda de rodilla", "en": "Deep knee flexion" },
+  "apoyo-rodilla": { "es": "Apoyo sobre la rodilla", "en": "Kneeling contact" },
+  "brazos-sobre-cabeza": { "es": "Brazos por encima de la cabeza", "en": "Overhead arm position" },
+  "carga-muneca": { "es": "Carga sobre las muñecas", "en": "Wrist loading" },
+  "extension-hombro-cargada": { "es": "Extensión de hombro cargada", "en": "Loaded shoulder extension" },
+  "impacto": { "es": "Impacto / aterrizaje", "en": "Impact / landing" },
+  "equilibrio": { "es": "Equilibrio exigente", "en": "Balance demand" },
+  "decubito": { "es": "Tumbado (subir y bajar del suelo)", "en": "Lying (floor transfers)" },
+  "suspension": { "es": "Suspensión del cuerpo", "en": "Body suspension" },
+  "agarre": { "es": "Exigencia de agarre", "en": "Grip demand" }
+}

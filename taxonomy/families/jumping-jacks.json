@@ -1,0 +1,39 @@
+{
+  "id": "jumping-jacks",
+  "name": {
+    "es": "Jumping jacks",
+    "en": "Jumping jacks"
+  },
+  "plane": "frontal",
+  "mechanics": "compuesto",
+  "action": "resistencia",
+  "position": "de-pie",
+  "laterality": "bilateral",
+  "pattern": "salto",
+  "level": 1,
+  "muscles": {
+    "primary": [
+      "gemelos"
+    ],
+    "secondary": [
+      "gluteo-medio",
+      "aductores",
+      "deltoides-lateral"
+    ]
+  },
+  "equipment": [
+    "peso-corporal"
+  ],
+  "demands": [
+    "impacto"
+  ],
+  "variants": [
+    {
+      "id": "jumping-jacks",
+      "name": {
+        "es": "Jumping jacks",
+        "en": "Jumping jacks"
+      }
+    }
+  ]
+}

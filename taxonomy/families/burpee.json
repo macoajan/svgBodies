@@ -1,0 +1,46 @@
+{
+  "id": "burpee",
+  "name": {
+    "es": "Burpee",
+    "en": "Burpee"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "resistencia",
+  "position": "transicion",
+  "laterality": "bilateral",
+  "pattern": "combinado",
+  "patterns2": [
+    "sentadilla",
+    "antiextension",
+    "salto"
+  ],
+  "level": 2,
+  "muscles": {
+    "primary": [
+      "cuadriceps",
+      "pectoral"
+    ],
+    "secondary": [
+      "gluteo-mayor",
+      "deltoides-anterior",
+      "recto-abdominal"
+    ]
+  },
+  "equipment": [
+    "peso-corporal"
+  ],
+  "demands": [
+    "impacto",
+    "carga-muneca"
+  ],
+  "variants": [
+    {
+      "id": "burpee",
+      "name": {
+        "es": "Burpee",
+        "en": "Burpee"
+      }
+    }
+  ]
+}

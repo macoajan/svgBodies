@@ -1,0 +1,40 @@
+{
+  "id": "flexion",
+  "name": {
+    "es": "Flexión",
+    "en": "Push-up"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "fuerza",
+  "position": "suelo-prono",
+  "laterality": "bilateral",
+  "pattern": "empuje-horizontal",
+  "level": 1,
+  "muscles": {
+    "primary": [
+      "pectoral",
+      "triceps"
+    ],
+    "secondary": [
+      "deltoides-anterior",
+      "serrato",
+      "recto-abdominal"
+    ]
+  },
+  "equipment": [
+    "peso-corporal"
+  ],
+  "demands": [
+    "carga-muneca"
+  ],
+  "variants": [
+    {
+      "id": "flexion",
+      "name": {
+        "es": "Flexión",
+        "en": "Push-up"
+      }
+    }
+  ]
+}

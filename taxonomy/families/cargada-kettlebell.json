@@ -1,0 +1,41 @@
+{
+  "id": "cargada-kettlebell",
+  "name": {
+    "es": "Cargada con kettlebell",
+    "en": "Kettlebell clean"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "potencia",
+  "position": "de-pie",
+  "laterality": "unilateral",
+  "pattern": "bisagra",
+  "level": 3,
+  "muscles": {
+    "primary": [
+      "gluteo-mayor",
+      "isquiotibiales"
+    ],
+    "secondary": [
+      "trapecio",
+      "deltoides-anterior",
+      "antebrazo"
+    ]
+  },
+  "equipment": [
+    "kettlebell"
+  ],
+  "demands": [
+    "flexion-cadera-cargada",
+    "agarre"
+  ],
+  "variants": [
+    {
+      "id": "cargada-kettlebell",
+      "name": {
+        "es": "Cargada con kettlebell",
+        "en": "Kettlebell clean"
+      }
+    }
+  ]
+}

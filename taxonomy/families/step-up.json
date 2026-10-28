@@ -1,0 +1,38 @@
+{
+  "id": "step-up",
+  "name": {
+    "es": "Step-up",
+    "en": "Step-up"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "fuerza",
+  "position": "de-pie",
+  "laterality": "unilateral",
+  "pattern": "zancada",
+  "level": 1,
+  "muscles": {
+    "primary": [
+      "cuadriceps",
+      "gluteo-mayor"
+    ],
+    "secondary": [
+      "gluteo-medio"
+    ]
+  },
+  "equipment": [
+    "cajon"
+  ],
+  "demands": [
+    "equilibrio"
+  ],
+  "variants": [
+    {
+      "id": "step-up",
+      "name": {
+        "es": "Step-up al cajón",
+        "en": "Box step-up"
+      }
+    }
+  ]
+}

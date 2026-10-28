@@ -1,0 +1,45 @@
+{
+  "id": "wall-ball",
+  "name": {
+    "es": "Wall ball",
+    "en": "Wall ball"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "resistencia",
+  "position": "de-pie",
+  "laterality": "bilateral",
+  "pattern": "combinado",
+  "patterns2": [
+    "sentadilla",
+    "empuje-vertical"
+  ],
+  "level": 2,
+  "muscles": {
+    "primary": [
+      "cuadriceps",
+      "gluteo-mayor",
+      "deltoides-anterior"
+    ],
+    "secondary": [
+      "triceps"
+    ]
+  },
+  "equipment": [
+    "balon-medicinal",
+    "pared"
+  ],
+  "demands": [
+    "flexion-profunda-rodilla",
+    "brazos-sobre-cabeza"
+  ],
+  "variants": [
+    {
+      "id": "wall-ball",
+      "name": {
+        "es": "Wall ball",
+        "en": "Wall ball"
+      }
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "id": "salto-cajon",
+  "name": {
+    "es": "Salto al cajón",
+    "en": "Box jump"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "potencia",
+  "position": "de-pie",
+  "laterality": "bilateral",
+  "pattern": "salto",
+  "level": 2,
+  "muscles": {
+    "primary": [
+      "cuadriceps",
+      "gluteo-mayor"
+    ],
+    "secondary": [
+      "gemelos"
+    ]
+  },
+  "equipment": [
+    "cajon"
+  ],
+  "demands": [
+    "impacto"
+  ],
+  "variants": [
+    {
+      "id": "salto-cajon",
+      "name": {
+        "es": "Salto al cajón",
+        "en": "Box jump"
+      }
+    }
+  ]
+}

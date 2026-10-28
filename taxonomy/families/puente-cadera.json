@@ -1,0 +1,70 @@
+{
+  "id": "puente-cadera",
+  "name": {
+    "es": "Puente de cadera",
+    "en": "Hip bridge"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "fuerza",
+  "position": "de-pie",
+  "laterality": "bilateral",
+  "pattern": "bisagra",
+  "level": 1,
+  "muscles": {
+    "primary": [
+      "gluteo-mayor"
+    ],
+    "secondary": [
+      "isquiotibiales"
+    ]
+  },
+  "equipment": [
+    "esterilla"
+  ],
+  "demands": [
+    "decubito"
+  ],
+  "params": {
+    "apoyo": [
+      "suelo",
+      "banco"
+    ],
+    "carga": [
+      "ninguna",
+      "barra"
+    ]
+  },
+  "variants": [
+    {
+      "id": "puente-gluteo",
+      "name": {
+        "es": "Puente de glúteo",
+        "en": "Glute bridge"
+      },
+      "set": {
+        "apoyo": "suelo",
+        "carga": "ninguna"
+      },
+      "position": "suelo-supino"
+    },
+    {
+      "id": "hip-thrust",
+      "name": {
+        "es": "Hip thrust",
+        "en": "Barbell hip thrust"
+      },
+      "set": {
+        "apoyo": "banco",
+        "carga": "barra"
+      },
+      "position": "banco",
+      "equipment": [
+        "barra",
+        "banco"
+      ],
+      "level": 2,
+      "demands": []
+    }
+  ]
+}

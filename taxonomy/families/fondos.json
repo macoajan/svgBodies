@@ -1,0 +1,39 @@
+{
+  "id": "fondos",
+  "name": {
+    "es": "Fondos",
+    "en": "Dips"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "fuerza",
+  "position": "suspension",
+  "laterality": "bilateral",
+  "pattern": "empuje-vertical",
+  "level": 3,
+  "muscles": {
+    "primary": [
+      "pectoral",
+      "triceps"
+    ],
+    "secondary": [
+      "deltoides-anterior"
+    ]
+  },
+  "equipment": [
+    "paralelas"
+  ],
+  "demands": [
+    "suspension",
+    "extension-hombro-cargada"
+  ],
+  "variants": [
+    {
+      "id": "fondos-paralelas",
+      "name": {
+        "es": "Fondos en paralelas",
+        "en": "Parallel bar dips"
+      }
+    }
+  ]
+}

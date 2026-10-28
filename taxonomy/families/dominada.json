@@ -1,0 +1,42 @@
+{
+  "id": "dominada",
+  "name": {
+    "es": "Dominada",
+    "en": "Pull-up"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "fuerza",
+  "position": "suspension",
+  "laterality": "bilateral",
+  "pattern": "traccion-vertical",
+  "level": 3,
+  "muscles": {
+    "primary": [
+      "dorsal",
+      "biceps"
+    ],
+    "secondary": [
+      "romboides",
+      "trapecio",
+      "antebrazo"
+    ]
+  },
+  "equipment": [
+    "barra-dominadas"
+  ],
+  "demands": [
+    "suspension",
+    "agarre",
+    "brazos-sobre-cabeza"
+  ],
+  "variants": [
+    {
+      "id": "dominada",
+      "name": {
+        "es": "Dominada",
+        "en": "Pull-up"
+      }
+    }
+  ]
+}

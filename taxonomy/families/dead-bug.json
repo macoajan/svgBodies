@@ -1,0 +1,38 @@
+{
+  "id": "dead-bug",
+  "name": {
+    "es": "Dead bug",
+    "en": "Dead bug"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "estabilidad",
+  "position": "suelo-supino",
+  "laterality": "alterno",
+  "pattern": "antiextension",
+  "level": 1,
+  "muscles": {
+    "primary": [
+      "recto-abdominal",
+      "transverso"
+    ],
+    "secondary": [
+      "flexores-cadera"
+    ]
+  },
+  "equipment": [
+    "esterilla"
+  ],
+  "demands": [
+    "decubito"
+  ],
+  "variants": [
+    {
+      "id": "dead-bug",
+      "name": {
+        "es": "Dead bug",
+        "en": "Dead bug"
+      }
+    }
+  ]
+}

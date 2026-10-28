@@ -1,0 +1,40 @@
+{
+  "id": "buenos-dias",
+  "name": {
+    "es": "Buenos días",
+    "en": "Good morning"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "fuerza",
+  "position": "de-pie",
+  "laterality": "bilateral",
+  "pattern": "bisagra",
+  "level": 3,
+  "muscles": {
+    "primary": [
+      "isquiotibiales",
+      "erectores"
+    ],
+    "secondary": [
+      "gluteo-mayor"
+    ]
+  },
+  "equipment": [
+    "barra",
+    "rack"
+  ],
+  "demands": [
+    "carga-axial",
+    "flexion-cadera-cargada"
+  ],
+  "variants": [
+    {
+      "id": "buenos-dias",
+      "name": {
+        "es": "Buenos días",
+        "en": "Good morning"
+      }
+    }
+  ]
+}

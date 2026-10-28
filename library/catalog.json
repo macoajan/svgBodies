@@ -1,0 +1,3527 @@
+{
+ "vocab": {
+  "actions": {
+   "fuerza": {
+    "es": "Fuerza",
+    "en": "Strength"
+   },
+   "potencia": {
+    "es": "Potencia",
+    "en": "Power"
+   },
+   "resistencia": {
+    "es": "Resistencia / acondicionamiento",
+    "en": "Conditioning"
+   },
+   "estabilidad": {
+    "es": "Estabilidad / control",
+    "en": "Stability / control"
+   },
+   "movilidad": {
+    "es": "Movilidad",
+    "en": "Mobility"
+   }
+  },
+  "demands": {
+   "carga-axial": {
+    "es": "Carga axial sobre la columna",
+    "en": "Axial spinal load"
+   },
+   "flexion-cadera-cargada": {
+    "es": "Flexión de cadera con carga",
+    "en": "Loaded hip flexion"
+   },
+   "flexion-profunda-rodilla": {
+    "es": "Flexión profunda de rodilla",
+    "en": "Deep knee flexion"
+   },
+   "apoyo-rodilla": {
+    "es": "Apoyo sobre la rodilla",
+    "en": "Kneeling contact"
+   },
+   "brazos-sobre-cabeza": {
+    "es": "Brazos por encima de la cabeza",
+    "en": "Overhead arm position"
+   },
+   "carga-muneca": {
+    "es": "Carga sobre las muñecas",
+    "en": "Wrist loading"
+   },
+   "extension-hombro-cargada": {
+    "es": "Extensión de hombro cargada",
+    "en": "Loaded shoulder extension"
+   },
+   "impacto": {
+    "es": "Impacto / aterrizaje",
+    "en": "Impact / landing"
+   },
+   "equilibrio": {
+    "es": "Equilibrio exigente",
+    "en": "Balance demand"
+   },
+   "decubito": {
+    "es": "Tumbado (subir y bajar del suelo)",
+    "en": "Lying (floor transfers)"
+   },
+   "suspension": {
+    "es": "Suspensión del cuerpo",
+    "en": "Body suspension"
+   },
+   "agarre": {
+    "es": "Exigencia de agarre",
+    "en": "Grip demand"
+   }
+  },
+  "equipment": {
+   "peso-corporal": {
+    "es": "Sin material",
+    "en": "Bodyweight"
+   },
+   "esterilla": {
+    "es": "Esterilla",
+    "en": "Mat"
+   },
+   "barra": {
+    "es": "Barra olímpica y discos",
+    "en": "Barbell"
+   },
+   "rack": {
+    "es": "Rack",
+    "en": "Rack"
+   },
+   "banco": {
+    "es": "Banco",
+    "en": "Bench"
+   },
+   "mancuerna": {
+    "es": "Mancuerna",
+    "en": "Dumbbell"
+   },
+   "kettlebell": {
+    "es": "Kettlebell",
+    "en": "Kettlebell"
+   },
+   "balon-medicinal": {
+    "es": "Balón medicinal",
+    "en": "Medicine ball"
+   },
+   "cajon": {
+    "es": "Cajón pliométrico",
+    "en": "Plyo box"
+   },
+   "pared": {
+    "es": "Pared / diana",
+    "en": "Wall / target"
+   },
+   "barra-dominadas": {
+    "es": "Barra de dominadas",
+    "en": "Pull-up bar"
+   },
+   "barra-baja": {
+    "es": "Barra baja fija",
+    "en": "Low fixed bar"
+   },
+   "paralelas": {
+    "es": "Paralelas",
+    "en": "Parallel bars"
+   },
+   "polea": {
+    "es": "Polea",
+    "en": "Cable machine"
+   },
+   "rueda-abdominal": {
+    "es": "Rueda abdominal",
+    "en": "Ab wheel"
+   },
+   "comba": {
+    "es": "Comba",
+    "en": "Jump rope"
+   },
+   "cuerdas-batida": {
+    "es": "Cuerdas de batida",
+    "en": "Battle ropes"
+   },
+   "trineo": {
+    "es": "Trineo",
+    "en": "Sled"
+   }
+  },
+  "laterality": {
+   "bilateral": {
+    "es": "Bilateral",
+    "en": "Bilateral"
+   },
+   "unilateral": {
+    "es": "Unilateral",
+    "en": "Unilateral"
+   },
+   "alterno": {
+    "es": "Alterno",
+    "en": "Alternating"
+   }
+  },
+  "levels": {
+   "1": {
+    "es": "Iniciación",
+    "en": "Beginner"
+   },
+   "2": {
+    "es": "Básico",
+    "en": "Novice"
+   },
+   "3": {
+    "es": "Intermedio",
+    "en": "Intermediate"
+   },
+   "4": {
+    "es": "Avanzado",
+    "en": "Advanced"
+   }
+  },
+  "mechanics": {
+   "compuesto": {
+    "es": "Compuesto (multiarticular)",
+    "en": "Compound"
+   },
+   "aislado": {
+    "es": "Aislado (monoarticular)",
+    "en": "Isolation"
+   },
+   "isometrico": {
+    "es": "Isométrico",
+    "en": "Isometric"
+   }
+  },
+  "muscles": {
+   "tren-inferior": {
+    "es": "Tren inferior",
+    "en": "Lower body"
+   },
+   "cuadriceps": {
+    "es": "Cuádriceps",
+    "en": "Quadriceps",
+    "parent": "tren-inferior"
+   },
+   "isquiotibiales": {
+    "es": "Isquiotibiales",
+    "en": "Hamstrings",
+    "parent": "tren-inferior"
+   },
+   "gluteo": {
+    "es": "Glúteo",
+    "en": "Glutes",
+    "parent": "tren-inferior"
+   },
+   "gluteo-mayor": {
+    "es": "Glúteo mayor",
+    "en": "Gluteus maximus",
+    "parent": "gluteo"
+   },
+   "gluteo-medio": {
+    "es": "Glúteo medio",
+    "en": "Gluteus medius",
+    "parent": "gluteo"
+   },
+   "aductores": {
+    "es": "Aductores",
+    "en": "Adductors",
+    "parent": "tren-inferior"
+   },
+   "flexores-cadera": {
+    "es": "Flexores de cadera",
+    "en": "Hip flexors",
+    "parent": "tren-inferior"
+   },
+   "gemelos": {
+    "es": "Tríceps sural",
+    "en": "Calves",
+    "parent": "tren-inferior"
+   },
+   "core": {
+    "es": "Core",
+    "en": "Core"
+   },
+   "recto-abdominal": {
+    "es": "Recto abdominal",
+    "en": "Rectus abdominis",
+    "parent": "core"
+   },
+   "oblicuos": {
+    "es": "Oblicuos",
+    "en": "Obliques",
+    "parent": "core"
+   },
+   "transverso": {
+    "es": "Transverso abdominal",
+    "en": "Transversus abdominis",
+    "parent": "core"
+   },
+   "erectores": {
+    "es": "Erectores espinales",
+    "en": "Spinal erectors",
+    "parent": "core"
+   },
+   "cuadrado-lumbar": {
+    "es": "Cuadrado lumbar",
+    "en": "Quadratus lumborum",
+    "parent": "core"
+   },
+   "tren-superior": {
+    "es": "Tren superior",
+    "en": "Upper body"
+   },
+   "pectoral": {
+    "es": "Pectoral",
+    "en": "Chest",
+    "parent": "tren-superior"
+   },
+   "dorsal": {
+    "es": "Dorsal ancho",
+    "en": "Latissimus dorsi",
+    "parent": "tren-superior"
+   },
+   "trapecio": {
+    "es": "Trapecio",
+    "en": "Trapezius",
+    "parent": "tren-superior"
+   },
+   "romboides": {
+    "es": "Romboides",
+    "en": "Rhomboids",
+    "parent": "tren-superior"
+   },
+   "serrato": {
+    "es": "Serrato anterior",
+    "en": "Serratus anterior",
+    "parent": "tren-superior"
+   },
+   "deltoides": {
+    "es": "Deltoides",
+    "en": "Deltoids",
+    "parent": "tren-superior"
+   },
+   "deltoides-anterior": {
+    "es": "Deltoides anterior",
+    "en": "Anterior deltoid",
+    "parent": "deltoides"
+   },
+   "deltoides-lateral": {
+    "es": "Deltoides lateral",
+    "en": "Lateral deltoid",
+    "parent": "deltoides"
+   },
+   "deltoides-posterior": {
+    "es": "Deltoides posterior",
+    "en": "Posterior deltoid",
+    "parent": "deltoides"
+   },
+   "biceps": {
+    "es": "Bíceps",
+    "en": "Biceps",
+    "parent": "tren-superior"
+   },
+   "triceps": {
+    "es": "Tríceps",
+    "en": "Triceps",
+    "parent": "tren-superior"
+   },
+   "antebrazo": {
+    "es": "Antebrazo / agarre",
+    "en": "Forearm / grip",
+    "parent": "tren-superior"
+   }
+  },
+  "patterns": {
+   "sentadilla": {
+    "es": "Sentadilla",
+    "en": "Squat"
+   },
+   "bisagra": {
+    "es": "Bisagra de cadera",
+    "en": "Hip hinge"
+   },
+   "zancada": {
+    "es": "Zancada / unilateral",
+    "en": "Lunge / single leg"
+   },
+   "empuje-horizontal": {
+    "es": "Empuje horizontal",
+    "en": "Horizontal push"
+   },
+   "empuje-vertical": {
+    "es": "Empuje vertical",
+    "en": "Vertical push"
+   },
+   "traccion-horizontal": {
+    "es": "Tracción horizontal",
+    "en": "Horizontal pull"
+   },
+   "traccion-vertical": {
+    "es": "Tracción vertical",
+    "en": "Vertical pull"
+   },
+   "transporte": {
+    "es": "Transporte de carga",
+    "en": "Loaded carry"
+   },
+   "antiextension": {
+    "es": "Antiextensión",
+    "en": "Anti-extension"
+   },
+   "antirrotacion": {
+    "es": "Antirrotación",
+    "en": "Anti-rotation"
+   },
+   "antiflexion-lateral": {
+    "es": "Antiflexión lateral",
+    "en": "Anti-lateral flexion"
+   },
+   "rotacion": {
+    "es": "Rotación",
+    "en": "Rotation"
+   },
+   "salto": {
+    "es": "Salto / pliometría",
+    "en": "Jump / plyometrics"
+   },
+   "locomocion": {
+    "es": "Locomoción",
+    "en": "Locomotion"
+   },
+   "combinado": {
+    "es": "Combinado",
+    "en": "Complex"
+   },
+   "oscilacion": {
+    "es": "Oscilación / ondas",
+    "en": "Oscillation / waves"
+   }
+  },
+  "places": {
+   "casa": {
+    "es": "Casa",
+    "en": "Home"
+   },
+   "gimnasio": {
+    "es": "Gimnasio",
+    "en": "Gym"
+   },
+   "exterior": {
+    "es": "Exterior / parque",
+    "en": "Outdoors / park"
+   }
+  },
+  "planes": {
+   "sagital": {
+    "es": "Sagital",
+    "en": "Sagittal"
+   },
+   "frontal": {
+    "es": "Frontal",
+    "en": "Frontal"
+   },
+   "transversal": {
+    "es": "Transversal",
+    "en": "Transverse"
+   },
+   "multiplanar": {
+    "es": "Multiplanar",
+    "en": "Multiplanar"
+   }
+  },
+  "positions": {
+   "de-pie": {
+    "es": "De pie",
+    "en": "Standing"
+   },
+   "suelo-prono": {
+    "es": "Suelo, boca abajo",
+    "en": "Floor, prone"
+   },
+   "suelo-supino": {
+    "es": "Suelo, boca arriba",
+    "en": "Floor, supine"
+   },
+   "suelo-lateral": {
+    "es": "Suelo, de lado",
+    "en": "Floor, side-lying"
+   },
+   "cuadrupedia": {
+    "es": "Cuadrupedia",
+    "en": "Quadruped"
+   },
+   "rodillas": {
+    "es": "De rodillas",
+    "en": "Kneeling"
+   },
+   "banco": {
+    "es": "Sobre banco",
+    "en": "On a bench"
+   },
+   "suspension": {
+    "es": "Suspendido",
+    "en": "Hanging / supported"
+   },
+   "transicion": {
+    "es": "Cambia de posición",
+    "en": "Transitional"
+   }
+  }
+ },
+ "exercises": [
+  {
+   "id": "battle-ropes",
+   "family": "battle-ropes",
+   "name": {
+    "es": "Battle ropes",
+    "en": "Battle ropes (alternating waves)"
+   },
+   "familyName": {
+    "es": "Battle ropes",
+    "en": "Battle ropes"
+   },
+   "params": {},
+   "pattern": "oscilacion",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "resistencia",
+   "position": "de-pie",
+   "laterality": "alterno",
+   "level": 1,
+   "equipment": [
+    "cuerdas-batida"
+   ],
+   "demands": [
+    "agarre"
+   ],
+   "muscles": {
+    "primary": [
+     "deltoides",
+     "antebrazo"
+    ],
+    "secondary": [
+     "transverso",
+     "cuadriceps"
+    ]
+   },
+   "muscleGroups": [
+    "deltoides",
+    "tren-superior",
+    "antebrazo",
+    "transverso",
+    "core",
+    "cuadriceps",
+    "tren-inferior"
+   ],
+   "equipmentCategories": [
+    "accesorio"
+   ],
+   "places": [
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "D",
+    "page": "lote-d.html#battle-ropes",
+    "views": [
+     "svg/battle-ropes-lateral.svg",
+     "svg/battle-ropes-frontal.svg",
+     "svg/battle-ropes-iso.svg"
+    ],
+    "duration": 0.7,
+    "cue": "Media sentadilla y tronco firme; los brazos alternan ondas rápidas que recorren las cuerdas."
+   }
+  },
+  {
+   "id": "bear-crawl",
+   "family": "bear-crawl",
+   "name": {
+    "es": "Bear crawl",
+    "en": "Bear crawl"
+   },
+   "familyName": {
+    "es": "Bear crawl",
+    "en": "Bear crawl"
+   },
+   "params": {},
+   "pattern": "locomocion",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "resistencia",
+   "position": "cuadrupedia",
+   "laterality": "alterno",
+   "level": 2,
+   "equipment": [
+    "peso-corporal"
+   ],
+   "demands": [
+    "carga-muneca"
+   ],
+   "muscles": {
+    "primary": [
+     "deltoides-anterior",
+     "cuadriceps"
+    ],
+    "secondary": [
+     "transverso",
+     "serrato"
+    ]
+   },
+   "muscleGroups": [
+    "deltoides-anterior",
+    "deltoides",
+    "tren-superior",
+    "cuadriceps",
+    "tren-inferior",
+    "transverso",
+    "core",
+    "serrato"
+   ],
+   "equipmentCategories": [
+    "ninguno"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "D",
+    "page": "lote-d.html#bear-crawl",
+    "views": [
+     "svg/bear-crawl-lateral.svg",
+     "svg/bear-crawl-cenital.svg",
+     "svg/bear-crawl-iso.svg"
+    ],
+    "duration": 1.2,
+    "cue": "Manos y puntas de los pies en el suelo, rodillas a un palmo; avanzan a la vez mano y pie contrarios."
+   }
+  },
+  {
+   "id": "bird-dog",
+   "family": "bird-dog",
+   "name": {
+    "es": "Bird dog",
+    "en": "Bird dog"
+   },
+   "familyName": {
+    "es": "Bird dog",
+    "en": "Bird dog"
+   },
+   "params": {},
+   "pattern": "antiextension",
+   "patterns2": [
+    "antirrotacion"
+   ],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "estabilidad",
+   "position": "cuadrupedia",
+   "laterality": "alterno",
+   "level": 1,
+   "equipment": [
+    "esterilla"
+   ],
+   "demands": [
+    "apoyo-rodilla",
+    "carga-muneca"
+   ],
+   "muscles": {
+    "primary": [
+     "erectores",
+     "gluteo-mayor"
+    ],
+    "secondary": [
+     "transverso",
+     "deltoides"
+    ]
+   },
+   "muscleGroups": [
+    "erectores",
+    "core",
+    "gluteo-mayor",
+    "gluteo",
+    "tren-inferior",
+    "transverso",
+    "deltoides",
+    "tren-superior"
+   ],
+   "equipmentCategories": [
+    "accesorio"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "B",
+    "page": "lote-b.html#bird-dog",
+    "views": [
+     "svg/bird-dog-lateral.svg",
+     "svg/bird-dog-cenital.svg",
+     "svg/bird-dog-iso.svg"
+    ],
+    "duration": 5.6,
+    "cue": "Manos bajo los hombros y rodillas bajo la cadera; brazo y pierna contrarios se estiran sin girar la pelvis."
+   }
+  },
+  {
+   "id": "buenos-dias",
+   "family": "buenos-dias",
+   "name": {
+    "es": "Buenos días",
+    "en": "Good morning"
+   },
+   "familyName": {
+    "es": "Buenos días",
+    "en": "Good morning"
+   },
+   "params": {},
+   "pattern": "bisagra",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "fuerza",
+   "position": "de-pie",
+   "laterality": "bilateral",
+   "level": 3,
+   "equipment": [
+    "barra",
+    "rack"
+   ],
+   "demands": [
+    "carga-axial",
+    "flexion-cadera-cargada"
+   ],
+   "muscles": {
+    "primary": [
+     "isquiotibiales",
+     "erectores"
+    ],
+    "secondary": [
+     "gluteo-mayor"
+    ]
+   },
+   "muscleGroups": [
+    "isquiotibiales",
+    "tren-inferior",
+    "erectores",
+    "core",
+    "gluteo-mayor",
+    "gluteo"
+   ],
+   "equipmentCategories": [
+    "peso-libre",
+    "estructura"
+   ],
+   "places": [
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "D",
+    "page": "lote-d.html#buenos-dias",
+    "views": [
+     "svg/buenos-dias-lateral.svg",
+     "svg/buenos-dias-frontal.svg",
+     "svg/buenos-dias-iso.svg"
+    ],
+    "duration": 3.3,
+    "cue": "Barra en la espalda y rodillas blandas; la cadera va atrás hasta que el tronco queda casi horizontal."
+   }
+  },
+  {
+   "id": "burpee",
+   "family": "burpee",
+   "name": {
+    "es": "Burpee",
+    "en": "Burpee"
+   },
+   "familyName": {
+    "es": "Burpee",
+    "en": "Burpee"
+   },
+   "params": {},
+   "pattern": "combinado",
+   "patterns2": [
+    "sentadilla",
+    "antiextension",
+    "salto"
+   ],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "resistencia",
+   "position": "transicion",
+   "laterality": "bilateral",
+   "level": 2,
+   "equipment": [
+    "peso-corporal"
+   ],
+   "demands": [
+    "impacto",
+    "carga-muneca"
+   ],
+   "muscles": {
+    "primary": [
+     "cuadriceps",
+     "pectoral"
+    ],
+    "secondary": [
+     "gluteo-mayor",
+     "deltoides-anterior",
+     "recto-abdominal"
+    ]
+   },
+   "muscleGroups": [
+    "cuadriceps",
+    "tren-inferior",
+    "pectoral",
+    "tren-superior",
+    "gluteo-mayor",
+    "gluteo",
+    "deltoides-anterior",
+    "deltoides",
+    "recto-abdominal",
+    "core"
+   ],
+   "equipmentCategories": [
+    "ninguno"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "C",
+    "page": "lote-c.html#burpee",
+    "views": [
+     "svg/burpee-lateral.svg",
+     "svg/burpee-frontal.svg",
+     "svg/burpee-iso.svg"
+    ],
+    "duration": 3.05,
+    "cue": "Manos al suelo, pies atrás a plancha, pies de vuelta, de pie y salto con los brazos arriba."
+   }
+  },
+  {
+   "id": "cargada-kettlebell",
+   "family": "cargada-kettlebell",
+   "name": {
+    "es": "Cargada con kettlebell",
+    "en": "Kettlebell clean"
+   },
+   "familyName": {
+    "es": "Cargada con kettlebell",
+    "en": "Kettlebell clean"
+   },
+   "params": {},
+   "pattern": "bisagra",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "potencia",
+   "position": "de-pie",
+   "laterality": "unilateral",
+   "level": 3,
+   "equipment": [
+    "kettlebell"
+   ],
+   "demands": [
+    "flexion-cadera-cargada",
+    "agarre"
+   ],
+   "muscles": {
+    "primary": [
+     "gluteo-mayor",
+     "isquiotibiales"
+    ],
+    "secondary": [
+     "trapecio",
+     "deltoides-anterior",
+     "antebrazo"
+    ]
+   },
+   "muscleGroups": [
+    "gluteo-mayor",
+    "gluteo",
+    "tren-inferior",
+    "isquiotibiales",
+    "trapecio",
+    "tren-superior",
+    "deltoides-anterior",
+    "deltoides",
+    "antebrazo"
+   ],
+   "equipmentCategories": [
+    "peso-libre"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "D",
+    "page": "lote-d.html#cargada-kettlebell",
+    "views": [
+     "svg/cargada-kettlebell-lateral.svg",
+     "svg/cargada-kettlebell-frontal.svg",
+     "svg/cargada-kettlebell-iso.svg"
+    ],
+    "duration": 2.1,
+    "cue": "La cadera lanza la pesa, que sube pegada al cuerpo y se recoge en el pecho sin golpear el antebrazo."
+   }
+  },
+  {
+   "id": "comba",
+   "family": "comba",
+   "name": {
+    "es": "Comba",
+    "en": "Jump rope"
+   },
+   "familyName": {
+    "es": "Comba",
+    "en": "Jump rope"
+   },
+   "params": {},
+   "pattern": "salto",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "resistencia",
+   "position": "de-pie",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "comba"
+   ],
+   "demands": [
+    "impacto"
+   ],
+   "muscles": {
+    "primary": [
+     "gemelos"
+    ],
+    "secondary": [
+     "antebrazo",
+     "deltoides"
+    ]
+   },
+   "muscleGroups": [
+    "gemelos",
+    "tren-inferior",
+    "antebrazo",
+    "tren-superior",
+    "deltoides"
+   ],
+   "equipmentCategories": [
+    "accesorio"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "C",
+    "page": "lote-c.html#comba",
+    "views": [
+     "svg/comba-lateral.svg",
+     "svg/comba-frontal.svg",
+     "svg/comba-iso.svg"
+    ],
+    "duration": 0.6,
+    "cue": "Saltos bajos sobre la parte delantera del pie; la cuerda gira con las muñecas, codos pegados."
+   }
+  },
+  {
+   "id": "dead-bug",
+   "family": "dead-bug",
+   "name": {
+    "es": "Dead bug",
+    "en": "Dead bug"
+   },
+   "familyName": {
+    "es": "Dead bug",
+    "en": "Dead bug"
+   },
+   "params": {},
+   "pattern": "antiextension",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "estabilidad",
+   "position": "suelo-supino",
+   "laterality": "alterno",
+   "level": 1,
+   "equipment": [
+    "esterilla"
+   ],
+   "demands": [
+    "decubito"
+   ],
+   "muscles": {
+    "primary": [
+     "recto-abdominal",
+     "transverso"
+    ],
+    "secondary": [
+     "flexores-cadera"
+    ]
+   },
+   "muscleGroups": [
+    "recto-abdominal",
+    "core",
+    "transverso",
+    "flexores-cadera",
+    "tren-inferior"
+   ],
+   "equipmentCategories": [
+    "accesorio"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "B",
+    "page": "lote-b.html#dead-bug",
+    "views": [
+     "svg/dead-bug-lateral.svg",
+     "svg/dead-bug-cenital.svg",
+     "svg/dead-bug-iso.svg"
+    ],
+    "duration": 5.4,
+    "cue": "Zona lumbar pegada al suelo; brazo y pierna contrarios se alejan sin perder el apoyo."
+   }
+  },
+  {
+   "id": "dominada",
+   "family": "dominada",
+   "name": {
+    "es": "Dominada",
+    "en": "Pull-up"
+   },
+   "familyName": {
+    "es": "Dominada",
+    "en": "Pull-up"
+   },
+   "params": {},
+   "pattern": "traccion-vertical",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "fuerza",
+   "position": "suspension",
+   "laterality": "bilateral",
+   "level": 3,
+   "equipment": [
+    "barra-dominadas"
+   ],
+   "demands": [
+    "suspension",
+    "agarre",
+    "brazos-sobre-cabeza"
+   ],
+   "muscles": {
+    "primary": [
+     "dorsal",
+     "biceps"
+    ],
+    "secondary": [
+     "romboides",
+     "trapecio",
+     "antebrazo"
+    ]
+   },
+   "muscleGroups": [
+    "dorsal",
+    "tren-superior",
+    "biceps",
+    "romboides",
+    "trapecio",
+    "antebrazo"
+   ],
+   "equipmentCategories": [
+    "estructura"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "B",
+    "page": "lote-b.html#dominada",
+    "views": [
+     "svg/dominada-lateral.svg",
+     "svg/dominada-frontal.svg",
+     "svg/dominada-iso.svg"
+    ],
+    "duration": 3.15,
+    "cue": "Desde brazos estirados, codos hacia abajo y atrás hasta pasar la barbilla por la barra."
+   }
+  },
+  {
+   "id": "flexion",
+   "family": "flexion",
+   "name": {
+    "es": "Flexión",
+    "en": "Push-up"
+   },
+   "familyName": {
+    "es": "Flexión",
+    "en": "Push-up"
+   },
+   "params": {},
+   "pattern": "empuje-horizontal",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "fuerza",
+   "position": "suelo-prono",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "peso-corporal"
+   ],
+   "demands": [
+    "carga-muneca"
+   ],
+   "muscles": {
+    "primary": [
+     "pectoral",
+     "triceps"
+    ],
+    "secondary": [
+     "deltoides-anterior",
+     "serrato",
+     "recto-abdominal"
+    ]
+   },
+   "muscleGroups": [
+    "pectoral",
+    "tren-superior",
+    "triceps",
+    "deltoides-anterior",
+    "deltoides",
+    "serrato",
+    "recto-abdominal",
+    "core"
+   ],
+   "equipmentCategories": [
+    "ninguno"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "B",
+    "page": "lote-b.html#flexion",
+    "views": [
+     "svg/flexion-lateral.svg",
+     "svg/flexion-cenital.svg",
+     "svg/flexion-iso.svg"
+    ],
+    "duration": 2.55,
+    "cue": "Cuerpo en bloque de talones a cabeza; codos a unos 45° del tronco y pecho casi al suelo."
+   }
+  },
+  {
+   "id": "fondos-paralelas",
+   "family": "fondos",
+   "name": {
+    "es": "Fondos en paralelas",
+    "en": "Parallel bar dips"
+   },
+   "familyName": {
+    "es": "Fondos",
+    "en": "Dips"
+   },
+   "params": {},
+   "pattern": "empuje-vertical",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "fuerza",
+   "position": "suspension",
+   "laterality": "bilateral",
+   "level": 3,
+   "equipment": [
+    "paralelas"
+   ],
+   "demands": [
+    "suspension",
+    "extension-hombro-cargada"
+   ],
+   "muscles": {
+    "primary": [
+     "pectoral",
+     "triceps"
+    ],
+    "secondary": [
+     "deltoides-anterior"
+    ]
+   },
+   "muscleGroups": [
+    "pectoral",
+    "tren-superior",
+    "triceps",
+    "deltoides-anterior",
+    "deltoides"
+   ],
+   "equipmentCategories": [
+    "estructura"
+   ],
+   "places": [
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "D",
+    "page": "lote-d.html#fondos-paralelas",
+    "views": [
+     "svg/fondos-paralelas-lateral.svg",
+     "svg/fondos-paralelas-frontal.svg",
+     "svg/fondos-paralelas-iso.svg"
+    ],
+    "duration": 2.6,
+    "cue": "Brazos bloqueados arriba; bajar con el tronco algo inclinado hasta el codo a 90° y empujar."
+   }
+  },
+  {
+   "id": "jumping-jacks",
+   "family": "jumping-jacks",
+   "name": {
+    "es": "Jumping jacks",
+    "en": "Jumping jacks"
+   },
+   "familyName": {
+    "es": "Jumping jacks",
+    "en": "Jumping jacks"
+   },
+   "params": {},
+   "pattern": "salto",
+   "patterns2": [],
+   "plane": "frontal",
+   "mechanics": "compuesto",
+   "action": "resistencia",
+   "position": "de-pie",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "peso-corporal"
+   ],
+   "demands": [
+    "impacto"
+   ],
+   "muscles": {
+    "primary": [
+     "gemelos"
+    ],
+    "secondary": [
+     "gluteo-medio",
+     "aductores",
+     "deltoides-lateral"
+    ]
+   },
+   "muscleGroups": [
+    "gemelos",
+    "tren-inferior",
+    "gluteo-medio",
+    "gluteo",
+    "aductores",
+    "deltoides-lateral",
+    "deltoides",
+    "tren-superior"
+   ],
+   "equipmentCategories": [
+    "ninguno"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "C",
+    "page": "lote-c.html#jumping-jacks",
+    "views": [
+     "svg/jumping-jacks-lateral.svg",
+     "svg/jumping-jacks-frontal.svg",
+     "svg/jumping-jacks-iso.svg"
+    ],
+    "duration": 1,
+    "cue": "Saltito ligero sobre la punta de los pies: piernas abiertas y brazos arriba, y vuelta a cerrar."
+   }
+  },
+  {
+   "id": "lenador",
+   "family": "lenador",
+   "name": {
+    "es": "Leñador",
+    "en": "Cable woodchop (high to low)"
+   },
+   "familyName": {
+    "es": "Leñador",
+    "en": "Woodchop"
+   },
+   "params": {},
+   "pattern": "rotacion",
+   "patterns2": [],
+   "plane": "transversal",
+   "mechanics": "compuesto",
+   "action": "fuerza",
+   "position": "de-pie",
+   "laterality": "bilateral",
+   "level": 2,
+   "equipment": [
+    "polea"
+   ],
+   "demands": [],
+   "muscles": {
+    "primary": [
+     "oblicuos"
+    ],
+    "secondary": [
+     "deltoides",
+     "gluteo-mayor",
+     "recto-abdominal"
+    ]
+   },
+   "muscleGroups": [
+    "oblicuos",
+    "core",
+    "deltoides",
+    "tren-superior",
+    "gluteo-mayor",
+    "gluteo",
+    "tren-inferior",
+    "recto-abdominal"
+   ],
+   "equipmentCategories": [
+    "maquina"
+   ],
+   "places": [
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "D",
+    "page": "lote-d.html#lenador",
+    "views": [
+     "svg/lenador-lateral.svg",
+     "svg/lenador-frontal.svg",
+     "svg/lenador-iso.svg"
+    ],
+    "duration": 2.7,
+    "cue": "De arriba a un lado hasta abajo al otro: brazos largos, el tronco gira y las piernas acompañan."
+   }
+  },
+  {
+   "id": "mountain-climbers",
+   "family": "mountain-climbers",
+   "name": {
+    "es": "Mountain climbers",
+    "en": "Mountain climbers"
+   },
+   "familyName": {
+    "es": "Mountain climbers",
+    "en": "Mountain climbers"
+   },
+   "params": {},
+   "pattern": "antiextension",
+   "patterns2": [
+    "locomocion"
+   ],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "resistencia",
+   "position": "suelo-prono",
+   "laterality": "alterno",
+   "level": 1,
+   "equipment": [
+    "peso-corporal"
+   ],
+   "demands": [
+    "carga-muneca"
+   ],
+   "muscles": {
+    "primary": [
+     "recto-abdominal",
+     "flexores-cadera"
+    ],
+    "secondary": [
+     "deltoides-anterior",
+     "cuadriceps"
+    ]
+   },
+   "muscleGroups": [
+    "recto-abdominal",
+    "core",
+    "flexores-cadera",
+    "tren-inferior",
+    "deltoides-anterior",
+    "deltoides",
+    "tren-superior",
+    "cuadriceps"
+   ],
+   "equipmentCategories": [
+    "ninguno"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "D",
+    "page": "lote-d.html#mountain-climbers",
+    "views": [
+     "svg/mountain-climbers-lateral.svg",
+     "svg/mountain-climbers-cenital.svg",
+     "svg/mountain-climbers-iso.svg"
+    ],
+    "duration": 0.8,
+    "cue": "En plancha alta, las rodillas van al pecho alternando, rápido y sin subir la cadera."
+   }
+  },
+  {
+   "id": "pallof-press",
+   "family": "pallof-press",
+   "name": {
+    "es": "Pallof press",
+    "en": "Pallof press"
+   },
+   "familyName": {
+    "es": "Pallof press",
+    "en": "Pallof press"
+   },
+   "params": {},
+   "pattern": "antirrotacion",
+   "patterns2": [],
+   "plane": "transversal",
+   "mechanics": "isometrico",
+   "action": "estabilidad",
+   "position": "de-pie",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "polea"
+   ],
+   "demands": [],
+   "muscles": {
+    "primary": [
+     "oblicuos",
+     "transverso"
+    ],
+    "secondary": [
+     "recto-abdominal"
+    ]
+   },
+   "muscleGroups": [
+    "oblicuos",
+    "core",
+    "transverso",
+    "recto-abdominal"
+   ],
+   "equipmentCategories": [
+    "maquina"
+   ],
+   "places": [
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "D",
+    "page": "lote-d.html#pallof-press",
+    "views": [
+     "svg/pallof-press-lateral.svg",
+     "svg/pallof-press-frontal.svg",
+     "svg/pallof-press-iso.svg"
+    ],
+    "duration": 2.8,
+    "cue": "La polea tira hacia un lado; las manos salen al frente y vuelven al pecho sin que el tronco gire."
+   }
+  },
+  {
+   "id": "peso-muerto",
+   "family": "peso-muerto",
+   "name": {
+    "es": "Peso muerto",
+    "en": "Conventional deadlift"
+   },
+   "familyName": {
+    "es": "Peso muerto",
+    "en": "Deadlift"
+   },
+   "params": {
+    "implemento": "barra",
+    "variante": "convencional"
+   },
+   "pattern": "bisagra",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "fuerza",
+   "position": "de-pie",
+   "laterality": "bilateral",
+   "level": 2,
+   "equipment": [
+    "barra"
+   ],
+   "demands": [
+    "carga-axial",
+    "flexion-cadera-cargada",
+    "agarre"
+   ],
+   "muscles": {
+    "primary": [
+     "gluteo-mayor",
+     "isquiotibiales",
+     "erectores"
+    ],
+    "secondary": [
+     "cuadriceps",
+     "trapecio",
+     "antebrazo"
+    ]
+   },
+   "muscleGroups": [
+    "gluteo-mayor",
+    "gluteo",
+    "tren-inferior",
+    "isquiotibiales",
+    "erectores",
+    "core",
+    "cuadriceps",
+    "trapecio",
+    "tren-superior",
+    "antebrazo"
+   ],
+   "equipmentCategories": [
+    "peso-libre"
+   ],
+   "places": [
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "A",
+    "page": "lote-a.html#peso-muerto",
+    "views": [
+     "svg/peso-muerto-lateral.svg",
+     "svg/peso-muerto-frontal.svg",
+     "svg/peso-muerto-iso.svg"
+    ],
+    "duration": 4.4,
+    "cue": "Barra pegada a las piernas sobre el mediopié; empuja el suelo y extiende cadera y rodillas a la vez."
+   }
+  },
+  {
+   "id": "peso-muerto-rumano",
+   "family": "peso-muerto",
+   "name": {
+    "es": "Peso muerto rumano",
+    "en": "Romanian deadlift"
+   },
+   "familyName": {
+    "es": "Peso muerto",
+    "en": "Deadlift"
+   },
+   "params": {
+    "implemento": "barra",
+    "variante": "rumano"
+   },
+   "pattern": "bisagra",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "fuerza",
+   "position": "de-pie",
+   "laterality": "bilateral",
+   "level": 2,
+   "equipment": [
+    "barra"
+   ],
+   "demands": [
+    "carga-axial",
+    "flexion-cadera-cargada",
+    "agarre"
+   ],
+   "muscles": {
+    "primary": [
+     "isquiotibiales",
+     "gluteo-mayor"
+    ],
+    "secondary": [
+     "erectores",
+     "antebrazo"
+    ]
+   },
+   "muscleGroups": [
+    "isquiotibiales",
+    "tren-inferior",
+    "gluteo-mayor",
+    "gluteo",
+    "erectores",
+    "core",
+    "antebrazo",
+    "tren-superior"
+   ],
+   "equipmentCategories": [
+    "peso-libre"
+   ],
+   "places": [
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "A",
+    "page": "lote-a.html#peso-muerto-rumano",
+    "views": [
+     "svg/peso-muerto-rumano-lateral.svg",
+     "svg/peso-muerto-rumano-frontal.svg",
+     "svg/peso-muerto-rumano-iso.svg"
+    ],
+    "duration": 3.6,
+    "cue": "Rodillas casi fijas; la cadera va atrás y la barra baja rozando los muslos hasta media tibia."
+   }
+  },
+  {
+   "id": "peso-muerto-una-pierna",
+   "family": "peso-muerto",
+   "name": {
+    "es": "Peso muerto a una pierna",
+    "en": "Single-leg Romanian deadlift"
+   },
+   "familyName": {
+    "es": "Peso muerto",
+    "en": "Deadlift"
+   },
+   "params": {
+    "implemento": "kettlebell",
+    "variante": "una-pierna"
+   },
+   "pattern": "bisagra",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "fuerza",
+   "position": "de-pie",
+   "laterality": "unilateral",
+   "level": 3,
+   "equipment": [
+    "kettlebell"
+   ],
+   "demands": [
+    "flexion-cadera-cargada",
+    "equilibrio"
+   ],
+   "muscles": {
+    "primary": [
+     "isquiotibiales",
+     "gluteo-mayor"
+    ],
+    "secondary": [
+     "gluteo-medio",
+     "erectores"
+    ]
+   },
+   "muscleGroups": [
+    "isquiotibiales",
+    "tren-inferior",
+    "gluteo-mayor",
+    "gluteo",
+    "gluteo-medio",
+    "erectores",
+    "core"
+   ],
+   "equipmentCategories": [
+    "peso-libre"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "D",
+    "page": "lote-d.html#peso-muerto-una-pierna",
+    "views": [
+     "svg/peso-muerto-una-pierna-lateral.svg",
+     "svg/peso-muerto-una-pierna-frontal.svg",
+     "svg/peso-muerto-una-pierna-iso.svg"
+    ],
+    "duration": 3.5,
+    "cue": "Apoyo en una pierna con la rodilla blanda; tronco y pierna libre suben y bajan como una sola pieza."
+   }
+  },
+  {
+   "id": "plancha",
+   "family": "plancha",
+   "name": {
+    "es": "Plancha",
+    "en": "Forearm plank"
+   },
+   "familyName": {
+    "es": "Plancha",
+    "en": "Plank"
+   },
+   "params": {
+    "apoyo": "frontal"
+   },
+   "pattern": "antiextension",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "isometrico",
+   "action": "estabilidad",
+   "position": "suelo-prono",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "esterilla"
+   ],
+   "demands": [],
+   "muscles": {
+    "primary": [
+     "recto-abdominal",
+     "transverso"
+    ],
+    "secondary": [
+     "gluteo-mayor",
+     "deltoides-anterior"
+    ]
+   },
+   "muscleGroups": [
+    "recto-abdominal",
+    "core",
+    "transverso",
+    "gluteo-mayor",
+    "gluteo",
+    "tren-inferior",
+    "deltoides-anterior",
+    "deltoides",
+    "tren-superior"
+   ],
+   "equipmentCategories": [
+    "accesorio"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "B",
+    "page": "lote-b.html#plancha",
+    "views": [
+     "svg/plancha-lateral.svg",
+     "svg/plancha-cenital.svg",
+     "svg/plancha-iso.svg"
+    ],
+    "duration": 4,
+    "cue": "Codos bajo los hombros y cuerpo recto; se mantiene la posición respirando con calma."
+   }
+  },
+  {
+   "id": "plancha-lateral",
+   "family": "plancha",
+   "name": {
+    "es": "Plancha lateral",
+    "en": "Side plank"
+   },
+   "familyName": {
+    "es": "Plancha",
+    "en": "Plank"
+   },
+   "params": {
+    "apoyo": "lateral"
+   },
+   "pattern": "antiflexion-lateral",
+   "patterns2": [],
+   "plane": "frontal",
+   "mechanics": "isometrico",
+   "action": "estabilidad",
+   "position": "suelo-lateral",
+   "laterality": "bilateral",
+   "level": 2,
+   "equipment": [
+    "esterilla"
+   ],
+   "demands": [],
+   "muscles": {
+    "primary": [
+     "oblicuos",
+     "cuadrado-lumbar"
+    ],
+    "secondary": [
+     "gluteo-medio",
+     "deltoides"
+    ]
+   },
+   "muscleGroups": [
+    "oblicuos",
+    "core",
+    "cuadrado-lumbar",
+    "gluteo-medio",
+    "gluteo",
+    "tren-inferior",
+    "deltoides",
+    "tren-superior"
+   ],
+   "equipmentCategories": [
+    "accesorio"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "D",
+    "page": "lote-d.html#plancha-lateral",
+    "views": [
+     "svg/plancha-lateral-lateral.svg",
+     "svg/plancha-lateral-frontal.svg",
+     "svg/plancha-lateral-iso.svg"
+    ],
+    "duration": 3.5,
+    "cue": "Codo bajo el hombro y cuerpo en línea; la mano libre sube al techo y vuelve a la cadera."
+   }
+  },
+  {
+   "id": "press-banca",
+   "family": "press-banca",
+   "name": {
+    "es": "Press de banca",
+    "en": "Barbell bench press"
+   },
+   "familyName": {
+    "es": "Press de banca",
+    "en": "Bench press"
+   },
+   "params": {},
+   "pattern": "empuje-horizontal",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "fuerza",
+   "position": "banco",
+   "laterality": "bilateral",
+   "level": 2,
+   "equipment": [
+    "barra",
+    "banco",
+    "rack"
+   ],
+   "demands": [],
+   "muscles": {
+    "primary": [
+     "pectoral",
+     "triceps"
+    ],
+    "secondary": [
+     "deltoides-anterior"
+    ]
+   },
+   "muscleGroups": [
+    "pectoral",
+    "tren-superior",
+    "triceps",
+    "deltoides-anterior",
+    "deltoides"
+   ],
+   "equipmentCategories": [
+    "peso-libre",
+    "estructura"
+   ],
+   "places": [
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "D",
+    "page": "lote-d.html#press-banca",
+    "views": [
+     "svg/press-banca-lateral.svg",
+     "svg/press-banca-frontal.svg",
+     "svg/press-banca-iso.svg"
+    ],
+    "duration": 2.6,
+    "cue": "Escápulas juntas y pies firmes; la barra baja al pecho y sube hasta la vertical de los hombros."
+   }
+  },
+  {
+   "id": "press-militar",
+   "family": "press-militar",
+   "name": {
+    "es": "Press militar",
+    "en": "Barbell overhead press"
+   },
+   "familyName": {
+    "es": "Press militar",
+    "en": "Overhead press"
+   },
+   "params": {},
+   "pattern": "empuje-vertical",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "fuerza",
+   "position": "de-pie",
+   "laterality": "bilateral",
+   "level": 2,
+   "equipment": [
+    "barra",
+    "rack"
+   ],
+   "demands": [
+    "brazos-sobre-cabeza",
+    "carga-axial"
+   ],
+   "muscles": {
+    "primary": [
+     "deltoides-anterior",
+     "triceps"
+    ],
+    "secondary": [
+     "deltoides-lateral",
+     "trapecio",
+     "serrato"
+    ]
+   },
+   "muscleGroups": [
+    "deltoides-anterior",
+    "deltoides",
+    "tren-superior",
+    "triceps",
+    "deltoides-lateral",
+    "trapecio",
+    "serrato"
+   ],
+   "equipmentCategories": [
+    "peso-libre",
+    "estructura"
+   ],
+   "places": [
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "A",
+    "page": "lote-a.html#press-militar",
+    "views": [
+     "svg/press-militar-lateral.svg",
+     "svg/press-militar-frontal.svg",
+     "svg/press-militar-iso.svg"
+    ],
+    "duration": 3.3,
+    "cue": "De la clavícula a la vertical del mediopié; la cabeza se aparta y vuelve a pasar bajo la barra."
+   }
+  },
+  {
+   "id": "puente-gluteo",
+   "family": "puente-cadera",
+   "name": {
+    "es": "Puente de glúteo",
+    "en": "Glute bridge"
+   },
+   "familyName": {
+    "es": "Puente de cadera",
+    "en": "Hip bridge"
+   },
+   "params": {
+    "apoyo": "suelo",
+    "carga": "ninguna"
+   },
+   "pattern": "bisagra",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "fuerza",
+   "position": "suelo-supino",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "esterilla"
+   ],
+   "demands": [
+    "decubito"
+   ],
+   "muscles": {
+    "primary": [
+     "gluteo-mayor"
+    ],
+    "secondary": [
+     "isquiotibiales"
+    ]
+   },
+   "muscleGroups": [
+    "gluteo-mayor",
+    "gluteo",
+    "tren-inferior",
+    "isquiotibiales"
+   ],
+   "equipmentCategories": [
+    "accesorio"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "B",
+    "page": "lote-b.html#puente-gluteo",
+    "views": [
+     "svg/puente-gluteo-lateral.svg",
+     "svg/puente-gluteo-cenital.svg",
+     "svg/puente-gluteo-iso.svg"
+    ],
+    "duration": 3.5,
+    "cue": "Pies y hombros apoyados; la cadera sube hasta alinear hombros, cadera y rodillas."
+   }
+  },
+  {
+   "id": "hip-thrust",
+   "family": "puente-cadera",
+   "name": {
+    "es": "Hip thrust",
+    "en": "Barbell hip thrust"
+   },
+   "familyName": {
+    "es": "Puente de cadera",
+    "en": "Hip bridge"
+   },
+   "params": {
+    "apoyo": "banco",
+    "carga": "barra"
+   },
+   "pattern": "bisagra",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "fuerza",
+   "position": "banco",
+   "laterality": "bilateral",
+   "level": 2,
+   "equipment": [
+    "barra",
+    "banco"
+   ],
+   "demands": [],
+   "muscles": {
+    "primary": [
+     "gluteo-mayor"
+    ],
+    "secondary": [
+     "isquiotibiales"
+    ]
+   },
+   "muscleGroups": [
+    "gluteo-mayor",
+    "gluteo",
+    "tren-inferior",
+    "isquiotibiales"
+   ],
+   "equipmentCategories": [
+    "peso-libre",
+    "estructura"
+   ],
+   "places": [
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "D",
+    "page": "lote-d.html#hip-thrust",
+    "views": [
+     "svg/hip-thrust-lateral.svg",
+     "svg/hip-thrust-frontal.svg",
+     "svg/hip-thrust-iso.svg"
+    ],
+    "duration": 3,
+    "cue": "Escápulas en el banco y barra sobre la cadera; empujar hasta alinear rodillas, cadera y hombros."
+   }
+  },
+  {
+   "id": "remo-con-barra",
+   "family": "remo",
+   "name": {
+    "es": "Remo con barra",
+    "en": "Bent-over barbell row"
+   },
+   "familyName": {
+    "es": "Remo",
+    "en": "Row"
+   },
+   "params": {
+    "implemento": "barra",
+    "apoyo": "de-pie"
+   },
+   "pattern": "traccion-horizontal",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "fuerza",
+   "position": "de-pie",
+   "laterality": "bilateral",
+   "level": 2,
+   "equipment": [
+    "barra"
+   ],
+   "demands": [
+    "flexion-cadera-cargada",
+    "agarre"
+   ],
+   "muscles": {
+    "primary": [
+     "dorsal",
+     "romboides"
+    ],
+    "secondary": [
+     "deltoides-posterior",
+     "biceps",
+     "erectores"
+    ]
+   },
+   "muscleGroups": [
+    "dorsal",
+    "tren-superior",
+    "romboides",
+    "deltoides-posterior",
+    "deltoides",
+    "biceps",
+    "erectores",
+    "core"
+   ],
+   "equipmentCategories": [
+    "peso-libre"
+   ],
+   "places": [
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "A",
+    "page": "lote-a.html#remo-con-barra",
+    "views": [
+     "svg/remo-con-barra-lateral.svg",
+     "svg/remo-con-barra-frontal.svg",
+     "svg/remo-con-barra-iso.svg"
+    ],
+    "duration": 2.35,
+    "cue": "Tronco fijo e inclinado; la barra sube del cuelgue a la parte baja del pecho con los codos atrás."
+   }
+  },
+  {
+   "id": "remo-mancuerna",
+   "family": "remo",
+   "name": {
+    "es": "Remo con mancuerna",
+    "en": "One-arm dumbbell row"
+   },
+   "familyName": {
+    "es": "Remo",
+    "en": "Row"
+   },
+   "params": {
+    "implemento": "mancuerna",
+    "apoyo": "banco"
+   },
+   "pattern": "traccion-horizontal",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "fuerza",
+   "position": "banco",
+   "laterality": "unilateral",
+   "level": 1,
+   "equipment": [
+    "mancuerna",
+    "banco"
+   ],
+   "demands": [
+    "apoyo-rodilla"
+   ],
+   "muscles": {
+    "primary": [
+     "dorsal",
+     "romboides"
+    ],
+    "secondary": [
+     "deltoides-posterior",
+     "biceps",
+     "trapecio"
+    ]
+   },
+   "muscleGroups": [
+    "dorsal",
+    "tren-superior",
+    "romboides",
+    "deltoides-posterior",
+    "deltoides",
+    "biceps",
+    "trapecio"
+   ],
+   "equipmentCategories": [
+    "peso-libre",
+    "estructura"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "D",
+    "page": "lote-d.html#remo-mancuerna",
+    "views": [
+     "svg/remo-mancuerna-lateral.svg",
+     "svg/remo-mancuerna-frontal.svg",
+     "svg/remo-mancuerna-iso.svg"
+    ],
+    "duration": 2.3,
+    "cue": "Rodilla y mano en el banco, espalda plana; la mancuerna sube hacia la cadera con el codo pegado."
+   }
+  },
+  {
+   "id": "remo-invertido",
+   "family": "remo",
+   "name": {
+    "es": "Remo invertido",
+    "en": "Inverted row"
+   },
+   "familyName": {
+    "es": "Remo",
+    "en": "Row"
+   },
+   "params": {
+    "implemento": "peso-corporal",
+    "apoyo": "talones"
+   },
+   "pattern": "traccion-horizontal",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "fuerza",
+   "position": "suspension",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "barra-baja"
+   ],
+   "demands": [
+    "agarre"
+   ],
+   "muscles": {
+    "primary": [
+     "dorsal",
+     "romboides"
+    ],
+    "secondary": [
+     "deltoides-posterior",
+     "biceps",
+     "trapecio"
+    ]
+   },
+   "muscleGroups": [
+    "dorsal",
+    "tren-superior",
+    "romboides",
+    "deltoides-posterior",
+    "deltoides",
+    "biceps",
+    "trapecio"
+   ],
+   "equipmentCategories": [
+    "estructura"
+   ],
+   "places": [
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "D",
+    "page": "lote-d.html#remo-invertido",
+    "views": [
+     "svg/remo-invertido-lateral.svg",
+     "svg/remo-invertido-frontal.svg",
+     "svg/remo-invertido-iso.svg"
+    ],
+    "duration": 2.7,
+    "cue": "Cuerpo en bloque apoyado en los talones; el pecho sube a la barra y baja hasta estirar los brazos."
+   }
+  },
+  {
+   "id": "rueda-abdominal",
+   "family": "rueda-abdominal",
+   "name": {
+    "es": "Rueda abdominal",
+    "en": "Ab wheel rollout"
+   },
+   "familyName": {
+    "es": "Rueda abdominal",
+    "en": "Ab wheel"
+   },
+   "params": {},
+   "pattern": "antiextension",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "fuerza",
+   "position": "rodillas",
+   "laterality": "bilateral",
+   "level": 3,
+   "equipment": [
+    "rueda-abdominal"
+   ],
+   "demands": [
+    "apoyo-rodilla",
+    "brazos-sobre-cabeza"
+   ],
+   "muscles": {
+    "primary": [
+     "recto-abdominal",
+     "transverso"
+    ],
+    "secondary": [
+     "dorsal",
+     "serrato"
+    ]
+   },
+   "muscleGroups": [
+    "recto-abdominal",
+    "core",
+    "transverso",
+    "dorsal",
+    "tren-superior",
+    "serrato"
+   ],
+   "equipmentCategories": [
+    "accesorio"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "D",
+    "page": "lote-d.html#rueda-abdominal",
+    "views": [
+     "svg/rueda-abdominal-lateral.svg",
+     "svg/rueda-abdominal-cenital.svg",
+     "svg/rueda-abdominal-iso.svg"
+    ],
+    "duration": 3.3,
+    "cue": "De rodillas, rodar hacia delante sin hundir la zona lumbar y volver tirando con el abdomen."
+   }
+  },
+  {
+   "id": "salto-cajon",
+   "family": "salto-cajon",
+   "name": {
+    "es": "Salto al cajón",
+    "en": "Box jump"
+   },
+   "familyName": {
+    "es": "Salto al cajón",
+    "en": "Box jump"
+   },
+   "params": {},
+   "pattern": "salto",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "potencia",
+   "position": "de-pie",
+   "laterality": "bilateral",
+   "level": 2,
+   "equipment": [
+    "cajon"
+   ],
+   "demands": [
+    "impacto"
+   ],
+   "muscles": {
+    "primary": [
+     "cuadriceps",
+     "gluteo-mayor"
+    ],
+    "secondary": [
+     "gemelos"
+    ]
+   },
+   "muscleGroups": [
+    "cuadriceps",
+    "tren-inferior",
+    "gluteo-mayor",
+    "gluteo",
+    "gemelos"
+   ],
+   "equipmentCategories": [
+    "estructura"
+   ],
+   "places": [
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "C",
+    "page": "lote-c.html#salto-cajon",
+    "views": [
+     "svg/salto-cajon-lateral.svg",
+     "svg/salto-cajon-frontal.svg",
+     "svg/salto-cajon-iso.svg"
+    ],
+    "duration": 3.75,
+    "cue": "Contramovimiento con los brazos, salto y aterrizaje suave en sentadilla parcial; se baja andando."
+   }
+  },
+  {
+   "id": "sentadilla",
+   "family": "sentadilla",
+   "name": {
+    "es": "Sentadilla",
+    "en": "Bodyweight squat"
+   },
+   "familyName": {
+    "es": "Sentadilla",
+    "en": "Squat"
+   },
+   "params": {
+    "implemento": "peso-corporal",
+    "carga": "ninguna",
+    "apoyo": "libre"
+   },
+   "pattern": "sentadilla",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "fuerza",
+   "position": "de-pie",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "peso-corporal"
+   ],
+   "demands": [
+    "flexion-profunda-rodilla"
+   ],
+   "muscles": {
+    "primary": [
+     "cuadriceps",
+     "gluteo-mayor"
+    ],
+    "secondary": [
+     "aductores",
+     "erectores"
+    ]
+   },
+   "muscleGroups": [
+    "cuadriceps",
+    "tren-inferior",
+    "gluteo-mayor",
+    "gluteo",
+    "aductores",
+    "erectores",
+    "core"
+   ],
+   "equipmentCategories": [
+    "ninguno"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "A",
+    "page": "lote-a.html#sentadilla",
+    "views": [
+     "svg/sentadilla-lateral.svg",
+     "svg/sentadilla-frontal.svg",
+     "svg/sentadilla-iso.svg"
+    ],
+    "duration": 3.3,
+    "cue": "Cadera atrás y abajo, rodillas en la línea de los pies, brazos al frente como contrapeso."
+   }
+  },
+  {
+   "id": "sentadilla-goblet",
+   "family": "sentadilla",
+   "name": {
+    "es": "Sentadilla goblet",
+    "en": "Goblet squat"
+   },
+   "familyName": {
+    "es": "Sentadilla",
+    "en": "Squat"
+   },
+   "params": {
+    "implemento": "kettlebell",
+    "carga": "pecho",
+    "apoyo": "libre"
+   },
+   "pattern": "sentadilla",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "fuerza",
+   "position": "de-pie",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "kettlebell"
+   ],
+   "demands": [
+    "flexion-profunda-rodilla"
+   ],
+   "muscles": {
+    "primary": [
+     "cuadriceps",
+     "gluteo-mayor"
+    ],
+    "secondary": [
+     "aductores",
+     "erectores"
+    ]
+   },
+   "muscleGroups": [
+    "cuadriceps",
+    "tren-inferior",
+    "gluteo-mayor",
+    "gluteo",
+    "aductores",
+    "erectores",
+    "core"
+   ],
+   "equipmentCategories": [
+    "peso-libre"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "A",
+    "page": "lote-a.html#sentadilla-goblet",
+    "views": [
+     "svg/sentadilla-goblet-lateral.svg",
+     "svg/sentadilla-goblet-frontal.svg",
+     "svg/sentadilla-goblet-iso.svg"
+    ],
+    "duration": 3.5,
+    "cue": "Pesa pegada al pecho, codos por dentro de las rodillas, tronco erguido."
+   }
+  },
+  {
+   "id": "sentadilla-trasera",
+   "family": "sentadilla",
+   "name": {
+    "es": "Sentadilla trasera",
+    "en": "Back squat"
+   },
+   "familyName": {
+    "es": "Sentadilla",
+    "en": "Squat"
+   },
+   "params": {
+    "implemento": "barra",
+    "carga": "trasera",
+    "apoyo": "libre"
+   },
+   "pattern": "sentadilla",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "fuerza",
+   "position": "de-pie",
+   "laterality": "bilateral",
+   "level": 2,
+   "equipment": [
+    "barra",
+    "rack"
+   ],
+   "demands": [
+    "flexion-profunda-rodilla",
+    "carga-axial"
+   ],
+   "muscles": {
+    "primary": [
+     "cuadriceps",
+     "gluteo-mayor"
+    ],
+    "secondary": [
+     "aductores",
+     "erectores"
+    ]
+   },
+   "muscleGroups": [
+    "cuadriceps",
+    "tren-inferior",
+    "gluteo-mayor",
+    "gluteo",
+    "aductores",
+    "erectores",
+    "core"
+   ],
+   "equipmentCategories": [
+    "peso-libre",
+    "estructura"
+   ],
+   "places": [
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "A",
+    "page": "lote-a.html#sentadilla-trasera",
+    "views": [
+     "svg/sentadilla-trasera-lateral.svg",
+     "svg/sentadilla-trasera-frontal.svg",
+     "svg/sentadilla-trasera-iso.svg"
+    ],
+    "duration": 3.65,
+    "cue": "Barra sobre los trapecios en la vertical del mediopié; bajar hasta romper el paralelo."
+   }
+  },
+  {
+   "id": "sentadilla-frontal",
+   "family": "sentadilla",
+   "name": {
+    "es": "Sentadilla frontal",
+    "en": "Front squat"
+   },
+   "familyName": {
+    "es": "Sentadilla",
+    "en": "Squat"
+   },
+   "params": {
+    "implemento": "barra",
+    "carga": "frontal",
+    "apoyo": "libre"
+   },
+   "pattern": "sentadilla",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "fuerza",
+   "position": "de-pie",
+   "laterality": "bilateral",
+   "level": 3,
+   "equipment": [
+    "barra",
+    "rack"
+   ],
+   "demands": [
+    "flexion-profunda-rodilla",
+    "carga-axial",
+    "carga-muneca"
+   ],
+   "muscles": {
+    "primary": [
+     "cuadriceps",
+     "gluteo-mayor"
+    ],
+    "secondary": [
+     "erectores",
+     "recto-abdominal"
+    ]
+   },
+   "muscleGroups": [
+    "cuadriceps",
+    "tren-inferior",
+    "gluteo-mayor",
+    "gluteo",
+    "erectores",
+    "core",
+    "recto-abdominal"
+   ],
+   "equipmentCategories": [
+    "peso-libre",
+    "estructura"
+   ],
+   "places": [
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "D",
+    "page": "lote-d.html#sentadilla-frontal",
+    "views": [
+     "svg/sentadilla-frontal-lateral.svg",
+     "svg/sentadilla-frontal-frontal.svg",
+     "svg/sentadilla-frontal-iso.svg"
+    ],
+    "duration": 3.3,
+    "cue": "Barra apoyada en los hombros con los codos altos; tronco muy vertical durante toda la bajada."
+   }
+  },
+  {
+   "id": "sentadilla-cajon",
+   "family": "sentadilla",
+   "name": {
+    "es": "Sentadilla al cajón",
+    "en": "Box squat"
+   },
+   "familyName": {
+    "es": "Sentadilla",
+    "en": "Squat"
+   },
+   "params": {
+    "implemento": "peso-corporal",
+    "carga": "ninguna",
+    "apoyo": "cajon"
+   },
+   "pattern": "sentadilla",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "fuerza",
+   "position": "de-pie",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "cajon"
+   ],
+   "demands": [],
+   "muscles": {
+    "primary": [
+     "gluteo-mayor",
+     "cuadriceps"
+    ],
+    "secondary": [
+     "isquiotibiales",
+     "aductores"
+    ]
+   },
+   "muscleGroups": [
+    "gluteo-mayor",
+    "gluteo",
+    "tren-inferior",
+    "cuadriceps",
+    "isquiotibiales",
+    "aductores"
+   ],
+   "equipmentCategories": [
+    "estructura"
+   ],
+   "places": [
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "D",
+    "page": "lote-d.html#sentadilla-cajon",
+    "views": [
+     "svg/sentadilla-cajon-lateral.svg",
+     "svg/sentadilla-cajon-frontal.svg",
+     "svg/sentadilla-cajon-iso.svg"
+    ],
+    "duration": 3.3,
+    "cue": "Cadera atrás hasta sentarse en el cajón con las tibias verticales; pausa y subir sin balanceo."
+   }
+  },
+  {
+   "id": "sled-push",
+   "family": "sled-push",
+   "name": {
+    "es": "Sled push",
+    "en": "Sled push"
+   },
+   "familyName": {
+    "es": "Sled push",
+    "en": "Sled push"
+   },
+   "params": {},
+   "pattern": "locomocion",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "potencia",
+   "position": "de-pie",
+   "laterality": "alterno",
+   "level": 2,
+   "equipment": [
+    "trineo"
+   ],
+   "demands": [],
+   "muscles": {
+    "primary": [
+     "cuadriceps",
+     "gluteo-mayor"
+    ],
+    "secondary": [
+     "gemelos",
+     "triceps",
+     "deltoides-anterior"
+    ]
+   },
+   "muscleGroups": [
+    "cuadriceps",
+    "tren-inferior",
+    "gluteo-mayor",
+    "gluteo",
+    "gemelos",
+    "triceps",
+    "tren-superior",
+    "deltoides-anterior",
+    "deltoides"
+   ],
+   "equipmentCategories": [
+    "maquina"
+   ],
+   "places": [
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "D",
+    "page": "lote-d.html#sled-push",
+    "views": [
+     "svg/sled-push-lateral.svg",
+     "svg/sled-push-frontal.svg",
+     "svg/sled-push-iso.svg"
+    ],
+    "duration": 0.9,
+    "cue": "Cuerpo inclinado y brazos firmes en los postes; pasos cortos y potentes empujando el suelo."
+   }
+  },
+  {
+   "id": "step-up",
+   "family": "step-up",
+   "name": {
+    "es": "Step-up al cajón",
+    "en": "Box step-up"
+   },
+   "familyName": {
+    "es": "Step-up",
+    "en": "Step-up"
+   },
+   "params": {},
+   "pattern": "zancada",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "fuerza",
+   "position": "de-pie",
+   "laterality": "unilateral",
+   "level": 1,
+   "equipment": [
+    "cajon"
+   ],
+   "demands": [
+    "equilibrio"
+   ],
+   "muscles": {
+    "primary": [
+     "cuadriceps",
+     "gluteo-mayor"
+    ],
+    "secondary": [
+     "gluteo-medio"
+    ]
+   },
+   "muscleGroups": [
+    "cuadriceps",
+    "tren-inferior",
+    "gluteo-mayor",
+    "gluteo",
+    "gluteo-medio"
+   ],
+   "equipmentCategories": [
+    "estructura"
+   ],
+   "places": [
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "B",
+    "page": "lote-b.html#step-up",
+    "views": [
+     "svg/step-up-lateral.svg",
+     "svg/step-up-frontal.svg",
+     "svg/step-up-iso.svg"
+    ],
+    "duration": 4.2,
+    "cue": "Todo el pie sobre el cajón y empuje con la pierna de arriba, sin impulsarse con la de abajo."
+   }
+  },
+  {
+   "id": "swing-kettlebell",
+   "family": "swing-kettlebell",
+   "name": {
+    "es": "Swing con kettlebell",
+    "en": "Kettlebell swing"
+   },
+   "familyName": {
+    "es": "Swing con kettlebell",
+    "en": "Kettlebell swing"
+   },
+   "params": {},
+   "pattern": "bisagra",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "potencia",
+   "position": "de-pie",
+   "laterality": "bilateral",
+   "level": 2,
+   "equipment": [
+    "kettlebell"
+   ],
+   "demands": [
+    "flexion-cadera-cargada",
+    "agarre"
+   ],
+   "muscles": {
+    "primary": [
+     "gluteo-mayor",
+     "isquiotibiales"
+    ],
+    "secondary": [
+     "erectores",
+     "transverso",
+     "antebrazo"
+    ]
+   },
+   "muscleGroups": [
+    "gluteo-mayor",
+    "gluteo",
+    "tren-inferior",
+    "isquiotibiales",
+    "erectores",
+    "core",
+    "transverso",
+    "antebrazo",
+    "tren-superior"
+   ],
+   "equipmentCategories": [
+    "peso-libre"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "A",
+    "page": "lote-a.html#swing-kettlebell",
+    "views": [
+     "svg/swing-kettlebell-lateral.svg",
+     "svg/swing-kettlebell-frontal.svg",
+     "svg/swing-kettlebell-iso.svg"
+    ],
+    "duration": 1.44,
+    "cue": "Bisagra explosiva: la cadera lanza la pesa hasta la altura del pecho con los brazos sueltos."
+   }
+  },
+  {
+   "id": "thruster",
+   "family": "thruster",
+   "name": {
+    "es": "Thruster",
+    "en": "Barbell thruster"
+   },
+   "familyName": {
+    "es": "Thruster",
+    "en": "Thruster"
+   },
+   "params": {},
+   "pattern": "combinado",
+   "patterns2": [
+    "sentadilla",
+    "empuje-vertical"
+   ],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "potencia",
+   "position": "de-pie",
+   "laterality": "bilateral",
+   "level": 3,
+   "equipment": [
+    "barra"
+   ],
+   "demands": [
+    "flexion-profunda-rodilla",
+    "brazos-sobre-cabeza",
+    "carga-axial",
+    "carga-muneca"
+   ],
+   "muscles": {
+    "primary": [
+     "cuadriceps",
+     "gluteo-mayor",
+     "deltoides-anterior"
+    ],
+    "secondary": [
+     "triceps",
+     "erectores"
+    ]
+   },
+   "muscleGroups": [
+    "cuadriceps",
+    "tren-inferior",
+    "gluteo-mayor",
+    "gluteo",
+    "deltoides-anterior",
+    "deltoides",
+    "tren-superior",
+    "triceps",
+    "erectores",
+    "core"
+   ],
+   "equipmentCategories": [
+    "peso-libre"
+   ],
+   "places": [
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "A",
+    "page": "lote-a.html#thruster",
+    "views": [
+     "svg/thruster-lateral.svg",
+     "svg/thruster-frontal.svg",
+     "svg/thruster-iso.svg"
+    ],
+    "duration": 3.7,
+    "cue": "Sentadilla frontal y, sin pausa, el impulso de las piernas encadena el press por encima de la cabeza."
+   }
+  },
+  {
+   "id": "paseo-granjero",
+   "family": "transporte",
+   "name": {
+    "es": "Paseo del granjero",
+    "en": "Farmer's walk"
+   },
+   "familyName": {
+    "es": "Transporte de carga",
+    "en": "Loaded carry"
+   },
+   "params": {
+    "carga": "dos-manos"
+   },
+   "pattern": "transporte",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "fuerza",
+   "position": "de-pie",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "kettlebell"
+   ],
+   "demands": [
+    "agarre"
+   ],
+   "muscles": {
+    "primary": [
+     "antebrazo",
+     "trapecio"
+    ],
+    "secondary": [
+     "transverso",
+     "gluteo-medio"
+    ]
+   },
+   "muscleGroups": [
+    "antebrazo",
+    "tren-superior",
+    "trapecio",
+    "transverso",
+    "core",
+    "gluteo-medio",
+    "gluteo",
+    "tren-inferior"
+   ],
+   "equipmentCategories": [
+    "peso-libre"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "C",
+    "page": "lote-c.html#paseo-granjero",
+    "views": [
+     "svg/paseo-granjero-lateral.svg",
+     "svg/paseo-granjero-frontal.svg",
+     "svg/paseo-granjero-iso.svg"
+    ],
+    "duration": 1.1,
+    "cue": "Tronco alto y hombros quietos con una pesa en cada mano; pasos cortos y firmes."
+   }
+  },
+  {
+   "id": "suitcase-carry",
+   "family": "transporte",
+   "name": {
+    "es": "Suitcase carry",
+    "en": "Suitcase carry"
+   },
+   "familyName": {
+    "es": "Transporte de carga",
+    "en": "Loaded carry"
+   },
+   "params": {
+    "carga": "una-mano"
+   },
+   "pattern": "transporte",
+   "patterns2": [
+    "antiflexion-lateral"
+   ],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "fuerza",
+   "position": "de-pie",
+   "laterality": "unilateral",
+   "level": 1,
+   "equipment": [
+    "kettlebell"
+   ],
+   "demands": [
+    "agarre"
+   ],
+   "muscles": {
+    "primary": [
+     "oblicuos",
+     "cuadrado-lumbar",
+     "antebrazo"
+    ],
+    "secondary": [
+     "gluteo-medio"
+    ]
+   },
+   "muscleGroups": [
+    "oblicuos",
+    "core",
+    "cuadrado-lumbar",
+    "antebrazo",
+    "tren-superior",
+    "gluteo-medio",
+    "gluteo",
+    "tren-inferior"
+   ],
+   "equipmentCategories": [
+    "peso-libre"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "D",
+    "page": "lote-d.html#suitcase-carry",
+    "views": [
+     "svg/suitcase-carry-lateral.svg",
+     "svg/suitcase-carry-frontal.svg",
+     "svg/suitcase-carry-iso.svg"
+    ],
+    "duration": 1.1,
+    "cue": "Una pesa en una sola mano y el tronco recto, sin inclinarse hacia ese lado."
+   }
+  },
+  {
+   "id": "overhead-carry",
+   "family": "transporte",
+   "name": {
+    "es": "Overhead carry",
+    "en": "Overhead carry"
+   },
+   "familyName": {
+    "es": "Transporte de carga",
+    "en": "Loaded carry"
+   },
+   "params": {
+    "carga": "sobre-cabeza"
+   },
+   "pattern": "transporte",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "fuerza",
+   "position": "de-pie",
+   "laterality": "unilateral",
+   "level": 2,
+   "equipment": [
+    "kettlebell"
+   ],
+   "demands": [
+    "brazos-sobre-cabeza"
+   ],
+   "muscles": {
+    "primary": [
+     "deltoides",
+     "trapecio"
+    ],
+    "secondary": [
+     "serrato",
+     "oblicuos"
+    ]
+   },
+   "muscleGroups": [
+    "deltoides",
+    "tren-superior",
+    "trapecio",
+    "serrato",
+    "oblicuos",
+    "core"
+   ],
+   "equipmentCategories": [
+    "peso-libre"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "D",
+    "page": "lote-d.html#overhead-carry",
+    "views": [
+     "svg/overhead-carry-lateral.svg",
+     "svg/overhead-carry-frontal.svg",
+     "svg/overhead-carry-iso.svg"
+    ],
+    "duration": 1.1,
+    "cue": "Pesa bloqueada por encima del hombro, brazo vertical y costillas abajo mientras se camina."
+   }
+  },
+  {
+   "id": "turkish-get-up",
+   "family": "turkish-get-up",
+   "name": {
+    "es": "Turkish get-up",
+    "en": "Turkish get-up"
+   },
+   "familyName": {
+    "es": "Turkish get-up",
+    "en": "Turkish get-up"
+   },
+   "params": {},
+   "pattern": "combinado",
+   "patterns2": [],
+   "plane": "multiplanar",
+   "mechanics": "compuesto",
+   "action": "estabilidad",
+   "position": "transicion",
+   "laterality": "unilateral",
+   "level": 4,
+   "equipment": [
+    "kettlebell"
+   ],
+   "demands": [
+    "brazos-sobre-cabeza",
+    "decubito",
+    "apoyo-rodilla",
+    "carga-muneca"
+   ],
+   "muscles": {
+    "primary": [
+     "deltoides",
+     "oblicuos",
+     "gluteo-mayor"
+    ],
+    "secondary": [
+     "serrato",
+     "cuadriceps"
+    ]
+   },
+   "muscleGroups": [
+    "deltoides",
+    "tren-superior",
+    "oblicuos",
+    "core",
+    "gluteo-mayor",
+    "gluteo",
+    "tren-inferior",
+    "serrato",
+    "cuadriceps"
+   ],
+   "equipmentCategories": [
+    "peso-libre"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "D",
+    "page": "lote-d.html#turkish-get-up",
+    "views": [
+     "svg/turkish-get-up-lateral.svg",
+     "svg/turkish-get-up-cenital.svg",
+     "svg/turkish-get-up-iso.svg"
+    ],
+    "duration": 13.16,
+    "cue": "De tumbado a de pie y vuelta, paso a paso, con la pesa siempre vertical sobre el hombro."
+   }
+  },
+  {
+   "id": "wall-ball",
+   "family": "wall-ball",
+   "name": {
+    "es": "Wall ball",
+    "en": "Wall ball"
+   },
+   "familyName": {
+    "es": "Wall ball",
+    "en": "Wall ball"
+   },
+   "params": {},
+   "pattern": "combinado",
+   "patterns2": [
+    "sentadilla",
+    "empuje-vertical"
+   ],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "resistencia",
+   "position": "de-pie",
+   "laterality": "bilateral",
+   "level": 2,
+   "equipment": [
+    "balon-medicinal",
+    "pared"
+   ],
+   "demands": [
+    "flexion-profunda-rodilla",
+    "brazos-sobre-cabeza"
+   ],
+   "muscles": {
+    "primary": [
+     "cuadriceps",
+     "gluteo-mayor",
+     "deltoides-anterior"
+    ],
+    "secondary": [
+     "triceps"
+    ]
+   },
+   "muscleGroups": [
+    "cuadriceps",
+    "tren-inferior",
+    "gluteo-mayor",
+    "gluteo",
+    "deltoides-anterior",
+    "deltoides",
+    "tren-superior",
+    "triceps"
+   ],
+   "equipmentCategories": [
+    "peso-libre",
+    "estructura"
+   ],
+   "places": [
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "D",
+    "page": "lote-d.html#wall-ball",
+    "views": [
+     "svg/wall-ball-lateral.svg",
+     "svg/wall-ball-frontal.svg",
+     "svg/wall-ball-iso.svg"
+    ],
+    "duration": 3.2,
+    "cue": "Sentadilla con el balón al pecho y, al subir, lanzamiento a la diana; se recoge y se vuelve a bajar."
+   }
+  },
+  {
+   "id": "zancada-atras",
+   "family": "zancada",
+   "name": {
+    "es": "Zancada atrás",
+    "en": "Reverse lunge"
+   },
+   "familyName": {
+    "es": "Zancada",
+    "en": "Lunge"
+   },
+   "params": {
+    "direccion": "atras",
+    "pie-trasero": "suelo"
+   },
+   "pattern": "zancada",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "fuerza",
+   "position": "de-pie",
+   "laterality": "alterno",
+   "level": 1,
+   "equipment": [
+    "peso-corporal"
+   ],
+   "demands": [
+    "flexion-profunda-rodilla",
+    "equilibrio"
+   ],
+   "muscles": {
+    "primary": [
+     "cuadriceps",
+     "gluteo-mayor"
+    ],
+    "secondary": [
+     "aductores",
+     "gluteo-medio"
+    ]
+   },
+   "muscleGroups": [
+    "cuadriceps",
+    "tren-inferior",
+    "gluteo-mayor",
+    "gluteo",
+    "aductores",
+    "gluteo-medio"
+   ],
+   "equipmentCategories": [
+    "ninguno"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "B",
+    "page": "lote-b.html#zancada-atras",
+    "views": [
+     "svg/zancada-atras-lateral.svg",
+     "svg/zancada-atras-frontal.svg",
+     "svg/zancada-atras-iso.svg"
+    ],
+    "duration": 5.3,
+    "cue": "Paso atrás y bajar en vertical: rodilla delantera sobre el pie, la trasera casi roza el suelo."
+   }
+  },
+  {
+   "id": "zancada-lateral",
+   "family": "zancada",
+   "name": {
+    "es": "Zancada lateral",
+    "en": "Lateral lunge"
+   },
+   "familyName": {
+    "es": "Zancada",
+    "en": "Lunge"
+   },
+   "params": {
+    "direccion": "lateral",
+    "pie-trasero": "suelo"
+   },
+   "pattern": "zancada",
+   "patterns2": [],
+   "plane": "frontal",
+   "mechanics": "compuesto",
+   "action": "fuerza",
+   "position": "de-pie",
+   "laterality": "alterno",
+   "level": 1,
+   "equipment": [
+    "peso-corporal"
+   ],
+   "demands": [
+    "flexion-profunda-rodilla",
+    "equilibrio"
+   ],
+   "muscles": {
+    "primary": [
+     "cuadriceps",
+     "gluteo-mayor",
+     "aductores"
+    ],
+    "secondary": [
+     "gluteo-medio"
+    ]
+   },
+   "muscleGroups": [
+    "cuadriceps",
+    "tren-inferior",
+    "gluteo-mayor",
+    "gluteo",
+    "aductores",
+    "gluteo-medio"
+   ],
+   "equipmentCategories": [
+    "ninguno"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "D",
+    "page": "lote-d.html#zancada-lateral",
+    "views": [
+     "svg/zancada-lateral-lateral.svg",
+     "svg/zancada-lateral-frontal.svg",
+     "svg/zancada-lateral-iso.svg"
+    ],
+    "duration": 5,
+    "cue": "Pies muy abiertos; la cadera va atrás y hacia un lado sobre esa pierna, la otra queda estirada."
+   }
+  },
+  {
+   "id": "sentadilla-bulgara",
+   "family": "zancada",
+   "name": {
+    "es": "Sentadilla búlgara",
+    "en": "Bulgarian split squat"
+   },
+   "familyName": {
+    "es": "Zancada",
+    "en": "Lunge"
+   },
+   "params": {
+    "direccion": "atras",
+    "pie-trasero": "banco"
+   },
+   "pattern": "zancada",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "fuerza",
+   "position": "de-pie",
+   "laterality": "unilateral",
+   "level": 2,
+   "equipment": [
+    "banco"
+   ],
+   "demands": [
+    "flexion-profunda-rodilla",
+    "equilibrio"
+   ],
+   "muscles": {
+    "primary": [
+     "cuadriceps",
+     "gluteo-mayor"
+    ],
+    "secondary": [
+     "aductores",
+     "gluteo-medio"
+    ]
+   },
+   "muscleGroups": [
+    "cuadriceps",
+    "tren-inferior",
+    "gluteo-mayor",
+    "gluteo",
+    "aductores",
+    "gluteo-medio"
+   ],
+   "equipmentCategories": [
+    "estructura"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "D",
+    "page": "lote-d.html#sentadilla-bulgara",
+    "views": [
+     "svg/sentadilla-bulgara-lateral.svg",
+     "svg/sentadilla-bulgara-frontal.svg",
+     "svg/sentadilla-bulgara-iso.svg"
+    ],
+    "duration": 2.75,
+    "cue": "Empeine trasero sobre el banco; bajar en vertical con el peso en la pierna delantera."
+   }
+  }
+ ]
+}

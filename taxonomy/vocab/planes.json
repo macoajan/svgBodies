@@ -1,0 +1,6 @@
+{
+  "sagital": { "es": "Sagital", "en": "Sagittal" },
+  "frontal": { "es": "Frontal", "en": "Frontal" },
+  "transversal": { "es": "Transversal", "en": "Transverse" },
+  "multiplanar": { "es": "Multiplanar", "en": "Multiplanar" }
+}

@@ -1,0 +1,38 @@
+{
+  "id": "comba",
+  "name": {
+    "es": "Comba",
+    "en": "Jump rope"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "resistencia",
+  "position": "de-pie",
+  "laterality": "bilateral",
+  "pattern": "salto",
+  "level": 1,
+  "muscles": {
+    "primary": [
+      "gemelos"
+    ],
+    "secondary": [
+      "antebrazo",
+      "deltoides"
+    ]
+  },
+  "equipment": [
+    "comba"
+  ],
+  "demands": [
+    "impacto"
+  ],
+  "variants": [
+    {
+      "id": "comba",
+      "name": {
+        "es": "Comba",
+        "en": "Jump rope"
+      }
+    }
+  ]
+}

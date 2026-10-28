@@ -1,0 +1,47 @@
+{
+  "id": "thruster",
+  "name": {
+    "es": "Thruster",
+    "en": "Thruster"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "potencia",
+  "position": "de-pie",
+  "laterality": "bilateral",
+  "pattern": "combinado",
+  "patterns2": [
+    "sentadilla",
+    "empuje-vertical"
+  ],
+  "level": 3,
+  "muscles": {
+    "primary": [
+      "cuadriceps",
+      "gluteo-mayor",
+      "deltoides-anterior"
+    ],
+    "secondary": [
+      "triceps",
+      "erectores"
+    ]
+  },
+  "equipment": [
+    "barra"
+  ],
+  "demands": [
+    "flexion-profunda-rodilla",
+    "brazos-sobre-cabeza",
+    "carga-axial",
+    "carga-muneca"
+  ],
+  "variants": [
+    {
+      "id": "thruster",
+      "name": {
+        "es": "Thruster",
+        "en": "Barbell thruster"
+      }
+    }
+  ]
+}

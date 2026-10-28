@@ -1,0 +1,66 @@
+{
+  "sentadilla": {
+    "es": "Sentadilla",
+    "en": "Squat"
+  },
+  "bisagra": {
+    "es": "Bisagra de cadera",
+    "en": "Hip hinge"
+  },
+  "zancada": {
+    "es": "Zancada / unilateral",
+    "en": "Lunge / single leg"
+  },
+  "empuje-horizontal": {
+    "es": "Empuje horizontal",
+    "en": "Horizontal push"
+  },
+  "empuje-vertical": {
+    "es": "Empuje vertical",
+    "en": "Vertical push"
+  },
+  "traccion-horizontal": {
+    "es": "Tracción horizontal",
+    "en": "Horizontal pull"
+  },
+  "traccion-vertical": {
+    "es": "Tracción vertical",
+    "en": "Vertical pull"
+  },
+  "transporte": {
+    "es": "Transporte de carga",
+    "en": "Loaded carry"
+  },
+  "antiextension": {
+    "es": "Antiextensión",
+    "en": "Anti-extension"
+  },
+  "antirrotacion": {
+    "es": "Antirrotación",
+    "en": "Anti-rotation"
+  },
+  "antiflexion-lateral": {
+    "es": "Antiflexión lateral",
+    "en": "Anti-lateral flexion"
+  },
+  "rotacion": {
+    "es": "Rotación",
+    "en": "Rotation"
+  },
+  "salto": {
+    "es": "Salto / pliometría",
+    "en": "Jump / plyometrics"
+  },
+  "locomocion": {
+    "es": "Locomoción",
+    "en": "Locomotion"
+  },
+  "combinado": {
+    "es": "Combinado",
+    "en": "Complex"
+  },
+  "oscilacion": {
+    "es": "Oscilación / ondas",
+    "en": "Oscillation / waves"
+  }
+}

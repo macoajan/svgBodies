@@ -1,0 +1,37 @@
+{
+  "id": "lenador",
+  "name": {
+    "es": "Leñador",
+    "en": "Woodchop"
+  },
+  "plane": "transversal",
+  "mechanics": "compuesto",
+  "action": "fuerza",
+  "position": "de-pie",
+  "laterality": "bilateral",
+  "pattern": "rotacion",
+  "level": 2,
+  "muscles": {
+    "primary": [
+      "oblicuos"
+    ],
+    "secondary": [
+      "deltoides",
+      "gluteo-mayor",
+      "recto-abdominal"
+    ]
+  },
+  "equipment": [
+    "polea"
+  ],
+  "demands": [],
+  "variants": [
+    {
+      "id": "lenador",
+      "name": {
+        "es": "Leñador",
+        "en": "Cable woodchop (high to low)"
+      }
+    }
+  ]
+}

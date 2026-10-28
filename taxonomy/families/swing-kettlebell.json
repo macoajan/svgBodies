@@ -1,0 +1,41 @@
+{
+  "id": "swing-kettlebell",
+  "name": {
+    "es": "Swing con kettlebell",
+    "en": "Kettlebell swing"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "potencia",
+  "position": "de-pie",
+  "laterality": "bilateral",
+  "pattern": "bisagra",
+  "level": 2,
+  "muscles": {
+    "primary": [
+      "gluteo-mayor",
+      "isquiotibiales"
+    ],
+    "secondary": [
+      "erectores",
+      "transverso",
+      "antebrazo"
+    ]
+  },
+  "equipment": [
+    "kettlebell"
+  ],
+  "demands": [
+    "flexion-cadera-cargada",
+    "agarre"
+  ],
+  "variants": [
+    {
+      "id": "swing-kettlebell",
+      "name": {
+        "es": "Swing con kettlebell",
+        "en": "Kettlebell swing"
+      }
+    }
+  ]
+}

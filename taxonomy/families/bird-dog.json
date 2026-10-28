@@ -1,0 +1,43 @@
+{
+  "id": "bird-dog",
+  "name": {
+    "es": "Bird dog",
+    "en": "Bird dog"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "estabilidad",
+  "position": "cuadrupedia",
+  "laterality": "alterno",
+  "pattern": "antiextension",
+  "patterns2": [
+    "antirrotacion"
+  ],
+  "level": 1,
+  "muscles": {
+    "primary": [
+      "erectores",
+      "gluteo-mayor"
+    ],
+    "secondary": [
+      "transverso",
+      "deltoides"
+    ]
+  },
+  "equipment": [
+    "esterilla"
+  ],
+  "demands": [
+    "apoyo-rodilla",
+    "carga-muneca"
+  ],
+  "variants": [
+    {
+      "id": "bird-dog",
+      "name": {
+        "es": "Bird dog",
+        "en": "Bird dog"
+      }
+    }
+  ]
+}
