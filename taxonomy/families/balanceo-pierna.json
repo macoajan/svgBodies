@@ -1,0 +1,39 @@
+{
+  "id": "balanceo-pierna",
+  "name": {
+    "es": "Balanceo de pierna",
+    "en": "Leg swings"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "movilidad",
+  "position": "de-pie",
+  "laterality": "alterno",
+  "pattern": "movilidad",
+  "level": 1,
+  "muscles": {
+    "primary": [
+      "isquiotibiales",
+      "flexores-cadera"
+    ],
+    "secondary": [
+      "gluteo-mayor",
+      "gluteo-medio"
+    ]
+  },
+  "equipment": [
+    "peso-corporal"
+  ],
+  "demands": [
+    "equilibrio"
+  ],
+  "variants": [
+    {
+      "id": "balanceo-pierna",
+      "name": {
+        "es": "Balanceo de pierna",
+        "en": "Leg swings"
+      }
+    }
+  ]
+}

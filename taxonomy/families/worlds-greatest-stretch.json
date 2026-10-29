@@ -1,0 +1,46 @@
+{
+  "id": "worlds-greatest-stretch",
+  "name": {
+    "es": "World's greatest stretch",
+    "en": "World's greatest stretch"
+  },
+  "plane": "multiplanar",
+  "mechanics": "compuesto",
+  "action": "movilidad",
+  "position": "de-pie",
+  "laterality": "unilateral",
+  "pattern": "movilidad",
+  "patterns2": [
+    "zancada",
+    "rotacion"
+  ],
+  "level": 2,
+  "muscles": {
+    "primary": [
+      "flexores-cadera",
+      "isquiotibiales",
+      "oblicuos"
+    ],
+    "secondary": [
+      "aductores",
+      "gluteo-mayor",
+      "erectores"
+    ]
+  },
+  "equipment": [
+    "peso-corporal"
+  ],
+  "demands": [
+    "flexion-profunda-rodilla",
+    "carga-muneca"
+  ],
+  "variants": [
+    {
+      "id": "worlds-greatest-stretch",
+      "name": {
+        "es": "World's greatest stretch",
+        "en": "World's greatest stretch"
+      }
+    }
+  ]
+}

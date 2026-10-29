@@ -169,3 +169,11 @@ motor en vez de escritas a mano. Detalle en `README.md`. Diferencias respecto a 
   apoyos explícitos y se interpolan con cinemática inversa. Objetos nuevos: mancuerna, balón,
   rueda, polea (cable) y cuerdas de batida; apoyos: bancos, pared, barras paralelas y trineo.
   La galería se divide en una página por lote.
+- **Lote E: ejercicios a ambos lados y ciclos de carrera.** Los ejercicios que se hacen a los dos
+  lados reproducen las fases del lado derecho y después las mismas reflejadas (`swapLR`: espejo
+  en z e intercambio de lados), así que su postura de reposo es simétrica. Las técnicas de
+  carrera comparten un generador (`runner`) con apoyo en el suelo, trayectoria del tobillo en el
+  aire por puntos clave (Catmull-Rom) y braceo con el codo flexionado; cambiar los puntos da
+  carrera, skipping o talones al glúteo. Los saltos son estados (pelvis, tronco, brazos, tobillos
+  y pie) interpolados con aceleración de vuelo, y el pie nunca baja del suelo aunque se
+  interpolen a la vez la altura del tobillo y su inclinación.

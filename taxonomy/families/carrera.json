@@ -1,0 +1,91 @@
+{
+  "id": "carrera",
+  "name": {
+    "es": "Carrera",
+    "en": "Running"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "resistencia",
+  "position": "de-pie",
+  "laterality": "alterno",
+  "pattern": "locomocion",
+  "level": 1,
+  "muscles": {
+    "primary": [
+      "cuadriceps",
+      "isquiotibiales",
+      "gemelos"
+    ],
+    "secondary": [
+      "gluteo-mayor",
+      "flexores-cadera"
+    ]
+  },
+  "equipment": [
+    "peso-corporal"
+  ],
+  "demands": [
+    "impacto"
+  ],
+  "params": {
+    "tecnica": [
+      "carrera",
+      "rodillas-altas",
+      "talones-gluteo"
+    ]
+  },
+  "variants": [
+    {
+      "id": "carrera",
+      "name": {
+        "es": "Carrera",
+        "en": "Running"
+      },
+      "set": {
+        "tecnica": "carrera"
+      }
+    },
+    {
+      "id": "skipping",
+      "name": {
+        "es": "Skipping",
+        "en": "High knees"
+      },
+      "set": {
+        "tecnica": "rodillas-altas"
+      },
+      "level": 2,
+      "muscles": {
+        "primary": [
+          "flexores-cadera",
+          "gemelos"
+        ],
+        "secondary": [
+          "cuadriceps",
+          "recto-abdominal"
+        ]
+      }
+    },
+    {
+      "id": "talones-gluteo",
+      "name": {
+        "es": "Talones al glúteo",
+        "en": "Butt kicks"
+      },
+      "set": {
+        "tecnica": "talones-gluteo"
+      },
+      "muscles": {
+        "primary": [
+          "isquiotibiales",
+          "gemelos"
+        ],
+        "secondary": [
+          "cuadriceps",
+          "flexores-cadera"
+        ]
+      }
+    }
+  ]
+}

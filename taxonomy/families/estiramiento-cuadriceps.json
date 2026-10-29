@@ -1,0 +1,38 @@
+{
+  "id": "estiramiento-cuadriceps",
+  "name": {
+    "es": "Estiramiento de cuádriceps",
+    "en": "Standing quad stretch"
+  },
+  "plane": "sagital",
+  "mechanics": "aislado",
+  "action": "movilidad",
+  "position": "de-pie",
+  "laterality": "alterno",
+  "pattern": "estiramiento",
+  "level": 1,
+  "muscles": {
+    "primary": [
+      "cuadriceps"
+    ],
+    "secondary": [
+      "flexores-cadera"
+    ]
+  },
+  "equipment": [
+    "peso-corporal"
+  ],
+  "demands": [
+    "equilibrio",
+    "flexion-profunda-rodilla"
+  ],
+  "variants": [
+    {
+      "id": "estiramiento-cuadriceps",
+      "name": {
+        "es": "Estiramiento de cuádriceps",
+        "en": "Standing quad stretch"
+      }
+    }
+  ]
+}

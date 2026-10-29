@@ -1,0 +1,40 @@
+{
+  "id": "salto-horizontal",
+  "name": {
+    "es": "Salto horizontal",
+    "en": "Broad jump"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "potencia",
+  "position": "de-pie",
+  "laterality": "bilateral",
+  "pattern": "salto",
+  "level": 2,
+  "muscles": {
+    "primary": [
+      "gluteo-mayor",
+      "cuadriceps",
+      "isquiotibiales"
+    ],
+    "secondary": [
+      "gemelos",
+      "erectores"
+    ]
+  },
+  "equipment": [
+    "peso-corporal"
+  ],
+  "demands": [
+    "impacto"
+  ],
+  "variants": [
+    {
+      "id": "salto-horizontal",
+      "name": {
+        "es": "Salto horizontal",
+        "en": "Broad jump"
+      }
+    }
+  ]
+}

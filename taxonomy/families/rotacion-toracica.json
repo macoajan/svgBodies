@@ -1,0 +1,43 @@
+{
+  "id": "rotacion-toracica",
+  "name": {
+    "es": "Rotación torácica en cuadrupedia",
+    "en": "Quadruped thoracic rotation"
+  },
+  "plane": "transversal",
+  "mechanics": "compuesto",
+  "action": "movilidad",
+  "position": "cuadrupedia",
+  "laterality": "alterno",
+  "pattern": "movilidad",
+  "patterns2": [
+    "rotacion"
+  ],
+  "level": 1,
+  "muscles": {
+    "primary": [
+      "oblicuos",
+      "erectores"
+    ],
+    "secondary": [
+      "romboides",
+      "trapecio"
+    ]
+  },
+  "equipment": [
+    "esterilla"
+  ],
+  "demands": [
+    "apoyo-rodilla",
+    "carga-muneca"
+  ],
+  "variants": [
+    {
+      "id": "rotacion-toracica",
+      "name": {
+        "es": "Rotación torácica en cuadrupedia",
+        "en": "Quadruped thoracic rotation"
+      }
+    }
+  ]
+}

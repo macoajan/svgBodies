@@ -1,0 +1,45 @@
+{
+  "id": "zancada-salto",
+  "name": {
+    "es": "Zancada con salto",
+    "en": "Split jump"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "potencia",
+  "position": "de-pie",
+  "laterality": "alterno",
+  "pattern": "salto",
+  "patterns2": [
+    "zancada"
+  ],
+  "level": 3,
+  "muscles": {
+    "primary": [
+      "cuadriceps",
+      "gluteo-mayor"
+    ],
+    "secondary": [
+      "gemelos",
+      "aductores",
+      "flexores-cadera"
+    ]
+  },
+  "equipment": [
+    "peso-corporal"
+  ],
+  "demands": [
+    "impacto",
+    "flexion-profunda-rodilla",
+    "equilibrio"
+  ],
+  "variants": [
+    {
+      "id": "zancada-salto",
+      "name": {
+        "es": "Zancada con salto",
+        "en": "Split jump"
+      }
+    }
+  ]
+}

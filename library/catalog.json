@@ -395,6 +395,14 @@
    "oscilacion": {
     "es": "Oscilación / ondas",
     "en": "Oscillation / waves"
+   },
+   "movilidad": {
+    "es": "Movilidad articular",
+    "en": "Mobility drill"
+   },
+   "estiramiento": {
+    "es": "Estiramiento",
+    "en": "Stretch"
    }
   },
   "places": {
@@ -469,6 +477,70 @@
   }
  },
  "exercises": [
+  {
+   "id": "balanceo-pierna",
+   "family": "balanceo-pierna",
+   "name": {
+    "es": "Balanceo de pierna",
+    "en": "Leg swings"
+   },
+   "familyName": {
+    "es": "Balanceo de pierna",
+    "en": "Leg swings"
+   },
+   "params": {},
+   "pattern": "movilidad",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "movilidad",
+   "position": "de-pie",
+   "laterality": "alterno",
+   "level": 1,
+   "equipment": [
+    "peso-corporal"
+   ],
+   "demands": [
+    "equilibrio"
+   ],
+   "muscles": {
+    "primary": [
+     "isquiotibiales",
+     "flexores-cadera"
+    ],
+    "secondary": [
+     "gluteo-mayor",
+     "gluteo-medio"
+    ]
+   },
+   "muscleGroups": [
+    "isquiotibiales",
+    "tren-inferior",
+    "flexores-cadera",
+    "gluteo-mayor",
+    "gluteo",
+    "gluteo-medio"
+   ],
+   "equipmentCategories": [
+    "ninguno"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "E",
+    "page": "lote-e.html#balanceo-pierna",
+    "views": [
+     "svg/balanceo-pierna-lateral.svg",
+     "svg/balanceo-pierna-frontal.svg",
+     "svg/balanceo-pierna-iso.svg"
+    ],
+    "duration": 7.2,
+    "cue": "De pie sobre una pierna, la otra oscila adelante y atrás, relajada y cada vez más amplia."
+   }
+  },
   {
    "id": "battle-ropes",
    "family": "battle-ropes",
@@ -874,6 +946,332 @@
    }
   },
   {
+   "id": "carrera",
+   "family": "carrera",
+   "name": {
+    "es": "Carrera",
+    "en": "Running"
+   },
+   "familyName": {
+    "es": "Carrera",
+    "en": "Running"
+   },
+   "params": {
+    "tecnica": "carrera"
+   },
+   "pattern": "locomocion",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "resistencia",
+   "position": "de-pie",
+   "laterality": "alterno",
+   "level": 1,
+   "equipment": [
+    "peso-corporal"
+   ],
+   "demands": [
+    "impacto"
+   ],
+   "muscles": {
+    "primary": [
+     "cuadriceps",
+     "isquiotibiales",
+     "gemelos"
+    ],
+    "secondary": [
+     "gluteo-mayor",
+     "flexores-cadera"
+    ]
+   },
+   "muscleGroups": [
+    "cuadriceps",
+    "tren-inferior",
+    "isquiotibiales",
+    "gemelos",
+    "gluteo-mayor",
+    "gluteo",
+    "flexores-cadera"
+   ],
+   "equipmentCategories": [
+    "ninguno"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "E",
+    "page": "lote-e.html#carrera",
+    "views": [
+     "svg/carrera-lateral.svg",
+     "svg/carrera-frontal.svg",
+     "svg/carrera-iso.svg"
+    ],
+    "duration": 0.7,
+    "cue": "Tronco algo inclinado, apoyo bajo la cadera y brazos a 90° acompañando la zancada."
+   }
+  },
+  {
+   "id": "skipping",
+   "family": "carrera",
+   "name": {
+    "es": "Skipping",
+    "en": "High knees"
+   },
+   "familyName": {
+    "es": "Carrera",
+    "en": "Running"
+   },
+   "params": {
+    "tecnica": "rodillas-altas"
+   },
+   "pattern": "locomocion",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "resistencia",
+   "position": "de-pie",
+   "laterality": "alterno",
+   "level": 2,
+   "equipment": [
+    "peso-corporal"
+   ],
+   "demands": [
+    "impacto"
+   ],
+   "muscles": {
+    "primary": [
+     "flexores-cadera",
+     "gemelos"
+    ],
+    "secondary": [
+     "cuadriceps",
+     "recto-abdominal"
+    ]
+   },
+   "muscleGroups": [
+    "flexores-cadera",
+    "tren-inferior",
+    "gemelos",
+    "cuadriceps",
+    "recto-abdominal",
+    "core"
+   ],
+   "equipmentCategories": [
+    "ninguno"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "E",
+    "page": "lote-e.html#skipping",
+    "views": [
+     "svg/skipping-lateral.svg",
+     "svg/skipping-frontal.svg",
+     "svg/skipping-iso.svg"
+    ],
+    "duration": 0.6,
+    "cue": "Rodillas a la altura de la cadera, apoyo corto sobre la parte delantera del pie y brazos activos."
+   }
+  },
+  {
+   "id": "talones-gluteo",
+   "family": "carrera",
+   "name": {
+    "es": "Talones al glúteo",
+    "en": "Butt kicks"
+   },
+   "familyName": {
+    "es": "Carrera",
+    "en": "Running"
+   },
+   "params": {
+    "tecnica": "talones-gluteo"
+   },
+   "pattern": "locomocion",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "resistencia",
+   "position": "de-pie",
+   "laterality": "alterno",
+   "level": 1,
+   "equipment": [
+    "peso-corporal"
+   ],
+   "demands": [
+    "impacto"
+   ],
+   "muscles": {
+    "primary": [
+     "isquiotibiales",
+     "gemelos"
+    ],
+    "secondary": [
+     "cuadriceps",
+     "flexores-cadera"
+    ]
+   },
+   "muscleGroups": [
+    "isquiotibiales",
+    "tren-inferior",
+    "gemelos",
+    "cuadriceps",
+    "flexores-cadera"
+   ],
+   "equipmentCategories": [
+    "ninguno"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "E",
+    "page": "lote-e.html#talones-gluteo",
+    "views": [
+     "svg/talones-gluteo-lateral.svg",
+     "svg/talones-gluteo-frontal.svg",
+     "svg/talones-gluteo-iso.svg"
+    ],
+    "duration": 0.6,
+    "cue": "Zancadas cortas llevando el talón hacia el glúteo, rodillas apuntando al suelo."
+   }
+  },
+  {
+   "id": "circulos-brazos",
+   "family": "circulos-brazos",
+   "name": {
+    "es": "Círculos de brazos",
+    "en": "Arm circles"
+   },
+   "familyName": {
+    "es": "Círculos de brazos",
+    "en": "Arm circles"
+   },
+   "params": {},
+   "pattern": "movilidad",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "movilidad",
+   "position": "de-pie",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "peso-corporal"
+   ],
+   "demands": [
+    "brazos-sobre-cabeza"
+   ],
+   "muscles": {
+    "primary": [
+     "deltoides"
+    ],
+    "secondary": [
+     "trapecio",
+     "serrato"
+    ]
+   },
+   "muscleGroups": [
+    "deltoides",
+    "tren-superior",
+    "trapecio",
+    "serrato"
+   ],
+   "equipmentCategories": [
+    "ninguno"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "E",
+    "page": "lote-e.html#circulos-brazos",
+    "views": [
+     "svg/circulos-brazos-lateral.svg",
+     "svg/circulos-brazos-frontal.svg",
+     "svg/circulos-brazos-iso.svg"
+    ],
+    "duration": 2,
+    "cue": "Brazos estirados describiendo círculos amplios y lentos; el tronco no se mueve."
+   }
+  },
+  {
+   "id": "cobra",
+   "family": "cobra",
+   "name": {
+    "es": "Cobra",
+    "en": "Cobra"
+   },
+   "familyName": {
+    "es": "Cobra",
+    "en": "Cobra"
+   },
+   "params": {},
+   "pattern": "estiramiento",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "movilidad",
+   "position": "suelo-prono",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "esterilla"
+   ],
+   "demands": [
+    "decubito",
+    "carga-muneca"
+   ],
+   "muscles": {
+    "primary": [
+     "recto-abdominal",
+     "flexores-cadera"
+    ],
+    "secondary": [
+     "erectores",
+     "pectoral"
+    ]
+   },
+   "muscleGroups": [
+    "recto-abdominal",
+    "core",
+    "flexores-cadera",
+    "tren-inferior",
+    "erectores",
+    "pectoral",
+    "tren-superior"
+   ],
+   "equipmentCategories": [
+    "accesorio"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "E",
+    "page": "lote-e.html#cobra",
+    "views": [
+     "svg/cobra-lateral.svg",
+     "svg/cobra-cenital.svg",
+     "svg/cobra-iso.svg"
+    ],
+    "duration": 4.9,
+    "cue": "Boca abajo con las manos junto al pecho; los brazos elevan el tronco y la cadera sigue apoyada."
+   }
+  },
+  {
    "id": "comba",
    "family": "comba",
    "name": {
@@ -1065,6 +1463,305 @@
    }
   },
   {
+   "id": "estiramiento-cuadriceps",
+   "family": "estiramiento-cuadriceps",
+   "name": {
+    "es": "Estiramiento de cuádriceps",
+    "en": "Standing quad stretch"
+   },
+   "familyName": {
+    "es": "Estiramiento de cuádriceps",
+    "en": "Standing quad stretch"
+   },
+   "params": {},
+   "pattern": "estiramiento",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "aislado",
+   "action": "movilidad",
+   "position": "de-pie",
+   "laterality": "alterno",
+   "level": 1,
+   "equipment": [
+    "peso-corporal"
+   ],
+   "demands": [
+    "equilibrio",
+    "flexion-profunda-rodilla"
+   ],
+   "muscles": {
+    "primary": [
+     "cuadriceps"
+    ],
+    "secondary": [
+     "flexores-cadera"
+    ]
+   },
+   "muscleGroups": [
+    "cuadriceps",
+    "tren-inferior",
+    "flexores-cadera"
+   ],
+   "equipmentCategories": [
+    "ninguno"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "E",
+    "page": "lote-e.html#estiramiento-cuadriceps",
+    "views": [
+     "svg/estiramiento-cuadriceps-lateral.svg",
+     "svg/estiramiento-cuadriceps-frontal.svg",
+     "svg/estiramiento-cuadriceps-iso.svg"
+    ],
+    "duration": 8.4,
+    "cue": "De pie sobre una pierna, llevar el talón al glúteo sujetando el empeine; rodillas juntas."
+   }
+  },
+  {
+   "id": "estiramiento-flexor-cadera",
+   "family": "estiramiento-flexor-cadera",
+   "name": {
+    "es": "Estiramiento de flexor de cadera",
+    "en": "Half-kneeling hip flexor stretch"
+   },
+   "familyName": {
+    "es": "Estiramiento de flexor de cadera",
+    "en": "Half-kneeling hip flexor stretch"
+   },
+   "params": {},
+   "pattern": "estiramiento",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "aislado",
+   "action": "movilidad",
+   "position": "rodillas",
+   "laterality": "unilateral",
+   "level": 1,
+   "equipment": [
+    "esterilla"
+   ],
+   "demands": [
+    "apoyo-rodilla",
+    "brazos-sobre-cabeza"
+   ],
+   "muscles": {
+    "primary": [
+     "flexores-cadera"
+    ],
+    "secondary": [
+     "cuadriceps",
+     "oblicuos"
+    ]
+   },
+   "muscleGroups": [
+    "flexores-cadera",
+    "tren-inferior",
+    "cuadriceps",
+    "oblicuos",
+    "core"
+   ],
+   "equipmentCategories": [
+    "accesorio"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "E",
+    "page": "lote-e.html#estiramiento-flexor-cadera",
+    "views": [
+     "svg/estiramiento-flexor-cadera-lateral.svg",
+     "svg/estiramiento-flexor-cadera-frontal.svg",
+     "svg/estiramiento-flexor-cadera-iso.svg"
+    ],
+    "duration": 4.7,
+    "cue": "Rodilla trasera en el suelo; la cadera avanza sin arquear la zona lumbar y el brazo de ese lado sube."
+   }
+  },
+  {
+   "id": "estiramiento-gemelo",
+   "family": "estiramiento-gemelo",
+   "name": {
+    "es": "Estiramiento de gemelo en pared",
+    "en": "Wall calf stretch"
+   },
+   "familyName": {
+    "es": "Estiramiento de gemelo en pared",
+    "en": "Wall calf stretch"
+   },
+   "params": {},
+   "pattern": "estiramiento",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "aislado",
+   "action": "movilidad",
+   "position": "de-pie",
+   "laterality": "unilateral",
+   "level": 1,
+   "equipment": [
+    "pared"
+   ],
+   "demands": [],
+   "muscles": {
+    "primary": [
+     "gemelos"
+    ],
+    "secondary": [
+     "isquiotibiales"
+    ]
+   },
+   "muscleGroups": [
+    "gemelos",
+    "tren-inferior",
+    "isquiotibiales"
+   ],
+   "equipmentCategories": [
+    "estructura"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "E",
+    "page": "lote-e.html#estiramiento-gemelo",
+    "views": [
+     "svg/estiramiento-gemelo-lateral.svg",
+     "svg/estiramiento-gemelo-frontal.svg",
+     "svg/estiramiento-gemelo-iso.svg"
+    ],
+    "duration": 4.6,
+    "cue": "Manos en la pared y pierna trasera estirada con el talón apoyado; el cuerpo se inclina hacia la pared."
+   }
+  },
+  {
+   "id": "estiramiento-hombro",
+   "family": "estiramiento-hombro",
+   "name": {
+    "es": "Estiramiento de hombro cruzado",
+    "en": "Cross-body shoulder stretch"
+   },
+   "familyName": {
+    "es": "Estiramiento de hombro cruzado",
+    "en": "Cross-body shoulder stretch"
+   },
+   "params": {},
+   "pattern": "estiramiento",
+   "patterns2": [],
+   "plane": "transversal",
+   "mechanics": "aislado",
+   "action": "movilidad",
+   "position": "de-pie",
+   "laterality": "alterno",
+   "level": 1,
+   "equipment": [
+    "peso-corporal"
+   ],
+   "demands": [],
+   "muscles": {
+    "primary": [
+     "deltoides-posterior"
+    ],
+    "secondary": [
+     "romboides",
+     "trapecio"
+    ]
+   },
+   "muscleGroups": [
+    "deltoides-posterior",
+    "deltoides",
+    "tren-superior",
+    "romboides",
+    "trapecio"
+   ],
+   "equipmentCategories": [
+    "ninguno"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "E",
+    "page": "lote-e.html#estiramiento-hombro",
+    "views": [
+     "svg/estiramiento-hombro-lateral.svg",
+     "svg/estiramiento-hombro-frontal.svg",
+     "svg/estiramiento-hombro-iso.svg"
+    ],
+    "duration": 8.4,
+    "cue": "Brazo estirado cruzando el pecho a la altura del hombro; la otra mano lo acerca desde el codo."
+   }
+  },
+  {
+   "id": "estiramiento-isquios",
+   "family": "estiramiento-isquios",
+   "name": {
+    "es": "Estiramiento de isquiotibiales",
+    "en": "Standing hamstring stretch"
+   },
+   "familyName": {
+    "es": "Estiramiento de isquiotibiales",
+    "en": "Standing hamstring stretch"
+   },
+   "params": {},
+   "pattern": "estiramiento",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "aislado",
+   "action": "movilidad",
+   "position": "de-pie",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "peso-corporal"
+   ],
+   "demands": [],
+   "muscles": {
+    "primary": [
+     "isquiotibiales"
+    ],
+    "secondary": [
+     "gemelos",
+     "erectores"
+    ]
+   },
+   "muscleGroups": [
+    "isquiotibiales",
+    "tren-inferior",
+    "gemelos",
+    "erectores",
+    "core"
+   ],
+   "equipmentCategories": [
+    "ninguno"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "E",
+    "page": "lote-e.html#estiramiento-isquios",
+    "views": [
+     "svg/estiramiento-isquios-lateral.svg",
+     "svg/estiramiento-isquios-frontal.svg",
+     "svg/estiramiento-isquios-iso.svg"
+    ],
+    "duration": 5.2,
+    "cue": "Piernas estiradas y cadera atrás; el tronco cae hacia delante con los brazos colgando. Mantener."
+   }
+  },
+  {
    "id": "flexion",
    "family": "flexion",
    "name": {
@@ -1191,6 +1888,77 @@
     ],
     "duration": 2.6,
     "cue": "Brazos bloqueados arriba; bajar con el tronco algo inclinado hasta el codo a 90° y empujar."
+   }
+  },
+  {
+   "id": "gusano",
+   "family": "gusano",
+   "name": {
+    "es": "Gusano (walkout)",
+    "en": "Walkout (inchworm)"
+   },
+   "familyName": {
+    "es": "Gusano (walkout)",
+    "en": "Walkout (inchworm)"
+   },
+   "params": {},
+   "pattern": "movilidad",
+   "patterns2": [
+    "antiextension"
+   ],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "movilidad",
+   "position": "transicion",
+   "laterality": "bilateral",
+   "level": 2,
+   "equipment": [
+    "peso-corporal"
+   ],
+   "demands": [
+    "carga-muneca"
+   ],
+   "muscles": {
+    "primary": [
+     "isquiotibiales",
+     "recto-abdominal"
+    ],
+    "secondary": [
+     "deltoides",
+     "pectoral",
+     "triceps",
+     "gemelos"
+    ]
+   },
+   "muscleGroups": [
+    "isquiotibiales",
+    "tren-inferior",
+    "recto-abdominal",
+    "core",
+    "deltoides",
+    "tren-superior",
+    "pectoral",
+    "triceps",
+    "gemelos"
+   ],
+   "equipmentCategories": [
+    "ninguno"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "E",
+    "page": "lote-e.html#gusano",
+    "views": [
+     "svg/gusano-lateral.svg",
+     "svg/gusano-cenital.svg",
+     "svg/gusano-iso.svg"
+    ],
+    "duration": 6.6,
+    "cue": "Plegarse hasta apoyar las manos y caminar con ellas hasta la plancha; volver igual y subir."
    }
   },
   {
@@ -1444,6 +2212,74 @@
     ],
     "duration": 2.8,
     "cue": "La polea tira hacia un lado; las manos salen al frente y vuelven al pecho sin que el tronco gire."
+   }
+  },
+  {
+   "id": "perro-boca-abajo",
+   "family": "perro-boca-abajo",
+   "name": {
+    "es": "Perro boca abajo",
+    "en": "Downward dog"
+   },
+   "familyName": {
+    "es": "Perro boca abajo",
+    "en": "Downward dog"
+   },
+   "params": {},
+   "pattern": "estiramiento",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "movilidad",
+   "position": "cuadrupedia",
+   "laterality": "bilateral",
+   "level": 2,
+   "equipment": [
+    "esterilla"
+   ],
+   "demands": [
+    "carga-muneca",
+    "brazos-sobre-cabeza"
+   ],
+   "muscles": {
+    "primary": [
+     "isquiotibiales",
+     "gemelos"
+    ],
+    "secondary": [
+     "dorsal",
+     "deltoides",
+     "erectores"
+    ]
+   },
+   "muscleGroups": [
+    "isquiotibiales",
+    "tren-inferior",
+    "gemelos",
+    "dorsal",
+    "tren-superior",
+    "deltoides",
+    "erectores",
+    "core"
+   ],
+   "equipmentCategories": [
+    "accesorio"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "E",
+    "page": "lote-e.html#perro-boca-abajo",
+    "views": [
+     "svg/perro-boca-abajo-lateral.svg",
+     "svg/perro-boca-abajo-cenital.svg",
+     "svg/perro-boca-abajo-iso.svg"
+    ],
+    "duration": 4.6,
+    "cue": "Desde plancha alta, la cadera sube y atrás formando una V invertida; talones hacia el suelo."
    }
   },
   {
@@ -1787,6 +2623,74 @@
     ],
     "duration": 3.5,
     "cue": "Codo bajo el hombro y cuerpo en línea; la mano libre sube al techo y vuelve a la cadera."
+   }
+  },
+  {
+   "id": "postura-nino",
+   "family": "postura-nino",
+   "name": {
+    "es": "Postura del niño",
+    "en": "Child's pose"
+   },
+   "familyName": {
+    "es": "Postura del niño",
+    "en": "Child's pose"
+   },
+   "params": {},
+   "pattern": "estiramiento",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "movilidad",
+   "position": "rodillas",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "esterilla"
+   ],
+   "demands": [
+    "apoyo-rodilla",
+    "flexion-profunda-rodilla",
+    "brazos-sobre-cabeza"
+   ],
+   "muscles": {
+    "primary": [
+     "erectores",
+     "dorsal"
+    ],
+    "secondary": [
+     "gluteo-mayor",
+     "cuadriceps"
+    ]
+   },
+   "muscleGroups": [
+    "erectores",
+    "core",
+    "dorsal",
+    "tren-superior",
+    "gluteo-mayor",
+    "gluteo",
+    "tren-inferior",
+    "cuadriceps"
+   ],
+   "equipmentCategories": [
+    "accesorio"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "E",
+    "page": "lote-e.html#postura-nino",
+    "views": [
+     "svg/postura-nino-lateral.svg",
+     "svg/postura-nino-cenital.svg",
+     "svg/postura-nino-iso.svg"
+    ],
+    "duration": 6,
+    "cue": "Desde cuadrupedia, sentarse sobre los talones con los brazos largos y la frente en el suelo."
    }
   },
   {
@@ -2249,6 +3153,73 @@
    }
   },
   {
+   "id": "rotacion-toracica",
+   "family": "rotacion-toracica",
+   "name": {
+    "es": "Rotación torácica en cuadrupedia",
+    "en": "Quadruped thoracic rotation"
+   },
+   "familyName": {
+    "es": "Rotación torácica en cuadrupedia",
+    "en": "Quadruped thoracic rotation"
+   },
+   "params": {},
+   "pattern": "movilidad",
+   "patterns2": [
+    "rotacion"
+   ],
+   "plane": "transversal",
+   "mechanics": "compuesto",
+   "action": "movilidad",
+   "position": "cuadrupedia",
+   "laterality": "alterno",
+   "level": 1,
+   "equipment": [
+    "esterilla"
+   ],
+   "demands": [
+    "apoyo-rodilla",
+    "carga-muneca"
+   ],
+   "muscles": {
+    "primary": [
+     "oblicuos",
+     "erectores"
+    ],
+    "secondary": [
+     "romboides",
+     "trapecio"
+    ]
+   },
+   "muscleGroups": [
+    "oblicuos",
+    "core",
+    "erectores",
+    "romboides",
+    "tren-superior",
+    "trapecio"
+   ],
+   "equipmentCategories": [
+    "accesorio"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "E",
+    "page": "lote-e.html#rotacion-toracica",
+    "views": [
+     "svg/rotacion-toracica-lateral.svg",
+     "svg/rotacion-toracica-cenital.svg",
+     "svg/rotacion-toracica-iso.svg"
+    ],
+    "duration": 9.6,
+    "cue": "Mano en la nuca: el codo baja hacia el brazo de apoyo y después sube al techo girando el pecho."
+   }
+  },
+  {
    "id": "rueda-abdominal",
    "family": "rueda-abdominal",
    "name": {
@@ -2370,6 +3341,412 @@
     ],
     "duration": 3.75,
     "cue": "Contramovimiento con los brazos, salto y aterrizaje suave en sentadilla parcial; se baja andando."
+   }
+  },
+  {
+   "id": "salto-horizontal",
+   "family": "salto-horizontal",
+   "name": {
+    "es": "Salto horizontal",
+    "en": "Broad jump"
+   },
+   "familyName": {
+    "es": "Salto horizontal",
+    "en": "Broad jump"
+   },
+   "params": {},
+   "pattern": "salto",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "potencia",
+   "position": "de-pie",
+   "laterality": "bilateral",
+   "level": 2,
+   "equipment": [
+    "peso-corporal"
+   ],
+   "demands": [
+    "impacto"
+   ],
+   "muscles": {
+    "primary": [
+     "gluteo-mayor",
+     "cuadriceps",
+     "isquiotibiales"
+    ],
+    "secondary": [
+     "gemelos",
+     "erectores"
+    ]
+   },
+   "muscleGroups": [
+    "gluteo-mayor",
+    "gluteo",
+    "tren-inferior",
+    "cuadriceps",
+    "isquiotibiales",
+    "gemelos",
+    "erectores",
+    "core"
+   ],
+   "equipmentCategories": [
+    "ninguno"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "E",
+    "page": "lote-e.html#salto-horizontal",
+    "views": [
+     "svg/salto-horizontal-lateral.svg",
+     "svg/salto-horizontal-frontal.svg",
+     "svg/salto-horizontal-iso.svg"
+    ],
+    "duration": 4.39,
+    "cue": "Brazos atrás y salto hacia delante; aterrizaje con las dos piernas y la cadera atrás. Se vuelve andando."
+   }
+  },
+  {
+   "id": "salto-vertical",
+   "family": "salto-vertical",
+   "name": {
+    "es": "Salto vertical",
+    "en": "Countermovement jump"
+   },
+   "familyName": {
+    "es": "Salto vertical",
+    "en": "Vertical jump"
+   },
+   "params": {
+    "inicio": "de-pie",
+    "vuelo": "extendido"
+   },
+   "pattern": "salto",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "potencia",
+   "position": "de-pie",
+   "laterality": "bilateral",
+   "level": 2,
+   "equipment": [
+    "peso-corporal"
+   ],
+   "demands": [
+    "impacto"
+   ],
+   "muscles": {
+    "primary": [
+     "cuadriceps",
+     "gluteo-mayor",
+     "gemelos"
+    ],
+    "secondary": [
+     "isquiotibiales",
+     "erectores"
+    ]
+   },
+   "muscleGroups": [
+    "cuadriceps",
+    "tren-inferior",
+    "gluteo-mayor",
+    "gluteo",
+    "gemelos",
+    "isquiotibiales",
+    "erectores",
+    "core"
+   ],
+   "equipmentCategories": [
+    "ninguno"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "E",
+    "page": "lote-e.html#salto-vertical",
+    "views": [
+     "svg/salto-vertical-lateral.svg",
+     "svg/salto-vertical-frontal.svg",
+     "svg/salto-vertical-iso.svg"
+    ],
+    "duration": 2.42,
+    "cue": "Contramovimiento rápido con los brazos atrás, extensión completa hacia arriba y aterrizaje suave."
+   }
+  },
+  {
+   "id": "sentadilla-salto",
+   "family": "salto-vertical",
+   "name": {
+    "es": "Sentadilla con salto",
+    "en": "Jump squat"
+   },
+   "familyName": {
+    "es": "Salto vertical",
+    "en": "Vertical jump"
+   },
+   "params": {
+    "inicio": "sentadilla",
+    "vuelo": "extendido"
+   },
+   "pattern": "salto",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "potencia",
+   "position": "de-pie",
+   "laterality": "bilateral",
+   "level": 2,
+   "equipment": [
+    "peso-corporal"
+   ],
+   "demands": [
+    "impacto",
+    "flexion-profunda-rodilla"
+   ],
+   "muscles": {
+    "primary": [
+     "cuadriceps",
+     "gluteo-mayor",
+     "gemelos"
+    ],
+    "secondary": [
+     "isquiotibiales",
+     "erectores"
+    ]
+   },
+   "muscleGroups": [
+    "cuadriceps",
+    "tren-inferior",
+    "gluteo-mayor",
+    "gluteo",
+    "gemelos",
+    "isquiotibiales",
+    "erectores",
+    "core"
+   ],
+   "equipmentCategories": [
+    "ninguno"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "E",
+    "page": "lote-e.html#sentadilla-salto",
+    "views": [
+     "svg/sentadilla-salto-lateral.svg",
+     "svg/sentadilla-salto-frontal.svg",
+     "svg/sentadilla-salto-iso.svg"
+    ],
+    "duration": 1.42,
+    "cue": "Desde sentadilla, salto explosivo y aterrizaje directo en la siguiente sentadilla."
+   }
+  },
+  {
+   "id": "salto-rodillas-pecho",
+   "family": "salto-vertical",
+   "name": {
+    "es": "Salto con rodillas al pecho",
+    "en": "Tuck jump"
+   },
+   "familyName": {
+    "es": "Salto vertical",
+    "en": "Vertical jump"
+   },
+   "params": {
+    "inicio": "de-pie",
+    "vuelo": "rodillas-pecho"
+   },
+   "pattern": "salto",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "potencia",
+   "position": "de-pie",
+   "laterality": "bilateral",
+   "level": 3,
+   "equipment": [
+    "peso-corporal"
+   ],
+   "demands": [
+    "impacto"
+   ],
+   "muscles": {
+    "primary": [
+     "cuadriceps",
+     "gluteo-mayor",
+     "gemelos",
+     "flexores-cadera"
+    ],
+    "secondary": [
+     "recto-abdominal",
+     "isquiotibiales"
+    ]
+   },
+   "muscleGroups": [
+    "cuadriceps",
+    "tren-inferior",
+    "gluteo-mayor",
+    "gluteo",
+    "gemelos",
+    "flexores-cadera",
+    "recto-abdominal",
+    "core",
+    "isquiotibiales"
+   ],
+   "equipmentCategories": [
+    "ninguno"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "E",
+    "page": "lote-e.html#salto-rodillas-pecho",
+    "views": [
+     "svg/salto-rodillas-pecho-lateral.svg",
+     "svg/salto-rodillas-pecho-frontal.svg",
+     "svg/salto-rodillas-pecho-iso.svg"
+    ],
+    "duration": 2.47,
+    "cue": "Salto alto y, en el aire, las rodillas suben al pecho; se estiran antes de aterrizar."
+   }
+  },
+  {
+   "id": "saltos-patinador",
+   "family": "saltos-patinador",
+   "name": {
+    "es": "Saltos de patinador",
+    "en": "Skater jumps"
+   },
+   "familyName": {
+    "es": "Saltos de patinador",
+    "en": "Skater jumps"
+   },
+   "params": {},
+   "pattern": "salto",
+   "patterns2": [],
+   "plane": "frontal",
+   "mechanics": "compuesto",
+   "action": "potencia",
+   "position": "de-pie",
+   "laterality": "alterno",
+   "level": 2,
+   "equipment": [
+    "peso-corporal"
+   ],
+   "demands": [
+    "impacto",
+    "equilibrio"
+   ],
+   "muscles": {
+    "primary": [
+     "gluteo-medio",
+     "gluteo-mayor",
+     "cuadriceps"
+    ],
+    "secondary": [
+     "aductores",
+     "gemelos"
+    ]
+   },
+   "muscleGroups": [
+    "gluteo-medio",
+    "gluteo",
+    "tren-inferior",
+    "gluteo-mayor",
+    "cuadriceps",
+    "aductores",
+    "gemelos"
+   ],
+   "equipmentCategories": [
+    "ninguno"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "E",
+    "page": "lote-e.html#saltos-patinador",
+    "views": [
+     "svg/saltos-patinador-frontal.svg",
+     "svg/saltos-patinador-lateral.svg",
+     "svg/saltos-patinador-iso.svg"
+    ],
+    "duration": 1.6,
+    "cue": "Saltos laterales de una pierna a la otra; la pierna libre cruza por detrás y los brazos acompañan."
+   }
+  },
+  {
+   "id": "saltos-tobillo",
+   "family": "saltos-tobillo",
+   "name": {
+    "es": "Saltos de tobillo (pogo)",
+    "en": "Pogo hops"
+   },
+   "familyName": {
+    "es": "Saltos de tobillo (pogo)",
+    "en": "Pogo hops"
+   },
+   "params": {},
+   "pattern": "salto",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "potencia",
+   "position": "de-pie",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "peso-corporal"
+   ],
+   "demands": [
+    "impacto"
+   ],
+   "muscles": {
+    "primary": [
+     "gemelos"
+    ],
+    "secondary": [
+     "cuadriceps"
+    ]
+   },
+   "muscleGroups": [
+    "gemelos",
+    "tren-inferior",
+    "cuadriceps"
+   ],
+   "equipmentCategories": [
+    "ninguno"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "E",
+    "page": "lote-e.html#saltos-tobillo",
+    "views": [
+     "svg/saltos-tobillo-lateral.svg",
+     "svg/saltos-tobillo-frontal.svg",
+     "svg/saltos-tobillo-iso.svg"
+    ],
+    "duration": 0.4,
+    "cue": "Saltos cortos y rápidos con las piernas casi rectas; el rebote sale de los tobillos."
    }
   },
   {
@@ -2776,6 +4153,74 @@
     ],
     "duration": 0.9,
     "cue": "Cuerpo inclinado y brazos firmes en los postes; pasos cortos y potentes empujando el suelo."
+   }
+  },
+  {
+   "id": "squat-to-stand",
+   "family": "squat-to-stand",
+   "name": {
+    "es": "Squat to stand",
+    "en": "Squat to stand"
+   },
+   "familyName": {
+    "es": "Squat to stand",
+    "en": "Squat to stand"
+   },
+   "params": {},
+   "pattern": "movilidad",
+   "patterns2": [
+    "sentadilla"
+   ],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "movilidad",
+   "position": "de-pie",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "peso-corporal"
+   ],
+   "demands": [
+    "flexion-profunda-rodilla",
+    "brazos-sobre-cabeza"
+   ],
+   "muscles": {
+    "primary": [
+     "aductores",
+     "isquiotibiales"
+    ],
+    "secondary": [
+     "gluteo-mayor",
+     "erectores"
+    ]
+   },
+   "muscleGroups": [
+    "aductores",
+    "tren-inferior",
+    "isquiotibiales",
+    "gluteo-mayor",
+    "gluteo",
+    "erectores",
+    "core"
+   ],
+   "equipmentCategories": [
+    "ninguno"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "E",
+    "page": "lote-e.html#squat-to-stand",
+    "views": [
+     "svg/squat-to-stand-lateral.svg",
+     "svg/squat-to-stand-frontal.svg",
+     "svg/squat-to-stand-iso.svg"
+    ],
+    "duration": 6.9,
+    "cue": "Agarrar las puntas de los pies, bajar a sentadilla profunda con el pecho alto, subir los brazos y volver."
    }
   },
   {
@@ -3318,6 +4763,149 @@
     ],
     "duration": 3.2,
     "cue": "Sentadilla con el balón al pecho y, al subir, lanzamiento a la diana; se recoge y se vuelve a bajar."
+   }
+  },
+  {
+   "id": "worlds-greatest-stretch",
+   "family": "worlds-greatest-stretch",
+   "name": {
+    "es": "World's greatest stretch",
+    "en": "World's greatest stretch"
+   },
+   "familyName": {
+    "es": "World's greatest stretch",
+    "en": "World's greatest stretch"
+   },
+   "params": {},
+   "pattern": "movilidad",
+   "patterns2": [
+    "zancada",
+    "rotacion"
+   ],
+   "plane": "multiplanar",
+   "mechanics": "compuesto",
+   "action": "movilidad",
+   "position": "de-pie",
+   "laterality": "unilateral",
+   "level": 2,
+   "equipment": [
+    "peso-corporal"
+   ],
+   "demands": [
+    "flexion-profunda-rodilla",
+    "carga-muneca"
+   ],
+   "muscles": {
+    "primary": [
+     "flexores-cadera",
+     "isquiotibiales",
+     "oblicuos"
+    ],
+    "secondary": [
+     "aductores",
+     "gluteo-mayor",
+     "erectores"
+    ]
+   },
+   "muscleGroups": [
+    "flexores-cadera",
+    "tren-inferior",
+    "isquiotibiales",
+    "oblicuos",
+    "core",
+    "aductores",
+    "gluteo-mayor",
+    "gluteo",
+    "erectores"
+   ],
+   "equipmentCategories": [
+    "ninguno"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "E",
+    "page": "lote-e.html#worlds-greatest-stretch",
+    "views": [
+     "svg/worlds-greatest-stretch-lateral.svg",
+     "svg/worlds-greatest-stretch-frontal.svg",
+     "svg/worlds-greatest-stretch-iso.svg"
+    ],
+    "duration": 5,
+    "cue": "Zancada profunda con la mano contraria en el suelo; el codo baja al empeine y después el brazo sube al techo."
+   }
+  },
+  {
+   "id": "zancada-salto",
+   "family": "zancada-salto",
+   "name": {
+    "es": "Zancada con salto",
+    "en": "Split jump"
+   },
+   "familyName": {
+    "es": "Zancada con salto",
+    "en": "Split jump"
+   },
+   "params": {},
+   "pattern": "salto",
+   "patterns2": [
+    "zancada"
+   ],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "potencia",
+   "position": "de-pie",
+   "laterality": "alterno",
+   "level": 3,
+   "equipment": [
+    "peso-corporal"
+   ],
+   "demands": [
+    "impacto",
+    "flexion-profunda-rodilla",
+    "equilibrio"
+   ],
+   "muscles": {
+    "primary": [
+     "cuadriceps",
+     "gluteo-mayor"
+    ],
+    "secondary": [
+     "gemelos",
+     "aductores",
+     "flexores-cadera"
+    ]
+   },
+   "muscleGroups": [
+    "cuadriceps",
+    "tren-inferior",
+    "gluteo-mayor",
+    "gluteo",
+    "gemelos",
+    "aductores",
+    "flexores-cadera"
+   ],
+   "equipmentCategories": [
+    "ninguno"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "E",
+    "page": "lote-e.html#zancada-salto",
+    "views": [
+     "svg/zancada-salto-lateral.svg",
+     "svg/zancada-salto-frontal.svg",
+     "svg/zancada-salto-iso.svg"
+    ],
+    "duration": 1.5,
+    "cue": "Desde zancada, salto y cambio de piernas en el aire; aterrizaje suave en la zancada contraria."
    }
   },
   {

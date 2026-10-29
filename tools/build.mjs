@@ -2,7 +2,7 @@
 //   library/svg/<id>-{lateral,frontal,iso}.svg  (self-contained animated SVGs, CSS only)
 //   library/poses.json                          (sampled 3D poses for native renderers)
 //   library/viewer.js                           (free-camera renderer for poses.json)
-//   library/lote-{a,b,c,d}.html                 (gallery per batch: CSS views + free-camera 3D view)
+//   library/lote-{a..e}.html                     (gallery per batch: CSS views + free-camera 3D view)
 //   library/index.html                          (faceted search over the catalogue)
 //   library/catalog.json                        (taxonomy resolved per exercise, for apps)
 //   library/catalog-flags.csv                   (the same as a sparse flag table)
@@ -15,9 +15,10 @@ import { EXERCISES } from './exercises.mjs';
 import { EXERCISES_B } from './exercises-b.mjs';
 import { EXERCISES_C } from './exercises-c.mjs';
 import { EXERCISES_D } from './exercises-d.mjs';
+import { EXERCISES_E } from './exercises-e.mjs';
 import { loadTaxonomy, crossCheck, flagsCsv } from './taxonomy.mjs';
 
-const BATCHES = [['A', 'Lote A · de pie, simétricos', EXERCISES], ['B', 'Lote B · suelo, suspensión y una pierna', EXERCISES_B], ['C', 'Lote C · saltos, desplazamiento y material en movimiento', EXERCISES_C], ['D', 'Lote D · resto del catálogo', EXERCISES_D]];
+const BATCHES = [['A', 'Lote A · de pie, simétricos', EXERCISES], ['B', 'Lote B · suelo, suspensión y una pierna', EXERCISES_B], ['C', 'Lote C · saltos, desplazamiento y material en movimiento', EXERCISES_C], ['D', 'Lote D · resto del catálogo', EXERCISES_D], ['E', 'Lote E · movilidad, estiramientos, carrera y saltos', EXERCISES_E]];
 
 const TOOLS = dirname(fileURLToPath(import.meta.url));
 const OUT = join(TOOLS, '..', 'library');
@@ -37,7 +38,7 @@ const chips = e => (!e ? '' : `<ul class="tags">${[
 const files = {};
 mkdirSync(join(OUT, 'svg'), { recursive: true });
 
-const cards = { A: [], B: [], C: [], D: [] }, data = [], names = { A: [], B: [], C: [], D: [] };
+const cards = Object.fromEntries(BATCHES.map(([b]) => [b, []])), data = [], names = Object.fromEntries(BATCHES.map(([b]) => [b, []]));
 for (const [batch, , list] of BATCHES) for (const ex0 of list) {
   const ex = { ...ex0, batch };
   const s = sample(ex);

@@ -1,0 +1,38 @@
+{
+  "id": "circulos-brazos",
+  "name": {
+    "es": "Círculos de brazos",
+    "en": "Arm circles"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "movilidad",
+  "position": "de-pie",
+  "laterality": "bilateral",
+  "pattern": "movilidad",
+  "level": 1,
+  "muscles": {
+    "primary": [
+      "deltoides"
+    ],
+    "secondary": [
+      "trapecio",
+      "serrato"
+    ]
+  },
+  "equipment": [
+    "peso-corporal"
+  ],
+  "demands": [
+    "brazos-sobre-cabeza"
+  ],
+  "variants": [
+    {
+      "id": "circulos-brazos",
+      "name": {
+        "es": "Círculos de brazos",
+        "en": "Arm circles"
+      }
+    }
+  ]
+}

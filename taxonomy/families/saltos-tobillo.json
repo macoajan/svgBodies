@@ -1,0 +1,37 @@
+{
+  "id": "saltos-tobillo",
+  "name": {
+    "es": "Saltos de tobillo (pogo)",
+    "en": "Pogo hops"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "potencia",
+  "position": "de-pie",
+  "laterality": "bilateral",
+  "pattern": "salto",
+  "level": 1,
+  "muscles": {
+    "primary": [
+      "gemelos"
+    ],
+    "secondary": [
+      "cuadriceps"
+    ]
+  },
+  "equipment": [
+    "peso-corporal"
+  ],
+  "demands": [
+    "impacto"
+  ],
+  "variants": [
+    {
+      "id": "saltos-tobillo",
+      "name": {
+        "es": "Saltos de tobillo (pogo)",
+        "en": "Pogo hops"
+      }
+    }
+  ]
+}
