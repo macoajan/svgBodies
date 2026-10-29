@@ -1,0 +1,70 @@
+{
+  "id": "plancha",
+  "name": {
+    "es": "Plancha",
+    "en": "Plank"
+  },
+  "plane": "sagital",
+  "mechanics": "isometrico",
+  "action": "estabilidad",
+  "position": "suelo-prono",
+  "laterality": "bilateral",
+  "pattern": "antiextension",
+  "level": 1,
+  "muscles": {
+    "primary": [
+      "recto-abdominal",
+      "transverso"
+    ],
+    "secondary": [
+      "gluteo-mayor",
+      "deltoides-anterior"
+    ]
+  },
+  "equipment": [
+    "esterilla"
+  ],
+  "demands": [],
+  "params": {
+    "apoyo": [
+      "frontal",
+      "lateral"
+    ]
+  },
+  "variants": [
+    {
+      "id": "plancha",
+      "name": {
+        "es": "Plancha",
+        "en": "Forearm plank"
+      },
+      "set": {
+        "apoyo": "frontal"
+      }
+    },
+    {
+      "id": "plancha-lateral",
+      "name": {
+        "es": "Plancha lateral",
+        "en": "Side plank"
+      },
+      "set": {
+        "apoyo": "lateral"
+      },
+      "pattern": "antiflexion-lateral",
+      "plane": "frontal",
+      "position": "suelo-lateral",
+      "level": 2,
+      "muscles": {
+        "primary": [
+          "oblicuos",
+          "cuadrado-lumbar"
+        ],
+        "secondary": [
+          "gluteo-medio",
+          "deltoides"
+        ]
+      }
+    }
+  ]
+}

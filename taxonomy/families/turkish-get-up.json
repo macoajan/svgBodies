@@ -1,0 +1,43 @@
+{
+  "id": "turkish-get-up",
+  "name": {
+    "es": "Turkish get-up",
+    "en": "Turkish get-up"
+  },
+  "plane": "multiplanar",
+  "mechanics": "compuesto",
+  "action": "estabilidad",
+  "position": "transicion",
+  "laterality": "unilateral",
+  "pattern": "combinado",
+  "level": 4,
+  "muscles": {
+    "primary": [
+      "deltoides",
+      "oblicuos",
+      "gluteo-mayor"
+    ],
+    "secondary": [
+      "serrato",
+      "cuadriceps"
+    ]
+  },
+  "equipment": [
+    "kettlebell"
+  ],
+  "demands": [
+    "brazos-sobre-cabeza",
+    "decubito",
+    "apoyo-rodilla",
+    "carga-muneca"
+  ],
+  "variants": [
+    {
+      "id": "turkish-get-up",
+      "name": {
+        "es": "Turkish get-up",
+        "en": "Turkish get-up"
+      }
+    }
+  ]
+}

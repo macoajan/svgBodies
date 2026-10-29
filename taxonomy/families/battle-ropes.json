@@ -1,0 +1,39 @@
+{
+  "id": "battle-ropes",
+  "name": {
+    "es": "Battle ropes",
+    "en": "Battle ropes"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "resistencia",
+  "position": "de-pie",
+  "laterality": "alterno",
+  "pattern": "oscilacion",
+  "level": 1,
+  "muscles": {
+    "primary": [
+      "deltoides",
+      "antebrazo"
+    ],
+    "secondary": [
+      "transverso",
+      "cuadriceps"
+    ]
+  },
+  "equipment": [
+    "cuerdas-batida"
+  ],
+  "demands": [
+    "agarre"
+  ],
+  "variants": [
+    {
+      "id": "battle-ropes",
+      "name": {
+        "es": "Battle ropes",
+        "en": "Battle ropes (alternating waves)"
+      }
+    }
+  ]
+}

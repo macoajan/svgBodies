@@ -1,0 +1,21 @@
+{
+  "_note": "places: dónde suele haber este material. El lugar de un ejercicio se deriva: es posible donde está todo su material.",
+  "peso-corporal": { "es": "Sin material", "en": "Bodyweight", "category": "ninguno", "places": ["casa", "gimnasio", "exterior"] },
+  "esterilla": { "es": "Esterilla", "en": "Mat", "category": "accesorio", "places": ["casa", "gimnasio", "exterior"] },
+  "barra": { "es": "Barra olímpica y discos", "en": "Barbell", "category": "peso-libre", "places": ["gimnasio"] },
+  "rack": { "es": "Rack", "en": "Rack", "category": "estructura", "places": ["gimnasio"] },
+  "banco": { "es": "Banco", "en": "Bench", "category": "estructura", "places": ["casa", "gimnasio"] },
+  "mancuerna": { "es": "Mancuerna", "en": "Dumbbell", "category": "peso-libre", "places": ["casa", "gimnasio"] },
+  "kettlebell": { "es": "Kettlebell", "en": "Kettlebell", "category": "peso-libre", "places": ["casa", "gimnasio"] },
+  "balon-medicinal": { "es": "Balón medicinal", "en": "Medicine ball", "category": "peso-libre", "places": ["gimnasio"] },
+  "cajon": { "es": "Cajón pliométrico", "en": "Plyo box", "category": "estructura", "places": ["gimnasio"] },
+  "pared": { "es": "Pared / diana", "en": "Wall / target", "category": "estructura", "places": ["casa", "gimnasio"] },
+  "barra-dominadas": { "es": "Barra de dominadas", "en": "Pull-up bar", "category": "estructura", "places": ["casa", "gimnasio", "exterior"] },
+  "barra-baja": { "es": "Barra baja fija", "en": "Low fixed bar", "category": "estructura", "places": ["gimnasio", "exterior"] },
+  "paralelas": { "es": "Paralelas", "en": "Parallel bars", "category": "estructura", "places": ["gimnasio", "exterior"] },
+  "polea": { "es": "Polea", "en": "Cable machine", "category": "maquina", "places": ["gimnasio"] },
+  "rueda-abdominal": { "es": "Rueda abdominal", "en": "Ab wheel", "category": "accesorio", "places": ["casa", "gimnasio"] },
+  "comba": { "es": "Comba", "en": "Jump rope", "category": "accesorio", "places": ["casa", "gimnasio", "exterior"] },
+  "cuerdas-batida": { "es": "Cuerdas de batida", "en": "Battle ropes", "category": "accesorio", "places": ["gimnasio"] },
+  "trineo": { "es": "Trineo", "en": "Sled", "category": "maquina", "places": ["gimnasio"] }
+}

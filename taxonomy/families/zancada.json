@@ -1,0 +1,92 @@
+{
+  "id": "zancada",
+  "name": {
+    "es": "Zancada",
+    "en": "Lunge"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "fuerza",
+  "position": "de-pie",
+  "laterality": "alterno",
+  "pattern": "zancada",
+  "level": 1,
+  "muscles": {
+    "primary": [
+      "cuadriceps",
+      "gluteo-mayor"
+    ],
+    "secondary": [
+      "aductores",
+      "gluteo-medio"
+    ]
+  },
+  "equipment": [
+    "peso-corporal"
+  ],
+  "demands": [
+    "flexion-profunda-rodilla",
+    "equilibrio"
+  ],
+  "params": {
+    "direccion": [
+      "atras",
+      "lateral"
+    ],
+    "pie-trasero": [
+      "suelo",
+      "banco"
+    ]
+  },
+  "variants": [
+    {
+      "id": "zancada-atras",
+      "name": {
+        "es": "Zancada atrás",
+        "en": "Reverse lunge"
+      },
+      "set": {
+        "direccion": "atras",
+        "pie-trasero": "suelo"
+      }
+    },
+    {
+      "id": "zancada-lateral",
+      "name": {
+        "es": "Zancada lateral",
+        "en": "Lateral lunge"
+      },
+      "set": {
+        "direccion": "lateral",
+        "pie-trasero": "suelo"
+      },
+      "plane": "frontal",
+      "muscles": {
+        "primary": [
+          "cuadriceps",
+          "gluteo-mayor",
+          "aductores"
+        ],
+        "secondary": [
+          "gluteo-medio"
+        ]
+      }
+    },
+    {
+      "id": "sentadilla-bulgara",
+      "name": {
+        "es": "Sentadilla búlgara",
+        "en": "Bulgarian split squat"
+      },
+      "set": {
+        "direccion": "atras",
+        "pie-trasero": "banco"
+      },
+      "laterality": "unilateral",
+      "equipment": [
+        "banco"
+      ],
+      "level": 2
+    }
+  ]
+}

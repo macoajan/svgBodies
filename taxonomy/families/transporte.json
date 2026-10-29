@@ -1,0 +1,98 @@
+{
+  "id": "transporte",
+  "name": {
+    "es": "Transporte de carga",
+    "en": "Loaded carry"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "fuerza",
+  "position": "de-pie",
+  "laterality": "bilateral",
+  "pattern": "transporte",
+  "level": 1,
+  "muscles": {
+    "primary": [
+      "antebrazo",
+      "trapecio"
+    ],
+    "secondary": [
+      "transverso",
+      "gluteo-medio"
+    ]
+  },
+  "equipment": [
+    "kettlebell"
+  ],
+  "demands": [
+    "agarre"
+  ],
+  "params": {
+    "carga": [
+      "dos-manos",
+      "una-mano",
+      "sobre-cabeza"
+    ]
+  },
+  "variants": [
+    {
+      "id": "paseo-granjero",
+      "name": {
+        "es": "Paseo del granjero",
+        "en": "Farmer's walk"
+      },
+      "set": {
+        "carga": "dos-manos"
+      }
+    },
+    {
+      "id": "suitcase-carry",
+      "name": {
+        "es": "Suitcase carry",
+        "en": "Suitcase carry"
+      },
+      "set": {
+        "carga": "una-mano"
+      },
+      "laterality": "unilateral",
+      "patterns2": [
+        "antiflexion-lateral"
+      ],
+      "muscles": {
+        "primary": [
+          "oblicuos",
+          "cuadrado-lumbar",
+          "antebrazo"
+        ],
+        "secondary": [
+          "gluteo-medio"
+        ]
+      }
+    },
+    {
+      "id": "overhead-carry",
+      "name": {
+        "es": "Overhead carry",
+        "en": "Overhead carry"
+      },
+      "set": {
+        "carga": "sobre-cabeza"
+      },
+      "laterality": "unilateral",
+      "level": 2,
+      "muscles": {
+        "primary": [
+          "deltoides",
+          "trapecio"
+        ],
+        "secondary": [
+          "serrato",
+          "oblicuos"
+        ]
+      },
+      "demands": [
+        "brazos-sobre-cabeza"
+      ]
+    }
+  ]
+}

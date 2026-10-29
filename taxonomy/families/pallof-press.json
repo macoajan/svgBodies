@@ -1,0 +1,36 @@
+{
+  "id": "pallof-press",
+  "name": {
+    "es": "Pallof press",
+    "en": "Pallof press"
+  },
+  "plane": "transversal",
+  "mechanics": "isometrico",
+  "action": "estabilidad",
+  "position": "de-pie",
+  "laterality": "bilateral",
+  "pattern": "antirrotacion",
+  "level": 1,
+  "muscles": {
+    "primary": [
+      "oblicuos",
+      "transverso"
+    ],
+    "secondary": [
+      "recto-abdominal"
+    ]
+  },
+  "equipment": [
+    "polea"
+  ],
+  "demands": [],
+  "variants": [
+    {
+      "id": "pallof-press",
+      "name": {
+        "es": "Pallof press",
+        "en": "Pallof press"
+      }
+    }
+  ]
+}

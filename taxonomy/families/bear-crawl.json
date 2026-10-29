@@ -1,0 +1,39 @@
+{
+  "id": "bear-crawl",
+  "name": {
+    "es": "Bear crawl",
+    "en": "Bear crawl"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "resistencia",
+  "position": "cuadrupedia",
+  "laterality": "alterno",
+  "pattern": "locomocion",
+  "level": 2,
+  "muscles": {
+    "primary": [
+      "deltoides-anterior",
+      "cuadriceps"
+    ],
+    "secondary": [
+      "transverso",
+      "serrato"
+    ]
+  },
+  "equipment": [
+    "peso-corporal"
+  ],
+  "demands": [
+    "carga-muneca"
+  ],
+  "variants": [
+    {
+      "id": "bear-crawl",
+      "name": {
+        "es": "Bear crawl",
+        "en": "Bear crawl"
+      }
+    }
+  ]
+}

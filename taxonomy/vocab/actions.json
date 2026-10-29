@@ -1,0 +1,7 @@
+{
+  "fuerza": { "es": "Fuerza", "en": "Strength" },
+  "potencia": { "es": "Potencia", "en": "Power" },
+  "resistencia": { "es": "Resistencia / acondicionamiento", "en": "Conditioning" },
+  "estabilidad": { "es": "Estabilidad / control", "en": "Stability / control" },
+  "movilidad": { "es": "Movilidad", "en": "Mobility" }
+}

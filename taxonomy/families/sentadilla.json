@@ -1,0 +1,155 @@
+{
+  "id": "sentadilla",
+  "name": {
+    "es": "Sentadilla",
+    "en": "Squat"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "fuerza",
+  "position": "de-pie",
+  "laterality": "bilateral",
+  "pattern": "sentadilla",
+  "level": 1,
+  "muscles": {
+    "primary": [
+      "cuadriceps",
+      "gluteo-mayor"
+    ],
+    "secondary": [
+      "aductores",
+      "erectores"
+    ]
+  },
+  "equipment": [
+    "peso-corporal"
+  ],
+  "demands": [
+    "flexion-profunda-rodilla"
+  ],
+  "params": {
+    "implemento": [
+      "peso-corporal",
+      "kettlebell",
+      "barra"
+    ],
+    "carga": [
+      "ninguna",
+      "pecho",
+      "trasera",
+      "frontal"
+    ],
+    "apoyo": [
+      "libre",
+      "cajon"
+    ]
+  },
+  "variants": [
+    {
+      "id": "sentadilla",
+      "name": {
+        "es": "Sentadilla",
+        "en": "Bodyweight squat"
+      },
+      "set": {
+        "implemento": "peso-corporal",
+        "carga": "ninguna",
+        "apoyo": "libre"
+      }
+    },
+    {
+      "id": "sentadilla-goblet",
+      "name": {
+        "es": "Sentadilla goblet",
+        "en": "Goblet squat"
+      },
+      "set": {
+        "implemento": "kettlebell",
+        "carga": "pecho",
+        "apoyo": "libre"
+      },
+      "equipment": [
+        "kettlebell"
+      ]
+    },
+    {
+      "id": "sentadilla-trasera",
+      "name": {
+        "es": "Sentadilla trasera",
+        "en": "Back squat"
+      },
+      "set": {
+        "implemento": "barra",
+        "carga": "trasera",
+        "apoyo": "libre"
+      },
+      "equipment": [
+        "barra",
+        "rack"
+      ],
+      "level": 2,
+      "demands": [
+        "flexion-profunda-rodilla",
+        "carga-axial"
+      ]
+    },
+    {
+      "id": "sentadilla-frontal",
+      "name": {
+        "es": "Sentadilla frontal",
+        "en": "Front squat"
+      },
+      "set": {
+        "implemento": "barra",
+        "carga": "frontal",
+        "apoyo": "libre"
+      },
+      "equipment": [
+        "barra",
+        "rack"
+      ],
+      "level": 3,
+      "demands": [
+        "flexion-profunda-rodilla",
+        "carga-axial",
+        "carga-muneca"
+      ],
+      "muscles": {
+        "primary": [
+          "cuadriceps",
+          "gluteo-mayor"
+        ],
+        "secondary": [
+          "erectores",
+          "recto-abdominal"
+        ]
+      }
+    },
+    {
+      "id": "sentadilla-cajon",
+      "name": {
+        "es": "Sentadilla al cajón",
+        "en": "Box squat"
+      },
+      "set": {
+        "implemento": "peso-corporal",
+        "carga": "ninguna",
+        "apoyo": "cajon"
+      },
+      "equipment": [
+        "cajon"
+      ],
+      "demands": [],
+      "muscles": {
+        "primary": [
+          "gluteo-mayor",
+          "cuadriceps"
+        ],
+        "secondary": [
+          "isquiotibiales",
+          "aductores"
+        ]
+      }
+    }
+  ]
+}

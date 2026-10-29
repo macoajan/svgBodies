@@ -1,0 +1,38 @@
+{
+  "id": "press-banca",
+  "name": {
+    "es": "Press de banca",
+    "en": "Bench press"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "fuerza",
+  "position": "banco",
+  "laterality": "bilateral",
+  "pattern": "empuje-horizontal",
+  "level": 2,
+  "muscles": {
+    "primary": [
+      "pectoral",
+      "triceps"
+    ],
+    "secondary": [
+      "deltoides-anterior"
+    ]
+  },
+  "equipment": [
+    "barra",
+    "banco",
+    "rack"
+  ],
+  "demands": [],
+  "variants": [
+    {
+      "id": "press-banca",
+      "name": {
+        "es": "Press de banca",
+        "en": "Barbell bench press"
+      }
+    }
+  ]
+}

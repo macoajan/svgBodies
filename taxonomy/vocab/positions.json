@@ -1,0 +1,11 @@
+{
+  "de-pie": { "es": "De pie", "en": "Standing" },
+  "suelo-prono": { "es": "Suelo, boca abajo", "en": "Floor, prone" },
+  "suelo-supino": { "es": "Suelo, boca arriba", "en": "Floor, supine" },
+  "suelo-lateral": { "es": "Suelo, de lado", "en": "Floor, side-lying" },
+  "cuadrupedia": { "es": "Cuadrupedia", "en": "Quadruped" },
+  "rodillas": { "es": "De rodillas", "en": "Kneeling" },
+  "banco": { "es": "Sobre banco", "en": "On a bench" },
+  "suspension": { "es": "Suspendido", "en": "Hanging / supported" },
+  "transicion": { "es": "Cambia de posición", "en": "Transitional" }
+}

@@ -3,7 +3,9 @@
 //   library/poses.json                          (sampled 3D poses for native renderers)
 //   library/viewer.js                           (free-camera renderer for poses.json)
 //   library/lote-{a,b,c,d}.html                 (gallery per batch: CSS views + free-camera 3D view)
-//   library/index.html                          (index of batches and exercises)
+//   library/index.html                          (faceted search over the catalogue)
+//   library/catalog.json                        (taxonomy resolved per exercise, for apps)
+//   library/catalog-flags.csv                   (the same as a sparse flag table)
 // Usage: node tools/build.mjs
 import { writeFileSync, readFileSync, mkdirSync, rmSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -13,6 +15,7 @@ import { EXERCISES } from './exercises.mjs';
 import { EXERCISES_B } from './exercises-b.mjs';
 import { EXERCISES_C } from './exercises-c.mjs';
 import { EXERCISES_D } from './exercises-d.mjs';
+import { loadTaxonomy, crossCheck, flagsCsv } from './taxonomy.mjs';
 
 const BATCHES = [['A', 'Lote A · de pie, simétricos', EXERCISES], ['B', 'Lote B · suelo, suspensión y una pierna', EXERCISES_B], ['C', 'Lote C · saltos, desplazamiento y material en movimiento', EXERCISES_C], ['D', 'Lote D · resto del catálogo', EXERCISES_D]];
 
@@ -22,6 +25,16 @@ const VIEWER = readFileSync(join(TOOLS, 'viewer.js'), 'utf8');
 rmSync(join(OUT, 'svg'), { recursive: true, force: true });
 rmSync(join(OUT, 'iso.html'), { force: true });
 const pageOf = b => `lote-${b.toLowerCase()}.html`;
+const TAX = loadTaxonomy(join(TOOLS, '..', 'taxonomy'));
+const ENTRY = Object.fromEntries(TAX.entries.map(e => [e.id, e]));
+const label = (vocab, k) => TAX.vocab[vocab][String(k)].es;
+// Classification chips shown on each gallery card.
+const chips = e => (!e ? '' : `<ul class="tags">${[
+  ['p', label('patterns', e.pattern)], ['n', label('levels', e.level)],
+  ...e.equipment.filter(q => q !== 'peso-corporal' && q !== 'esterilla').map(q => ['m', label('equipment', q)]),
+  ...e.places.map(pl => ['l', label('places', pl)]),
+].map(([c, t]) => `<li class="t-${c}">${t}</li>`).join('')}</ul>`);
+const files = {};
 mkdirSync(join(OUT, 'svg'), { recursive: true });
 
 const cards = { A: [], B: [], C: [], D: [] }, data = [], names = { A: [], B: [], C: [], D: [] };
@@ -34,7 +47,8 @@ for (const [batch, , list] of BATCHES) for (const ex0 of list) {
     writeFileSync(join(OUT, 'svg', `${ex.id}-${view === 'iso' ? 'iso' : VIEWS[view].label}.svg`), renderView(ex, view, s, 64) + '\n');
   data.push(poseData(ex, s));
   names[batch].push([ex.id, ex.name]);
-  cards[batch].push(`<article class="card" id="${ex.id}"><h2>${ex.name}</h2><p>${ex.cue}</p><div class="views">`
+  files[ex.id] = { batch, page: `${pageOf(batch)}#${ex.id}`, views: views.map(v => `svg/${ex.id}-${v === 'iso' ? 'iso' : VIEWS[v].label}.svg`), duration: +s.T.toFixed(2), cue: ex.cue };
+  cards[batch].push(`<article class="card" id="${ex.id}"><h2>${ex.name}</h2><p>${ex.cue}</p>${chips(ENTRY[ex.id])}<div class="views">`
     + views.filter(v => v !== 'iso').map(v => `<figure>${renderView(ex, v, s, 200)}<figcaption>${VIEWS[v].label}</figcaption></figure>`).join('')
     + `<figure><svg class="ex3d" data-ex="${ex.id}" width="200" height="200" viewBox="-7 -15 78 78" fill="none" stroke="#C2410C" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="${ex.name} — vista 3D"></svg><figcaption>Iso · arrastra</figcaption></figure></div></article>`);
   console.log(`${ex.id}: ${s.T.toFixed(2)} s, ${s.frames.length} muestras`);
@@ -45,6 +59,14 @@ const poses = {
 };
 writeFileSync(join(OUT, 'poses.json'), JSON.stringify(poses) + '\n');
 writeFileSync(join(OUT, 'viewer.js'), VIEWER);
+
+// Catalogue: every animation must be classified and every classified variant animated.
+crossCheck(TAX.entries, data.map(d => d.id));
+const vocabLabels = Object.fromEntries(Object.entries(TAX.vocab).map(([k, terms]) =>
+  [k, Object.fromEntries(Object.entries(terms).map(([id, t]) => [id, { es: t.es, en: t.en, ...(t.parent ? { parent: t.parent } : {}) }]))]));
+const catalog = { vocab: vocabLabels, exercises: TAX.entries.map(e => ({ ...e, animation: files[e.id] })) };
+writeFileSync(join(OUT, 'catalog.json'), JSON.stringify(catalog, null, 1) + '\n');
+writeFileSync(join(OUT, 'catalog-flags.csv'), flagsCsv(TAX.entries, TAX.vocab));
 
 const CSS = `:root{--ground:#F3F6F5;--card:#FFFFFF;--ink:#0F2A3D;--muted:#44596B;--accent:#C2410C}
 *{box-sizing:border-box}
@@ -74,6 +96,23 @@ figcaption{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:upp
 .toc h2{margin:0 0 8px;font-size:18px}
 .toc ul{margin:0;padding-left:18px;line-height:1.7}
 .toc a{color:var(--ink)}
+.tags{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.tags li{font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;background:#E2EAEF;color:var(--ink)}
+.tags .t-p{background:var(--ink);color:#fff}
+.tags .t-n{background:#FDEEE6;color:#9A3412}
+.search{display:grid;grid-template-columns:minmax(220px,280px) 1fr;gap:16px;align-items:start}
+@media (max-width:720px){.search{grid-template-columns:1fr}}
+.facets{background:var(--card);border-radius:18px;padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.facets input[type=search]{font:inherit;padding:8px 10px;border:1px solid #C9D3DB;border-radius:10px}
+.facets details{border-top:1px solid #E2EAEF;padding-top:6px}
+.facets summary{font-weight:800;cursor:pointer;color:var(--ink)}
+.facets label{display:flex;gap:6px;align-items:center;font-size:14px;color:var(--ink-2,#2B3F50);padding:1px 0}
+.facets label small{color:var(--muted);margin-left:auto}
+.facets button{font:inherit;border:0;background:none;color:var(--accent);font-weight:700;cursor:pointer;text-align:left;padding:4px 0}
+.results{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+.results a{background:var(--card);border-radius:14px;padding:10px;display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--ink);text-decoration:none;font-weight:700;font-size:14px;text-align:center}
+.results img{width:100%;max-width:130px;aspect-ratio:1}
+.count{margin:0;color:var(--muted)}
 `;
 const nav = cur => `<nav class="nav">${BATCHES.map(([b]) => `<a href="${pageOf(b)}"${b === cur ? ' aria-current="page"' : ''}>Lote ${b}</a>`).join('')}<a href="index.html">Índice</a></nav>`;
 const shell = (title, inner, script = '') => `<!doctype html>
@@ -141,10 +180,62 @@ const POSES = ${JSON.stringify(subset)};
 </script>`));
 }
 
+// Index: faceted search. Several values in one facet = any of them; facets combine with AND;
+// demands work the other way round (tick to exclude exercises that have them).
+const FACET_UI = [
+  ['Patrón', 'patterns', e => [e.pattern, ...e.patterns2]],
+  ['Músculo', 'muscles', e => e.muscleGroups],
+  ['Material', 'equipment', e => e.equipment],
+  ['Lugar', 'places', e => e.places],
+  ['Posición', 'positions', e => [e.position]],
+  ['Nivel', 'levels', e => [String(e.level)]],
+  ['Objetivo', 'actions', e => [e.action]],
+  ['Lateralidad', 'laterality', e => [e.laterality]],
+  ['Plano', 'planes', e => [e.plane]],
+  ['Excluir exigencias', 'demands', e => e.demands, true],
+];
+const lite = TAX.entries.map(e => ({
+  id: e.id, name: e.name.es, page: files[e.id].page, img: files[e.id].views[0],
+  f: Object.fromEntries(FACET_UI.map(([, v, get]) => [v, get(e).map(String)])),
+}));
+const depth = (v, k) => { let d = 0; for (let p = TAX.vocab[v][k].parent; p; p = TAX.vocab[v][p].parent) d++; return d; };
+const facetHtml = FACET_UI.map(([title, v, , exclude]) => {
+  const used = new Set(lite.flatMap(e => e.f[v]));
+  const keys = Object.keys(TAX.vocab[v]).filter(k => used.has(k));
+  return `<details${v === 'patterns' ? ' open' : ''}><summary>${title}</summary>${keys.map(k => {
+    const n = lite.filter(e => e.f[v].includes(k)).length;
+    return `<label style="padding-left:${depth(v, k) * 14}px"><input type="checkbox" data-f="${v}" value="${k}"${exclude ? ' data-x="1"' : ''}>${TAX.vocab[v][k].es}<small>${n}</small></label>`;
+  }).join('')}</details>`;
+}).join('\n');
+
 writeFileSync(join(OUT, 'index.html'), shell('Ejercicios funcionales', `<h1>Ejercicios funcionales</h1>
 ${nav(null)}
-<p class="lead">${data.length} ejercicios en ${BATCHES.length} lotes. Cada ejercicio tiene dos vistas animadas con CSS (SVG autónomos en <code>svg/</code>) y una vista 3D con cámara libre a partir de <code>poses.json</code>.</p>
-<div class="toc">
-${BATCHES.map(([b, title]) => `<section><h2><a href="${pageOf(b)}">${title}</a></h2><ul>${names[b].map(([id, n]) => `<li><a href="${pageOf(b)}#${id}">${n}</a></li>`).join('')}</ul></section>`).join('\n')}
-</div>`));
+<p class="lead">${data.length} ejercicios (${TAX.families.length} familias) clasificados por varios criterios a la vez. Dentro de un criterio se combinan con «o», entre criterios con «y»; las exigencias marcadas excluyen. Datos: <code>catalog.json</code> y <code>catalog-flags.csv</code>.</p>
+<div class="search">
+<aside class="facets">
+<input id="q" type="search" placeholder="Buscar por nombre" aria-label="Buscar por nombre">
+<button id="clear" type="button">Quitar filtros</button>
+${facetHtml}
+</aside>
+<section><p class="count" id="count"></p><div class="results" id="results"></div></section>
+</div>`, `<script>
+const CAT = ${JSON.stringify(lite)};
+(function () {
+  const boxes = [...document.querySelectorAll('.facets input[type=checkbox]')], q = document.getElementById('q');
+  const results = document.getElementById('results'), count = document.getElementById('count');
+  function run() {
+    const inc = {}, exc = new Set(), text = q.value.trim().toLowerCase();
+    for (const b of boxes) if (b.checked) { if (b.dataset.x) exc.add(b.value); else (inc[b.dataset.f] ||= []).push(b.value); }
+    const hits = CAT.filter(e => (!text || e.name.toLowerCase().includes(text))
+      && Object.entries(inc).every(([f, vals]) => vals.some(v => e.f[f].includes(v)))
+      && !e.f.demands.some(d => exc.has(d)));
+    count.textContent = hits.length + ' de ' + CAT.length + ' ejercicios';
+    results.innerHTML = hits.map(e => '<a href="' + e.page + '"><img src="' + e.img + '" alt="" loading="lazy">' + e.name + '</a>').join('');
+  }
+  boxes.forEach(b => b.addEventListener('change', run));
+  q.addEventListener('input', run);
+  document.getElementById('clear').addEventListener('click', () => { boxes.forEach(b => (b.checked = false)); q.value = ''; run(); });
+  run();
+})();
+</script>`));
 console.log('library/ listo');

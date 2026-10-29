@@ -1,0 +1,110 @@
+{
+  "id": "remo",
+  "name": {
+    "es": "Remo",
+    "en": "Row"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "fuerza",
+  "position": "de-pie",
+  "laterality": "bilateral",
+  "pattern": "traccion-horizontal",
+  "level": 1,
+  "muscles": {
+    "primary": [
+      "dorsal",
+      "romboides"
+    ],
+    "secondary": [
+      "deltoides-posterior",
+      "biceps",
+      "trapecio"
+    ]
+  },
+  "equipment": [
+    "peso-corporal"
+  ],
+  "demands": [
+    "agarre"
+  ],
+  "params": {
+    "implemento": [
+      "barra",
+      "mancuerna",
+      "peso-corporal"
+    ],
+    "apoyo": [
+      "de-pie",
+      "banco",
+      "talones"
+    ]
+  },
+  "variants": [
+    {
+      "id": "remo-con-barra",
+      "name": {
+        "es": "Remo con barra",
+        "en": "Bent-over barbell row"
+      },
+      "set": {
+        "implemento": "barra",
+        "apoyo": "de-pie"
+      },
+      "equipment": [
+        "barra"
+      ],
+      "level": 2,
+      "demands": [
+        "flexion-cadera-cargada",
+        "agarre"
+      ],
+      "muscles": {
+        "primary": [
+          "dorsal",
+          "romboides"
+        ],
+        "secondary": [
+          "deltoides-posterior",
+          "biceps",
+          "erectores"
+        ]
+      }
+    },
+    {
+      "id": "remo-mancuerna",
+      "name": {
+        "es": "Remo con mancuerna",
+        "en": "One-arm dumbbell row"
+      },
+      "set": {
+        "implemento": "mancuerna",
+        "apoyo": "banco"
+      },
+      "position": "banco",
+      "laterality": "unilateral",
+      "equipment": [
+        "mancuerna",
+        "banco"
+      ],
+      "demands": [
+        "apoyo-rodilla"
+      ]
+    },
+    {
+      "id": "remo-invertido",
+      "name": {
+        "es": "Remo invertido",
+        "en": "Inverted row"
+      },
+      "set": {
+        "implemento": "peso-corporal",
+        "apoyo": "talones"
+      },
+      "position": "suspension",
+      "equipment": [
+        "barra-baja"
+      ]
+    }
+  ]
+}

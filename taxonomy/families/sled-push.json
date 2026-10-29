@@ -1,0 +1,38 @@
+{
+  "id": "sled-push",
+  "name": {
+    "es": "Sled push",
+    "en": "Sled push"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "potencia",
+  "position": "de-pie",
+  "laterality": "alterno",
+  "pattern": "locomocion",
+  "level": 2,
+  "muscles": {
+    "primary": [
+      "cuadriceps",
+      "gluteo-mayor"
+    ],
+    "secondary": [
+      "gemelos",
+      "triceps",
+      "deltoides-anterior"
+    ]
+  },
+  "equipment": [
+    "trineo"
+  ],
+  "demands": [],
+  "variants": [
+    {
+      "id": "sled-push",
+      "name": {
+        "es": "Sled push",
+        "en": "Sled push"
+      }
+    }
+  ]
+}

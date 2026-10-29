@@ -1,0 +1,40 @@
+{
+  "id": "rueda-abdominal",
+  "name": {
+    "es": "Rueda abdominal",
+    "en": "Ab wheel"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "fuerza",
+  "position": "rodillas",
+  "laterality": "bilateral",
+  "pattern": "antiextension",
+  "level": 3,
+  "muscles": {
+    "primary": [
+      "recto-abdominal",
+      "transverso"
+    ],
+    "secondary": [
+      "dorsal",
+      "serrato"
+    ]
+  },
+  "equipment": [
+    "rueda-abdominal"
+  ],
+  "demands": [
+    "apoyo-rodilla",
+    "brazos-sobre-cabeza"
+  ],
+  "variants": [
+    {
+      "id": "rueda-abdominal",
+      "name": {
+        "es": "Rueda abdominal",
+        "en": "Ab wheel rollout"
+      }
+    }
+  ]
+}

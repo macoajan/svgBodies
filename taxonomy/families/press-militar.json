@@ -1,0 +1,42 @@
+{
+  "id": "press-militar",
+  "name": {
+    "es": "Press militar",
+    "en": "Overhead press"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "fuerza",
+  "position": "de-pie",
+  "laterality": "bilateral",
+  "pattern": "empuje-vertical",
+  "level": 2,
+  "muscles": {
+    "primary": [
+      "deltoides-anterior",
+      "triceps"
+    ],
+    "secondary": [
+      "deltoides-lateral",
+      "trapecio",
+      "serrato"
+    ]
+  },
+  "equipment": [
+    "barra",
+    "rack"
+  ],
+  "demands": [
+    "brazos-sobre-cabeza",
+    "carga-axial"
+  ],
+  "variants": [
+    {
+      "id": "press-militar",
+      "name": {
+        "es": "Press militar",
+        "en": "Barbell overhead press"
+      }
+    }
+  ]
+}

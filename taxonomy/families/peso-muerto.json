@@ -1,0 +1,109 @@
+{
+  "id": "peso-muerto",
+  "name": {
+    "es": "Peso muerto",
+    "en": "Deadlift"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "fuerza",
+  "position": "de-pie",
+  "laterality": "bilateral",
+  "pattern": "bisagra",
+  "level": 2,
+  "muscles": {
+    "primary": [
+      "gluteo-mayor",
+      "isquiotibiales",
+      "erectores"
+    ],
+    "secondary": [
+      "cuadriceps",
+      "trapecio",
+      "antebrazo"
+    ]
+  },
+  "equipment": [
+    "barra"
+  ],
+  "demands": [
+    "carga-axial",
+    "flexion-cadera-cargada",
+    "agarre"
+  ],
+  "params": {
+    "implemento": [
+      "barra",
+      "kettlebell"
+    ],
+    "variante": [
+      "convencional",
+      "rumano",
+      "una-pierna"
+    ]
+  },
+  "variants": [
+    {
+      "id": "peso-muerto",
+      "name": {
+        "es": "Peso muerto",
+        "en": "Conventional deadlift"
+      },
+      "set": {
+        "implemento": "barra",
+        "variante": "convencional"
+      }
+    },
+    {
+      "id": "peso-muerto-rumano",
+      "name": {
+        "es": "Peso muerto rumano",
+        "en": "Romanian deadlift"
+      },
+      "set": {
+        "implemento": "barra",
+        "variante": "rumano"
+      },
+      "muscles": {
+        "primary": [
+          "isquiotibiales",
+          "gluteo-mayor"
+        ],
+        "secondary": [
+          "erectores",
+          "antebrazo"
+        ]
+      }
+    },
+    {
+      "id": "peso-muerto-una-pierna",
+      "name": {
+        "es": "Peso muerto a una pierna",
+        "en": "Single-leg Romanian deadlift"
+      },
+      "set": {
+        "implemento": "kettlebell",
+        "variante": "una-pierna"
+      },
+      "laterality": "unilateral",
+      "equipment": [
+        "kettlebell"
+      ],
+      "level": 3,
+      "demands": [
+        "flexion-cadera-cargada",
+        "equilibrio"
+      ],
+      "muscles": {
+        "primary": [
+          "isquiotibiales",
+          "gluteo-mayor"
+        ],
+        "secondary": [
+          "gluteo-medio",
+          "erectores"
+        ]
+      }
+    }
+  ]
+}
