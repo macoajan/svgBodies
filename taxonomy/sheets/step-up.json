@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "De pie frente a un escalón o cajón estable.",
+    "steps": [
+      "Apoya todo un pie en el escalón.",
+      "Sube empujando con esa pierna hasta quedar de pie arriba.",
+      "Baja despacio con la misma pierna y repite; después cambia."
+    ],
+    "avoid": [
+      "No te impulses con la pierna de abajo.",
+      "No dejes que la rodilla se vaya hacia dentro."
+    ]
+  },
+  "pro": {
+    "goal": "Fortalecimiento funcional unilateral de cuádriceps y glúteo.",
+    "notes": [
+      "La altura del escalón regula la exigencia.",
+      "Transferencia directa a subir escaleras.",
+      "Progresión: bajada de escalón (control excéntrico)."
+    ]
+  }
+}

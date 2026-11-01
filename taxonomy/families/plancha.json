@@ -40,7 +40,15 @@
       },
       "set": {
         "apoyo": "frontal"
-      }
+      },
+      "regions": [
+        "lumbar"
+      ],
+      "goals": [
+        "isometria",
+        "control-motor"
+      ],
+      "mode": "activo"
     },
     {
       "id": "plancha-lateral",

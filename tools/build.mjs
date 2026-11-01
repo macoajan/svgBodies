@@ -2,7 +2,7 @@
 //   library/svg/<id>-{lateral,frontal,iso}.svg  (self-contained animated SVGs, CSS only)
 //   library/poses.json                          (sampled 3D poses for native renderers)
 //   library/viewer.js                           (free-camera renderer for poses.json)
-//   library/lote-{a..e}.html                     (gallery per batch: CSS views + free-camera 3D view)
+//   library/lote-{a..f}.html                     (gallery per batch: CSS views + free-camera 3D view)
 //   library/index.html                          (faceted search over the catalogue)
 //   library/catalog.json                        (taxonomy resolved per exercise, for apps)
 //   library/catalog-flags.csv                   (the same as a sparse flag table)
@@ -16,9 +16,10 @@ import { EXERCISES_B } from './exercises-b.mjs';
 import { EXERCISES_C } from './exercises-c.mjs';
 import { EXERCISES_D } from './exercises-d.mjs';
 import { EXERCISES_E } from './exercises-e.mjs';
+import { EXERCISES_F } from './exercises-f.mjs';
 import { loadTaxonomy, crossCheck, flagsCsv } from './taxonomy.mjs';
 
-const BATCHES = [['A', 'Lote A · de pie, simétricos', EXERCISES], ['B', 'Lote B · suelo, suspensión y una pierna', EXERCISES_B], ['C', 'Lote C · saltos, desplazamiento y material en movimiento', EXERCISES_C], ['D', 'Lote D · resto del catálogo', EXERCISES_D], ['E', 'Lote E · movilidad, estiramientos, carrera y saltos', EXERCISES_E]];
+const BATCHES = [['A', 'Lote A · de pie, simétricos', EXERCISES], ['B', 'Lote B · suelo, suspensión y una pierna', EXERCISES_B], ['C', 'Lote C · saltos, desplazamiento y material en movimiento', EXERCISES_C], ['D', 'Lote D · resto del catálogo', EXERCISES_D], ['E', 'Lote E · movilidad, estiramientos, carrera y saltos', EXERCISES_E], ['F', 'Lote F · ejercicio terapéutico (piloto)', EXERCISES_F]];
 
 const TOOLS = dirname(fileURLToPath(import.meta.url));
 const OUT = join(TOOLS, '..', 'library');
@@ -185,6 +186,8 @@ const POSES = ${JSON.stringify(subset)};
 // demands work the other way round (tick to exclude exercises that have them).
 const FACET_UI = [
   ['Patrón', 'patterns', e => [e.pattern, ...e.patterns2]],
+  ['Región (terapéutico)', 'regions', e => e.regions || []],
+  ['Objetivo terapéutico', 'therapy-goals', e => e.goals || []],
   ['Músculo', 'muscles', e => e.muscleGroups],
   ['Material', 'equipment', e => e.equipment],
   ['Lugar', 'places', e => e.places],

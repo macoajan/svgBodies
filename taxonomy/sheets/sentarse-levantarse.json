@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "Siéntate en el borde de una silla firme, con los pies apoyados un poco por detrás de las rodillas y los brazos cruzados sobre el pecho.",
+    "steps": [
+      "Inclina el tronco hacia delante.",
+      "Levántate empujando con las dos piernas por igual hasta quedar de pie.",
+      "Siéntate despacio, controlando la bajada."
+    ],
+    "avoid": [
+      "No te dejes caer en la silla.",
+      "No te ayudes con las manos (salvo que te lo indiquen)."
+    ]
+  },
+  "pro": {
+    "goal": "Fortalecimiento funcional del miembro inferior basado en una actividad de la vida diaria.",
+    "notes": [
+      "Variante útil como medida (prueba de 30 s o de cinco repeticiones).",
+      "Regresión: silla más alta o con apoyo de manos; progresión: silla más baja, lastre o a una pierna.",
+      "Vigilar el reparto simétrico de la carga."
+    ]
+  }
+}

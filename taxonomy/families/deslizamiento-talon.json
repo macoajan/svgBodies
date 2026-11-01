@@ -1,0 +1,45 @@
+{
+  "id": "deslizamiento-talon",
+  "name": {
+    "es": "Deslizamiento de talón",
+    "en": "Heel slide"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "movilidad",
+  "position": "suelo-supino",
+  "laterality": "unilateral",
+  "pattern": "movilidad",
+  "level": 1,
+  "muscles": {
+    "primary": [
+      "isquiotibiales"
+    ],
+    "secondary": [
+      "flexores-cadera"
+    ]
+  },
+  "equipment": [
+    "esterilla"
+  ],
+  "demands": [
+    "decubito"
+  ],
+  "variants": [
+    {
+      "id": "deslizamiento-talon",
+      "name": {
+        "es": "Deslizamiento de talón",
+        "en": "Heel slide"
+      },
+      "regions": [
+        "rodilla",
+        "cadera"
+      ],
+      "goals": [
+        "movilidad-activa"
+      ],
+      "mode": "activo"
+    }
+  ]
+}

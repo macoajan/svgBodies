@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "Ponte a cuatro patas con las manos bajo los hombros y las rodillas bajo la cadera.",
+    "steps": [
+      "Estira un brazo hacia delante y la pierna contraria hacia atrás.",
+      "Mantén un momento con la espalda quieta.",
+      "Vuelve despacio y repite con el otro lado."
+    ],
+    "avoid": [
+      "No gires la pelvis.",
+      "No arquees la zona lumbar ni dejes caer la cabeza."
+    ]
+  },
+  "pro": {
+    "goal": "Control motor y estabilidad lumbopélvica en cuadrupedia.",
+    "notes": [
+      "Regresión: mover sólo un brazo o sólo una pierna.",
+      "Útil en dolor lumbar por la baja carga compresiva sobre la columna.",
+      "Comprobar la estabilidad pélvica (p. ej. con un objeto sobre la zona lumbar)."
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "id": "extension-rodilla",
+  "name": {
+    "es": "Extensión de rodilla",
+    "en": "Knee extension"
+  },
+  "plane": "sagital",
+  "mechanics": "aislado",
+  "action": "fuerza",
+  "position": "suelo-supino",
+  "laterality": "unilateral",
+  "pattern": "analitico",
+  "level": 1,
+  "muscles": {
+    "primary": [
+      "cuadriceps"
+    ],
+    "secondary": []
+  },
+  "equipment": [
+    "rodillo"
+  ],
+  "demands": [
+    "decubito"
+  ],
+  "params": {
+    "posicion": [
+      "supino-rodillo",
+      "sentado"
+    ]
+  },
+  "variants": [
+    {
+      "id": "extension-rodilla-rodillo",
+      "name": {
+        "es": "Extensión de rodilla sobre rodillo",
+        "en": "Short-arc quad"
+      },
+      "set": {
+        "posicion": "supino-rodillo"
+      },
+      "regions": [
+        "rodilla"
+      ],
+      "goals": [
+        "fortalecimiento",
+        "control-motor"
+      ],
+      "mode": "activo",
+      "progressions": [
+        "elevacion-pierna-recta",
+        "extension-rodilla-sentado"
+      ]
+    },
+    {
+      "id": "extension-rodilla-sentado",
+      "name": {
+        "es": "Extensión de rodilla sentado",
+        "en": "Seated knee extension"
+      },
+      "set": {
+        "posicion": "sentado"
+      },
+      "position": "sentado",
+      "equipment": [
+        "silla"
+      ],
+      "demands": [],
+      "regions": [
+        "rodilla"
+      ],
+      "goals": [
+        "fortalecimiento"
+      ],
+      "mode": "activo",
+      "progressions": [
+        "sentarse-levantarse",
+        "sentadilla-pared"
+      ]
+    }
+  ]
+}

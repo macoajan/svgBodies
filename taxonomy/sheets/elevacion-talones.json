@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "De pie frente a una pared, con los pies a la anchura de las caderas y las manos apoyadas en ella.",
+    "steps": [
+      "Sube despacio de puntillas todo lo que puedas.",
+      "Mantén un momento arriba.",
+      "Baja controlando hasta apoyar de nuevo los talones."
+    ],
+    "avoid": [
+      "No eches el cuerpo hacia delante ni te cuelgues de la pared.",
+      "No dejes que los tobillos se vayan hacia fuera."
+    ]
+  },
+  "pro": {
+    "goal": "Fortalecimiento concéntrico y excéntrico del tríceps sural en carga bipodal.",
+    "notes": [
+      "El apoyo de las manos es para equilibrarse, no para descargar peso.",
+      "Vigilar la alineación del retropié (sin inversión al subir).",
+      "Progresar el tiempo de bajada antes de pasar a una pierna."
+    ]
+  }
+}

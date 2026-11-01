@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "Túmbate boca arriba con un rodillo o una toalla enrollada debajo de las rodillas.",
+    "steps": [
+      "Tensa el muslo y estira una rodilla levantando el talón.",
+      "Mantén la pierna estirada unos segundos.",
+      "Baja despacio y repite; después cambia de pierna."
+    ],
+    "avoid": [
+      "No despegues la parte de atrás del muslo del rodillo.",
+      "No dejes que la punta del pie se caiga."
+    ]
+  },
+  "pro": {
+    "goal": "Activación del cuádriceps en los últimos grados de extensión de rodilla (arco corto).",
+    "notes": [
+      "Objetivo: recuperar la extensión activa completa y el control del vasto medial.",
+      "Útil cuando hay déficit de extensión activa (lag) tras cirugía de rodilla.",
+      "Aumentar el tiempo de mantenimiento antes que el número de repeticiones."
+    ]
+  }
+}

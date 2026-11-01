@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "De pie, inclínate hacia delante y apoya una mano en una mesa. Deja colgar el otro brazo relajado.",
+    "steps": [
+      "Balancea suavemente el cuerpo para que el brazo que cuelga dibuje círculos pequeños.",
+      "Haz círculos en un sentido y después en el otro.",
+      "Mantén el hombro y el brazo relajados durante todo el ejercicio."
+    ],
+    "avoid": [
+      "No muevas el brazo con fuerza: el movimiento sale del cuerpo.",
+      "No encojas el hombro."
+    ]
+  },
+  "pro": {
+    "goal": "Movilización pasiva-autoasistida de la glenohumeral con descompresión por gravedad.",
+    "notes": [
+      "Indicado en fases iniciales (postoperatorio, capsulitis, dolor agudo).",
+      "El paciente no debe activar el deltoides; el movimiento lo genera el balanceo del tronco.",
+      "Pueden hacerse también balanceos adelante-atrás y laterales."
+    ]
+  }
+}

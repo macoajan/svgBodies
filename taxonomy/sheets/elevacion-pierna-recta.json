@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "Túmbate boca arriba con una rodilla doblada y el pie apoyado; la otra pierna, estirada.",
+    "steps": [
+      "Tensa el muslo de la pierna estirada, con la punta del pie hacia ti.",
+      "Eleva la pierna recta hasta la altura de la otra rodilla.",
+      "Baja despacio sin dejar de tensar el muslo y repite; después cambia de pierna."
+    ],
+    "avoid": [
+      "No dobles la rodilla al subir.",
+      "No arquees la zona lumbar."
+    ]
+  },
+  "pro": {
+    "goal": "Fortalecimiento del cuádriceps y de los flexores de cadera con la rodilla bloqueada en extensión.",
+    "notes": [
+      "Exige extensión activa completa: si la rodilla se dobla al subir, volver a la extensión sobre rodillo.",
+      "La rodilla contraria flexionada protege la zona lumbar.",
+      "Progresión con lastre en el tobillo."
+    ]
+  }
+}

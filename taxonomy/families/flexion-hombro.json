@@ -1,0 +1,49 @@
+{
+  "id": "flexion-hombro",
+  "name": {
+    "es": "Flexión de hombro",
+    "en": "Shoulder flexion"
+  },
+  "plane": "sagital",
+  "mechanics": "aislado",
+  "action": "movilidad",
+  "position": "suelo-supino",
+  "laterality": "bilateral",
+  "pattern": "movilidad",
+  "level": 1,
+  "muscles": {
+    "primary": [
+      "deltoides-anterior"
+    ],
+    "secondary": [
+      "serrato"
+    ]
+  },
+  "equipment": [
+    "baston",
+    "esterilla"
+  ],
+  "demands": [
+    "decubito",
+    "brazos-sobre-cabeza"
+  ],
+  "variants": [
+    {
+      "id": "flexion-hombro-baston",
+      "name": {
+        "es": "Flexión de hombro con bastón",
+        "en": "Supine stick shoulder flexion"
+      },
+      "regions": [
+        "hombro"
+      ],
+      "goals": [
+        "movilidad-autoasistida"
+      ],
+      "mode": "autoasistido",
+      "progressions": [
+        "deslizamiento-pared"
+      ]
+    }
+  ]
+}

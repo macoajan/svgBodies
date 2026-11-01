@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "De pie con la espalda apoyada en la pared y los pies un paso por delante, a la anchura de las caderas.",
+    "steps": [
+      "Desliza la espalda por la pared doblando las rodillas.",
+      "Baja hasta donde te hayan indicado, sin pasar de 90°, y mantén la posición.",
+      "Sube deslizando la espalda hasta quedar de pie."
+    ],
+    "avoid": [
+      "No dejes que las rodillas se junten hacia dentro.",
+      "No despegues la espalda ni los talones."
+    ]
+  },
+  "pro": {
+    "goal": "Fortalecimiento isométrico del cuádriceps a un ángulo controlado.",
+    "notes": [
+      "El ángulo de flexión se ajusta a la tolerancia y la fase; ángulos menores, menor carga femoropatelar.",
+      "Las isometrías pueden tener efecto analgésico en tendinopatía rotuliana.",
+      "Progresar el tiempo de mantenimiento o el ángulo."
+    ]
+  }
+}

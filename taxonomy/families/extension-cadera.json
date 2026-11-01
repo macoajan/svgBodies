@@ -1,0 +1,50 @@
+{
+  "id": "extension-cadera",
+  "name": {
+    "es": "Extensión de cadera",
+    "en": "Hip extension"
+  },
+  "plane": "sagital",
+  "mechanics": "aislado",
+  "action": "fuerza",
+  "position": "suelo-prono",
+  "laterality": "unilateral",
+  "pattern": "analitico",
+  "level": 1,
+  "muscles": {
+    "primary": [
+      "gluteo-mayor"
+    ],
+    "secondary": [
+      "isquiotibiales",
+      "erectores"
+    ]
+  },
+  "equipment": [
+    "esterilla"
+  ],
+  "demands": [
+    "decubito"
+  ],
+  "variants": [
+    {
+      "id": "extension-cadera-prono",
+      "name": {
+        "es": "Extensión de cadera boca abajo",
+        "en": "Prone hip extension"
+      },
+      "regions": [
+        "cadera",
+        "lumbar"
+      ],
+      "goals": [
+        "fortalecimiento",
+        "control-motor"
+      ],
+      "mode": "activo",
+      "progressions": [
+        "bird-dog"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "_note": "Objetivo terapéutico del ejercicio. Varios a la vez si procede.",
+  "movilidad-activa": { "es": "Movilidad activa", "en": "Active range of motion" },
+  "movilidad-autoasistida": { "es": "Movilidad autoasistida", "en": "Self-assisted range of motion" },
+  "isometria": { "es": "Isometría", "en": "Isometric strengthening" },
+  "fortalecimiento": { "es": "Fortalecimiento", "en": "Strengthening" },
+  "excentrico": { "es": "Trabajo excéntrico", "en": "Eccentric loading" },
+  "control-motor": { "es": "Control motor", "en": "Motor control" },
+  "propiocepcion": { "es": "Propiocepción y equilibrio", "en": "Proprioception and balance" },
+  "flexibilidad": { "es": "Flexibilidad", "en": "Flexibility" },
+  "circulatorio": { "es": "Retorno venoso / circulatorio", "en": "Circulation / venous return" },
+  "funcional": { "es": "Funcional (actividades diarias)", "en": "Functional (daily activities)" }
+}

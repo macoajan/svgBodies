@@ -1,0 +1,11 @@
+{
+  "_note": "Región corporal a la que se dirige el ejercicio terapéutico. Descriptiva: no implica diagnóstico ni indicación clínica.",
+  "cervical": { "es": "Columna cervical", "en": "Cervical spine" },
+  "dorsal": { "es": "Columna dorsal", "en": "Thoracic spine" },
+  "lumbar": { "es": "Columna lumbar y pelvis", "en": "Lumbar spine and pelvis" },
+  "hombro": { "es": "Hombro", "en": "Shoulder" },
+  "codo-muneca": { "es": "Codo, muñeca y mano", "en": "Elbow, wrist and hand" },
+  "cadera": { "es": "Cadera", "en": "Hip" },
+  "rodilla": { "es": "Rodilla", "en": "Knee" },
+  "tobillo-pie": { "es": "Tobillo y pie", "en": "Ankle and foot" }
+}

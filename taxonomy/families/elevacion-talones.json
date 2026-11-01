@@ -1,0 +1,76 @@
+{
+  "id": "elevacion-talones",
+  "name": {
+    "es": "Elevación de talones",
+    "en": "Heel raise"
+  },
+  "plane": "sagital",
+  "mechanics": "aislado",
+  "action": "fuerza",
+  "position": "de-pie",
+  "laterality": "bilateral",
+  "pattern": "analitico",
+  "level": 1,
+  "muscles": {
+    "primary": [
+      "gemelos",
+      "soleo"
+    ],
+    "secondary": []
+  },
+  "equipment": [
+    "pared"
+  ],
+  "demands": [],
+  "params": {
+    "apoyo": [
+      "bipodal",
+      "unipodal"
+    ]
+  },
+  "variants": [
+    {
+      "id": "elevacion-talones",
+      "name": {
+        "es": "Elevación de talones",
+        "en": "Double-leg heel raise"
+      },
+      "set": {
+        "apoyo": "bipodal"
+      },
+      "regions": [
+        "tobillo-pie"
+      ],
+      "goals": [
+        "fortalecimiento"
+      ],
+      "mode": "activo",
+      "progressions": [
+        "elevacion-talones-unipodal"
+      ]
+    },
+    {
+      "id": "elevacion-talones-unipodal",
+      "name": {
+        "es": "Elevación de talones a una pierna",
+        "en": "Single-leg heel raise"
+      },
+      "set": {
+        "apoyo": "unipodal"
+      },
+      "laterality": "unilateral",
+      "level": 2,
+      "demands": [
+        "equilibrio"
+      ],
+      "regions": [
+        "tobillo-pie"
+      ],
+      "goals": [
+        "fortalecimiento",
+        "propiocepcion"
+      ],
+      "mode": "activo"
+    }
+  ]
+}

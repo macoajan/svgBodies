@@ -1,0 +1,46 @@
+{
+  "id": "bajada-escalon",
+  "name": {
+    "es": "Bajada de escalón",
+    "en": "Step-down"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "fuerza",
+  "position": "de-pie",
+  "laterality": "unilateral",
+  "pattern": "zancada",
+  "level": 2,
+  "muscles": {
+    "primary": [
+      "cuadriceps"
+    ],
+    "secondary": [
+      "gluteo-medio",
+      "gluteo-mayor"
+    ]
+  },
+  "equipment": [
+    "escalon"
+  ],
+  "demands": [
+    "equilibrio"
+  ],
+  "variants": [
+    {
+      "id": "bajada-escalon",
+      "name": {
+        "es": "Bajada de escalón",
+        "en": "Forward step-down"
+      },
+      "regions": [
+        "rodilla"
+      ],
+      "goals": [
+        "excentrico",
+        "control-motor"
+      ],
+      "mode": "activo"
+    }
+  ]
+}

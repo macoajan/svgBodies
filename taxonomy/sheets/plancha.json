@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "Túmbate boca abajo y apóyate en los antebrazos, con los codos bajo los hombros.",
+    "steps": [
+      "Levanta el cuerpo apoyado en antebrazos y puntas de los pies.",
+      "Mantén el cuerpo recto de los talones a la cabeza.",
+      "Respira con calma durante el tiempo indicado."
+    ],
+    "avoid": [
+      "No dejes caer la cadera.",
+      "No subas la cadera en exceso."
+    ]
+  },
+  "pro": {
+    "goal": "Resistencia isométrica de la musculatura del tronco.",
+    "notes": [
+      "Regresión: apoyo en las rodillas o con las manos en una superficie elevada.",
+      "Interrumpir cuando se pierda la alineación, no por el tiempo.",
+      "Vigilar la tolerancia de hombros y la presión arterial."
+    ]
+  }
+}

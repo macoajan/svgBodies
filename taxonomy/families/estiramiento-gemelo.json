@@ -29,7 +29,14 @@
       "name": {
         "es": "Estiramiento de gemelo en pared",
         "en": "Wall calf stretch"
-      }
+      },
+      "regions": [
+        "tobillo-pie"
+      ],
+      "goals": [
+        "flexibilidad"
+      ],
+      "mode": "activo"
     }
   ]
 }

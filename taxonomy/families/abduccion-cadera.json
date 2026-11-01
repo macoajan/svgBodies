@@ -1,0 +1,44 @@
+{
+  "id": "abduccion-cadera",
+  "name": {
+    "es": "Abducción de cadera",
+    "en": "Hip abduction"
+  },
+  "plane": "frontal",
+  "mechanics": "aislado",
+  "action": "fuerza",
+  "position": "suelo-lateral",
+  "laterality": "unilateral",
+  "pattern": "analitico",
+  "level": 1,
+  "muscles": {
+    "primary": [
+      "gluteo-medio"
+    ],
+    "secondary": [
+      "oblicuos"
+    ]
+  },
+  "equipment": [
+    "esterilla"
+  ],
+  "demands": [
+    "decubito"
+  ],
+  "variants": [
+    {
+      "id": "abduccion-cadera-lateral",
+      "name": {
+        "es": "Abducción de cadera de lado",
+        "en": "Side-lying hip abduction"
+      },
+      "regions": [
+        "cadera"
+      ],
+      "goals": [
+        "fortalecimiento"
+      ],
+      "mode": "activo"
+    }
+  ]
+}

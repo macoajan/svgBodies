@@ -37,7 +37,15 @@
       "name": {
         "es": "Bird dog",
         "en": "Bird dog"
-      }
+      },
+      "regions": [
+        "lumbar",
+        "cadera"
+      ],
+      "goals": [
+        "control-motor"
+      ],
+      "mode": "activo"
     }
   ]
 }

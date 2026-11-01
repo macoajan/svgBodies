@@ -32,7 +32,19 @@
       "name": {
         "es": "Step-up al cajón",
         "en": "Box step-up"
-      }
+      },
+      "regions": [
+        "rodilla",
+        "cadera"
+      ],
+      "goals": [
+        "fortalecimiento",
+        "funcional"
+      ],
+      "mode": "activo",
+      "progressions": [
+        "bajada-escalon"
+      ]
     }
   ]
 }

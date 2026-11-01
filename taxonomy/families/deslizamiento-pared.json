@@ -1,0 +1,46 @@
+{
+  "id": "deslizamiento-pared",
+  "name": {
+    "es": "Deslizamiento en pared",
+    "en": "Wall slide"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "movilidad",
+  "position": "de-pie",
+  "laterality": "bilateral",
+  "pattern": "movilidad",
+  "level": 1,
+  "muscles": {
+    "primary": [
+      "serrato",
+      "trapecio"
+    ],
+    "secondary": [
+      "deltoides-anterior"
+    ]
+  },
+  "equipment": [
+    "pared"
+  ],
+  "demands": [
+    "brazos-sobre-cabeza"
+  ],
+  "variants": [
+    {
+      "id": "deslizamiento-pared",
+      "name": {
+        "es": "Deslizamiento en pared",
+        "en": "Forearm wall slide"
+      },
+      "regions": [
+        "hombro"
+      ],
+      "goals": [
+        "movilidad-activa",
+        "control-motor"
+      ],
+      "mode": "activo"
+    }
+  ]
+}

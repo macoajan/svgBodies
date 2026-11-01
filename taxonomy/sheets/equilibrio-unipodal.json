@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "De pie, cerca de una pared o un respaldo por si necesitas sujetarte.",
+    "steps": [
+      "Levanta una rodilla hacia delante y quédate sobre la otra pierna.",
+      "Mantén la posición respirando con normalidad, con la rodilla de apoyo un poco flexionada.",
+      "Baja el pie y repite con la otra pierna."
+    ],
+    "avoid": [
+      "No dejes que la cadera del lado levantado caiga.",
+      "No bloquees la rodilla de apoyo hacia atrás."
+    ]
+  },
+  "pro": {
+    "goal": "Entrenamiento propioceptivo y de control postural en apoyo monopodal.",
+    "notes": [
+      "Progresiones: ojos cerrados, superficie inestable o movimientos de brazos y cabeza.",
+      "Valorar la estrategia de tobillo frente a la de cadera.",
+      "Garantizar un punto de apoyo seguro en pacientes con riesgo de caída."
+    ]
+  }
+}

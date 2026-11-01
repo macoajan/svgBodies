@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "Siéntate en una silla con la espalda recta y los pies apoyados en el suelo.",
+    "steps": [
+      "Estira una rodilla hasta dejar la pierna horizontal.",
+      "Mantén unos segundos con el muslo tenso.",
+      "Baja despacio y repite; después cambia de pierna."
+    ],
+    "avoid": [
+      "No te eches hacia atrás para levantar la pierna.",
+      "No balancees la pierna."
+    ]
+  },
+  "pro": {
+    "goal": "Fortalecimiento del cuádriceps en cadena abierta en todo el recorrido.",
+    "notes": [
+      "Recorrido completo o parcial según la patología (p. ej. limitar el arco en patología femoropatelar o de ligamento cruzado).",
+      "Progresión con lastre en el tobillo o con banda elástica.",
+      "Pausa en extensión completa para trabajar el bloqueo terminal."
+    ]
+  }
+}

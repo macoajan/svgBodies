@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "Túmbate boca arriba con las piernas estiradas.",
+    "steps": [
+      "Desliza el talón por el suelo hacia el glúteo, doblando la rodilla.",
+      "Llega hasta donde puedas sin dolor intenso y mantén un momento.",
+      "Vuelve a estirar la pierna despacio y repite con la otra."
+    ],
+    "avoid": [
+      "No levantes el talón del suelo.",
+      "No arquees la zona lumbar."
+    ]
+  },
+  "pro": {
+    "goal": "Movilidad activa de flexión de rodilla y cadera en descarga.",
+    "notes": [
+      "Indicado en fases iniciales tras cirugía o inmovilización de rodilla.",
+      "Puede facilitarse con una toalla bajo el talón o tirando de una toalla con las manos (autoasistido).",
+      "Registrar la flexión alcanzada para seguir la evolución."
+    ]
+  }
+}

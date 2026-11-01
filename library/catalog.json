@@ -144,6 +144,42 @@
    "trineo": {
     "es": "Trineo",
     "en": "Sled"
+   },
+   "banda-elastica": {
+    "es": "Banda elástica",
+    "en": "Resistance band"
+   },
+   "toalla": {
+    "es": "Toalla",
+    "en": "Towel"
+   },
+   "baston": {
+    "es": "Bastón / pica",
+    "en": "Stick / dowel"
+   },
+   "fitball": {
+    "es": "Fitball",
+    "en": "Swiss ball"
+   },
+   "rodillo": {
+    "es": "Rodillo / toalla enrollada",
+    "en": "Roll / rolled towel"
+   },
+   "escalon": {
+    "es": "Escalón",
+    "en": "Step"
+   },
+   "silla": {
+    "es": "Silla",
+    "en": "Chair"
+   },
+   "almohada": {
+    "es": "Almohada / cojín",
+    "en": "Pillow / cushion"
+   },
+   "mesa": {
+    "es": "Mesa",
+    "en": "Table"
    }
   },
   "laterality": {
@@ -232,9 +268,24 @@
     "en": "Hip flexors",
     "parent": "tren-inferior"
    },
-   "gemelos": {
+   "triceps-sural": {
     "es": "Tríceps sural",
     "en": "Calves",
+    "parent": "tren-inferior"
+   },
+   "gemelos": {
+    "es": "Gemelos",
+    "en": "Gastrocnemius",
+    "parent": "triceps-sural"
+   },
+   "soleo": {
+    "es": "Sóleo",
+    "en": "Soleus",
+    "parent": "triceps-sural"
+   },
+   "tibial-anterior": {
+    "es": "Tibial anterior",
+    "en": "Tibialis anterior",
     "parent": "tren-inferior"
    },
    "core": {
@@ -314,6 +365,11 @@
     "es": "Deltoides posterior",
     "en": "Posterior deltoid",
     "parent": "deltoides"
+   },
+   "manguito-rotador": {
+    "es": "Manguito rotador",
+    "en": "Rotator cuff",
+    "parent": "tren-superior"
    },
    "biceps": {
     "es": "Bíceps",
@@ -403,6 +459,14 @@
    "estiramiento": {
     "es": "Estiramiento",
     "en": "Stretch"
+   },
+   "analitico": {
+    "es": "Analítico (una articulación)",
+    "en": "Single-joint (isolated)"
+   },
+   "equilibrio": {
+    "es": "Equilibrio",
+    "en": "Balance"
    }
   },
   "places": {
@@ -466,6 +530,10 @@
     "es": "Sobre banco",
     "en": "On a bench"
    },
+   "sentado": {
+    "es": "Sentado en silla",
+    "en": "Seated on a chair"
+   },
    "suspension": {
     "es": "Suspendido",
     "en": "Hanging / supported"
@@ -474,9 +542,379 @@
     "es": "Cambia de posición",
     "en": "Transitional"
    }
+  },
+  "regions": {
+   "cervical": {
+    "es": "Columna cervical",
+    "en": "Cervical spine"
+   },
+   "dorsal": {
+    "es": "Columna dorsal",
+    "en": "Thoracic spine"
+   },
+   "lumbar": {
+    "es": "Columna lumbar y pelvis",
+    "en": "Lumbar spine and pelvis"
+   },
+   "hombro": {
+    "es": "Hombro",
+    "en": "Shoulder"
+   },
+   "codo-muneca": {
+    "es": "Codo, muñeca y mano",
+    "en": "Elbow, wrist and hand"
+   },
+   "cadera": {
+    "es": "Cadera",
+    "en": "Hip"
+   },
+   "rodilla": {
+    "es": "Rodilla",
+    "en": "Knee"
+   },
+   "tobillo-pie": {
+    "es": "Tobillo y pie",
+    "en": "Ankle and foot"
+   }
+  },
+  "therapy-goals": {
+   "movilidad-activa": {
+    "es": "Movilidad activa",
+    "en": "Active range of motion"
+   },
+   "movilidad-autoasistida": {
+    "es": "Movilidad autoasistida",
+    "en": "Self-assisted range of motion"
+   },
+   "isometria": {
+    "es": "Isometría",
+    "en": "Isometric strengthening"
+   },
+   "fortalecimiento": {
+    "es": "Fortalecimiento",
+    "en": "Strengthening"
+   },
+   "excentrico": {
+    "es": "Trabajo excéntrico",
+    "en": "Eccentric loading"
+   },
+   "control-motor": {
+    "es": "Control motor",
+    "en": "Motor control"
+   },
+   "propiocepcion": {
+    "es": "Propiocepción y equilibrio",
+    "en": "Proprioception and balance"
+   },
+   "flexibilidad": {
+    "es": "Flexibilidad",
+    "en": "Flexibility"
+   },
+   "circulatorio": {
+    "es": "Retorno venoso / circulatorio",
+    "en": "Circulation / venous return"
+   },
+   "funcional": {
+    "es": "Funcional (actividades diarias)",
+    "en": "Functional (daily activities)"
+   }
+  },
+  "therapy-modes": {
+   "activo": {
+    "es": "Activo",
+    "en": "Active"
+   },
+   "autoasistido": {
+    "es": "Autoasistido",
+    "en": "Self-assisted"
+   }
   }
  },
  "exercises": [
+  {
+   "id": "abduccion-cadera-lateral",
+   "family": "abduccion-cadera",
+   "name": {
+    "es": "Abducción de cadera de lado",
+    "en": "Side-lying hip abduction"
+   },
+   "familyName": {
+    "es": "Abducción de cadera",
+    "en": "Hip abduction"
+   },
+   "params": {},
+   "pattern": "analitico",
+   "patterns2": [],
+   "plane": "frontal",
+   "mechanics": "aislado",
+   "action": "fuerza",
+   "position": "suelo-lateral",
+   "laterality": "unilateral",
+   "level": 1,
+   "equipment": [
+    "esterilla"
+   ],
+   "demands": [
+    "decubito"
+   ],
+   "regions": [
+    "cadera"
+   ],
+   "goals": [
+    "fortalecimiento"
+   ],
+   "mode": "activo",
+   "muscles": {
+    "primary": [
+     "gluteo-medio"
+    ],
+    "secondary": [
+     "oblicuos"
+    ]
+   },
+   "progressions": [],
+   "therapeutic": true,
+   "regressions": [
+    "almeja"
+   ],
+   "sheet": {
+    "patient": {
+     "start": "Túmbate de lado con las piernas estiradas, una encima de la otra, y apoya la cabeza en el brazo de abajo.",
+     "steps": [
+      "Eleva la pierna de arriba estirada, llevándola un poco hacia atrás.",
+      "Mantén un momento arriba.",
+      "Bájala despacio y repite; después túmbate del otro lado."
+     ],
+     "avoid": [
+      "No gires la punta del pie hacia el techo.",
+      "No lleves la pierna hacia delante."
+     ]
+    },
+    "pro": {
+     "goal": "Fortalecimiento del glúteo medio en cadena abierta.",
+     "notes": [
+      "Mantener una ligera extensión de cadera y la rotación neutra para evitar la compensación con el tensor de la fascia lata.",
+      "Progresión con lastre en el tobillo o con banda elástica.",
+      "Regresión: la almeja."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "gluteo-medio",
+    "gluteo",
+    "tren-inferior",
+    "oblicuos",
+    "core"
+   ],
+   "equipmentCategories": [
+    "accesorio"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#abduccion-cadera-lateral",
+    "views": [
+     "svg/abduccion-cadera-lateral-lateral.svg",
+     "svg/abduccion-cadera-lateral-frontal.svg",
+     "svg/abduccion-cadera-lateral-iso.svg"
+    ],
+    "duration": 3.1,
+    "cue": "Tumbado de lado con las piernas estiradas, eleva la pierna de arriba ligeramente hacia atrás, sin girar la pelvis."
+   }
+  },
+  {
+   "id": "almeja",
+   "family": "almeja",
+   "name": {
+    "es": "Almeja",
+    "en": "Clamshell"
+   },
+   "familyName": {
+    "es": "Almeja",
+    "en": "Clamshell"
+   },
+   "params": {},
+   "pattern": "analitico",
+   "patterns2": [],
+   "plane": "transversal",
+   "mechanics": "aislado",
+   "action": "fuerza",
+   "position": "suelo-lateral",
+   "laterality": "unilateral",
+   "level": 1,
+   "equipment": [
+    "esterilla"
+   ],
+   "demands": [
+    "decubito"
+   ],
+   "regions": [
+    "cadera"
+   ],
+   "goals": [
+    "fortalecimiento",
+    "control-motor"
+   ],
+   "mode": "activo",
+   "muscles": {
+    "primary": [
+     "gluteo-medio"
+    ],
+    "secondary": []
+   },
+   "progressions": [
+    "abduccion-cadera-lateral"
+   ],
+   "therapeutic": true,
+   "regressions": [],
+   "sheet": {
+    "patient": {
+     "start": "Túmbate de lado con las caderas y las rodillas dobladas y los pies juntos. Apoya la cabeza en el brazo de abajo.",
+     "steps": [
+      "Sin separar los pies, abre la rodilla de arriba.",
+      "Mantén un momento.",
+      "Ciérrala despacio y repite; después túmbate del otro lado."
+     ],
+     "avoid": [
+      "No gires la pelvis hacia atrás al abrir.",
+      "No despegues los pies."
+     ]
+    },
+    "pro": {
+     "goal": "Fortalecimiento del glúteo medio y de los rotadores externos de la cadera en descarga.",
+     "notes": [
+      "La pelvis debe mantenerse perpendicular al suelo; si rota, el recorrido está compensado.",
+      "Progresión con banda elástica por encima de las rodillas.",
+      "Variar la flexión de cadera cambia el reparto de la actividad muscular."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "gluteo-medio",
+    "gluteo",
+    "tren-inferior"
+   ],
+   "equipmentCategories": [
+    "accesorio"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#almeja",
+    "views": [
+     "svg/almeja-lateral.svg",
+     "svg/almeja-frontal.svg",
+     "svg/almeja-iso.svg"
+    ],
+    "duration": 3.1,
+    "cue": "Tumbado de lado con caderas y rodillas dobladas, separa la rodilla de arriba sin despegar los pies ni girar la pelvis."
+   }
+  },
+  {
+   "id": "bajada-escalon",
+   "family": "bajada-escalon",
+   "name": {
+    "es": "Bajada de escalón",
+    "en": "Forward step-down"
+   },
+   "familyName": {
+    "es": "Bajada de escalón",
+    "en": "Step-down"
+   },
+   "params": {},
+   "pattern": "zancada",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "fuerza",
+   "position": "de-pie",
+   "laterality": "unilateral",
+   "level": 2,
+   "equipment": [
+    "escalon"
+   ],
+   "demands": [
+    "equilibrio"
+   ],
+   "regions": [
+    "rodilla"
+   ],
+   "goals": [
+    "excentrico",
+    "control-motor"
+   ],
+   "mode": "activo",
+   "muscles": {
+    "primary": [
+     "cuadriceps"
+    ],
+    "secondary": [
+     "gluteo-medio",
+     "gluteo-mayor"
+    ]
+   },
+   "progressions": [],
+   "therapeutic": true,
+   "regressions": [
+    "step-up"
+   ],
+   "sheet": {
+    "patient": {
+     "start": "De pie sobre un escalón bajo, apoyado en una pierna y con el otro pie al borde.",
+     "steps": [
+      "Dobla la rodilla de apoyo despacio.",
+      "Baja el otro pie por delante hasta rozar el suelo con el talón.",
+      "Vuelve a subir estirando la pierna de apoyo y repite; después cambia de pierna."
+     ],
+     "avoid": [
+      "No dejes que la rodilla de apoyo se vaya hacia dentro.",
+      "No dejes caer la cadera del lado del pie que baja."
+     ]
+    },
+    "pro": {
+     "goal": "Control excéntrico del cuádriceps y estabilidad de cadera en apoyo monopodal.",
+     "notes": [
+      "La altura del escalón regula la exigencia.",
+      "Observar valgo dinámico, caída pélvica contralateral y adelantamiento del tronco.",
+      "Útil en patología femoropatelar y en la readaptación tras lesión de rodilla."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "cuadriceps",
+    "tren-inferior",
+    "gluteo-medio",
+    "gluteo",
+    "gluteo-mayor"
+   ],
+   "equipmentCategories": [
+    "estructura"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#bajada-escalon",
+    "views": [
+     "svg/bajada-escalon-lateral.svg",
+     "svg/bajada-escalon-frontal.svg",
+     "svg/bajada-escalon-iso.svg"
+    ],
+    "duration": 6.6,
+    "cue": "De pie en el escalón, flexiona la rodilla de apoyo y baja el otro pie hasta rozar el suelo con el talón; vuelve a subir."
+   }
+  },
   {
    "id": "balanceo-pierna",
    "family": "balanceo-pierna",
@@ -513,6 +951,9 @@
      "gluteo-medio"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "isquiotibiales",
     "tren-inferior",
@@ -577,6 +1018,9 @@
      "cuadriceps"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "deltoides",
     "tren-superior",
@@ -640,6 +1084,9 @@
      "serrato"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "deltoides-anterior",
     "deltoides",
@@ -699,6 +1146,14 @@
     "apoyo-rodilla",
     "carga-muneca"
    ],
+   "regions": [
+    "lumbar",
+    "cadera"
+   ],
+   "goals": [
+    "control-motor"
+   ],
+   "mode": "activo",
    "muscles": {
     "primary": [
      "erectores",
@@ -708,6 +1163,33 @@
      "transverso",
      "deltoides"
     ]
+   },
+   "progressions": [],
+   "therapeutic": true,
+   "regressions": [
+    "extension-cadera-prono"
+   ],
+   "sheet": {
+    "patient": {
+     "start": "Ponte a cuatro patas con las manos bajo los hombros y las rodillas bajo la cadera.",
+     "steps": [
+      "Estira un brazo hacia delante y la pierna contraria hacia atrás.",
+      "Mantén un momento con la espalda quieta.",
+      "Vuelve despacio y repite con el otro lado."
+     ],
+     "avoid": [
+      "No gires la pelvis.",
+      "No arquees la zona lumbar ni dejes caer la cabeza."
+     ]
+    },
+    "pro": {
+     "goal": "Control motor y estabilidad lumbopélvica en cuadrupedia.",
+     "notes": [
+      "Regresión: mover sólo un brazo o sólo una pierna.",
+      "Útil en dolor lumbar por la baja carga compresiva sobre la columna.",
+      "Comprobar la estabilidad pélvica (p. ej. con un objeto sobre la zona lumbar)."
+     ]
+    }
    },
    "muscleGroups": [
     "erectores",
@@ -737,6 +1219,98 @@
     ],
     "duration": 5.6,
     "cue": "Manos bajo los hombros y rodillas bajo la cadera; brazo y pierna contrarios se estiran sin girar la pelvis."
+   }
+  },
+  {
+   "id": "bombeo-tobillo",
+   "family": "bombeo-tobillo",
+   "name": {
+    "es": "Bombeo de tobillos",
+    "en": "Ankle pumps"
+   },
+   "familyName": {
+    "es": "Bombeo de tobillos",
+    "en": "Ankle pumps"
+   },
+   "params": {},
+   "pattern": "movilidad",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "aislado",
+   "action": "movilidad",
+   "position": "suelo-supino",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "peso-corporal"
+   ],
+   "demands": [
+    "decubito"
+   ],
+   "regions": [
+    "tobillo-pie"
+   ],
+   "goals": [
+    "movilidad-activa",
+    "circulatorio"
+   ],
+   "mode": "activo",
+   "muscles": {
+    "primary": [
+     "tibial-anterior",
+     "triceps-sural"
+    ],
+    "secondary": []
+   },
+   "progressions": [
+    "elevacion-talones"
+   ],
+   "therapeutic": true,
+   "regressions": [],
+   "sheet": {
+    "patient": {
+     "start": "Túmbate boca arriba con las piernas estiradas y relajadas.",
+     "steps": [
+      "Tira de las puntas de los pies hacia ti todo lo que puedas.",
+      "Después estíralas hacia delante, como si pisaras un pedal.",
+      "Hazlo a un ritmo constante, sin parar entre un movimiento y otro."
+     ],
+     "avoid": [
+      "No dobles las rodillas ni levantes las piernas."
+     ]
+    },
+    "pro": {
+     "goal": "Movilidad activa de tobillo en flexión dorsal y plantar; favorece el retorno venoso.",
+     "notes": [
+      "Útil en encamamiento, postoperatorio e inmovilización de miembro inferior.",
+      "Puede hacerse sentado o con las piernas elevadas.",
+      "Ritmo continuo; el recorrido completo tiene más peso que la velocidad."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "tibial-anterior",
+    "tren-inferior",
+    "triceps-sural"
+   ],
+   "equipmentCategories": [
+    "ninguno"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#bombeo-tobillo",
+    "views": [
+     "svg/bombeo-tobillo-lateral.svg",
+     "svg/bombeo-tobillo-cenital.svg",
+     "svg/bombeo-tobillo-iso.svg"
+    ],
+    "duration": 1.4,
+    "cue": "Tumbado con las piernas estiradas, lleva las puntas de los pies hacia ti y después estíralas, a ritmo constante."
    }
   },
   {
@@ -776,6 +1350,9 @@
      "gluteo-mayor"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "isquiotibiales",
     "tren-inferior",
@@ -845,6 +1422,9 @@
      "recto-abdominal"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "cuadriceps",
     "tren-inferior",
@@ -915,6 +1495,9 @@
      "antebrazo"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "gluteo-mayor",
     "gluteo",
@@ -984,11 +1567,15 @@
      "flexores-cadera"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "cuadriceps",
     "tren-inferior",
     "isquiotibiales",
     "gemelos",
+    "triceps-sural",
     "gluteo-mayor",
     "gluteo",
     "flexores-cadera"
@@ -1051,10 +1638,14 @@
      "recto-abdominal"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "flexores-cadera",
     "tren-inferior",
     "gemelos",
+    "triceps-sural",
     "cuadriceps",
     "recto-abdominal",
     "core"
@@ -1117,10 +1708,14 @@
      "flexores-cadera"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "isquiotibiales",
     "tren-inferior",
     "gemelos",
+    "triceps-sural",
     "cuadriceps",
     "flexores-cadera"
    ],
@@ -1179,6 +1774,9 @@
      "serrato"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "deltoides",
     "tren-superior",
@@ -1242,6 +1840,9 @@
      "pectoral"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "recto-abdominal",
     "core",
@@ -1306,8 +1907,12 @@
      "deltoides"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "gemelos",
+    "triceps-sural",
     "tren-inferior",
     "antebrazo",
     "tren-superior",
@@ -1359,6 +1964,13 @@
    "demands": [
     "decubito"
    ],
+   "regions": [
+    "lumbar"
+   ],
+   "goals": [
+    "control-motor"
+   ],
+   "mode": "activo",
    "muscles": {
     "primary": [
      "recto-abdominal",
@@ -1367,6 +1979,31 @@
     "secondary": [
      "flexores-cadera"
     ]
+   },
+   "progressions": [],
+   "therapeutic": true,
+   "regressions": [],
+   "sheet": {
+    "patient": {
+     "start": "Túmbate boca arriba con los brazos hacia el techo y las caderas y rodillas dobladas a 90°.",
+     "steps": [
+      "Con la zona lumbar pegada al suelo, estira un brazo hacia atrás y la pierna contraria hacia delante.",
+      "Vuelve a la posición inicial.",
+      "Repite con el otro brazo y la otra pierna."
+     ],
+     "avoid": [
+      "No despegues la zona lumbar del suelo.",
+      "No aguantes la respiración."
+     ]
+    },
+    "pro": {
+     "goal": "Control motor lumbopélvico con movimiento disociado de las extremidades.",
+     "notes": [
+      "Regresión: mover sólo las piernas o sólo los brazos, o tocar el suelo con el talón.",
+      "La pérdida del contacto lumbar marca el límite del recorrido.",
+      "Coordinar con la respiración (espirar al alejar las extremidades)."
+     ]
+    }
    },
    "muscleGroups": [
     "recto-abdominal",
@@ -1393,6 +2030,194 @@
     ],
     "duration": 5.4,
     "cue": "Zona lumbar pegada al suelo; brazo y pierna contrarios se alejan sin perder el apoyo."
+   }
+  },
+  {
+   "id": "deslizamiento-pared",
+   "family": "deslizamiento-pared",
+   "name": {
+    "es": "Deslizamiento en pared",
+    "en": "Forearm wall slide"
+   },
+   "familyName": {
+    "es": "Deslizamiento en pared",
+    "en": "Wall slide"
+   },
+   "params": {},
+   "pattern": "movilidad",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "movilidad",
+   "position": "de-pie",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "pared"
+   ],
+   "demands": [
+    "brazos-sobre-cabeza"
+   ],
+   "regions": [
+    "hombro"
+   ],
+   "goals": [
+    "movilidad-activa",
+    "control-motor"
+   ],
+   "mode": "activo",
+   "muscles": {
+    "primary": [
+     "serrato",
+     "trapecio"
+    ],
+    "secondary": [
+     "deltoides-anterior"
+    ]
+   },
+   "progressions": [],
+   "therapeutic": true,
+   "regressions": [
+    "flexion-hombro-baston"
+   ],
+   "sheet": {
+    "patient": {
+     "start": "De cara a la pared, con los antebrazos apoyados en ella a la altura de los hombros.",
+     "steps": [
+      "Desliza los antebrazos hacia arriba por la pared.",
+      "Llega hasta donde puedas sin encoger los hombros.",
+      "Baja despacio a la posición inicial."
+     ],
+     "avoid": [
+      "No encojas los hombros.",
+      "No arquees la zona lumbar."
+     ]
+    },
+    "pro": {
+     "goal": "Movilidad activa de flexión de hombro con activación del serrato anterior y control escapular.",
+     "notes": [
+      "Facilita el ritmo escapulohumeral con una carga baja.",
+      "Progresión: alejarse de la pared o añadir una banda elástica alrededor de los antebrazos.",
+      "Observar la elevación escapular compensatoria."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "serrato",
+    "tren-superior",
+    "trapecio",
+    "deltoides-anterior",
+    "deltoides"
+   ],
+   "equipmentCategories": [
+    "estructura"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#deslizamiento-pared",
+    "views": [
+     "svg/deslizamiento-pared-lateral.svg",
+     "svg/deslizamiento-pared-frontal.svg",
+     "svg/deslizamiento-pared-iso.svg"
+    ],
+    "duration": 4,
+    "cue": "De cara a la pared con los antebrazos apoyados, deslízalos hacia arriba sin encoger los hombros y baja despacio."
+   }
+  },
+  {
+   "id": "deslizamiento-talon",
+   "family": "deslizamiento-talon",
+   "name": {
+    "es": "Deslizamiento de talón",
+    "en": "Heel slide"
+   },
+   "familyName": {
+    "es": "Deslizamiento de talón",
+    "en": "Heel slide"
+   },
+   "params": {},
+   "pattern": "movilidad",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "movilidad",
+   "position": "suelo-supino",
+   "laterality": "unilateral",
+   "level": 1,
+   "equipment": [
+    "esterilla"
+   ],
+   "demands": [
+    "decubito"
+   ],
+   "regions": [
+    "rodilla",
+    "cadera"
+   ],
+   "goals": [
+    "movilidad-activa"
+   ],
+   "mode": "activo",
+   "muscles": {
+    "primary": [
+     "isquiotibiales"
+    ],
+    "secondary": [
+     "flexores-cadera"
+    ]
+   },
+   "progressions": [],
+   "therapeutic": true,
+   "regressions": [],
+   "sheet": {
+    "patient": {
+     "start": "Túmbate boca arriba con las piernas estiradas.",
+     "steps": [
+      "Desliza el talón por el suelo hacia el glúteo, doblando la rodilla.",
+      "Llega hasta donde puedas sin dolor intenso y mantén un momento.",
+      "Vuelve a estirar la pierna despacio y repite con la otra."
+     ],
+     "avoid": [
+      "No levantes el talón del suelo.",
+      "No arquees la zona lumbar."
+     ]
+    },
+    "pro": {
+     "goal": "Movilidad activa de flexión de rodilla y cadera en descarga.",
+     "notes": [
+      "Indicado en fases iniciales tras cirugía o inmovilización de rodilla.",
+      "Puede facilitarse con una toalla bajo el talón o tirando de una toalla con las manos (autoasistido).",
+      "Registrar la flexión alcanzada para seguir la evolución."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "isquiotibiales",
+    "tren-inferior",
+    "flexores-cadera"
+   ],
+   "equipmentCategories": [
+    "accesorio"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#deslizamiento-talon",
+    "views": [
+     "svg/deslizamiento-talon-lateral.svg",
+     "svg/deslizamiento-talon-cenital.svg",
+     "svg/deslizamiento-talon-iso.svg"
+    ],
+    "duration": 7,
+    "cue": "Desliza el talón por el suelo hacia el glúteo doblando la rodilla y vuelve a estirar despacio."
    }
   },
   {
@@ -1434,6 +2259,9 @@
      "antebrazo"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "dorsal",
     "tren-superior",
@@ -1460,6 +2288,390 @@
     ],
     "duration": 3.15,
     "cue": "Desde brazos estirados, codos hacia abajo y atrás hasta pasar la barbilla por la barra."
+   }
+  },
+  {
+   "id": "elevacion-pierna-recta",
+   "family": "elevacion-pierna-recta",
+   "name": {
+    "es": "Elevación de pierna recta",
+    "en": "Straight-leg raise"
+   },
+   "familyName": {
+    "es": "Elevación de pierna recta",
+    "en": "Straight-leg raise"
+   },
+   "params": {},
+   "pattern": "analitico",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "aislado",
+   "action": "fuerza",
+   "position": "suelo-supino",
+   "laterality": "unilateral",
+   "level": 1,
+   "equipment": [
+    "esterilla"
+   ],
+   "demands": [
+    "decubito"
+   ],
+   "regions": [
+    "rodilla",
+    "cadera"
+   ],
+   "goals": [
+    "fortalecimiento",
+    "control-motor"
+   ],
+   "mode": "activo",
+   "muscles": {
+    "primary": [
+     "cuadriceps",
+     "flexores-cadera"
+    ],
+    "secondary": [
+     "recto-abdominal"
+    ]
+   },
+   "progressions": [],
+   "therapeutic": true,
+   "regressions": [
+    "extension-rodilla-rodillo"
+   ],
+   "sheet": {
+    "patient": {
+     "start": "Túmbate boca arriba con una rodilla doblada y el pie apoyado; la otra pierna, estirada.",
+     "steps": [
+      "Tensa el muslo de la pierna estirada, con la punta del pie hacia ti.",
+      "Eleva la pierna recta hasta la altura de la otra rodilla.",
+      "Baja despacio sin dejar de tensar el muslo y repite; después cambia de pierna."
+     ],
+     "avoid": [
+      "No dobles la rodilla al subir.",
+      "No arquees la zona lumbar."
+     ]
+    },
+    "pro": {
+     "goal": "Fortalecimiento del cuádriceps y de los flexores de cadera con la rodilla bloqueada en extensión.",
+     "notes": [
+      "Exige extensión activa completa: si la rodilla se dobla al subir, volver a la extensión sobre rodillo.",
+      "La rodilla contraria flexionada protege la zona lumbar.",
+      "Progresión con lastre en el tobillo."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "cuadriceps",
+    "tren-inferior",
+    "flexores-cadera",
+    "recto-abdominal",
+    "core"
+   ],
+   "equipmentCategories": [
+    "accesorio"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#elevacion-pierna-recta",
+    "views": [
+     "svg/elevacion-pierna-recta-lateral.svg",
+     "svg/elevacion-pierna-recta-cenital.svg",
+     "svg/elevacion-pierna-recta-iso.svg"
+    ],
+    "duration": 9,
+    "cue": "Con la otra rodilla doblada, tensa el muslo y eleva la pierna estirada hasta la altura de la otra rodilla."
+   }
+  },
+  {
+   "id": "elevacion-talones",
+   "family": "elevacion-talones",
+   "name": {
+    "es": "Elevación de talones",
+    "en": "Double-leg heel raise"
+   },
+   "familyName": {
+    "es": "Elevación de talones",
+    "en": "Heel raise"
+   },
+   "params": {
+    "apoyo": "bipodal"
+   },
+   "pattern": "analitico",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "aislado",
+   "action": "fuerza",
+   "position": "de-pie",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "pared"
+   ],
+   "demands": [],
+   "regions": [
+    "tobillo-pie"
+   ],
+   "goals": [
+    "fortalecimiento"
+   ],
+   "mode": "activo",
+   "muscles": {
+    "primary": [
+     "gemelos",
+     "soleo"
+    ],
+    "secondary": []
+   },
+   "progressions": [
+    "elevacion-talones-unipodal"
+   ],
+   "therapeutic": true,
+   "regressions": [
+    "bombeo-tobillo"
+   ],
+   "sheet": {
+    "patient": {
+     "start": "De pie frente a una pared, con los pies a la anchura de las caderas y las manos apoyadas en ella.",
+     "steps": [
+      "Sube despacio de puntillas todo lo que puedas.",
+      "Mantén un momento arriba.",
+      "Baja controlando hasta apoyar de nuevo los talones."
+     ],
+     "avoid": [
+      "No eches el cuerpo hacia delante ni te cuelgues de la pared.",
+      "No dejes que los tobillos se vayan hacia fuera."
+     ]
+    },
+    "pro": {
+     "goal": "Fortalecimiento concéntrico y excéntrico del tríceps sural en carga bipodal.",
+     "notes": [
+      "El apoyo de las manos es para equilibrarse, no para descargar peso.",
+      "Vigilar la alineación del retropié (sin inversión al subir).",
+      "Progresar el tiempo de bajada antes de pasar a una pierna."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "gemelos",
+    "triceps-sural",
+    "tren-inferior",
+    "soleo"
+   ],
+   "equipmentCategories": [
+    "estructura"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#elevacion-talones",
+    "views": [
+     "svg/elevacion-talones-lateral.svg",
+     "svg/elevacion-talones-frontal.svg",
+     "svg/elevacion-talones-iso.svg"
+    ],
+    "duration": 3,
+    "cue": "De pie con las manos en la pared, sube de puntillas despacio y baja controlando hasta apoyar los talones."
+   }
+  },
+  {
+   "id": "elevacion-talones-unipodal",
+   "family": "elevacion-talones",
+   "name": {
+    "es": "Elevación de talones a una pierna",
+    "en": "Single-leg heel raise"
+   },
+   "familyName": {
+    "es": "Elevación de talones",
+    "en": "Heel raise"
+   },
+   "params": {
+    "apoyo": "unipodal"
+   },
+   "pattern": "analitico",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "aislado",
+   "action": "fuerza",
+   "position": "de-pie",
+   "laterality": "unilateral",
+   "level": 2,
+   "equipment": [
+    "pared"
+   ],
+   "demands": [
+    "equilibrio"
+   ],
+   "regions": [
+    "tobillo-pie"
+   ],
+   "goals": [
+    "fortalecimiento",
+    "propiocepcion"
+   ],
+   "mode": "activo",
+   "muscles": {
+    "primary": [
+     "gemelos",
+     "soleo"
+    ],
+    "secondary": []
+   },
+   "progressions": [],
+   "therapeutic": true,
+   "regressions": [
+    "elevacion-talones"
+   ],
+   "sheet": {
+    "patient": {
+     "start": "De pie frente a la pared, con las manos apoyadas, y levanta un pie del suelo.",
+     "steps": [
+      "Sube de puntillas sobre la pierna de apoyo.",
+      "Mantén un momento arriba.",
+      "Baja despacio hasta apoyar el talón y repite; después cambia de pierna."
+     ],
+     "avoid": [
+      "No dobles la rodilla de apoyo para impulsarte.",
+      "No dejes caer la cadera del lado de la pierna levantada."
+     ]
+    },
+    "pro": {
+     "goal": "Fortalecimiento unilateral del tríceps sural con exigencia de control del apoyo.",
+     "notes": [
+      "Progresión de la elevación bilateral.",
+      "Rodilla extendida trabaja más el gemelo; con ligera flexión, más el sóleo.",
+      "Se puede añadir un escalón para ganar recorrido en flexión dorsal."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "gemelos",
+    "triceps-sural",
+    "tren-inferior",
+    "soleo"
+   ],
+   "equipmentCategories": [
+    "estructura"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#elevacion-talones-unipodal",
+    "views": [
+     "svg/elevacion-talones-unipodal-lateral.svg",
+     "svg/elevacion-talones-unipodal-frontal.svg",
+     "svg/elevacion-talones-unipodal-iso.svg"
+    ],
+    "duration": 13.4,
+    "cue": "Apoyado en una sola pierna y con las manos en la pared, sube de puntillas y baja lentamente."
+   }
+  },
+  {
+   "id": "equilibrio-unipodal",
+   "family": "equilibrio-unipodal",
+   "name": {
+    "es": "Equilibrio a una pierna",
+    "en": "Single-leg balance"
+   },
+   "familyName": {
+    "es": "Equilibrio a una pierna",
+    "en": "Single-leg balance"
+   },
+   "params": {},
+   "pattern": "equilibrio",
+   "patterns2": [],
+   "plane": "multiplanar",
+   "mechanics": "isometrico",
+   "action": "estabilidad",
+   "position": "de-pie",
+   "laterality": "unilateral",
+   "level": 1,
+   "equipment": [
+    "peso-corporal"
+   ],
+   "demands": [
+    "equilibrio"
+   ],
+   "regions": [
+    "tobillo-pie",
+    "rodilla",
+    "cadera"
+   ],
+   "goals": [
+    "propiocepcion",
+    "control-motor"
+   ],
+   "mode": "activo",
+   "muscles": {
+    "primary": [
+     "gluteo-medio"
+    ],
+    "secondary": [
+     "triceps-sural",
+     "tibial-anterior"
+    ]
+   },
+   "progressions": [],
+   "therapeutic": true,
+   "regressions": [],
+   "sheet": {
+    "patient": {
+     "start": "De pie, cerca de una pared o un respaldo por si necesitas sujetarte.",
+     "steps": [
+      "Levanta una rodilla hacia delante y quédate sobre la otra pierna.",
+      "Mantén la posición respirando con normalidad, con la rodilla de apoyo un poco flexionada.",
+      "Baja el pie y repite con la otra pierna."
+     ],
+     "avoid": [
+      "No dejes que la cadera del lado levantado caiga.",
+      "No bloquees la rodilla de apoyo hacia atrás."
+     ]
+    },
+    "pro": {
+     "goal": "Entrenamiento propioceptivo y de control postural en apoyo monopodal.",
+     "notes": [
+      "Progresiones: ojos cerrados, superficie inestable o movimientos de brazos y cabeza.",
+      "Valorar la estrategia de tobillo frente a la de cadera.",
+      "Garantizar un punto de apoyo seguro en pacientes con riesgo de caída."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "gluteo-medio",
+    "gluteo",
+    "tren-inferior",
+    "triceps-sural",
+    "tibial-anterior"
+   ],
+   "equipmentCategories": [
+    "ninguno"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#equilibrio-unipodal",
+    "views": [
+     "svg/equilibrio-unipodal-lateral.svg",
+     "svg/equilibrio-unipodal-frontal.svg",
+     "svg/equilibrio-unipodal-iso.svg"
+    ],
+    "duration": 11.8,
+    "cue": "Sostente sobre una pierna con la rodilla de apoyo ligeramente flexionada y la pelvis nivelada."
    }
   },
   {
@@ -1497,6 +2709,9 @@
      "flexores-cadera"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "cuadriceps",
     "tren-inferior",
@@ -1558,6 +2773,9 @@
      "oblicuos"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "flexores-cadera",
     "tren-inferior",
@@ -1609,6 +2827,13 @@
     "pared"
    ],
    "demands": [],
+   "regions": [
+    "tobillo-pie"
+   ],
+   "goals": [
+    "flexibilidad"
+   ],
+   "mode": "activo",
    "muscles": {
     "primary": [
      "gemelos"
@@ -1617,8 +2842,34 @@
      "isquiotibiales"
     ]
    },
+   "progressions": [],
+   "therapeutic": true,
+   "regressions": [],
+   "sheet": {
+    "patient": {
+     "start": "De pie frente a la pared, con una pierna adelantada y la otra estirada atrás.",
+     "steps": [
+      "Apoya las manos en la pared.",
+      "Lleva el cuerpo hacia delante manteniendo el talón de atrás en el suelo.",
+      "Mantén el estiramiento respirando con calma; después cambia de pierna."
+     ],
+     "avoid": [
+      "No levantes el talón de atrás.",
+      "No gires el pie de atrás hacia fuera."
+     ]
+    },
+    "pro": {
+     "goal": "Estiramiento del gemelo y ganancia de flexión dorsal de tobillo.",
+     "notes": [
+      "Con la rodilla de atrás flexionada se estira más el sóleo.",
+      "Mantenimientos de 30 s o más.",
+      "Útil en tendinopatía aquílea y fascitis plantar como parte del abordaje."
+     ]
+    }
+   },
    "muscleGroups": [
     "gemelos",
+    "triceps-sural",
     "tren-inferior",
     "isquiotibiales"
    ],
@@ -1674,6 +2925,9 @@
      "trapecio"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "deltoides-posterior",
     "deltoides",
@@ -1734,10 +2988,14 @@
      "erectores"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "isquiotibiales",
     "tren-inferior",
     "gemelos",
+    "triceps-sural",
     "erectores",
     "core"
    ],
@@ -1759,6 +3017,387 @@
     ],
     "duration": 5.2,
     "cue": "Piernas estiradas y cadera atrás; el tronco cae hacia delante con los brazos colgando. Mantener."
+   }
+  },
+  {
+   "id": "extension-cadera-prono",
+   "family": "extension-cadera",
+   "name": {
+    "es": "Extensión de cadera boca abajo",
+    "en": "Prone hip extension"
+   },
+   "familyName": {
+    "es": "Extensión de cadera",
+    "en": "Hip extension"
+   },
+   "params": {},
+   "pattern": "analitico",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "aislado",
+   "action": "fuerza",
+   "position": "suelo-prono",
+   "laterality": "unilateral",
+   "level": 1,
+   "equipment": [
+    "esterilla"
+   ],
+   "demands": [
+    "decubito"
+   ],
+   "regions": [
+    "cadera",
+    "lumbar"
+   ],
+   "goals": [
+    "fortalecimiento",
+    "control-motor"
+   ],
+   "mode": "activo",
+   "muscles": {
+    "primary": [
+     "gluteo-mayor"
+    ],
+    "secondary": [
+     "isquiotibiales",
+     "erectores"
+    ]
+   },
+   "progressions": [
+    "bird-dog"
+   ],
+   "therapeutic": true,
+   "regressions": [],
+   "sheet": {
+    "patient": {
+     "start": "Túmbate boca abajo con la frente apoyada sobre las manos.",
+     "steps": [
+      "Aprieta el glúteo de una pierna.",
+      "Eleva la pierna estirada unos centímetros del suelo.",
+      "Bájala despacio y repite; después cambia de pierna."
+     ],
+     "avoid": [
+      "No arquees la zona lumbar para subir más.",
+      "No gires la pelvis."
+     ]
+    },
+    "pro": {
+     "goal": "Activación y fortalecimiento del glúteo mayor con control lumbopélvico.",
+     "notes": [
+      "El recorrido es corto: la extensión debe salir de la cadera, no de la columna lumbar.",
+      "Una almohada bajo el abdomen reduce la extensión lumbar.",
+      "Progresión: bird dog."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "gluteo-mayor",
+    "gluteo",
+    "tren-inferior",
+    "isquiotibiales",
+    "erectores",
+    "core"
+   ],
+   "equipmentCategories": [
+    "accesorio"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#extension-cadera-prono",
+    "views": [
+     "svg/extension-cadera-prono-lateral.svg",
+     "svg/extension-cadera-prono-cenital.svg",
+     "svg/extension-cadera-prono-iso.svg"
+    ],
+    "duration": 6.4,
+    "cue": "Boca abajo con la frente sobre las manos, aprieta el glúteo y eleva la pierna estirada unos centímetros sin arquear la zona lumbar."
+   }
+  },
+  {
+   "id": "extension-rodilla-rodillo",
+   "family": "extension-rodilla",
+   "name": {
+    "es": "Extensión de rodilla sobre rodillo",
+    "en": "Short-arc quad"
+   },
+   "familyName": {
+    "es": "Extensión de rodilla",
+    "en": "Knee extension"
+   },
+   "params": {
+    "posicion": "supino-rodillo"
+   },
+   "pattern": "analitico",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "aislado",
+   "action": "fuerza",
+   "position": "suelo-supino",
+   "laterality": "unilateral",
+   "level": 1,
+   "equipment": [
+    "rodillo"
+   ],
+   "demands": [
+    "decubito"
+   ],
+   "regions": [
+    "rodilla"
+   ],
+   "goals": [
+    "fortalecimiento",
+    "control-motor"
+   ],
+   "mode": "activo",
+   "muscles": {
+    "primary": [
+     "cuadriceps"
+    ],
+    "secondary": []
+   },
+   "progressions": [
+    "elevacion-pierna-recta",
+    "extension-rodilla-sentado"
+   ],
+   "therapeutic": true,
+   "regressions": [],
+   "sheet": {
+    "patient": {
+     "start": "Túmbate boca arriba con un rodillo o una toalla enrollada debajo de las rodillas.",
+     "steps": [
+      "Tensa el muslo y estira una rodilla levantando el talón.",
+      "Mantén la pierna estirada unos segundos.",
+      "Baja despacio y repite; después cambia de pierna."
+     ],
+     "avoid": [
+      "No despegues la parte de atrás del muslo del rodillo.",
+      "No dejes que la punta del pie se caiga."
+     ]
+    },
+    "pro": {
+     "goal": "Activación del cuádriceps en los últimos grados de extensión de rodilla (arco corto).",
+     "notes": [
+      "Objetivo: recuperar la extensión activa completa y el control del vasto medial.",
+      "Útil cuando hay déficit de extensión activa (lag) tras cirugía de rodilla.",
+      "Aumentar el tiempo de mantenimiento antes que el número de repeticiones."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "cuadriceps",
+    "tren-inferior"
+   ],
+   "equipmentCategories": [
+    "accesorio"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#extension-rodilla-rodillo",
+    "views": [
+     "svg/extension-rodilla-rodillo-lateral.svg",
+     "svg/extension-rodilla-rodillo-cenital.svg",
+     "svg/extension-rodilla-rodillo-iso.svg"
+    ],
+    "duration": 6.6,
+    "cue": "Con un rodillo bajo las rodillas, estira una rodilla levantando el talón y mantén unos segundos sin despegar el muslo."
+   }
+  },
+  {
+   "id": "extension-rodilla-sentado",
+   "family": "extension-rodilla",
+   "name": {
+    "es": "Extensión de rodilla sentado",
+    "en": "Seated knee extension"
+   },
+   "familyName": {
+    "es": "Extensión de rodilla",
+    "en": "Knee extension"
+   },
+   "params": {
+    "posicion": "sentado"
+   },
+   "pattern": "analitico",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "aislado",
+   "action": "fuerza",
+   "position": "sentado",
+   "laterality": "unilateral",
+   "level": 1,
+   "equipment": [
+    "silla"
+   ],
+   "demands": [],
+   "regions": [
+    "rodilla"
+   ],
+   "goals": [
+    "fortalecimiento"
+   ],
+   "mode": "activo",
+   "muscles": {
+    "primary": [
+     "cuadriceps"
+    ],
+    "secondary": []
+   },
+   "progressions": [
+    "sentarse-levantarse",
+    "sentadilla-pared"
+   ],
+   "therapeutic": true,
+   "regressions": [
+    "extension-rodilla-rodillo"
+   ],
+   "sheet": {
+    "patient": {
+     "start": "Siéntate en una silla con la espalda recta y los pies apoyados en el suelo.",
+     "steps": [
+      "Estira una rodilla hasta dejar la pierna horizontal.",
+      "Mantén unos segundos con el muslo tenso.",
+      "Baja despacio y repite; después cambia de pierna."
+     ],
+     "avoid": [
+      "No te eches hacia atrás para levantar la pierna.",
+      "No balancees la pierna."
+     ]
+    },
+    "pro": {
+     "goal": "Fortalecimiento del cuádriceps en cadena abierta en todo el recorrido.",
+     "notes": [
+      "Recorrido completo o parcial según la patología (p. ej. limitar el arco en patología femoropatelar o de ligamento cruzado).",
+      "Progresión con lastre en el tobillo o con banda elástica.",
+      "Pausa en extensión completa para trabajar el bloqueo terminal."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "cuadriceps",
+    "tren-inferior"
+   ],
+   "equipmentCategories": [
+    "estructura"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#extension-rodilla-sentado",
+    "views": [
+     "svg/extension-rodilla-sentado-lateral.svg",
+     "svg/extension-rodilla-sentado-frontal.svg",
+     "svg/extension-rodilla-sentado-iso.svg"
+    ],
+    "duration": 7.4,
+    "cue": "Sentado con la espalda recta, estira la rodilla hasta dejar la pierna horizontal, mantén y baja despacio."
+   }
+  },
+  {
+   "id": "flexion-hombro-baston",
+   "family": "flexion-hombro",
+   "name": {
+    "es": "Flexión de hombro con bastón",
+    "en": "Supine stick shoulder flexion"
+   },
+   "familyName": {
+    "es": "Flexión de hombro",
+    "en": "Shoulder flexion"
+   },
+   "params": {},
+   "pattern": "movilidad",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "aislado",
+   "action": "movilidad",
+   "position": "suelo-supino",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "baston",
+    "esterilla"
+   ],
+   "demands": [
+    "decubito",
+    "brazos-sobre-cabeza"
+   ],
+   "regions": [
+    "hombro"
+   ],
+   "goals": [
+    "movilidad-autoasistida"
+   ],
+   "mode": "autoasistido",
+   "muscles": {
+    "primary": [
+     "deltoides-anterior"
+    ],
+    "secondary": [
+     "serrato"
+    ]
+   },
+   "progressions": [
+    "deslizamiento-pared"
+   ],
+   "therapeutic": true,
+   "regressions": [
+    "pendulo-codman"
+   ],
+   "sheet": {
+    "patient": {
+     "start": "Túmbate boca arriba con las rodillas dobladas y sujeta un bastón con las dos manos, a la anchura de los hombros.",
+     "steps": [
+      "Con los brazos estirados, sube el bastón hacia el techo.",
+      "Sigue llevándolo por encima de la cabeza hasta donde puedas sin dolor intenso.",
+      "Vuelve despacio a la posición inicial."
+     ],
+     "avoid": [
+      "No arquees la zona lumbar.",
+      "No encojas los hombros hacia las orejas."
+     ]
+    },
+    "pro": {
+     "goal": "Movilidad autoasistida de flexión de hombro: el brazo sano conduce al afectado.",
+     "notes": [
+      "En supino se controla la compensación lumbar y escapular.",
+      "Puede hacerse con los codos flexionados si la extensión de codo está limitada.",
+      "Progresión: deslizamiento en pared."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "deltoides-anterior",
+    "deltoides",
+    "tren-superior",
+    "serrato"
+   ],
+   "equipmentCategories": [
+    "accesorio"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#flexion-hombro-baston",
+    "views": [
+     "svg/flexion-hombro-baston-lateral.svg",
+     "svg/flexion-hombro-baston-cenital.svg",
+     "svg/flexion-hombro-baston-iso.svg"
+    ],
+    "duration": 4.4,
+    "cue": "Tumbado con las rodillas dobladas, sube el bastón con los brazos estirados por encima de la cabeza; el brazo sano ayuda al otro."
    }
   },
   {
@@ -1798,6 +3437,9 @@
      "recto-abdominal"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "pectoral",
     "tren-superior",
@@ -1864,6 +3506,9 @@
      "deltoides-anterior"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "pectoral",
     "tren-superior",
@@ -1930,6 +3575,9 @@
      "gemelos"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "isquiotibiales",
     "tren-inferior",
@@ -1939,7 +3587,8 @@
     "tren-superior",
     "pectoral",
     "triceps",
-    "gemelos"
+    "gemelos",
+    "triceps-sural"
    ],
    "equipmentCategories": [
     "ninguno"
@@ -1997,8 +3646,12 @@
      "deltoides-lateral"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "gemelos",
+    "triceps-sural",
     "tren-inferior",
     "gluteo-medio",
     "gluteo",
@@ -2061,6 +3714,9 @@
      "recto-abdominal"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "oblicuos",
     "core",
@@ -2127,6 +3783,9 @@
      "cuadriceps"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "recto-abdominal",
     "core",
@@ -2190,6 +3849,9 @@
      "recto-abdominal"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "oblicuos",
     "core",
@@ -2212,6 +3874,96 @@
     ],
     "duration": 2.8,
     "cue": "La polea tira hacia un lado; las manos salen al frente y vuelven al pecho sin que el tronco gire."
+   }
+  },
+  {
+   "id": "pendulo-codman",
+   "family": "pendulo-codman",
+   "name": {
+    "es": "Péndulo de Codman",
+    "en": "Codman pendulum"
+   },
+   "familyName": {
+    "es": "Péndulo de Codman",
+    "en": "Codman pendulum"
+   },
+   "params": {},
+   "pattern": "movilidad",
+   "patterns2": [],
+   "plane": "multiplanar",
+   "mechanics": "aislado",
+   "action": "movilidad",
+   "position": "de-pie",
+   "laterality": "unilateral",
+   "level": 1,
+   "equipment": [
+    "mesa"
+   ],
+   "demands": [],
+   "regions": [
+    "hombro"
+   ],
+   "goals": [
+    "movilidad-autoasistida"
+   ],
+   "mode": "autoasistido",
+   "muscles": {
+    "primary": [
+     "manguito-rotador"
+    ],
+    "secondary": [
+     "deltoides"
+    ]
+   },
+   "progressions": [
+    "flexion-hombro-baston"
+   ],
+   "therapeutic": true,
+   "regressions": [],
+   "sheet": {
+    "patient": {
+     "start": "De pie, inclínate hacia delante y apoya una mano en una mesa. Deja colgar el otro brazo relajado.",
+     "steps": [
+      "Balancea suavemente el cuerpo para que el brazo que cuelga dibuje círculos pequeños.",
+      "Haz círculos en un sentido y después en el otro.",
+      "Mantén el hombro y el brazo relajados durante todo el ejercicio."
+     ],
+     "avoid": [
+      "No muevas el brazo con fuerza: el movimiento sale del cuerpo.",
+      "No encojas el hombro."
+     ]
+    },
+    "pro": {
+     "goal": "Movilización pasiva-autoasistida de la glenohumeral con descompresión por gravedad.",
+     "notes": [
+      "Indicado en fases iniciales (postoperatorio, capsulitis, dolor agudo).",
+      "El paciente no debe activar el deltoides; el movimiento lo genera el balanceo del tronco.",
+      "Pueden hacerse también balanceos adelante-atrás y laterales."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "manguito-rotador",
+    "tren-superior",
+    "deltoides"
+   ],
+   "equipmentCategories": [
+    "estructura"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#pendulo-codman",
+    "views": [
+     "svg/pendulo-codman-lateral.svg",
+     "svg/pendulo-codman-frontal.svg",
+     "svg/pendulo-codman-iso.svg"
+    ],
+    "duration": 6,
+    "cue": "Inclinado hacia delante con una mano en la mesa, deja colgar el otro brazo relajado y dibuja círculos pequeños moviendo el cuerpo."
    }
   },
   {
@@ -2252,10 +4004,14 @@
      "erectores"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "isquiotibiales",
     "tren-inferior",
     "gemelos",
+    "triceps-sural",
     "dorsal",
     "tren-superior",
     "deltoides",
@@ -2325,6 +4081,9 @@
      "antebrazo"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "gluteo-mayor",
     "gluteo",
@@ -2396,6 +4155,9 @@
      "antebrazo"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "isquiotibiales",
     "tren-inferior",
@@ -2464,6 +4226,9 @@
      "erectores"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "isquiotibiales",
     "tren-inferior",
@@ -2518,6 +4283,14 @@
     "esterilla"
    ],
    "demands": [],
+   "regions": [
+    "lumbar"
+   ],
+   "goals": [
+    "isometria",
+    "control-motor"
+   ],
+   "mode": "activo",
    "muscles": {
     "primary": [
      "recto-abdominal",
@@ -2527,6 +4300,31 @@
      "gluteo-mayor",
      "deltoides-anterior"
     ]
+   },
+   "progressions": [],
+   "therapeutic": true,
+   "regressions": [],
+   "sheet": {
+    "patient": {
+     "start": "Túmbate boca abajo y apóyate en los antebrazos, con los codos bajo los hombros.",
+     "steps": [
+      "Levanta el cuerpo apoyado en antebrazos y puntas de los pies.",
+      "Mantén el cuerpo recto de los talones a la cabeza.",
+      "Respira con calma durante el tiempo indicado."
+     ],
+     "avoid": [
+      "No dejes caer la cadera.",
+      "No subas la cadera en exceso."
+     ]
+    },
+    "pro": {
+     "goal": "Resistencia isométrica de la musculatura del tronco.",
+     "notes": [
+      "Regresión: apoyo en las rodillas o con las manos en una superficie elevada.",
+      "Interrumpir cuando se pierda la alineación, no por el tiempo.",
+      "Vigilar la tolerancia de hombros y la presión arterial."
+     ]
+    }
    },
    "muscleGroups": [
     "recto-abdominal",
@@ -2595,6 +4393,9 @@
      "deltoides"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "oblicuos",
     "core",
@@ -2663,6 +4464,9 @@
      "cuadriceps"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "erectores",
     "core",
@@ -2728,6 +4532,9 @@
      "deltoides-anterior"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "pectoral",
     "tren-superior",
@@ -2793,6 +4600,9 @@
      "serrato"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "deltoides-anterior",
     "deltoides",
@@ -2834,7 +4644,8 @@
    },
    "params": {
     "apoyo": "suelo",
-    "carga": "ninguna"
+    "carga": "ninguna",
+    "piernas": "dos"
    },
    "pattern": "bisagra",
    "patterns2": [],
@@ -2850,6 +4661,15 @@
    "demands": [
     "decubito"
    ],
+   "regions": [
+    "cadera",
+    "lumbar"
+   ],
+   "goals": [
+    "fortalecimiento",
+    "control-motor"
+   ],
+   "mode": "activo",
    "muscles": {
     "primary": [
      "gluteo-mayor"
@@ -2857,6 +4677,33 @@
     "secondary": [
      "isquiotibiales"
     ]
+   },
+   "progressions": [
+    "puente-una-pierna"
+   ],
+   "therapeutic": true,
+   "regressions": [],
+   "sheet": {
+    "patient": {
+     "start": "Túmbate boca arriba con las rodillas dobladas y los pies apoyados a la anchura de las caderas.",
+     "steps": [
+      "Aprieta los glúteos y sube la cadera hasta alinear hombros, cadera y rodillas.",
+      "Mantén un momento arriba.",
+      "Baja despacio hasta apoyar la cadera."
+     ],
+     "avoid": [
+      "No arquees la zona lumbar al subir.",
+      "No dejes que las rodillas se abran o se junten."
+     ]
+    },
+    "pro": {
+     "goal": "Fortalecimiento de glúteo mayor e isquiotibiales en cadena cerrada.",
+     "notes": [
+      "Base de las progresiones del puente: una pierna, con fitball o con carga.",
+      "Comenzar con una retroversión pélvica ligera ayuda a no hiperextender la zona lumbar.",
+      "Mantener arriba (isometría) si el objetivo es la resistencia."
+     ]
+    }
    },
    "muscleGroups": [
     "gluteo-mayor",
@@ -2885,6 +4732,108 @@
    }
   },
   {
+   "id": "puente-una-pierna",
+   "family": "puente-cadera",
+   "name": {
+    "es": "Puente a una pierna",
+    "en": "Single-leg glute bridge"
+   },
+   "familyName": {
+    "es": "Puente de cadera",
+    "en": "Hip bridge"
+   },
+   "params": {
+    "apoyo": "suelo",
+    "carga": "ninguna",
+    "piernas": "una"
+   },
+   "pattern": "bisagra",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "fuerza",
+   "position": "suelo-supino",
+   "laterality": "unilateral",
+   "level": 2,
+   "equipment": [
+    "esterilla"
+   ],
+   "demands": [
+    "decubito"
+   ],
+   "regions": [
+    "cadera",
+    "lumbar"
+   ],
+   "goals": [
+    "fortalecimiento",
+    "control-motor"
+   ],
+   "mode": "activo",
+   "muscles": {
+    "primary": [
+     "gluteo-mayor"
+    ],
+    "secondary": [
+     "isquiotibiales",
+     "gluteo-medio"
+    ]
+   },
+   "progressions": [],
+   "therapeutic": true,
+   "regressions": [
+    "puente-gluteo"
+   ],
+   "sheet": {
+    "patient": {
+     "start": "Túmbate boca arriba con las rodillas dobladas y los pies apoyados. Estira una pierna en línea con su muslo.",
+     "steps": [
+      "Empuja con el talón del pie apoyado y sube la cadera.",
+      "Mantén arriba con la pelvis nivelada.",
+      "Baja despacio, apoya el pie y repite; después cambia de pierna."
+     ],
+     "avoid": [
+      "No dejes caer la cadera del lado de la pierna estirada.",
+      "No arquees la zona lumbar al subir."
+     ]
+    },
+    "pro": {
+     "goal": "Fortalecimiento unilateral de glúteo mayor e isquiotibiales con control de la pelvis.",
+     "notes": [
+      "Progresión del puente con dos piernas.",
+      "La caída pélvica indica falta de control lumbopélvico o de fuerza.",
+      "Alejar el pie de apoyo aumenta la participación de los isquiotibiales."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "gluteo-mayor",
+    "gluteo",
+    "tren-inferior",
+    "isquiotibiales",
+    "gluteo-medio"
+   ],
+   "equipmentCategories": [
+    "accesorio"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#puente-una-pierna",
+    "views": [
+     "svg/puente-una-pierna-lateral.svg",
+     "svg/puente-una-pierna-cenital.svg",
+     "svg/puente-una-pierna-iso.svg"
+    ],
+    "duration": 10,
+    "cue": "Con una pierna estirada en línea con el muslo, sube la cadera apoyando sólo el otro pie, sin que la pelvis se incline."
+   }
+  },
+  {
    "id": "hip-thrust",
    "family": "puente-cadera",
    "name": {
@@ -2897,7 +4846,8 @@
    },
    "params": {
     "apoyo": "banco",
-    "carga": "barra"
+    "carga": "barra",
+    "piernas": "dos"
    },
    "pattern": "bisagra",
    "patterns2": [],
@@ -2920,6 +4870,9 @@
      "isquiotibiales"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "gluteo-mayor",
     "gluteo",
@@ -2986,6 +4939,9 @@
      "erectores"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "dorsal",
     "tren-superior",
@@ -3055,6 +5011,9 @@
      "trapecio"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "dorsal",
     "tren-superior",
@@ -3124,6 +5083,9 @@
      "trapecio"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "dorsal",
     "tren-superior",
@@ -3191,6 +5153,9 @@
      "trapecio"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "oblicuos",
     "core",
@@ -3256,6 +5221,9 @@
      "serrato"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "recto-abdominal",
     "core",
@@ -3318,12 +5286,16 @@
      "gemelos"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "cuadriceps",
     "tren-inferior",
     "gluteo-mayor",
     "gluteo",
-    "gemelos"
+    "gemelos",
+    "triceps-sural"
    ],
    "equipmentCategories": [
     "estructura"
@@ -3380,6 +5352,9 @@
      "erectores"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "gluteo-mayor",
     "gluteo",
@@ -3387,6 +5362,7 @@
     "cuadriceps",
     "isquiotibiales",
     "gemelos",
+    "triceps-sural",
     "erectores",
     "core"
    ],
@@ -3450,12 +5426,16 @@
      "erectores"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "cuadriceps",
     "tren-inferior",
     "gluteo-mayor",
     "gluteo",
     "gemelos",
+    "triceps-sural",
     "isquiotibiales",
     "erectores",
     "core"
@@ -3521,12 +5501,16 @@
      "erectores"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "cuadriceps",
     "tren-inferior",
     "gluteo-mayor",
     "gluteo",
     "gemelos",
+    "triceps-sural",
     "isquiotibiales",
     "erectores",
     "core"
@@ -3592,12 +5576,16 @@
      "isquiotibiales"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "cuadriceps",
     "tren-inferior",
     "gluteo-mayor",
     "gluteo",
     "gemelos",
+    "triceps-sural",
     "flexores-cadera",
     "recto-abdominal",
     "core",
@@ -3661,6 +5649,9 @@
      "gemelos"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "gluteo-medio",
     "gluteo",
@@ -3668,7 +5659,8 @@
     "gluteo-mayor",
     "cuadriceps",
     "aductores",
-    "gemelos"
+    "gemelos",
+    "triceps-sural"
    ],
    "equipmentCategories": [
     "ninguno"
@@ -3724,8 +5716,12 @@
      "cuadriceps"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "gemelos",
+    "triceps-sural",
     "tren-inferior",
     "cuadriceps"
    ],
@@ -3747,6 +5743,98 @@
     ],
     "duration": 0.48,
     "cue": "Saltos cortos y rápidos con las piernas casi rectas; el rebote sale de los tobillos."
+   }
+  },
+  {
+   "id": "sentadilla-pared",
+   "family": "sentadilla-pared",
+   "name": {
+    "es": "Sentadilla isométrica en pared",
+    "en": "Wall sit"
+   },
+   "familyName": {
+    "es": "Sentadilla isométrica en pared",
+    "en": "Wall sit"
+   },
+   "params": {},
+   "pattern": "sentadilla",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "isometrico",
+   "action": "fuerza",
+   "position": "de-pie",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "pared"
+   ],
+   "demands": [],
+   "regions": [
+    "rodilla"
+   ],
+   "goals": [
+    "isometria",
+    "fortalecimiento"
+   ],
+   "mode": "activo",
+   "muscles": {
+    "primary": [
+     "cuadriceps"
+    ],
+    "secondary": [
+     "gluteo-mayor"
+    ]
+   },
+   "progressions": [],
+   "therapeutic": true,
+   "regressions": [
+    "extension-rodilla-sentado"
+   ],
+   "sheet": {
+    "patient": {
+     "start": "De pie con la espalda apoyada en la pared y los pies un paso por delante, a la anchura de las caderas.",
+     "steps": [
+      "Desliza la espalda por la pared doblando las rodillas.",
+      "Baja hasta donde te hayan indicado, sin pasar de 90°, y mantén la posición.",
+      "Sube deslizando la espalda hasta quedar de pie."
+     ],
+     "avoid": [
+      "No dejes que las rodillas se junten hacia dentro.",
+      "No despegues la espalda ni los talones."
+     ]
+    },
+    "pro": {
+     "goal": "Fortalecimiento isométrico del cuádriceps a un ángulo controlado.",
+     "notes": [
+      "El ángulo de flexión se ajusta a la tolerancia y la fase; ángulos menores, menor carga femoropatelar.",
+      "Las isometrías pueden tener efecto analgésico en tendinopatía rotuliana.",
+      "Progresar el tiempo de mantenimiento o el ángulo."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "cuadriceps",
+    "tren-inferior",
+    "gluteo-mayor",
+    "gluteo"
+   ],
+   "equipmentCategories": [
+    "estructura"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#sentadilla-pared",
+    "views": [
+     "svg/sentadilla-pared-lateral.svg",
+     "svg/sentadilla-pared-frontal.svg",
+     "svg/sentadilla-pared-iso.svg"
+    ],
+    "duration": 6.6,
+    "cue": "Espalda apoyada en la pared, baja hasta que las rodillas queden a unos 90° y mantén la posición."
    }
   },
   {
@@ -3789,6 +5877,9 @@
      "erectores"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "cuadriceps",
     "tren-inferior",
@@ -3858,6 +5949,9 @@
      "erectores"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "cuadriceps",
     "tren-inferior",
@@ -3928,6 +6022,9 @@
      "erectores"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "cuadriceps",
     "tren-inferior",
@@ -3999,6 +6096,9 @@
      "recto-abdominal"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "cuadriceps",
     "tren-inferior",
@@ -4065,6 +6165,9 @@
      "aductores"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "gluteo-mayor",
     "gluteo",
@@ -4089,6 +6192,104 @@
     ],
     "duration": 3.3,
     "cue": "Cadera atrás hasta sentarse en el cajón con las tibias verticales; pausa y subir sin balanceo."
+   }
+  },
+  {
+   "id": "sentarse-levantarse",
+   "family": "sentarse-levantarse",
+   "name": {
+    "es": "Sentarse y levantarse de la silla",
+    "en": "Sit to stand"
+   },
+   "familyName": {
+    "es": "Sentarse y levantarse",
+    "en": "Sit to stand"
+   },
+   "params": {},
+   "pattern": "sentadilla",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "fuerza",
+   "position": "sentado",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "silla"
+   ],
+   "demands": [],
+   "regions": [
+    "rodilla",
+    "cadera"
+   ],
+   "goals": [
+    "fortalecimiento",
+    "funcional"
+   ],
+   "mode": "activo",
+   "muscles": {
+    "primary": [
+     "cuadriceps",
+     "gluteo-mayor"
+    ],
+    "secondary": [
+     "erectores"
+    ]
+   },
+   "progressions": [
+    "step-up"
+   ],
+   "therapeutic": true,
+   "regressions": [
+    "extension-rodilla-sentado"
+   ],
+   "sheet": {
+    "patient": {
+     "start": "Siéntate en el borde de una silla firme, con los pies apoyados un poco por detrás de las rodillas y los brazos cruzados sobre el pecho.",
+     "steps": [
+      "Inclina el tronco hacia delante.",
+      "Levántate empujando con las dos piernas por igual hasta quedar de pie.",
+      "Siéntate despacio, controlando la bajada."
+     ],
+     "avoid": [
+      "No te dejes caer en la silla.",
+      "No te ayudes con las manos (salvo que te lo indiquen)."
+     ]
+    },
+    "pro": {
+     "goal": "Fortalecimiento funcional del miembro inferior basado en una actividad de la vida diaria.",
+     "notes": [
+      "Variante útil como medida (prueba de 30 s o de cinco repeticiones).",
+      "Regresión: silla más alta o con apoyo de manos; progresión: silla más baja, lastre o a una pierna.",
+      "Vigilar el reparto simétrico de la carga."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "cuadriceps",
+    "tren-inferior",
+    "gluteo-mayor",
+    "gluteo",
+    "erectores",
+    "core"
+   ],
+   "equipmentCategories": [
+    "estructura"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#sentarse-levantarse",
+    "views": [
+     "svg/sentarse-levantarse-lateral.svg",
+     "svg/sentarse-levantarse-frontal.svg",
+     "svg/sentarse-levantarse-iso.svg"
+    ],
+    "duration": 4.9,
+    "cue": "Brazos cruzados, inclina el tronco adelante y levántate empujando con las dos piernas; siéntate despacio."
    }
   },
   {
@@ -4126,12 +6327,16 @@
      "deltoides-anterior"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "cuadriceps",
     "tren-inferior",
     "gluteo-mayor",
     "gluteo",
     "gemelos",
+    "triceps-sural",
     "triceps",
     "tren-superior",
     "deltoides-anterior",
@@ -4194,6 +6399,9 @@
      "erectores"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "aductores",
     "tren-inferior",
@@ -4249,6 +6457,15 @@
    "demands": [
     "equilibrio"
    ],
+   "regions": [
+    "rodilla",
+    "cadera"
+   ],
+   "goals": [
+    "fortalecimiento",
+    "funcional"
+   ],
+   "mode": "activo",
    "muscles": {
     "primary": [
      "cuadriceps",
@@ -4257,6 +6474,35 @@
     "secondary": [
      "gluteo-medio"
     ]
+   },
+   "progressions": [
+    "bajada-escalon"
+   ],
+   "therapeutic": true,
+   "regressions": [
+    "sentarse-levantarse"
+   ],
+   "sheet": {
+    "patient": {
+     "start": "De pie frente a un escalón o cajón estable.",
+     "steps": [
+      "Apoya todo un pie en el escalón.",
+      "Sube empujando con esa pierna hasta quedar de pie arriba.",
+      "Baja despacio con la misma pierna y repite; después cambia."
+     ],
+     "avoid": [
+      "No te impulses con la pierna de abajo.",
+      "No dejes que la rodilla se vaya hacia dentro."
+     ]
+    },
+    "pro": {
+     "goal": "Fortalecimiento funcional unilateral de cuádriceps y glúteo.",
+     "notes": [
+      "La altura del escalón regula la exigencia.",
+      "Transferencia directa a subir escaleras.",
+      "Progresión: bajada de escalón (control excéntrico)."
+     ]
+    }
    },
    "muscleGroups": [
     "cuadriceps",
@@ -4321,6 +6567,9 @@
      "antebrazo"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "gluteo-mayor",
     "gluteo",
@@ -4394,6 +6643,9 @@
      "erectores"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "cuadriceps",
     "tren-inferior",
@@ -4462,6 +6714,9 @@
      "gluteo-medio"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "antebrazo",
     "tren-superior",
@@ -4531,6 +6786,9 @@
      "gluteo-medio"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "oblicuos",
     "core",
@@ -4598,6 +6856,9 @@
      "oblicuos"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "deltoides",
     "tren-superior",
@@ -4665,6 +6926,9 @@
      "cuadriceps"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "deltoides",
     "tren-superior",
@@ -4736,6 +7000,9 @@
      "triceps"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "cuadriceps",
     "tren-inferior",
@@ -4807,6 +7074,9 @@
      "erectores"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "flexores-cadera",
     "tren-inferior",
@@ -4879,12 +7149,16 @@
      "flexores-cadera"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "cuadriceps",
     "tren-inferior",
     "gluteo-mayor",
     "gluteo",
     "gemelos",
+    "triceps-sural",
     "aductores",
     "flexores-cadera"
    ],
@@ -4948,6 +7222,9 @@
      "gluteo-medio"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "cuadriceps",
     "tren-inferior",
@@ -5016,6 +7293,9 @@
      "gluteo-medio"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "cuadriceps",
     "tren-inferior",
@@ -5084,6 +7364,9 @@
      "gluteo-medio"
     ]
    },
+   "progressions": [],
+   "therapeutic": false,
+   "regressions": [],
    "muscleGroups": [
     "cuadriceps",
     "tren-inferior",

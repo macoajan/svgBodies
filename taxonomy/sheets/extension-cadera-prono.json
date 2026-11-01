@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "Túmbate boca abajo con la frente apoyada sobre las manos.",
+    "steps": [
+      "Aprieta el glúteo de una pierna.",
+      "Eleva la pierna estirada unos centímetros del suelo.",
+      "Bájala despacio y repite; después cambia de pierna."
+    ],
+    "avoid": [
+      "No arquees la zona lumbar para subir más.",
+      "No gires la pelvis."
+    ]
+  },
+  "pro": {
+    "goal": "Activación y fortalecimiento del glúteo mayor con control lumbopélvico.",
+    "notes": [
+      "El recorrido es corto: la extensión debe salir de la cadera, no de la columna lumbar.",
+      "Una almohada bajo el abdomen reduce la extensión lumbar.",
+      "Progresión: bird dog."
+    ]
+  }
+}

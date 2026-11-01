@@ -32,7 +32,14 @@
       "name": {
         "es": "Dead bug",
         "en": "Dead bug"
-      }
+      },
+      "regions": [
+        "lumbar"
+      ],
+      "goals": [
+        "control-motor"
+      ],
+      "mode": "activo"
     }
   ]
 }
