@@ -436,8 +436,12 @@ const SPLIT_POLE = V(1, 0.3, 0);
 
 // Skater jumps: land on the right leg far to the right, the left foot sweeps behind, and back.
 const SK_R = { px: A - 3, py: 40, alpha: 35, neck: -15, shift: 14, phiR: -35, phiL: 45, r: { x: A, y: F, z: 18, p: 0 }, l: { ...onToes(A - 10, 7, 60), p: 60 } };
-const SK_AIR = { px: A - 1, py: 31, alpha: 20, neck: -8, shift: 0, phiR: 5, phiL: 5, r: { x: A - 2, y: 49, z: 5, p: 30 }, l: { x: A - 2, y: 49, z: -5, p: 30 } };
+// Push-off: the support leg extends diagonally while the pelvis travels towards the other side.
+const SK_PUSH_R = { px: A - 2, py: 31.5, alpha: 22, neck: -10, shift: -2, phiR: -10, phiL: 20, r: { ...onToes(A, 18, 55), p: 55 }, l: { x: A - 6, y: 50, z: 2, p: 45 } };
+const SK_AIR = { px: A - 1, py: 28, alpha: 18, neck: -8, shift: -5, phiR: 10, phiL: 0, r: { x: A - 3, y: 51, z: 8, p: 45 }, l: { x: A - 1, y: 53, z: -10, p: 30 } };
 const SK_L = swapState({ ...SK_R, shift: -SK_R.shift });
+const SK_PUSH_L = swapState({ ...SK_PUSH_R, shift: -SK_PUSH_R.shift });
+const SK_AIR_L = swapState({ ...SK_AIR, shift: -SK_AIR.shift });
 
 // Pogo hops: stiff legs, the bounce comes from the ankles.
 const PG = { toe: S_(A, 27.6, 0, 8, feet(A, 45)), air: S_(A, 24.4, 0, 8, feet(A, 50, 4.5, 3.5)) };
@@ -597,8 +601,8 @@ export const EXERCISES_E = [
     id: 'saltos-patinador', name: 'Saltos de patinador', still: 0.1, views: ['front', 'side'], isoCam: { yaw: 65, pitch: 20 },
     cue: 'Saltos laterales de una pierna a la otra; la pierna libre cruza por detrás y los brazos acompañan.',
     phases: [
-      hold(0.2, jumper(SK_R)), jmove(SK_R, SK_AIR, 0.3, easeOut), jmove(SK_AIR, SK_L, 0.3, easeIn),
-      hold(0.2, jumper(SK_L)), jmove(SK_L, SK_AIR, 0.3, easeOut), jmove(SK_AIR, SK_R, 0.3, easeIn),
+      hold(0.2, jumper(SK_R)), jmove(SK_R, SK_PUSH_R, 0.2), jmove(SK_PUSH_R, SK_AIR, 0.2, easeOut), jmove(SK_AIR, SK_L, 0.25, easeIn),
+      hold(0.2, jumper(SK_L)), jmove(SK_L, SK_PUSH_L, 0.2), jmove(SK_PUSH_L, SK_AIR_L, 0.2, easeOut), jmove(SK_AIR_L, SK_R, 0.25, easeIn),
     ],
   },
   {
