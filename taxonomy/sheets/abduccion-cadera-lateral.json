@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "Túmbate de lado con las piernas estiradas, una encima de la otra, y apoya la cabeza en el brazo de abajo.",
+    "steps": [
+      "Eleva la pierna de arriba estirada, llevándola un poco hacia atrás.",
+      "Mantén un momento arriba.",
+      "Bájala despacio y repite; después túmbate del otro lado."
+    ],
+    "avoid": [
+      "No gires la punta del pie hacia el techo.",
+      "No lleves la pierna hacia delante."
+    ]
+  },
+  "pro": {
+    "goal": "Fortalecimiento del glúteo medio en cadena abierta.",
+    "notes": [
+      "Mantener una ligera extensión de cadera y la rotación neutra para evitar la compensación con el tensor de la fascia lata.",
+      "Progresión con lastre en el tobillo o con banda elástica.",
+      "Regresión: la almeja."
+    ]
+  }
+}

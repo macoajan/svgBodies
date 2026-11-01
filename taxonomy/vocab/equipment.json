@@ -17,5 +17,14 @@
   "rueda-abdominal": { "es": "Rueda abdominal", "en": "Ab wheel", "category": "accesorio", "places": ["casa", "gimnasio"] },
   "comba": { "es": "Comba", "en": "Jump rope", "category": "accesorio", "places": ["casa", "gimnasio", "exterior"] },
   "cuerdas-batida": { "es": "Cuerdas de batida", "en": "Battle ropes", "category": "accesorio", "places": ["gimnasio"] },
-  "trineo": { "es": "Trineo", "en": "Sled", "category": "maquina", "places": ["gimnasio"] }
+  "trineo": { "es": "Trineo", "en": "Sled", "category": "maquina", "places": ["gimnasio"] },
+  "banda-elastica": { "es": "Banda elástica", "en": "Resistance band", "category": "accesorio", "places": ["casa", "gimnasio", "exterior"] },
+  "toalla": { "es": "Toalla", "en": "Towel", "category": "accesorio", "places": ["casa", "gimnasio"] },
+  "baston": { "es": "Bastón / pica", "en": "Stick / dowel", "category": "accesorio", "places": ["casa", "gimnasio"] },
+  "fitball": { "es": "Fitball", "en": "Swiss ball", "category": "accesorio", "places": ["casa", "gimnasio"] },
+  "rodillo": { "es": "Rodillo / toalla enrollada", "en": "Roll / rolled towel", "category": "accesorio", "places": ["casa", "gimnasio"] },
+  "escalon": { "es": "Escalón", "en": "Step", "category": "estructura", "places": ["casa", "gimnasio", "exterior"] },
+  "silla": { "es": "Silla", "en": "Chair", "category": "estructura", "places": ["casa", "gimnasio"] },
+  "almohada": { "es": "Almohada / cojín", "en": "Pillow / cushion", "category": "accesorio", "places": ["casa"] },
+  "mesa": { "es": "Mesa", "en": "Table", "category": "estructura", "places": ["casa", "gimnasio"] }
 }

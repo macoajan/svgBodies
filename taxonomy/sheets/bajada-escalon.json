@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "De pie sobre un escalón bajo, apoyado en una pierna y con el otro pie al borde.",
+    "steps": [
+      "Dobla la rodilla de apoyo despacio.",
+      "Baja el otro pie por delante hasta rozar el suelo con el talón.",
+      "Vuelve a subir estirando la pierna de apoyo y repite; después cambia de pierna."
+    ],
+    "avoid": [
+      "No dejes que la rodilla de apoyo se vaya hacia dentro.",
+      "No dejes caer la cadera del lado del pie que baja."
+    ]
+  },
+  "pro": {
+    "goal": "Control excéntrico del cuádriceps y estabilidad de cadera en apoyo monopodal.",
+    "notes": [
+      "La altura del escalón regula la exigencia.",
+      "Observar valgo dinámico, caída pélvica contralateral y adelantamiento del tronco.",
+      "Útil en patología femoropatelar y en la readaptación tras lesión de rodilla."
+    ]
+  }
+}

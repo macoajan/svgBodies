@@ -12,12 +12,10 @@
   "pattern": "bisagra",
   "level": 1,
   "muscles": {
-    "primary": [
-      "gluteo-mayor"
-    ],
-    "secondary": [
-      "isquiotibiales"
-    ]
+    "gluteo-mayor": 55,
+    "isquiotibiales": 25,
+    "erectores": 15,
+    "aductores": 5
   },
   "equipment": [
     "esterilla"
@@ -33,6 +31,10 @@
     "carga": [
       "ninguna",
       "barra"
+    ],
+    "piernas": [
+      "dos",
+      "una"
     ]
   },
   "variants": [
@@ -44,9 +46,53 @@
       },
       "set": {
         "apoyo": "suelo",
-        "carga": "ninguna"
+        "carga": "ninguna",
+        "piernas": "dos"
       },
-      "position": "suelo-supino"
+      "position": "suelo-supino",
+      "regions": [
+        "cadera",
+        "lumbar"
+      ],
+      "goals": [
+        "fortalecimiento",
+        "control-motor"
+      ],
+      "mode": "activo",
+      "progressions": [
+        "puente-una-pierna"
+      ]
+    },
+    {
+      "id": "puente-una-pierna",
+      "name": {
+        "es": "Puente a una pierna",
+        "en": "Single-leg glute bridge"
+      },
+      "set": {
+        "apoyo": "suelo",
+        "carga": "ninguna",
+        "piernas": "una"
+      },
+      "position": "suelo-supino",
+      "laterality": "unilateral",
+      "level": 2,
+      "muscles": {
+        "gluteo-mayor": 50,
+        "isquiotibiales": 25,
+        "gluteo-medio": 15,
+        "erectores": 5,
+        "oblicuos": 5
+      },
+      "regions": [
+        "cadera",
+        "lumbar"
+      ],
+      "goals": [
+        "fortalecimiento",
+        "control-motor"
+      ],
+      "mode": "activo"
     },
     {
       "id": "hip-thrust",
@@ -56,7 +102,8 @@
       },
       "set": {
         "apoyo": "banco",
-        "carga": "barra"
+        "carga": "barra",
+        "piernas": "dos"
       },
       "position": "banco",
       "equipment": [
@@ -64,7 +111,14 @@
         "banco"
       ],
       "level": 2,
-      "demands": []
+      "demands": [],
+      "muscles": {
+        "gluteo-mayor": 60,
+        "isquiotibiales": 15,
+        "cuadriceps": 15,
+        "aductores": 5,
+        "erectores": 5
+      }
     }
   ]
 }

@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "De pie frente a la pared, con las manos apoyadas, y levanta un pie del suelo.",
+    "steps": [
+      "Sube de puntillas sobre la pierna de apoyo.",
+      "Mantén un momento arriba.",
+      "Baja despacio hasta apoyar el talón y repite; después cambia de pierna."
+    ],
+    "avoid": [
+      "No dobles la rodilla de apoyo para impulsarte.",
+      "No dejes caer la cadera del lado de la pierna levantada."
+    ]
+  },
+  "pro": {
+    "goal": "Fortalecimiento unilateral del tríceps sural con exigencia de control del apoyo.",
+    "notes": [
+      "Progresión de la elevación bilateral.",
+      "Rodilla extendida trabaja más el gemelo; con ligera flexión, más el sóleo.",
+      "Se puede añadir un escalón para ganar recorrido en flexión dorsal."
+    ]
+  }
+}

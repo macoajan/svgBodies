@@ -12,13 +12,9 @@
   "pattern": "estiramiento",
   "level": 1,
   "muscles": {
-    "primary": [
-      "flexores-cadera"
-    ],
-    "secondary": [
-      "cuadriceps",
-      "oblicuos"
-    ]
+    "flexores-cadera": 60,
+    "cuadriceps": 25,
+    "oblicuos": 15
   },
   "equipment": [
     "esterilla"

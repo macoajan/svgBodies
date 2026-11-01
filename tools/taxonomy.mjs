@@ -16,13 +16,35 @@ export const FACETS = [
   { field: 'level', vocab: 'levels', kind: 'one' },
   { field: 'equipment', vocab: 'equipment', kind: 'many', nonEmpty: true },
   { field: 'demands', vocab: 'demands', kind: 'many' },
+  // Therapeutic exercise: all three or none (checked after resolving a variant).
+  { field: 'regions', vocab: 'regions', kind: 'many', optional: true, therapy: true },
+  { field: 'goals', vocab: 'therapy-goals', kind: 'many', optional: true, therapy: true },
+  { field: 'mode', vocab: 'therapy-modes', kind: 'one', optional: true, therapy: true },
 ];
+const THERAPY = FACETS.filter(f => f.therapy).map(f => f.field);
+const MAX_MUSCLES = 8;
 const FACET_FIELDS = new Set([...FACETS.map(f => f.field), 'muscles']);
-const VARIANT_KEYS = new Set(['id', 'name', 'set', ...FACET_FIELDS]);
+const VARIANT_KEYS = new Set(['id', 'name', 'set', 'progressions', ...FACET_FIELDS]);
 const FAMILY_KEYS = new Set(['id', 'name', 'params', 'variants', ...FACET_FIELDS]);
 
 const readJson = p => JSON.parse(readFileSync(p, 'utf8'));
 const strip = o => Object.fromEntries(Object.entries(o).filter(([k]) => !k.startsWith('_')));
+
+// Exercise sheet (sheets/<id>.json): plain-language text for the patient and technical notes
+// for the professional. Required for every therapeutic exercise.
+const SHEET_SHAPE = { patient: { start: 'text', steps: 'list', avoid: 'list' }, pro: { goal: 'text', notes: 'list' } };
+function checkSheet(sh, where, err) {
+  for (const k of Object.keys(sh)) if (k !== 'id' && !SHEET_SHAPE[k]) err(where, `campo desconocido "${k}"`);
+  for (const [part, fields] of Object.entries(SHEET_SHAPE)) {
+    if (!sh[part]) { err(where, `falta "${part}"`); continue; }
+    for (const k of Object.keys(sh[part])) if (!fields[k]) err(where, `campo desconocido "${part}.${k}"`);
+    for (const [k, kind] of Object.entries(fields)) {
+      const v = sh[part][k];
+      if (kind === 'text' ? !(typeof v === 'string' && v.trim()) : !(Array.isArray(v) && v.length && v.every(x => typeof x === 'string' && x.trim())))
+        err(where, `"${part}.${k}" debe ser ${kind === 'text' ? 'un texto' : 'una lista de textos'} no vacío`);
+    }
+  }
+}
 
 export function loadTaxonomy(root) {
   const vocab = {};
@@ -61,11 +83,25 @@ export function loadTaxonomy(root) {
       }
     }
     if (obj.muscles !== undefined) {
-      const { primary, secondary = [] } = obj.muscles;
-      if (!Array.isArray(primary) || !primary.length) err(where, '"muscles.primary" debe ser una lista no vacía');
-      for (const m of [...(primary || []), ...secondary]) if (!vocab.muscles[m]) err(where, `músculo desconocido "${m}"`);
-      const both = (primary || []).filter(m => secondary.includes(m));
-      if (both.length) err(where, `músculos a la vez principales y secundarios: ${both.join(', ')}`);
+      // Estimated share of the muscular work: { muscle: percent }, multiples of 5 adding up to 100.
+      const m = obj.muscles;
+      if (!m || typeof m !== 'object' || Array.isArray(m)) err(where, '"muscles" debe ser un objeto { músculo: porcentaje }');
+      else {
+        const ks = Object.keys(m);
+        if (!ks.length || ks.length > MAX_MUSCLES) err(where, `"muscles" debe tener entre 1 y ${MAX_MUSCLES} músculos`);
+        for (const k of ks) {
+          if (!vocab.muscles[k]) err(where, `músculo desconocido "${k}"`);
+          const v = m[k];
+          if (!Number.isInteger(v) || v <= 0 || v % 5) err(where, `"muscles.${k}" = ${JSON.stringify(v)}: debe ser un entero positivo múltiplo de 5`);
+        }
+        const sum = ks.reduce((a, k) => a + (Number(m[k]) || 0), 0);
+        if (sum !== 100) err(where, `los porcentajes de "muscles" suman ${sum}, no 100`);
+        for (const k of ks) for (let p = vocab.muscles[k]?.parent; p; p = vocab.muscles[p]?.parent)
+          if (ks.includes(p)) err(where, `"muscles" incluye a la vez "${p}" y su parte "${k}"`);
+        for (let i = 1; i < ks.length; i++) if (m[ks[i]] > m[ks[i - 1]]) { err(where, '"muscles" debe ir ordenado de mayor a menor porcentaje'); break; }
+        // The top three are shown as the main muscles: the third must beat the fourth.
+        if (ks.length > 3 && m[ks[2]] === m[ks[3]]) err(where, `"muscles": empate en el tercer puesto (${ks[2]} y ${ks[3]} con ${m[ks[2]]}); los tres primeros deben quedar definidos`);
+      }
     } else if (required) err(where, 'falta "muscles"');
   };
 
@@ -92,16 +128,53 @@ export function loadTaxonomy(root) {
       const e = { id: v.id, family: fam.id, name: v.name, familyName: fam.name, params: v.set || {} };
       for (const f of FACET_FIELDS) e[f] = v[f] ?? fam[f];
       e.patterns2 = e.patterns2 || [];
+      e.progressions = v.progressions || [];
+      const th = THERAPY.filter(f => e[f] !== undefined);
+      if (th.length && th.length < THERAPY.length) err(vw, `ejercicio terapéutico incompleto: falta ${THERAPY.filter(f => e[f] === undefined).join(', ')}`);
+      e.therapeutic = th.length === THERAPY.length;
+      if (!e.therapeutic) for (const f of THERAPY) delete e[f];
       e.level = Number(e.level);
       entries.push(e);
     }
   }
+  // Progressions: ids that exist, no self-links, no cycles; regressions are derived.
+  const byId = Object.fromEntries(entries.map(e => [e.id, e]));
+  for (const e of entries) {
+    e.regressions = [];
+    if (!Array.isArray(e.progressions)) { err(e.id, '"progressions" debe ser una lista'); e.progressions = []; }
+    for (const p of e.progressions) if (!byId[p] || p === e.id) err(e.id, `progresión a un ejercicio inexistente o a sí mismo: "${p}"`);
+  }
+  for (const e of entries) for (const p of e.progressions) byId[p]?.regressions.push(e.id);
+  const state = {};
+  const visit = (id, path) => {
+    if (state[id] === 2) return;
+    if (state[id] === 1) { err(id, `ciclo de progresiones: ${[...path, id].join(' → ')}`); return; }
+    state[id] = 1;
+    for (const p of byId[id].progressions) if (byId[p]) visit(p, [...path, id]);
+    state[id] = 2;
+  };
+  for (const e of entries) visit(e.id, []);
+
+  // Sheets: one per therapeutic exercise, none for unknown ids.
+  const sheetDir = join(root, 'sheets');
+  let sheetFiles = [];
+  try { sheetFiles = readdirSync(sheetDir).filter(f => f.endsWith('.json')); } catch { /* no sheets yet */ }
+  for (const f of sheetFiles) {
+    const id = f.replace(/\.json$/, ''), where = `sheets/${f}`;
+    if (!byId[id]) { err(where, 'no hay ningún ejercicio con ese id'); continue; }
+    const sh = strip(readJson(join(sheetDir, f)));
+    checkSheet(sh, where, err);
+    byId[id].sheet = { patient: sh.patient, pro: sh.pro };
+  }
+  for (const e of entries) if (e.therapeutic && !e.sheet) err(e.id, `ejercicio terapéutico sin ficha (sheets/${e.id}.json)`);
+
   if (errors.length) throw new Error(`Taxonomía con ${errors.length} error(es):\n  - ${errors.join('\n  - ')}`);
 
   // Derived facets: muscle groups (ancestors), equipment categories and places.
   const ancestors = m => { const out = []; for (let p = vocab.muscles[m].parent; p; p = vocab.muscles[p].parent) out.push(p); return out; };
   for (const e of entries) {
-    e.muscleGroups = [...new Set([...e.muscles.primary, ...(e.muscles.secondary || [])].flatMap(m => [m, ...ancestors(m)]))];
+    e.muscles = Object.entries(e.muscles).map(([id, pct]) => ({ id, pct }));
+    e.muscleGroups = [...new Set(e.muscles.flatMap(m => [m.id, ...ancestors(m.id)]))];
     e.equipmentCategories = [...new Set(e.equipment.map(q => vocab.equipment[q].category))];
     e.places = Object.keys(vocab.places).filter(pl => e.equipment.every(q => vocab.equipment[q].places.includes(pl)));
   }
@@ -131,18 +204,24 @@ export function flagsCsv(entries, vocab) {
   add('material', Object.keys(vocab.equipment));
   add('lugar', Object.keys(vocab.places));
   add('exigencia', Object.keys(vocab.demands));
-  add('musculo-principal', Object.keys(vocab.muscles));
-  add('musculo-secundario', Object.keys(vocab.muscles));
+  add('musculo', Object.keys(vocab.muscles));
   add('grupo-muscular', Object.keys(vocab.muscles));
+  add('region', Object.keys(vocab.regions));
+  add('objetivo-terapeutico', Object.keys(vocab['therapy-goals']));
+  add('modo', Object.keys(vocab['therapy-modes']));
   const has = e => new Set([
     `patron:${e.pattern}`, ...e.patterns2.map(x => `patron2:${x}`), `plano:${e.plane}`, `mecanica:${e.mechanics}`,
     `accion:${e.action}`, `posicion:${e.position}`, `lateralidad:${e.laterality}`, `nivel:${e.level}`,
     ...e.equipment.map(x => `material:${x}`), ...e.places.map(x => `lugar:${x}`), ...e.demands.map(x => `exigencia:${x}`),
-    ...e.muscles.primary.map(x => `musculo-principal:${x}`), ...(e.muscles.secondary || []).map(x => `musculo-secundario:${x}`),
     ...e.muscleGroups.map(x => `grupo-muscular:${x}`),
+    ...(e.regions || []).map(x => `region:${x}`), ...(e.goals || []).map(x => `objetivo-terapeutico:${x}`), ...(e.mode ? [`modo:${e.mode}`] : []),
   ]);
   const q = s => (/[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s);
   const rows = [['id', 'familia', 'nombre', ...cols].join(',')];
-  for (const e of entries) { const h = has(e); rows.push([e.id, e.family, q(e.name.es), ...cols.map(c => (h.has(c) ? '1' : ''))].join(',')); }
+  // Flags are 1 or empty; the musculo:<id> columns carry the estimated percentage instead.
+  for (const e of entries) {
+    const h = has(e), pct = Object.fromEntries(e.muscles.map(m => [`musculo:${m.id}`, String(m.pct)]));
+    rows.push([e.id, e.family, q(e.name.es), ...cols.map(c => pct[c] ?? (h.has(c) ? '1' : ''))].join(','));
+  }
   return rows.join('\n') + '\n';
 }

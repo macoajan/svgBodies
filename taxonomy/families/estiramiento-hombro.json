@@ -12,13 +12,10 @@
   "pattern": "estiramiento",
   "level": 1,
   "muscles": {
-    "primary": [
-      "deltoides-posterior"
-    ],
-    "secondary": [
-      "romboides",
-      "trapecio"
-    ]
+    "deltoides-posterior": 50,
+    "romboides": 20,
+    "manguito-rotador": 20,
+    "trapecio": 10
   },
   "equipment": [
     "peso-corporal"

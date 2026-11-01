@@ -16,14 +16,13 @@
   ],
   "level": 2,
   "muscles": {
-    "primary": [
-      "cuadriceps",
-      "gluteo-mayor",
-      "deltoides-anterior"
-    ],
-    "secondary": [
-      "triceps"
-    ]
+    "cuadriceps": 35,
+    "gluteo-mayor": 20,
+    "deltoides-anterior": 20,
+    "triceps": 10,
+    "erectores": 5,
+    "recto-abdominal": 5,
+    "gemelos": 5
   },
   "equipment": [
     "balon-medicinal",

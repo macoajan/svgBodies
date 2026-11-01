@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "De cara a la pared, con los antebrazos apoyados en ella a la altura de los hombros.",
+    "steps": [
+      "Desliza los antebrazos hacia arriba por la pared.",
+      "Llega hasta donde puedas sin encoger los hombros.",
+      "Baja despacio a la posición inicial."
+    ],
+    "avoid": [
+      "No encojas los hombros.",
+      "No arquees la zona lumbar."
+    ]
+  },
+  "pro": {
+    "goal": "Movilidad activa de flexión de hombro con activación del serrato anterior y control escapular.",
+    "notes": [
+      "Facilita el ritmo escapulohumeral con una carga baja.",
+      "Progresión: alejarse de la pared o añadir una banda elástica alrededor de los antebrazos.",
+      "Observar la elevación escapular compensatoria."
+    ]
+  }
+}

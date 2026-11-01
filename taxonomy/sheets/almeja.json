@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "Túmbate de lado con las caderas y las rodillas dobladas y los pies juntos. Apoya la cabeza en el brazo de abajo.",
+    "steps": [
+      "Sin separar los pies, abre la rodilla de arriba.",
+      "Mantén un momento.",
+      "Ciérrala despacio y repite; después túmbate del otro lado."
+    ],
+    "avoid": [
+      "No gires la pelvis hacia atrás al abrir.",
+      "No despegues los pies."
+    ]
+  },
+  "pro": {
+    "goal": "Fortalecimiento del glúteo medio y de los rotadores externos de la cadera en descarga.",
+    "notes": [
+      "La pelvis debe mantenerse perpendicular al suelo; si rota, el recorrido está compensado.",
+      "Progresión con banda elástica por encima de las rodillas.",
+      "Variar la flexión de cadera cambia el reparto de la actividad muscular."
+    ]
+  }
+}

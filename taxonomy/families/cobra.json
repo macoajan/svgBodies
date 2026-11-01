@@ -12,14 +12,11 @@
   "pattern": "estiramiento",
   "level": 1,
   "muscles": {
-    "primary": [
-      "recto-abdominal",
-      "flexores-cadera"
-    ],
-    "secondary": [
-      "erectores",
-      "pectoral"
-    ]
+    "recto-abdominal": 40,
+    "flexores-cadera": 25,
+    "erectores": 15,
+    "oblicuos": 10,
+    "pectoral": 10
   },
   "equipment": [
     "esterilla"

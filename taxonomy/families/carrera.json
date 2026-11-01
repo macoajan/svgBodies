@@ -12,15 +12,12 @@
   "pattern": "locomocion",
   "level": 1,
   "muscles": {
-    "primary": [
-      "cuadriceps",
-      "isquiotibiales",
-      "gemelos"
-    ],
-    "secondary": [
-      "gluteo-mayor",
-      "flexores-cadera"
-    ]
+    "cuadriceps": 25,
+    "isquiotibiales": 20,
+    "soleo": 20,
+    "gluteo-mayor": 15,
+    "gemelos": 10,
+    "flexores-cadera": 10
   },
   "equipment": [
     "peso-corporal"
@@ -57,14 +54,13 @@
       },
       "level": 2,
       "muscles": {
-        "primary": [
-          "flexores-cadera",
-          "gemelos"
-        ],
-        "secondary": [
-          "cuadriceps",
-          "recto-abdominal"
-        ]
+        "flexores-cadera": 30,
+        "gemelos": 20,
+        "soleo": 15,
+        "cuadriceps": 10,
+        "recto-abdominal": 10,
+        "gluteo-mayor": 10,
+        "tibial-anterior": 5
       }
     },
     {
@@ -77,14 +73,12 @@
         "tecnica": "talones-gluteo"
       },
       "muscles": {
-        "primary": [
-          "isquiotibiales",
-          "gemelos"
-        ],
-        "secondary": [
-          "cuadriceps",
-          "flexores-cadera"
-        ]
+        "isquiotibiales": 40,
+        "gemelos": 20,
+        "soleo": 15,
+        "cuadriceps": 10,
+        "gluteo-mayor": 10,
+        "flexores-cadera": 5
       }
     }
   ]

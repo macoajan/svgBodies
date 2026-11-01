@@ -1,0 +1,42 @@
+{
+  "id": "sentadilla-pared",
+  "name": {
+    "es": "Sentadilla isométrica en pared",
+    "en": "Wall sit"
+  },
+  "plane": "sagital",
+  "mechanics": "isometrico",
+  "action": "fuerza",
+  "position": "de-pie",
+  "laterality": "bilateral",
+  "pattern": "sentadilla",
+  "level": 1,
+  "muscles": {
+    "cuadriceps": 65,
+    "gluteo-mayor": 15,
+    "aductores": 10,
+    "soleo": 5,
+    "erectores": 5
+  },
+  "equipment": [
+    "pared"
+  ],
+  "demands": [],
+  "variants": [
+    {
+      "id": "sentadilla-pared",
+      "name": {
+        "es": "Sentadilla isométrica en pared",
+        "en": "Wall sit"
+      },
+      "regions": [
+        "rodilla"
+      ],
+      "goals": [
+        "isometria",
+        "fortalecimiento"
+      ],
+      "mode": "activo"
+    }
+  ]
+}

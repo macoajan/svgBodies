@@ -12,14 +12,14 @@
   "pattern": "locomocion",
   "level": 2,
   "muscles": {
-    "primary": [
-      "deltoides-anterior",
-      "cuadriceps"
-    ],
-    "secondary": [
-      "transverso",
-      "serrato"
-    ]
+    "deltoides-anterior": 20,
+    "cuadriceps": 20,
+    "transverso": 15,
+    "recto-abdominal": 10,
+    "serrato": 10,
+    "triceps": 10,
+    "flexores-cadera": 10,
+    "pectoral": 5
   },
   "equipment": [
     "peso-corporal"

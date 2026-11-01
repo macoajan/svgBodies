@@ -12,15 +12,14 @@
   "pattern": "combinado",
   "level": 4,
   "muscles": {
-    "primary": [
-      "deltoides",
-      "oblicuos",
-      "gluteo-mayor"
-    ],
-    "secondary": [
-      "serrato",
-      "cuadriceps"
-    ]
+    "deltoides-anterior": 20,
+    "oblicuos": 20,
+    "gluteo-mayor": 15,
+    "manguito-rotador": 10,
+    "serrato": 10,
+    "cuadriceps": 10,
+    "triceps": 10,
+    "transverso": 5
   },
   "equipment": [
     "kettlebell"

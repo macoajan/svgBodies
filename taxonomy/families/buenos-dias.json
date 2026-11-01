@@ -12,13 +12,9 @@
   "pattern": "bisagra",
   "level": 3,
   "muscles": {
-    "primary": [
-      "isquiotibiales",
-      "erectores"
-    ],
-    "secondary": [
-      "gluteo-mayor"
-    ]
+    "isquiotibiales": 40,
+    "erectores": 35,
+    "gluteo-mayor": 25
   },
   "equipment": [
     "barra",

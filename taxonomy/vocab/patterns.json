@@ -70,5 +70,13 @@
   "estiramiento": {
     "es": "Estiramiento",
     "en": "Stretch"
+  },
+  "analitico": {
+    "es": "Analítico (una articulación)",
+    "en": "Single-joint (isolated)"
+  },
+  "equilibrio": {
+    "es": "Equilibrio",
+    "en": "Balance"
   }
 }

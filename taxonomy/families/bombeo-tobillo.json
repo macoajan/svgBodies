@@ -1,0 +1,45 @@
+{
+  "id": "bombeo-tobillo",
+  "name": {
+    "es": "Bombeo de tobillos",
+    "en": "Ankle pumps"
+  },
+  "plane": "sagital",
+  "mechanics": "aislado",
+  "action": "movilidad",
+  "position": "suelo-supino",
+  "laterality": "bilateral",
+  "pattern": "movilidad",
+  "level": 1,
+  "muscles": {
+    "tibial-anterior": 50,
+    "gemelos": 25,
+    "soleo": 25
+  },
+  "equipment": [
+    "peso-corporal"
+  ],
+  "demands": [
+    "decubito"
+  ],
+  "variants": [
+    {
+      "id": "bombeo-tobillo",
+      "name": {
+        "es": "Bombeo de tobillos",
+        "en": "Ankle pumps"
+      },
+      "regions": [
+        "tobillo-pie"
+      ],
+      "goals": [
+        "movilidad-activa",
+        "circulatorio"
+      ],
+      "mode": "activo",
+      "progressions": [
+        "elevacion-talones"
+      ]
+    }
+  ]
+}

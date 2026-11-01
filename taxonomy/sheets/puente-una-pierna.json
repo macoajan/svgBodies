@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "Túmbate boca arriba con las rodillas dobladas y los pies apoyados. Estira una pierna en línea con su muslo.",
+    "steps": [
+      "Empuja con el talón del pie apoyado y sube la cadera.",
+      "Mantén arriba con la pelvis nivelada.",
+      "Baja despacio, apoya el pie y repite; después cambia de pierna."
+    ],
+    "avoid": [
+      "No dejes caer la cadera del lado de la pierna estirada.",
+      "No arquees la zona lumbar al subir."
+    ]
+  },
+  "pro": {
+    "goal": "Fortalecimiento unilateral de glúteo mayor e isquiotibiales con control de la pelvis.",
+    "notes": [
+      "Progresión del puente con dos piernas.",
+      "La caída pélvica indica falta de control lumbopélvico o de fuerza.",
+      "Alejar el pie de apoyo aumenta la participación de los isquiotibiales."
+    ]
+  }
+}

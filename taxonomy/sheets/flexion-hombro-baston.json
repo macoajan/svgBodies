@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "Túmbate boca arriba con las rodillas dobladas y sujeta un bastón con las dos manos, a la anchura de los hombros.",
+    "steps": [
+      "Con los brazos estirados, sube el bastón hacia el techo.",
+      "Sigue llevándolo por encima de la cabeza hasta donde puedas sin dolor intenso.",
+      "Vuelve despacio a la posición inicial."
+    ],
+    "avoid": [
+      "No arquees la zona lumbar.",
+      "No encojas los hombros hacia las orejas."
+    ]
+  },
+  "pro": {
+    "goal": "Movilidad autoasistida de flexión de hombro: el brazo sano conduce al afectado.",
+    "notes": [
+      "En supino se controla la compensación lumbar y escapular.",
+      "Puede hacerse con los codos flexionados si la extensión de codo está limitada.",
+      "Progresión: deslizamiento en pared."
+    ]
+  }
+}

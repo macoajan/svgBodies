@@ -12,12 +12,9 @@
   "pattern": "estiramiento",
   "level": 1,
   "muscles": {
-    "primary": [
-      "gemelos"
-    ],
-    "secondary": [
-      "isquiotibiales"
-    ]
+    "gemelos": 70,
+    "soleo": 25,
+    "isquiotibiales": 5
   },
   "equipment": [
     "pared"
@@ -29,7 +26,14 @@
       "name": {
         "es": "Estiramiento de gemelo en pared",
         "en": "Wall calf stretch"
-      }
+      },
+      "regions": [
+        "tobillo-pie"
+      ],
+      "goals": [
+        "flexibilidad"
+      ],
+      "mode": "activo"
     }
   ]
 }

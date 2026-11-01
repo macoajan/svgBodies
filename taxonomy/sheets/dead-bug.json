@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "Túmbate boca arriba con los brazos hacia el techo y las caderas y rodillas dobladas a 90°.",
+    "steps": [
+      "Con la zona lumbar pegada al suelo, estira un brazo hacia atrás y la pierna contraria hacia delante.",
+      "Vuelve a la posición inicial.",
+      "Repite con el otro brazo y la otra pierna."
+    ],
+    "avoid": [
+      "No despegues la zona lumbar del suelo.",
+      "No aguantes la respiración."
+    ]
+  },
+  "pro": {
+    "goal": "Control motor lumbopélvico con movimiento disociado de las extremidades.",
+    "notes": [
+      "Regresión: mover sólo las piernas o sólo los brazos, o tocar el suelo con el talón.",
+      "La pérdida del contacto lumbar marca el límite del recorrido.",
+      "Coordinar con la respiración (espirar al alejar las extremidades)."
+    ]
+  }
+}

@@ -6,6 +6,7 @@
   "cuadrupedia": { "es": "Cuadrupedia", "en": "Quadruped" },
   "rodillas": { "es": "De rodillas", "en": "Kneeling" },
   "banco": { "es": "Sobre banco", "en": "On a bench" },
+  "sentado": { "es": "Sentado en silla", "en": "Seated on a chair" },
   "suspension": { "es": "Suspendido", "en": "Hanging / supported" },
   "transicion": { "es": "Cambia de posición", "en": "Transitional" }
 }

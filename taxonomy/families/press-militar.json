@@ -12,15 +12,12 @@
   "pattern": "empuje-vertical",
   "level": 2,
   "muscles": {
-    "primary": [
-      "deltoides-anterior",
-      "triceps"
-    ],
-    "secondary": [
-      "deltoides-lateral",
-      "trapecio",
-      "serrato"
-    ]
+    "deltoides-anterior": 35,
+    "triceps": 25,
+    "deltoides-lateral": 15,
+    "trapecio": 10,
+    "serrato": 10,
+    "recto-abdominal": 5
   },
   "equipment": [
     "barra",

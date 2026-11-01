@@ -12,14 +12,12 @@
   "pattern": "salto",
   "level": 1,
   "muscles": {
-    "primary": [
-      "gemelos"
-    ],
-    "secondary": [
-      "gluteo-medio",
-      "aductores",
-      "deltoides-lateral"
-    ]
+    "gemelos": 25,
+    "soleo": 20,
+    "gluteo-medio": 20,
+    "deltoides-lateral": 15,
+    "aductores": 15,
+    "trapecio": 5
   },
   "equipment": [
     "peso-corporal"

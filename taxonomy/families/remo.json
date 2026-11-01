@@ -12,15 +12,13 @@
   "pattern": "traccion-horizontal",
   "level": 1,
   "muscles": {
-    "primary": [
-      "dorsal",
-      "romboides"
-    ],
-    "secondary": [
-      "deltoides-posterior",
-      "biceps",
-      "trapecio"
-    ]
+    "dorsal": 30,
+    "romboides": 20,
+    "trapecio": 15,
+    "deltoides-posterior": 10,
+    "biceps": 10,
+    "erectores": 10,
+    "antebrazo": 5
   },
   "equipment": [
     "peso-corporal"
@@ -58,18 +56,7 @@
       "demands": [
         "flexion-cadera-cargada",
         "agarre"
-      ],
-      "muscles": {
-        "primary": [
-          "dorsal",
-          "romboides"
-        ],
-        "secondary": [
-          "deltoides-posterior",
-          "biceps",
-          "erectores"
-        ]
-      }
+      ]
     },
     {
       "id": "remo-mancuerna",
@@ -89,7 +76,15 @@
       ],
       "demands": [
         "apoyo-rodilla"
-      ]
+      ],
+      "muscles": {
+        "dorsal": 35,
+        "romboides": 20,
+        "biceps": 15,
+        "trapecio": 10,
+        "deltoides-posterior": 10,
+        "antebrazo": 10
+      }
     },
     {
       "id": "remo-invertido",
@@ -104,7 +99,17 @@
       "position": "suspension",
       "equipment": [
         "barra-baja"
-      ]
+      ],
+      "muscles": {
+        "dorsal": 30,
+        "romboides": 20,
+        "biceps": 15,
+        "trapecio": 10,
+        "deltoides-posterior": 10,
+        "gluteo-mayor": 5,
+        "recto-abdominal": 5,
+        "antebrazo": 5
+      }
     }
   ]
 }

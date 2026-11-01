@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "De pie frente a la pared, con una pierna adelantada y la otra estirada atrás.",
+    "steps": [
+      "Apoya las manos en la pared.",
+      "Lleva el cuerpo hacia delante manteniendo el talón de atrás en el suelo.",
+      "Mantén el estiramiento respirando con calma; después cambia de pierna."
+    ],
+    "avoid": [
+      "No levantes el talón de atrás.",
+      "No gires el pie de atrás hacia fuera."
+    ]
+  },
+  "pro": {
+    "goal": "Estiramiento del gemelo y ganancia de flexión dorsal de tobillo.",
+    "notes": [
+      "Con la rodilla de atrás flexionada se estira más el sóleo.",
+      "Mantenimientos de 30 s o más.",
+      "Útil en tendinopatía aquílea y fascitis plantar como parte del abordaje."
+    ]
+  }
+}

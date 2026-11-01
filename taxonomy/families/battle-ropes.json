@@ -12,14 +12,14 @@
   "pattern": "oscilacion",
   "level": 1,
   "muscles": {
-    "primary": [
-      "deltoides",
-      "antebrazo"
-    ],
-    "secondary": [
-      "transverso",
-      "cuadriceps"
-    ]
+    "deltoides-anterior": 30,
+    "antebrazo": 15,
+    "transverso": 15,
+    "biceps": 10,
+    "triceps": 10,
+    "cuadriceps": 10,
+    "trapecio": 5,
+    "gluteo-mayor": 5
   },
   "equipment": [
     "cuerdas-batida"

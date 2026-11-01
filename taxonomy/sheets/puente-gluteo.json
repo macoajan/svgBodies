@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "Túmbate boca arriba con las rodillas dobladas y los pies apoyados a la anchura de las caderas.",
+    "steps": [
+      "Aprieta los glúteos y sube la cadera hasta alinear hombros, cadera y rodillas.",
+      "Mantén un momento arriba.",
+      "Baja despacio hasta apoyar la cadera."
+    ],
+    "avoid": [
+      "No arquees la zona lumbar al subir.",
+      "No dejes que las rodillas se abran o se junten."
+    ]
+  },
+  "pro": {
+    "goal": "Fortalecimiento de glúteo mayor e isquiotibiales en cadena cerrada.",
+    "notes": [
+      "Base de las progresiones del puente: una pierna, con fitball o con carga.",
+      "Comenzar con una retroversión pélvica ligera ayuda a no hiperextender la zona lumbar.",
+      "Mantener arriba (isometría) si el objetivo es la resistencia."
+    ]
+  }
+}

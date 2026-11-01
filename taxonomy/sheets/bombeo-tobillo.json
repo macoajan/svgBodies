@@ -1,0 +1,21 @@
+{
+  "patient": {
+    "start": "Túmbate boca arriba con las piernas estiradas y relajadas.",
+    "steps": [
+      "Tira de las puntas de los pies hacia ti todo lo que puedas.",
+      "Después estíralas hacia delante, como si pisaras un pedal.",
+      "Hazlo a un ritmo constante, sin parar entre un movimiento y otro."
+    ],
+    "avoid": [
+      "No dobles las rodillas ni levantes las piernas."
+    ]
+  },
+  "pro": {
+    "goal": "Movilidad activa de tobillo en flexión dorsal y plantar; favorece el retorno venoso.",
+    "notes": [
+      "Útil en encamamiento, postoperatorio e inmovilización de miembro inferior.",
+      "Puede hacerse sentado o con las piernas elevadas.",
+      "Ritmo continuo; el recorrido completo tiene más peso que la velocidad."
+    ]
+  }
+}

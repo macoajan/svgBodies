@@ -12,14 +12,12 @@
   "pattern": "antiextension",
   "level": 3,
   "muscles": {
-    "primary": [
-      "recto-abdominal",
-      "transverso"
-    ],
-    "secondary": [
-      "dorsal",
-      "serrato"
-    ]
+    "recto-abdominal": 40,
+    "transverso": 20,
+    "dorsal": 15,
+    "oblicuos": 10,
+    "serrato": 10,
+    "triceps": 5
   },
   "equipment": [
     "rueda-abdominal"

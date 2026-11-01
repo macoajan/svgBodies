@@ -12,14 +12,12 @@
   "pattern": "transporte",
   "level": 1,
   "muscles": {
-    "primary": [
-      "antebrazo",
-      "trapecio"
-    ],
-    "secondary": [
-      "transverso",
-      "gluteo-medio"
-    ]
+    "antebrazo": 35,
+    "trapecio": 30,
+    "transverso": 15,
+    "gluteo-medio": 10,
+    "oblicuos": 5,
+    "erectores": 5
   },
   "equipment": [
     "kettlebell"
@@ -59,14 +57,11 @@
         "antiflexion-lateral"
       ],
       "muscles": {
-        "primary": [
-          "oblicuos",
-          "cuadrado-lumbar",
-          "antebrazo"
-        ],
-        "secondary": [
-          "gluteo-medio"
-        ]
+        "oblicuos": 30,
+        "cuadrado-lumbar": 25,
+        "antebrazo": 20,
+        "gluteo-medio": 15,
+        "trapecio": 10
       }
     },
     {
@@ -81,14 +76,13 @@
       "laterality": "unilateral",
       "level": 2,
       "muscles": {
-        "primary": [
-          "deltoides",
-          "trapecio"
-        ],
-        "secondary": [
-          "serrato",
-          "oblicuos"
-        ]
+        "deltoides-anterior": 20,
+        "trapecio": 20,
+        "serrato": 20,
+        "deltoides-lateral": 15,
+        "triceps": 10,
+        "oblicuos": 10,
+        "manguito-rotador": 5
       },
       "demands": [
         "brazos-sobre-cabeza"

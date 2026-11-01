@@ -12,14 +12,11 @@
   "pattern": "movilidad",
   "level": 1,
   "muscles": {
-    "primary": [
-      "isquiotibiales",
-      "flexores-cadera"
-    ],
-    "secondary": [
-      "gluteo-mayor",
-      "gluteo-medio"
-    ]
+    "flexores-cadera": 30,
+    "isquiotibiales": 25,
+    "gluteo-mayor": 20,
+    "gluteo-medio": 15,
+    "transverso": 10
   },
   "equipment": [
     "peso-corporal"

@@ -1,0 +1,46 @@
+{
+  "id": "sentarse-levantarse",
+  "name": {
+    "es": "Sentarse y levantarse",
+    "en": "Sit to stand"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "fuerza",
+  "position": "sentado",
+  "laterality": "bilateral",
+  "pattern": "sentadilla",
+  "level": 1,
+  "muscles": {
+    "cuadriceps": 50,
+    "gluteo-mayor": 30,
+    "erectores": 10,
+    "isquiotibiales": 5,
+    "soleo": 5
+  },
+  "equipment": [
+    "silla"
+  ],
+  "demands": [],
+  "variants": [
+    {
+      "id": "sentarse-levantarse",
+      "name": {
+        "es": "Sentarse y levantarse de la silla",
+        "en": "Sit to stand"
+      },
+      "regions": [
+        "rodilla",
+        "cadera"
+      ],
+      "goals": [
+        "fortalecimiento",
+        "funcional"
+      ],
+      "mode": "activo",
+      "progressions": [
+        "step-up"
+      ]
+    }
+  ]
+}

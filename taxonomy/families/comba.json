@@ -12,13 +12,13 @@
   "pattern": "salto",
   "level": 1,
   "muscles": {
-    "primary": [
-      "gemelos"
-    ],
-    "secondary": [
-      "antebrazo",
-      "deltoides"
-    ]
+    "gemelos": 35,
+    "soleo": 30,
+    "cuadriceps": 15,
+    "antebrazo": 5,
+    "tibial-anterior": 5,
+    "deltoides-anterior": 5,
+    "gluteo-mayor": 5
   },
   "equipment": [
     "comba"

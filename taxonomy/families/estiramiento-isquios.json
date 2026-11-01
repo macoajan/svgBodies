@@ -12,13 +12,9 @@
   "pattern": "estiramiento",
   "level": 1,
   "muscles": {
-    "primary": [
-      "isquiotibiales"
-    ],
-    "secondary": [
-      "gemelos",
-      "erectores"
-    ]
+    "isquiotibiales": 70,
+    "gemelos": 15,
+    "erectores": 15
   },
   "equipment": [
     "peso-corporal"

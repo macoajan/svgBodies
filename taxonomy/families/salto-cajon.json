@@ -12,13 +12,13 @@
   "pattern": "salto",
   "level": 2,
   "muscles": {
-    "primary": [
-      "cuadriceps",
-      "gluteo-mayor"
-    ],
-    "secondary": [
-      "gemelos"
-    ]
+    "cuadriceps": 30,
+    "gluteo-mayor": 25,
+    "gemelos": 15,
+    "soleo": 10,
+    "isquiotibiales": 10,
+    "erectores": 5,
+    "deltoides-anterior": 5
   },
   "equipment": [
     "cajon"

@@ -15,14 +15,11 @@
   ],
   "level": 1,
   "muscles": {
-    "primary": [
-      "oblicuos",
-      "erectores"
-    ],
-    "secondary": [
-      "romboides",
-      "trapecio"
-    ]
+    "oblicuos": 35,
+    "erectores": 25,
+    "romboides": 20,
+    "trapecio": 10,
+    "deltoides-posterior": 10
   },
   "equipment": [
     "esterilla"

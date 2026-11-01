@@ -1,0 +1,48 @@
+{
+  "id": "equilibrio-unipodal",
+  "name": {
+    "es": "Equilibrio a una pierna",
+    "en": "Single-leg balance"
+  },
+  "plane": "multiplanar",
+  "mechanics": "isometrico",
+  "action": "estabilidad",
+  "position": "de-pie",
+  "laterality": "unilateral",
+  "pattern": "equilibrio",
+  "level": 1,
+  "muscles": {
+    "gluteo-medio": 30,
+    "soleo": 20,
+    "tibial-anterior": 15,
+    "gemelos": 10,
+    "cuadriceps": 10,
+    "flexores-cadera": 10,
+    "transverso": 5
+  },
+  "equipment": [
+    "peso-corporal"
+  ],
+  "demands": [
+    "equilibrio"
+  ],
+  "variants": [
+    {
+      "id": "equilibrio-unipodal",
+      "name": {
+        "es": "Equilibrio a una pierna",
+        "en": "Single-leg balance"
+      },
+      "regions": [
+        "tobillo-pie",
+        "rodilla",
+        "cadera"
+      ],
+      "goals": [
+        "propiocepcion",
+        "control-motor"
+      ],
+      "mode": "activo"
+    }
+  ]
+}

@@ -12,14 +12,12 @@
   "pattern": "sentadilla",
   "level": 1,
   "muscles": {
-    "primary": [
-      "cuadriceps",
-      "gluteo-mayor"
-    ],
-    "secondary": [
-      "aductores",
-      "erectores"
-    ]
+    "cuadriceps": 45,
+    "gluteo-mayor": 30,
+    "aductores": 10,
+    "erectores": 5,
+    "soleo": 5,
+    "recto-abdominal": 5
   },
   "equipment": [
     "peso-corporal"
@@ -70,7 +68,15 @@
       },
       "equipment": [
         "kettlebell"
-      ]
+      ],
+      "muscles": {
+        "cuadriceps": 40,
+        "gluteo-mayor": 25,
+        "erectores": 15,
+        "aductores": 10,
+        "recto-abdominal": 5,
+        "antebrazo": 5
+      }
     },
     {
       "id": "sentadilla-trasera",
@@ -91,7 +97,14 @@
       "demands": [
         "flexion-profunda-rodilla",
         "carga-axial"
-      ]
+      ],
+      "muscles": {
+        "cuadriceps": 40,
+        "gluteo-mayor": 30,
+        "erectores": 15,
+        "aductores": 10,
+        "isquiotibiales": 5
+      }
     },
     {
       "id": "sentadilla-frontal",
@@ -115,14 +128,12 @@
         "carga-muneca"
       ],
       "muscles": {
-        "primary": [
-          "cuadriceps",
-          "gluteo-mayor"
-        ],
-        "secondary": [
-          "erectores",
-          "recto-abdominal"
-        ]
+        "cuadriceps": 50,
+        "gluteo-mayor": 20,
+        "erectores": 15,
+        "recto-abdominal": 5,
+        "aductores": 5,
+        "deltoides-anterior": 5
       }
     },
     {
@@ -141,14 +152,11 @@
       ],
       "demands": [],
       "muscles": {
-        "primary": [
-          "gluteo-mayor",
-          "cuadriceps"
-        ],
-        "secondary": [
-          "isquiotibiales",
-          "aductores"
-        ]
+        "gluteo-mayor": 35,
+        "cuadriceps": 30,
+        "isquiotibiales": 15,
+        "aductores": 10,
+        "erectores": 10
       }
     }
   ]

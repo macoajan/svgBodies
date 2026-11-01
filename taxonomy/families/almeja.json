@@ -1,0 +1,45 @@
+{
+  "id": "almeja",
+  "name": {
+    "es": "Almeja",
+    "en": "Clamshell"
+  },
+  "plane": "transversal",
+  "mechanics": "aislado",
+  "action": "fuerza",
+  "position": "suelo-lateral",
+  "laterality": "unilateral",
+  "pattern": "analitico",
+  "level": 1,
+  "muscles": {
+    "gluteo-medio": 50,
+    "rotadores-externos-cadera": 35,
+    "gluteo-mayor": 15
+  },
+  "equipment": [
+    "esterilla"
+  ],
+  "demands": [
+    "decubito"
+  ],
+  "variants": [
+    {
+      "id": "almeja",
+      "name": {
+        "es": "Almeja",
+        "en": "Clamshell"
+      },
+      "regions": [
+        "cadera"
+      ],
+      "goals": [
+        "fortalecimiento",
+        "control-motor"
+      ],
+      "mode": "activo",
+      "progressions": [
+        "abduccion-cadera-lateral"
+      ]
+    }
+  ]
+}

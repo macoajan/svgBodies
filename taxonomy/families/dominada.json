@@ -12,15 +12,12 @@
   "pattern": "traccion-vertical",
   "level": 3,
   "muscles": {
-    "primary": [
-      "dorsal",
-      "biceps"
-    ],
-    "secondary": [
-      "romboides",
-      "trapecio",
-      "antebrazo"
-    ]
+    "dorsal": 40,
+    "biceps": 20,
+    "romboides": 15,
+    "trapecio": 10,
+    "antebrazo": 10,
+    "deltoides-posterior": 5
   },
   "equipment": [
     "barra-dominadas"

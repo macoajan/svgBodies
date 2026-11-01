@@ -12,12 +12,10 @@
   "pattern": "salto",
   "level": 1,
   "muscles": {
-    "primary": [
-      "gemelos"
-    ],
-    "secondary": [
-      "cuadriceps"
-    ]
+    "gemelos": 45,
+    "soleo": 35,
+    "tibial-anterior": 15,
+    "cuadriceps": 5
   },
   "equipment": [
     "peso-corporal"

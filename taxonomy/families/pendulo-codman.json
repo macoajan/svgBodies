@@ -1,0 +1,45 @@
+{
+  "id": "pendulo-codman",
+  "name": {
+    "es": "Péndulo de Codman",
+    "en": "Codman pendulum"
+  },
+  "plane": "multiplanar",
+  "mechanics": "aislado",
+  "action": "movilidad",
+  "position": "de-pie",
+  "laterality": "unilateral",
+  "pattern": "movilidad",
+  "level": 1,
+  "muscles": {
+    "manguito-rotador": 40,
+    "deltoides-anterior": 20,
+    "deltoides-lateral": 15,
+    "erectores": 10,
+    "isquiotibiales": 10,
+    "gluteo-mayor": 5
+  },
+  "equipment": [
+    "mesa"
+  ],
+  "demands": [],
+  "variants": [
+    {
+      "id": "pendulo-codman",
+      "name": {
+        "es": "Péndulo de Codman",
+        "en": "Codman pendulum"
+      },
+      "regions": [
+        "hombro"
+      ],
+      "goals": [
+        "movilidad-autoasistida"
+      ],
+      "mode": "autoasistido",
+      "progressions": [
+        "flexion-hombro-baston"
+      ]
+    }
+  ]
+}
