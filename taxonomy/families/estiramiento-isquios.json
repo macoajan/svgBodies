@@ -1,0 +1,36 @@
+{
+  "id": "estiramiento-isquios",
+  "name": {
+    "es": "Estiramiento de isquiotibiales",
+    "en": "Standing hamstring stretch"
+  },
+  "plane": "sagital",
+  "mechanics": "aislado",
+  "action": "movilidad",
+  "position": "de-pie",
+  "laterality": "bilateral",
+  "pattern": "estiramiento",
+  "level": 1,
+  "muscles": {
+    "primary": [
+      "isquiotibiales"
+    ],
+    "secondary": [
+      "gemelos",
+      "erectores"
+    ]
+  },
+  "equipment": [
+    "peso-corporal"
+  ],
+  "demands": [],
+  "variants": [
+    {
+      "id": "estiramiento-isquios",
+      "name": {
+        "es": "Estiramiento de isquiotibiales",
+        "en": "Standing hamstring stretch"
+      }
+    }
+  ]
+}

@@ -62,5 +62,13 @@
   "oscilacion": {
     "es": "Oscilación / ondas",
     "en": "Oscillation / waves"
+  },
+  "movilidad": {
+    "es": "Movilidad articular",
+    "en": "Mobility drill"
+  },
+  "estiramiento": {
+    "es": "Estiramiento",
+    "en": "Stretch"
   }
 }

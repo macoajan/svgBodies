@@ -1,0 +1,93 @@
+{
+  "id": "salto-vertical",
+  "name": {
+    "es": "Salto vertical",
+    "en": "Vertical jump"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "potencia",
+  "position": "de-pie",
+  "laterality": "bilateral",
+  "pattern": "salto",
+  "level": 2,
+  "muscles": {
+    "primary": [
+      "cuadriceps",
+      "gluteo-mayor",
+      "gemelos"
+    ],
+    "secondary": [
+      "isquiotibiales",
+      "erectores"
+    ]
+  },
+  "equipment": [
+    "peso-corporal"
+  ],
+  "demands": [
+    "impacto"
+  ],
+  "params": {
+    "inicio": [
+      "de-pie",
+      "sentadilla"
+    ],
+    "vuelo": [
+      "extendido",
+      "rodillas-pecho"
+    ]
+  },
+  "variants": [
+    {
+      "id": "salto-vertical",
+      "name": {
+        "es": "Salto vertical",
+        "en": "Countermovement jump"
+      },
+      "set": {
+        "inicio": "de-pie",
+        "vuelo": "extendido"
+      }
+    },
+    {
+      "id": "sentadilla-salto",
+      "name": {
+        "es": "Sentadilla con salto",
+        "en": "Jump squat"
+      },
+      "set": {
+        "inicio": "sentadilla",
+        "vuelo": "extendido"
+      },
+      "demands": [
+        "impacto",
+        "flexion-profunda-rodilla"
+      ]
+    },
+    {
+      "id": "salto-rodillas-pecho",
+      "name": {
+        "es": "Salto con rodillas al pecho",
+        "en": "Tuck jump"
+      },
+      "set": {
+        "inicio": "de-pie",
+        "vuelo": "rodillas-pecho"
+      },
+      "level": 3,
+      "muscles": {
+        "primary": [
+          "cuadriceps",
+          "gluteo-mayor",
+          "gemelos",
+          "flexores-cadera"
+        ],
+        "secondary": [
+          "recto-abdominal",
+          "isquiotibiales"
+        ]
+      }
+    }
+  ]
+}

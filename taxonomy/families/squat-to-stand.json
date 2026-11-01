@@ -1,0 +1,43 @@
+{
+  "id": "squat-to-stand",
+  "name": {
+    "es": "Squat to stand",
+    "en": "Squat to stand"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "movilidad",
+  "position": "de-pie",
+  "laterality": "bilateral",
+  "pattern": "movilidad",
+  "patterns2": [
+    "sentadilla"
+  ],
+  "level": 1,
+  "muscles": {
+    "primary": [
+      "aductores",
+      "isquiotibiales"
+    ],
+    "secondary": [
+      "gluteo-mayor",
+      "erectores"
+    ]
+  },
+  "equipment": [
+    "peso-corporal"
+  ],
+  "demands": [
+    "flexion-profunda-rodilla",
+    "brazos-sobre-cabeza"
+  ],
+  "variants": [
+    {
+      "id": "squat-to-stand",
+      "name": {
+        "es": "Squat to stand",
+        "en": "Squat to stand"
+      }
+    }
+  ]
+}

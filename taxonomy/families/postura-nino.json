@@ -1,0 +1,41 @@
+{
+  "id": "postura-nino",
+  "name": {
+    "es": "Postura del niño",
+    "en": "Child's pose"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "movilidad",
+  "position": "rodillas",
+  "laterality": "bilateral",
+  "pattern": "estiramiento",
+  "level": 1,
+  "muscles": {
+    "primary": [
+      "erectores",
+      "dorsal"
+    ],
+    "secondary": [
+      "gluteo-mayor",
+      "cuadriceps"
+    ]
+  },
+  "equipment": [
+    "esterilla"
+  ],
+  "demands": [
+    "apoyo-rodilla",
+    "flexion-profunda-rodilla",
+    "brazos-sobre-cabeza"
+  ],
+  "variants": [
+    {
+      "id": "postura-nino",
+      "name": {
+        "es": "Postura del niño",
+        "en": "Child's pose"
+      }
+    }
+  ]
+}

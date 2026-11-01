@@ -1,0 +1,44 @@
+{
+  "id": "gusano",
+  "name": {
+    "es": "Gusano (walkout)",
+    "en": "Walkout (inchworm)"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "movilidad",
+  "position": "transicion",
+  "laterality": "bilateral",
+  "pattern": "movilidad",
+  "patterns2": [
+    "antiextension"
+  ],
+  "level": 2,
+  "muscles": {
+    "primary": [
+      "isquiotibiales",
+      "recto-abdominal"
+    ],
+    "secondary": [
+      "deltoides",
+      "pectoral",
+      "triceps",
+      "gemelos"
+    ]
+  },
+  "equipment": [
+    "peso-corporal"
+  ],
+  "demands": [
+    "carga-muneca"
+  ],
+  "variants": [
+    {
+      "id": "gusano",
+      "name": {
+        "es": "Gusano (walkout)",
+        "en": "Walkout (inchworm)"
+      }
+    }
+  ]
+}

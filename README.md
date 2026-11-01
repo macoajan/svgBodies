@@ -16,7 +16,7 @@ Produce en `library/`:
 | `index.html` | Buscador por facetas (patrón, músculo, material, lugar, posición, nivel, objetivo, lateralidad, plano y exclusión por exigencias). |
 | `catalog.json` | Clasificación resuelta de cada ejercicio con sus ficheros de animación, para apps. |
 | `catalog-flags.csv` | La misma clasificación como tabla dispersa de flags (una columna por valor). |
-| `lote-{a,b,c,d}.html` | Galería de cada lote: dos vistas CSS por ejercicio (lateral + frontal, o lateral + cenital en los de suelo) y vista iso en vivo con cámara libre (arrastrar para girar, doble clic para volver); pausa, velocidad y control de posición comunes. |
+| `lote-{a,b,c,d,e}.html` | Galería de cada lote: dos vistas CSS por ejercicio (lateral + frontal, o lateral + cenital en los de suelo) y vista iso en vivo con cámara libre (arrastrar para girar, doble clic para volver); pausa, velocidad y control de posición comunes. |
 | `svg/<id>-{lateral,frontal\|cenital,iso}.svg` | SVG autónomos (CSS dentro, sin JavaScript), utilizables en web o WebView. |
 | `poses.json` | Posturas muestreadas en 3D (lado derecho; el izquierdo es −z) para renderizar en nativo. |
 | `viewer.js` | Visor sin dependencias de `poses.json` con cámara libre: `PoseViewer.mount(svg, ejercicio, { yaw, pitch })` y `render(t)`. Ordena las formas por profundidad en cada fotograma (pintor). Referencia para portar a la app. |
@@ -28,7 +28,7 @@ Produce en `library/`:
 
 - `tools/engine.mjs` — modelo corporal, ayudas de postura (`legs`, `trunk`, `straight`, `elbowIK`,
   `balance`), muestreo, validación y render de las dos vistas.
-- `tools/exercises.mjs` y `tools/exercises-{b,c,d}.mjs` (lotes A a D) — definición de cada ejercicio:
+- `tools/exercises.mjs` y `tools/exercises-{b,c,d,e}.mjs` (lotes A a E) — definición de cada ejercicio:
   fases (duración y función de postura), postura fija para `prefers-reduced-motion`, vistas
   (`views`), cámara iso propia (`isoCam`) y elementos fijos (`props`: `box` para cajones, bancos, pared y trineo; `lines` para barras y estructuras; `pullbar`).
 - `tools/viewer.js` — visor 3D en tiempo de ejecución (se copia a `library/`).
@@ -59,3 +59,9 @@ Produce en `library/`:
   en paralelas, remo con mancuerna, remo invertido, suitcase carry, overhead carry, plancha
   lateral, Pallof press, leñador, rueda abdominal, mountain climbers, battle ropes, cargada con
   kettlebell, turkish get-up, bear crawl y sled push.
+- **E** (movilidad, estiramientos, carrera y saltos): círculos de brazos, balanceo de pierna,
+  gusano (walkout), squat to stand, rotación torácica en cuadrupedia, world's greatest stretch;
+  estiramientos de isquiotibiales, cuádriceps, flexor de cadera, gemelo en pared y hombro
+  cruzado, postura del niño, perro boca abajo y cobra; carrera, skipping y talones al glúteo (en
+  el sitio); salto vertical, sentadilla con salto, salto con rodillas al pecho, salto horizontal,
+  zancada con salto, saltos de patinador y saltos de tobillo.

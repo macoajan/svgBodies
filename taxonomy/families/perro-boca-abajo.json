@@ -1,0 +1,41 @@
+{
+  "id": "perro-boca-abajo",
+  "name": {
+    "es": "Perro boca abajo",
+    "en": "Downward dog"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "movilidad",
+  "position": "cuadrupedia",
+  "laterality": "bilateral",
+  "pattern": "estiramiento",
+  "level": 2,
+  "muscles": {
+    "primary": [
+      "isquiotibiales",
+      "gemelos"
+    ],
+    "secondary": [
+      "dorsal",
+      "deltoides",
+      "erectores"
+    ]
+  },
+  "equipment": [
+    "esterilla"
+  ],
+  "demands": [
+    "carga-muneca",
+    "brazos-sobre-cabeza"
+  ],
+  "variants": [
+    {
+      "id": "perro-boca-abajo",
+      "name": {
+        "es": "Perro boca abajo",
+        "en": "Downward dog"
+      }
+    }
+  ]
+}

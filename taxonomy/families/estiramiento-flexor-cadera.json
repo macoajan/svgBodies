@@ -1,0 +1,39 @@
+{
+  "id": "estiramiento-flexor-cadera",
+  "name": {
+    "es": "Estiramiento de flexor de cadera",
+    "en": "Half-kneeling hip flexor stretch"
+  },
+  "plane": "sagital",
+  "mechanics": "aislado",
+  "action": "movilidad",
+  "position": "rodillas",
+  "laterality": "unilateral",
+  "pattern": "estiramiento",
+  "level": 1,
+  "muscles": {
+    "primary": [
+      "flexores-cadera"
+    ],
+    "secondary": [
+      "cuadriceps",
+      "oblicuos"
+    ]
+  },
+  "equipment": [
+    "esterilla"
+  ],
+  "demands": [
+    "apoyo-rodilla",
+    "brazos-sobre-cabeza"
+  ],
+  "variants": [
+    {
+      "id": "estiramiento-flexor-cadera",
+      "name": {
+        "es": "Estiramiento de flexor de cadera",
+        "en": "Half-kneeling hip flexor stretch"
+      }
+    }
+  ]
+}

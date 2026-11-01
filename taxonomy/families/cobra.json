@@ -1,0 +1,40 @@
+{
+  "id": "cobra",
+  "name": {
+    "es": "Cobra",
+    "en": "Cobra"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "movilidad",
+  "position": "suelo-prono",
+  "laterality": "bilateral",
+  "pattern": "estiramiento",
+  "level": 1,
+  "muscles": {
+    "primary": [
+      "recto-abdominal",
+      "flexores-cadera"
+    ],
+    "secondary": [
+      "erectores",
+      "pectoral"
+    ]
+  },
+  "equipment": [
+    "esterilla"
+  ],
+  "demands": [
+    "decubito",
+    "carga-muneca"
+  ],
+  "variants": [
+    {
+      "id": "cobra",
+      "name": {
+        "es": "Cobra",
+        "en": "Cobra"
+      }
+    }
+  ]
+}

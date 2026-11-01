@@ -1,0 +1,35 @@
+{
+  "id": "estiramiento-gemelo",
+  "name": {
+    "es": "Estiramiento de gemelo en pared",
+    "en": "Wall calf stretch"
+  },
+  "plane": "sagital",
+  "mechanics": "aislado",
+  "action": "movilidad",
+  "position": "de-pie",
+  "laterality": "unilateral",
+  "pattern": "estiramiento",
+  "level": 1,
+  "muscles": {
+    "primary": [
+      "gemelos"
+    ],
+    "secondary": [
+      "isquiotibiales"
+    ]
+  },
+  "equipment": [
+    "pared"
+  ],
+  "demands": [],
+  "variants": [
+    {
+      "id": "estiramiento-gemelo",
+      "name": {
+        "es": "Estiramiento de gemelo en pared",
+        "en": "Wall calf stretch"
+      }
+    }
+  ]
+}

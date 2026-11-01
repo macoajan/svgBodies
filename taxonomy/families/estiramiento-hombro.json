@@ -1,0 +1,36 @@
+{
+  "id": "estiramiento-hombro",
+  "name": {
+    "es": "Estiramiento de hombro cruzado",
+    "en": "Cross-body shoulder stretch"
+  },
+  "plane": "transversal",
+  "mechanics": "aislado",
+  "action": "movilidad",
+  "position": "de-pie",
+  "laterality": "alterno",
+  "pattern": "estiramiento",
+  "level": 1,
+  "muscles": {
+    "primary": [
+      "deltoides-posterior"
+    ],
+    "secondary": [
+      "romboides",
+      "trapecio"
+    ]
+  },
+  "equipment": [
+    "peso-corporal"
+  ],
+  "demands": [],
+  "variants": [
+    {
+      "id": "estiramiento-hombro",
+      "name": {
+        "es": "Estiramiento de hombro cruzado",
+        "en": "Cross-body shoulder stretch"
+      }
+    }
+  ]
+}

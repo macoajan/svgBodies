@@ -1,0 +1,41 @@
+{
+  "id": "saltos-patinador",
+  "name": {
+    "es": "Saltos de patinador",
+    "en": "Skater jumps"
+  },
+  "plane": "frontal",
+  "mechanics": "compuesto",
+  "action": "potencia",
+  "position": "de-pie",
+  "laterality": "alterno",
+  "pattern": "salto",
+  "level": 2,
+  "muscles": {
+    "primary": [
+      "gluteo-medio",
+      "gluteo-mayor",
+      "cuadriceps"
+    ],
+    "secondary": [
+      "aductores",
+      "gemelos"
+    ]
+  },
+  "equipment": [
+    "peso-corporal"
+  ],
+  "demands": [
+    "impacto",
+    "equilibrio"
+  ],
+  "variants": [
+    {
+      "id": "saltos-patinador",
+      "name": {
+        "es": "Saltos de patinador",
+        "en": "Skater jumps"
+      }
+    }
+  ]
+}
