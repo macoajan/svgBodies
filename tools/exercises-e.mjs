@@ -444,7 +444,8 @@ const SK_PUSH_L = swapState({ ...SK_PUSH_R, shift: -SK_PUSH_R.shift });
 const SK_AIR_L = swapState({ ...SK_AIR, shift: -SK_AIR.shift });
 
 // Pogo hops: stiff legs, the bounce comes from the ankles.
-const PG = { toe: S_(A, 27.6, 0, 8, feet(A, 45)), air: S_(A, 24.4, 0, 8, feet(A, 50, 4.5, 3.5)) };
+// Contact: touch down on the toes, let the heel drop towards the floor (ankle dorsiflexion), rebound.
+const PG = { toe: S_(A, 27.6, 0, 8, feet(A, 45)), dip: S_(A, 29.9, 2, 8, feet(A, 22)), air: S_(A, 24.4, 0, 8, feet(A, 50, 4.5, 3.5)) };
 
 export const EXERCISES_E = [
   // ---------- Mobility ----------
@@ -608,6 +609,6 @@ export const EXERCISES_E = [
   {
     id: 'saltos-tobillo', name: 'Saltos de tobillo (pogo)', still: 0.2,
     cue: 'Saltos cortos y rápidos con las piernas casi rectas; el rebote sale de los tobillos.',
-    phases: [jmove(PG.toe, PG.air, 0.2, easeOut), jmove(PG.air, PG.toe, 0.2, easeIn)],
+    phases: [jmove(PG.toe, PG.air, 0.16, easeOut), jmove(PG.air, PG.toe, 0.16, easeIn), jmove(PG.toe, PG.dip, 0.08), jmove(PG.dip, PG.toe, 0.08)],
   },
 ];
