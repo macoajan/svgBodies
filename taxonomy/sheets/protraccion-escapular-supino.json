@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "Túmbate boca arriba con las rodillas dobladas y los brazos estirados hacia el techo.",
+    "steps": [
+      "Empuja las manos hacia el techo, separando los hombros del suelo.",
+      "Mantén un momento sin doblar los codos.",
+      "Baja los hombros despacio."
+    ],
+    "avoid": [
+      "No dobles los codos.",
+      "No levantes la cabeza."
+    ]
+  },
+  "pro": {
+    "goal": "Activación del serrato anterior en protracción escapular.",
+    "notes": [
+      "En supino el control escapular resulta más sencillo y sin carga sobre el hombro.",
+      "Puede añadirse un peso ligero en las manos.",
+      "Progresión: deslizamiento en pared."
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "De pie de lado a una pared, con el codo pegado al cuerpo y doblado a 90° y el dorso de la mano apoyado en la pared.",
+    "steps": [
+      "Empuja la pared con el dorso de la mano, sin moverte.",
+      "Mantén la fuerza unos segundos.",
+      "Relaja despacio y repite."
+    ],
+    "avoid": [
+      "No separes el codo del cuerpo.",
+      "No gires el tronco para empujar."
+    ]
+  },
+  "pro": {
+    "goal": "Activación isométrica de los rotadores externos sin movimiento articular.",
+    "notes": [
+      "Útil en fases dolorosas o tras cirugía, cuando el movimiento aún no se tolera.",
+      "Graduar la intensidad (por ejemplo, del 30 % al 70 % del máximo).",
+      "Progresión: rotación externa con banda."
+    ]
+  }
+}

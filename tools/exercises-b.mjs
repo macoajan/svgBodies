@@ -192,7 +192,9 @@ export const EXERCISES_B = [
   {
     id: 'plancha', views: ['side', 'top'], isoCam: { yaw: 18, pitch: 35 }, name: 'Plancha', still: 0,
     cue: 'Codos bajo los hombros y cuerpo recto; se mantiene la posición respirando con calma.',
-    phases: [{ dur: 4, ease: s => s, pose: plank }],
+    // Isometric halo over the trunk, pulsing while the position is held.
+    glow: [['pelvis', 'shoulderC']],
+    phases: [{ dur: 4, ease: s => s, pose: s => ({ ...plank(s), effort: smooth(s / 0.15) * smooth((1 - s) / 0.15) * (0.8 + 0.2 * Math.sin(8 * Math.PI * s)) }) }],
   },
   {
     id: 'puente-gluteo', views: ['side', 'top'], isoCam: { yaw: 18, pitch: 35 }, name: 'Puente de glúteo', still: 1.5,

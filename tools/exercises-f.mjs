@@ -37,9 +37,17 @@ function legFrom(hip, dir, kneeDeg, ang) {
   return { knee, ankle, toe: footDir(ankle, ang) };
 }
 const handTo = (t, sg, hand) => within(sideShoulder(t, sg), hand, ARM);
-const swapLR = p => { const q = transformPose(p, mirror); return { ...q, r: q.l, l: q.r }; };
+// Mirrors a pose; a per-side effort pair [right, left] swaps with the sides.
+const swapLR = p => {
+  const q = transformPose(p, mirror);
+  return { ...q, r: q.l, l: q.r, ...(Array.isArray(p.effort) && p.effort.length === 2 ? { effort: [p.effort[1], p.effort[0]] } : {}) };
+};
 const mirrored = phases => phases.map(ph => ({ ...ph, pose: e => swapLR(ph.pose(e)) }));
 const both = phases => [...phases, ...mirrored(phases)];
+// Isometric hold: the pose stays, the halo fades in, pulses gently and fades out.
+const pulse = (s, beats) => smooth(s / 0.15) * smooth((1 - s) / 0.15) * (0.85 + 0.15 * Math.sin(2 * Math.PI * beats * s));
+const withEffort = (p, e) => ({ ...p, effort: e });
+const isoHold = (dur, p, side = null) => ({ dur, ease: s => s, pose: s => withEffort(p, side === null ? pulse(s, dur) : side > 0 ? [pulse(s, dur), 0] : [0, pulse(s, dur)]) });
 // Out, hold, back: the usual shape of a slow therapeutic repetition.
 const rep = (f, out, top, back, rest = 0.3) => [hold(rest, f(0)), { dur: out, pose: f }, hold(top, f(1)), { dur: back, pose: e => f(1 - e) }];
 
@@ -612,6 +620,49 @@ function bandPull(e) {
 // Clamshell with a band around the knees (same movement as the clamshell).
 const clamBand = e => { const p = clam(e); return { ...p, objects: [{ type: 'band', a: p.r.knee, b: p.l.knee }] }; };
 
+// ======================= Isometrics and scapula =======================
+
+// ---------- Quadriceps set: legs straight, the knee presses down onto a towel, hold ----------
+const TOWEL = { type: 'wheel', at: V(SUP.pelvis.x + L.thigh, FLOOR_TOP - 1.4, 0), r: 1.4, hw: 9 };
+function quadSet(e) {
+  const t = lyingTrunk(SUP.pelvis);
+  const leg = (sg, k) => {
+    const bend = 6 * (1 - smooth(k));               // slight bend over the towel, straight when pressing
+    const dir = V(Math.cos(rad(bend)), -Math.sin(rad(bend)));
+    return { ...legFrom(sideHip(t, sg), dir, 2 * bend, lerp(-80, -100, smooth(k))), ...armsAlong(t, sg) };
+  };
+  return poseLR({ trunk: t, r: leg(1, e), l: leg(-1, 0), objects: [TOWEL] });
+}
+// ---------- Isometric external rotation: elbow at the side, the back of the hand pushes a wall ----------
+const ISO_TH = 18;
+const ISO_HAND = forearmAt(standT(), 1, ISO_TH);
+const WALL_SIDE = { type: 'box', x0: A - 6, x1: A + 22, top: -14, z0: ISO_HAND.z + 0.9, z1: ISO_HAND.z + 2.9 };
+function isoER(e) {
+  const t = standT(), th = lerp(0, ISO_TH, smooth(e)), hr = forearmAt(t, 1, th);
+  return poseLR({ trunk: t,
+    r: { ...standLegs(t, 1), elbow: elbowAtSide(t, 1), hand: hr },
+    l: { ...standLegs(t, -1), hand: straight(sideShoulder(t, -1), 0, -9) } });
+}
+// ---------- Scapular elevation and depression: shrug up, then draw the shoulders down ----------
+function scapStand(up, fwd = 0) {
+  const t = trunk(V(A, STAND_Y), 0, 0, { scap: { r: { up, fwd }, l: { up, fwd } } });
+  const side = sg => ({ ...standLegs(t, sg), hand: straight(sideShoulder(t, sg), 0, sg * 9), pole: V(0, 1, 0.3 * sg) });
+  return poseLR({ trunk: t, r: side(1), l: side(-1) });
+}
+const SHRUG = [
+  hold(0.3, scapStand(0)), { dur: 0.9, pose: e => scapStand(3.2 * smooth(e)) }, hold(0.6, scapStand(3.2)),
+  { dur: 1.4, pose: e => scapStand(lerp(3.2, -1.6, smooth(e))) }, hold(0.6, scapStand(-1.6)), { dur: 0.8, pose: e => scapStand(-1.6 * (1 - smooth(e))) },
+];
+// ---------- Scapular retraction: the shoulder blades squeeze together, arms relaxed ----------
+const scapRetract = e => scapStand(0, lerp(0.6, -2.8, smooth(e)));
+// ---------- Supine protraction (serratus punch): straight arms push the hands to the ceiling ----------
+function scapPunch(e) {
+  const fwd = 3.2 * smooth(e);
+  const t = lyingTrunk(SUP.pelvis, -90, { scap: { r: { fwd }, l: { fwd } } });
+  const side = sg => ({ ...hookLeg(t, sg), hand: straight(sideShoulder(t, sg), 180, sg * 7.5), pole: V(0, 0, sg) });
+  return poseLR({ trunk: t, r: side(1), l: side(-1) });
+}
+
 export const EXERCISES_F = [
   // ---------- Ankle ----------
   {
@@ -628,7 +679,8 @@ export const EXERCISES_F = [
   {
     id: 'extension-rodilla-rodillo', name: 'Extensión de rodilla sobre rodillo', views: ['side', 'top'], isoCam: { yaw: 18, pitch: 35 }, still: 1.4,
     cue: 'Con un rodillo bajo las rodillas, estira una rodilla levantando el talón y mantén unos segundos sin despegar el muslo.',
-    phases: both(rep(shortArc, 1.0, 1.0, 1.0)),
+    glow: [['r.hip', 'r.knee'], ['l.hip', 'l.knee']],
+    phases: both([hold(0.3, shortArc(0)), { dur: 1.0, pose: shortArc }, isoHold(1.5, shortArc(1), 1), { dur: 1.0, pose: e => shortArc(1 - e) }]),
   },
   {
     id: 'elevacion-pierna-recta', name: 'Elevación de pierna recta', views: ['side', 'top'], isoCam: { yaw: 18, pitch: 35 }, still: 1.5,
@@ -654,7 +706,8 @@ export const EXERCISES_F = [
   {
     id: 'sentadilla-pared', name: 'Sentadilla isométrica en pared', still: 2.5, props: [WALL_BACK],
     cue: 'Espalda apoyada en la pared, baja hasta que las rodillas queden a unos 90° y mantén la posición.',
-    phases: [hold(0.4, wallSit(0)), { dur: 1.6, pose: wallSit }, hold(3, wallSit(1)), { dur: 1.6, pose: e => wallSit(1 - e) }],
+    glow: [['r.hip', 'r.knee'], ['l.hip', 'l.knee']],
+    phases: [hold(0.4, wallSit(0)), { dur: 1.6, pose: wallSit }, isoHold(3, wallSit(1)), { dur: 1.6, pose: e => wallSit(1 - e) }],
   },
   {
     id: 'sentarse-levantarse', name: 'Sentarse y levantarse de la silla', still: 1.4, props: [CHAIR_PROP],
@@ -700,6 +753,34 @@ export const EXERCISES_F = [
     id: 'deslizamiento-pared', name: 'Deslizamiento en pared', still: 1.6, props: [WALL_SLIDE],
     cue: 'De cara a la pared con los antebrazos apoyados, deslízalos hacia arriba sin encoger los hombros y baja despacio.',
     phases: rep(wallSlide, 1.6, 0.5, 1.6),
+  },
+  // ---------- Isometrics and scapula ----------
+  {
+    id: 'contraccion-cuadriceps', name: 'Contracción isométrica de cuádriceps', views: ['side', 'top'], isoCam: { yaw: 18, pitch: 35 }, still: 1.5,
+    glow: [['r.hip', 'r.knee'], ['l.hip', 'l.knee']],
+    cue: 'Tumbado con las piernas estiradas y una toalla bajo la rodilla, aprieta el muslo empujando la rodilla contra la toalla y mantén.',
+    phases: both([hold(0.3, quadSet(0)), { dur: 0.5, pose: quadSet }, isoHold(3, quadSet(1), 1), { dur: 0.6, pose: e => quadSet(1 - e) }]),
+  },
+  {
+    id: 'isometria-rotacion-externa', name: 'Isometría de rotación externa', views: ['front', 'top'], isoCam: { yaw: 50, pitch: 40 }, still: 1.5,
+    props: [WALL_SIDE], glow: [['r.shoulder', 'r.elbow']],
+    cue: 'De lado a la pared con el codo pegado al cuerpo y doblado a 90°, empuja la pared con el dorso de la mano, sin moverte, y mantén.',
+    phases: [hold(0.3, isoER(0)), { dur: 0.6, pose: isoER }, isoHold(4, isoER(1)), { dur: 0.6, pose: e => isoER(1 - e) }],
+  },
+  {
+    id: 'elevacion-depresion-escapular', name: 'Elevación y depresión escapular', views: ['front', 'side'], still: 1.3,
+    cue: 'De pie con los brazos relajados, sube los hombros hacia las orejas y después bájalos alejándolos de ellas.',
+    phases: SHRUG,
+  },
+  {
+    id: 'retraccion-escapular', name: 'Retracción escapular', views: ['top', 'side'], isoCam: { yaw: 30, pitch: 50 }, still: 1.3,
+    cue: 'De pie con los brazos relajados, junta las escápulas llevando los hombros hacia atrás, sin subirlos, y mantén.',
+    phases: rep(scapRetract, 0.9, 1.2, 1.0),
+  },
+  {
+    id: 'protraccion-escapular-supino', name: 'Protracción escapular en supino', views: ['side', 'front'], isoCam: { yaw: 18, pitch: 35 }, still: 1.2,
+    cue: 'Tumbado con los brazos estirados hacia el techo, empuja las manos hacia arriba separando los hombros del suelo, sin doblar los codos.',
+    phases: rep(scapPunch, 0.8, 0.8, 1.0),
   },
   // ---------- Shoulder with a stick ----------
   {
@@ -768,7 +849,8 @@ export const EXERCISES_F = [
   {
     id: 'retraccion-cervical', name: 'Retracción cervical', face: true, props: [CHAIR_PROP], still: 1.6,
     cue: 'Sentado con la espalda recta, lleva la cabeza hacia atrás como para hacer papada, mirando al frente, y vuelve despacio.',
-    phases: rep(chinTuck, 1.0, 1.5, 1.0, 0.4),
+    glow: [['shoulderC', 'neckTop']],
+    phases: [hold(0.4, chinTuck(0)), { dur: 1.0, pose: chinTuck }, isoHold(2, chinTuck(1)), { dur: 1.0, pose: e => chinTuck(1 - e) }],
   },
   {
     id: 'flexo-extension-cervical', name: 'Flexión y extensión cervical', face: true, props: [CHAIR_PROP], still: 1.6,

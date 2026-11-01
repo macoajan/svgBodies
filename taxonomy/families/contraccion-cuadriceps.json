@@ -1,0 +1,46 @@
+{
+  "id": "contraccion-cuadriceps",
+  "name": {
+    "es": "Contracción isométrica de cuádriceps",
+    "en": "Quadriceps set"
+  },
+  "plane": "sagital",
+  "mechanics": "isometrico",
+  "action": "fuerza",
+  "position": "suelo-supino",
+  "laterality": "unilateral",
+  "pattern": "analitico",
+  "level": 1,
+  "muscles": {
+    "cuadriceps": 85,
+    "tibial-anterior": 10,
+    "gluteo-mayor": 5
+  },
+  "equipment": [
+    "esterilla",
+    "toalla"
+  ],
+  "demands": [
+    "decubito"
+  ],
+  "variants": [
+    {
+      "id": "contraccion-cuadriceps",
+      "name": {
+        "es": "Contracción isométrica de cuádriceps",
+        "en": "Quadriceps set"
+      },
+      "regions": [
+        "rodilla"
+      ],
+      "goals": [
+        "isometria",
+        "control-motor"
+      ],
+      "mode": "activo",
+      "progressions": [
+        "extension-rodilla-rodillo"
+      ]
+    }
+  ]
+}
