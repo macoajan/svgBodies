@@ -69,8 +69,9 @@ hay ejercicios lumbares de movilidad, cervicales, escapulares ni con banda.
 2. Motor, por orden: columna en tres segmentos (lumbar, dorsal, cervical), banda elástica y
    señal de isometría, y después escápula y cabeza orientable.
 3. Ampliar el catálogo terapéutico por regiones (lumbar y hombro primero), y el texto en inglés.
-4. Pendiente de decisión: si la plantilla de la hoja del paciente se diseña en esta biblioteca o
-   la hace el equipo de la app.
+4. La app y la hoja del paciente quedan fuera por ahora (decisión del propietario): no se
+   diseña ni se plantea nada de la app hasta que lo pida. La biblioteca sólo exporta los datos
+   (`catalog.json` con `sheet`).
 
 ## Cómo revisar visualmente
 
