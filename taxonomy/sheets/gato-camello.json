@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "Ponte a cuatro patas con las manos bajo los hombros y las rodillas bajo la cadera.",
+    "steps": [
+      "Redondea la espalda hacia el techo metiendo la barbilla hacia el pecho.",
+      "Después hunde la espalda levantando la mirada.",
+      "Pasa de una posición a otra despacio, sin forzar el final."
+    ],
+    "avoid": [
+      "No dobles los codos.",
+      "No muevas las manos ni las rodillas."
+    ]
+  },
+  "pro": {
+    "goal": "Movilidad activa segmentaria en flexión y extensión de la columna lumbar y dorsal, sin carga axial.",
+    "notes": [
+      "Recorrido dentro de la tolerancia: el objetivo es el movimiento, no llegar al final del rango.",
+      "Indicado en rigidez y dolor lumbar mecánico; coordinar con la respiración.",
+      "Progresión: bird dog (control en neutro)."
+    ]
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "id": "gato-camello",
+  "name": {
+    "es": "Gato-camello",
+    "en": "Cat-camel"
+  },
+  "plane": "sagital",
+  "mechanics": "compuesto",
+  "action": "movilidad",
+  "position": "cuadrupedia",
+  "laterality": "bilateral",
+  "pattern": "movilidad",
+  "level": 1,
+  "muscles": {
+    "erectores": 30,
+    "recto-abdominal": 25,
+    "oblicuos": 20,
+    "transverso": 10,
+    "gluteo-mayor": 10,
+    "serrato": 5
+  },
+  "equipment": [
+    "esterilla"
+  ],
+  "demands": [
+    "apoyo-rodilla",
+    "carga-muneca"
+  ],
+  "variants": [
+    {
+      "id": "gato-camello",
+      "name": {
+        "es": "Gato-camello",
+        "en": "Cat-camel"
+      },
+      "regions": [
+        "lumbar",
+        "dorsal"
+      ],
+      "goals": [
+        "movilidad-activa",
+        "control-motor"
+      ],
+      "mode": "activo",
+      "progressions": [
+        "bird-dog"
+      ]
+    }
+  ]
+}

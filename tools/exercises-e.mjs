@@ -282,11 +282,12 @@ function downDog(e) {
   return poseLR({ trunk: t, r: side(1), l: side(-1) });
 }
 
-// ---------- Cobra: lying face down, the arms lift the chest, hips stay on the floor ----------
+// ---------- Cobra: lying face down, the arms lift the chest and the low back arches, hips on the floor ----------
 const CB = { pelvis: V(32, F), hand: 45 };
 function cobra(e) {
-  const alpha = lerp(90, 52, e);
-  const t = trunk(CB.pelvis, alpha, 0, { neckDir: lerp(60, alpha - 8, e), headDir: lerp(30, alpha - 20, e) });
+  // The pelvis stays on the floor and the spine arches: most of it in the lumbar region.
+  const lumbar = lerp(0, -34, e), thoracic = lerp(0, -8, e), top = 90 + lumbar + thoracic;
+  const t = trunk(CB.pelvis, 90, 0, { lumbar, thoracic, neckDir: lerp(60, top - 8, e), headDir: lerp(30, top - 20, e) });
   const side = sg => {
     const hip = sideHip(t, sg), knee = along(hip, V(-1, 0), L.thigh), ankle = along(knee, V(-1, 0), L.shin);
     return { knee, ankle, toe: footDir(ankle, 180), hand: V(CB.hand, F, sg * 10), pole: V(-0.3, -1, 0.5 * sg) };

@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "Túmbate boca abajo con las manos apoyadas a la altura de la cabeza.",
+    "steps": [
+      "Empuja con los brazos para levantar el tronco.",
+      "Deja la pelvis y las piernas relajadas en el suelo: la espalda se arquea sola.",
+      "Baja despacio hasta quedar tumbado de nuevo."
+    ],
+    "avoid": [
+      "No levantes la pelvis del suelo.",
+      "No aprietes los glúteos."
+    ]
+  },
+  "pro": {
+    "goal": "Extensión lumbar repetida en decúbito prono (extensión en carga de brazos, método McKenzie).",
+    "notes": [
+      "La extensión la producen los brazos; la musculatura lumbar y glútea debe estar relajada.",
+      "Dosificar según la respuesta de los síntomas (centralización).",
+      "Progresión: añadir sobrepresión (espirar al final) o extensión en bipedestación según la evolución."
+    ]
+  }
+}
