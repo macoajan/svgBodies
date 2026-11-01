@@ -379,7 +379,14 @@ const KICKS = runner({
 // shift moves the trunk sideways (skater jumps).
 function jumper(st, pole = V(1, 0, 0)) {
   const t = trunk(V(st.px, st.py), st.alpha, st.neck ?? -0.3 * st.alpha, { shift: st.shift ?? 0 });
-  const side = (sg, a, phi) => ({ ...legTo(t, sg, V(a.x, Math.min(a.y, F - L.foot * Math.sin(rad(Math.max(0, Math.min(90, a.p))))), a.z), a.p, V(pole.x, pole.y, 0.25 * sg)), hand: armPhi(t, sg, phi), pole: V(0, 1, 0.3 * sg) });
+  // st.elbow (degrees) bends the elbow with the forearm forward, as in running; without it the
+  // arm is straight.
+  const arm = (sg, phi) => {
+    if (st.elbow == null) return { hand: armPhi(t, sg, phi), pole: V(0, 1, 0.3 * sg) };
+    const elbow = along(sideShoulder(t, sg), down(phi), L.upper);
+    return { elbow, hand: along(elbow, rot2(down(phi), -st.elbow), L.fore) };
+  };
+  const side = (sg, a, phi) => ({ ...legTo(t, sg, V(a.x, Math.min(a.y, F - L.foot * Math.sin(rad(Math.max(0, Math.min(90, a.p))))), a.z), a.p, V(pole.x, pole.y, 0.25 * sg)), ...arm(sg, phi) });
   return poseLR({ trunk: t, r: side(1, st.r, st.phiR), l: side(-1, st.l, st.phiL) });
 }
 const feet = (x, p, z = 4.5, lift = 0) => ({ r: { ...onToes(x, z, p), y: onToes(x, z, p).y - lift, p }, l: { ...onToes(x, -z, p), y: onToes(x, -z, p).y - lift, p } });
@@ -428,17 +435,17 @@ function broadPhases() {
 }
 
 // Split jump: right foot in front, jump, legs switch in the air, land with the left in front.
-const SJ_R = { px: A - 1, py: 42.5, alpha: 4, phiR: -35, phiL: 35, r: { x: A + 10, y: F, z: 4.5, p: 0 }, l: { ...onToes(A - 16, -4.5, 55), p: 55 } };
+const SJ_R = { px: A - 1, py: 42.5, alpha: 4, elbow: 90, phiR: -35, phiL: 35, r: { x: A + 10, y: F, z: 4.5, p: 0 }, l: { ...onToes(A - 16, -4.5, 55), p: 55 } };
 const swapState = st => ({ ...st, phiR: st.phiL, phiL: st.phiR, r: { ...st.l, z: -st.l.z }, l: { ...st.r, z: -st.r.z } });
-const SJ_AIR = { px: A - 0.5, py: 28, alpha: 2, phiR: 0, phiL: 0, r: { x: A, y: 47, z: 4.5, p: 35 }, l: { x: A, y: 47, z: -4.5, p: 35 } };
+const SJ_AIR = { px: A - 0.5, py: 28, alpha: 2, elbow: 90, phiR: 0, phiL: 0, r: { x: A, y: 47, z: 4.5, p: 35 }, l: { x: A, y: 47, z: -4.5, p: 35 } };
 const SJ_L = swapState(SJ_R);
 const SPLIT_POLE = V(1, 0.3, 0);
 
 // Skater jumps: land on the right leg far to the right, the left foot sweeps behind, and back.
-const SK_R = { px: A - 3, py: 40, alpha: 35, neck: -15, shift: 14, phiR: -35, phiL: 45, r: { x: A, y: F, z: 18, p: 0 }, l: { ...onToes(A - 10, 7, 60), p: 60 } };
+const SK_R = { px: A - 3, py: 40, alpha: 35, neck: -15, shift: 14, elbow: 90, phiR: -35, phiL: 45, r: { x: A, y: F, z: 18, p: 0 }, l: { ...onToes(A - 10, 7, 60), p: 60 } };
 // Push-off: the support leg extends diagonally while the pelvis travels towards the other side.
-const SK_PUSH_R = { px: A - 2, py: 31.5, alpha: 22, neck: -10, shift: -2, phiR: -10, phiL: 20, r: { ...onToes(A, 18, 55), p: 55 }, l: { x: A - 6, y: 50, z: 2, p: 45 } };
-const SK_AIR = { px: A - 1, py: 28, alpha: 18, neck: -8, shift: -5, phiR: 10, phiL: 0, r: { x: A - 3, y: 51, z: 8, p: 45 }, l: { x: A - 1, y: 53, z: -10, p: 30 } };
+const SK_PUSH_R = { px: A - 2, py: 31.5, alpha: 22, neck: -10, shift: -2, elbow: 90, phiR: -10, phiL: 20, r: { ...onToes(A, 18, 55), p: 55 }, l: { x: A - 6, y: 50, z: 2, p: 45 } };
+const SK_AIR = { px: A - 1, py: 28, alpha: 18, neck: -8, shift: -5, elbow: 90, phiR: 10, phiL: 0, r: { x: A - 3, y: 51, z: 8, p: 45 }, l: { x: A - 1, y: 53, z: -10, p: 30 } };
 const SK_L = swapState({ ...SK_R, shift: -SK_R.shift });
 const SK_PUSH_L = swapState({ ...SK_PUSH_R, shift: -SK_PUSH_R.shift });
 const SK_AIR_L = swapState({ ...SK_AIR, shift: -SK_AIR.shift });
