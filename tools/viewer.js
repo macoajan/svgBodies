@@ -52,7 +52,7 @@
     while (i < F.length - 2 && F[i + 1].t <= t) i++;
     const a = F[i], b = F[i + 1], k = b.t > a.t ? Math.min(1, (t - a.t) / (b.t - a.t)) : 0;
     const J = {};
-    for (const j of ['pelvis', 'lumbarTop', 'thorax', 'shoulderC', 'neckTop', 'head']) if (a.joints[j]) J[j] = lerp3(a.joints[j], b.joints[j], k);
+    for (const j of ['pelvis', 'lumbarTop', 'thorax', 'shoulderC', 'neckTop', 'head', 'face']) if (a.joints[j]) J[j] = lerp3(a.joints[j], b.joints[j], k);
     for (const s of ['r', 'l']) { J[s] = {}; for (const j of SIDE_J) J[s][j] = lerp3(a.joints[s][j], b.joints[s][j], k); }
     const objects = a.objects.map((o, n) => {
       const ob = b.objects[n];
@@ -118,6 +118,7 @@
     seg(p => p.J.neckTop, p => p.J.shoulderC);
     seg(p => p.J.l.shoulder, p => p.J.r.shoulder);
     disc(p => p.J.head, HEAD_R, {}, 0.2);
+    if (ex.frames[0].joints.face) disc(p => p.J.face, 1.3, { fill: INK, stroke: 'none' }, 0.3);
 
     ex.frames[0].objects.forEach((o, n) => {
       if (o.type === 'rope') {

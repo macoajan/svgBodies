@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "Siéntate con la espalda recta, los hombros relajados y la mirada al frente.",
+    "steps": [
+      "Acerca la oreja al hombro despacio, sin levantar el hombro.",
+      "Vuelve al centro.",
+      "Hazlo hacia el otro lado y vuelve al centro."
+    ],
+    "avoid": [
+      "No gires la cabeza: la nariz sigue mirando al frente.",
+      "No subas el hombro hacia la oreja."
+    ]
+  },
+  "pro": {
+    "goal": "Movilidad activa en inclinación lateral cervical; estiramiento del trapecio superior y los escalenos del lado contrario.",
+    "notes": [
+      "Mantener la posición final 20-30 s convierte el ejercicio en un estiramiento.",
+      "Sujetar el borde de la silla con la mano del lado contrario aumenta el estiramiento.",
+      "Vigilar la aparición de síntomas en el brazo (tensión neural)."
+    ]
+  }
+}

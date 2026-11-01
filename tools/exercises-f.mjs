@@ -445,6 +445,34 @@ function pressUp(e) {
   return poseLR({ trunk: t, r: side(1), l: side(-1) });
 }
 
+// ======================= Cervical (seated) =======================
+
+// Seated upright on the chair, hands resting on the thighs; `head` sets the neck and head.
+function seatedHead({ nd = 0, hd = 0, side = 0, hside = null, yaw = 0 } = {}) {
+  const hip = V(CHAIR.x1 - 3, SEAT_HIP_Y);
+  const t = trunk(hip, 0, 0, { neckDir: nd, headDir: hd, neckSide: side, headSide: hside ?? side * 1.5, headYaw: yaw });
+  const side_ = sg => {
+    const knee = V(hip.x + L.thigh, hip.y, sg * 5), ankle = V(knee.x, knee.y + L.shin, sg * 5);
+    return { knee, ankle, toe: footDir(ankle, 0), hand: V(hip.x + 9, hip.y - 1.8, sg * 6), pole: V(-0.2, 1, sg) };
+  };
+  return poseLR({ trunk: t, r: side_(1), l: side_(-1) });
+}
+// Chin tuck: the neck tilts back while the head stays level, so the head slides straight back.
+const chinTuck = e => seatedHead({ nd: lerp(10, -10, smooth(e)), hd: lerp(0, 6, smooth(e)) });
+// Flexion (k > 0, look down) and extension (k < 0, look up).
+const neckFlex = k => seatedHead(k > 0 ? { nd: 28 * k, hd: 58 * k } : { nd: 22 * k, hd: 48 * k });
+const NECK_FLEX = [
+  hold(0.3, neckFlex(0)), { dur: 1.2, pose: neckFlex }, hold(0.6, neckFlex(1)), { dur: 1.2, pose: e => neckFlex(1 - e) },
+  hold(0.3, neckFlex(0)), { dur: 1.2, pose: e => neckFlex(-e) }, hold(0.6, neckFlex(-1)), { dur: 1.2, pose: e => neckFlex(-1 + e) },
+];
+// Rotation to each side and lateral flexion (ear towards the shoulder).
+const neckTurn = k => seatedHead({ yaw: 70 * k });
+const neckSide = k => seatedHead({ side: 25 * k, hside: 40 * k });
+const sides = f => [
+  hold(0.3, f(0)), { dur: 1.2, pose: f }, hold(0.8, f(1)), { dur: 1.2, pose: e => f(1 - e) },
+  hold(0.3, f(0)), { dur: 1.2, pose: e => f(-e) }, hold(0.8, f(-1)), { dur: 1.2, pose: e => f(-1 + e) },
+];
+
 export const EXERCISES_F = [
   // ---------- Ankle ----------
   {
@@ -533,6 +561,27 @@ export const EXERCISES_F = [
     id: 'deslizamiento-pared', name: 'Deslizamiento en pared', still: 1.6, props: [WALL_SLIDE],
     cue: 'De cara a la pared con los antebrazos apoyados, deslízalos hacia arriba sin encoger los hombros y baja despacio.',
     phases: rep(wallSlide, 1.6, 0.5, 1.6),
+  },
+  // ---------- Cervical ----------
+  {
+    id: 'retraccion-cervical', name: 'Retracción cervical', face: true, props: [CHAIR_PROP], still: 1.6,
+    cue: 'Sentado con la espalda recta, lleva la cabeza hacia atrás como para hacer papada, mirando al frente, y vuelve despacio.',
+    phases: rep(chinTuck, 1.0, 1.5, 1.0, 0.4),
+  },
+  {
+    id: 'flexo-extension-cervical', name: 'Flexión y extensión cervical', face: true, props: [CHAIR_PROP], still: 1.6,
+    cue: 'Sentado con la espalda recta, baja la barbilla hacia el pecho y después mira hacia arriba, sin forzar el final.',
+    phases: NECK_FLEX,
+  },
+  {
+    id: 'rotacion-cervical', name: 'Rotación cervical', face: true, views: ['front', 'side'], props: [CHAIR_PROP], still: 1.6,
+    cue: 'Sentado con la espalda recta, gira la cabeza para mirar por encima de un hombro y después del otro, sin girar los hombros.',
+    phases: sides(neckTurn),
+  },
+  {
+    id: 'inclinacion-cervical', name: 'Inclinación cervical', face: true, views: ['front', 'side'], props: [CHAIR_PROP], still: 1.6,
+    cue: 'Sentado con la espalda recta, acerca la oreja al hombro sin levantarlo y después hacia el otro lado.',
+    phases: sides(neckSide),
   },
   // ---------- Spine ----------
   {

@@ -32,5 +32,10 @@
   "manguito-rotador": { "parent": "tren-superior", "es": "Manguito rotador", "en": "Rotator cuff" },
   "biceps": { "parent": "tren-superior", "es": "Bíceps", "en": "Biceps" },
   "triceps": { "parent": "tren-superior", "es": "Tríceps", "en": "Triceps" },
-  "antebrazo": { "parent": "tren-superior", "es": "Antebrazo / agarre", "en": "Forearm / grip" }
+  "antebrazo": { "parent": "tren-superior", "es": "Antebrazo / agarre", "en": "Forearm / grip" },
+  "cuello": { "parent": "tren-superior", "es": "Cuello", "en": "Neck" },
+  "flexores-profundos-cuello": { "parent": "cuello", "es": "Flexores profundos del cuello", "en": "Deep neck flexors" },
+  "extensores-cuello": { "parent": "cuello", "es": "Extensores cervicales", "en": "Neck extensors" },
+  "esternocleidomastoideo": { "parent": "cuello", "es": "Esternocleidomastoideo", "en": "Sternocleidomastoid" },
+  "escalenos": { "parent": "cuello", "es": "Escalenos", "en": "Scalenes" }
 }

@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "Siéntate con la espalda recta y la mirada al frente.",
+    "steps": [
+      "Baja la barbilla hacia el pecho despacio.",
+      "Vuelve al centro.",
+      "Mira hacia arriba hasta donde puedas sin molestias y vuelve al centro."
+    ],
+    "avoid": [
+      "No muevas la espalda ni los hombros.",
+      "No fuerces el final del movimiento ni hagas rebotes."
+    ]
+  },
+  "pro": {
+    "goal": "Movilidad activa de la columna cervical en el plano sagital.",
+    "notes": [
+      "Recorrido dentro de la tolerancia; detener si aparecen mareo o síntomas en los brazos.",
+      "Iniciar la flexión con un gesto de asentir (flexión cervical alta).",
+      "Combinar con retracción para el control de la posición neutra."
+    ]
+  }
+}

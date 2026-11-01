@@ -16,6 +16,7 @@ export const L = { shin: 13.5, thigh: 13.5, sh: 15, neck: 4, head: 5, upper: 11.
 export const SPINE = [6, 4.5, 4.5];
 export const Z = { hip: 4, shoulder: 7.5 };
 export const HEAD_R = 4.5;
+export const FACE = { gap: 1.1, r: 1.3 };          // face mark: a dot just in front of the face
 export const PLATE = { r: 6.5, w: 2.2 };
 export const BAR_FLOOR = GROUND - 0.6 - PLATE.w / 2 - PLATE.r; // bar height with plates on the floor
 export const KB = { bell: 7.2, r: 4.2 };                        // kettlebell: bell centre below the grip, radius
@@ -36,6 +37,7 @@ export const add = (a, b) => V(a.x + b.x, a.y + b.y, a.z + b.z);
 export const sub = (a, b) => V(a.x - b.x, a.y - b.y, a.z - b.z);
 export const mul = (a, k) => V(a.x * k, a.y * k, a.z * k);
 const dot = (a, b) => a.x * b.x + a.y * b.y + a.z * b.z;
+const cross = (a, b) => V(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x);
 export const len = a => Math.sqrt(dot(a, a));
 const unit = a => mul(a, 1 / len(a));
 export const vlerp = (a, b, t) => V(lerp(a.x, b.x, t), lerp(a.y, b.y, t), lerp(a.z, b.z, t));
@@ -80,10 +82,14 @@ export function footFromShin(knee, ankle, plantar = 0) {
 // to the joint above, so the chest ends up at alpha + lumbar + thoracic.
 // `neck` turns the head relative to the upper trunk. neckDir/headDir (absolute, same convention
 // as alpha) bend the cervical spine and set the head, e.g. to rest the head on the floor.
+// neckSide/headSide tilt the neck and the head sideways (degrees, positive towards the right
+// side, +z; the head follows the neck by default) and headYaw turns the head about its axis
+// (positive = face towards the right). `face` is a point just in front of the face.
 // at(along, front) gives a point on the trunk: `along` the spine from the hip, `front` towards
 // the chest. shift moves the whole trunk sideways (z); twist turns the shoulders about the trunk
 // axis (positive = right shoulder back), e.g. for a woodchop.
-export function trunk(hip, alpha, neck = 0, { neckDir = null, headDir = null, shift = 0, twist = 0, lumbar = 0, thoracic = 0 } = {}) {
+export function trunk(hip, alpha, neck = 0, { neckDir = null, headDir = null, shift = 0, twist = 0, lumbar = 0, thoracic = 0,
+  neckSide = 0, headSide = null, headYaw = 0 } = {}) {
   const dirs = [alpha + lumbar / 2, alpha + lumbar + thoracic / 2, alpha + lumbar + thoracic];
   const pelvis = V(hip.x, hip.y, shift);
   const spine = [pelvis];
@@ -100,13 +106,20 @@ export function trunk(hip, alpha, neck = 0, { neckDir = null, headDir = null, sh
     return V(b.x + rest * s + front * c, b.y - rest * c + front * s, shift);
   };
   const top = dirs[2], s = Math.sin(rad(top)), c = Math.cos(rad(top));
-  const nd = neckDir ?? top;
-  const neckTop = along(shoulderC, up(nd), L.neck);
-  const head = along(neckTop, up(headDir ?? nd + neck), L.head);
+  const nd = neckDir ?? top, hd = headDir ?? nd + neck, hsd = headSide ?? neckSide;
+  // Sagittal direction `a` tilted `side` degrees towards +z.
+  const tilt3 = (a, side) => { const u = up(a), cs = Math.cos(rad(side)); return V(u.x * cs, u.y * cs, Math.sin(rad(side))); };
+  const neckTop = add(shoulderC, mul(tilt3(nd, neckSide), L.neck));
+  const hAxis = tilt3(hd, hsd);
+  const head = add(neckTop, mul(hAxis, L.head));
+  // Face direction: forward and perpendicular to the head axis, turned headYaw about it.
+  const f0 = V(Math.cos(rad(hd)), Math.sin(rad(hd)), 0), cr = cross(hAxis, f0);
+  const fDir = add(mul(f0, Math.cos(rad(headYaw))), mul(cr, Math.sin(rad(headYaw))));
+  const face = add(head, mul(fDir, HEAD_R + FACE.gap));
   // Shoulder offset turned about the upper trunk axis u = (s, -c, 0): cos·z + sin·(u × z).
   const shoulderOf = sg => V(shoulderC.x - sg * Z.shoulder * Math.sin(rad(twist)) * c, shoulderC.y - sg * Z.shoulder * Math.sin(rad(twist)) * s,
     shift + sg * Z.shoulder * Math.cos(rad(twist)));
-  return { alpha, pelvis, lumbarTop, thorax, shoulderC, shoulder: shoulderOf(1), shoulderOf, neckTop, head, at, shift, twist, lumbar, thoracic };
+  return { alpha, pelvis, lumbarTop, thorax, shoulderC, shoulder: shoulderOf(1), shoulderOf, neckTop, head, face, at, shift, twist, lumbar, thoracic };
 }
 
 // Sagittal reach of a straight arm whose hand sits at lateral offset handZ.
@@ -158,7 +171,7 @@ export const mirrorSide = s => Object.fromEntries(Object.entries(s).map(([k, v])
 // load: { m: mass as a fraction of body mass, x } for the balance solver.
 export function poseLR({ trunk: t, r, l, objects = [], load = null }) {
   return {
-    alpha: t.alpha, pelvis: t.pelvis, lumbarTop: t.lumbarTop, thorax: t.thorax, shoulderC: t.shoulderC, neckTop: t.neckTop, head: t.head,
+    alpha: t.alpha, pelvis: t.pelvis, lumbarTop: t.lumbarTop, thorax: t.thorax, shoulderC: t.shoulderC, neckTop: t.neckTop, head: t.head, face: t.face,
     r: limbs(t, 1, r), l: limbs(t, -1, l), objects, load,
   };
 }
@@ -174,7 +187,7 @@ export function pose({ legs: lg, trunk: t, hand, pole = V(0, 1, 0.3), objects = 
 export function transformPose(p, f) {
   const side = q => Object.fromEntries(Object.entries(q).map(([k, v]) => [k, f(v)]));
   const obj = o => ({ ...o, ...(o.at ? { at: f(o.at) } : {}), ...(o.a ? { a: f(o.a), b: f(o.b) } : {}), ...(o.points ? { points: o.points.map(f) } : {}) });
-  return { ...p, pelvis: f(p.pelvis), lumbarTop: f(p.lumbarTop), thorax: f(p.thorax), shoulderC: f(p.shoulderC), neckTop: f(p.neckTop), head: f(p.head), r: side(p.r), l: side(p.l), objects: p.objects.map(obj) };
+  return { ...p, pelvis: f(p.pelvis), lumbarTop: f(p.lumbarTop), thorax: f(p.thorax), shoulderC: f(p.shoulderC), neckTop: f(p.neckTop), head: f(p.head), face: f(p.face), r: side(p.r), l: side(p.l), objects: p.objects.map(obj) };
 }
 // Rotation about an axis parallel to x (roll) or z (in the sagittal plane), through point c.
 export const rollX = (deg_, c) => q => {
@@ -445,7 +458,7 @@ function propSvg(pr, cam) {
 }
 
 // Elements of a view: { key, kind: 'seg'|'pt'|'rot', svg, at(p) -> params, depth(p) }.
-function elements(p0, cam) {
+function elements(p0, cam, { face = false } = {}) {
   const els = [];
   const segE = (key, P, Q, L0, attrs = '') => els.push({
     key, kind: 'seg', svg: line0(key, L0, attrs),
@@ -471,6 +484,8 @@ function elements(p0, cam) {
   segE('neck', p => p.neckTop, p => p.shoulderC, L.neck);
   segE('shoulders', p => p.l.shoulder, p => p.r.shoulder, 2 * Z.shoulder);
   ptE('head', p => p.head, `<circle class="k-head" r="${HEAD_R}"></circle>`, 0.2);
+  // Face mark only where the exercise asks for it (head orientation matters: cervical drills).
+  if (face) ptE('face', p => p.face, `<circle class="k-face" r="${FACE.r}" fill="${INK}" stroke="none"></circle>`, 0.3);
   p0.objects.forEach((o, i) => {
     if (o.type === 'rope') {
       // A rope changes shape, so it is a chain of short segments animated like the limbs.
@@ -514,7 +529,7 @@ export function renderView(ex, view, { T, frames }, size) {
   const cls = `ex-${ex.id}-${view}`;
   const ext = extent(frames);
   const cam = camera(view, ext.mid, view === 'iso' ? ex.isoCam : null);
-  const els = elements(frames[0].p, cam);
+  const els = elements(frames[0].p, cam, { face: !!ex.face });
   // Back-to-front order: mean depth over the cycle (fixed, so it can live in static SVG).
   const meanDepth = new Map(els.map(e => [e, frames.reduce((s, f) => s + e.depth(f.p), 0) / frames.length]));
   els.sort((a, b) => meanDepth.get(a) - meanDepth.get(b));
@@ -561,7 +576,7 @@ export function poseData(ex, { T, frames }) {
     camera: { ...{ yaw: VIEWS.iso.yaw, pitch: VIEWS.iso.pitch }, ...(ex.isoCam || {}) },
     frames: frames.map(({ t, p }) => ({
       t: r2(t),
-      joints: { pelvis: r(p.pelvis), lumbarTop: r(p.lumbarTop), thorax: r(p.thorax), shoulderC: r(p.shoulderC), neckTop: r(p.neckTop), head: r(p.head), r: sideOf(p.r), l: sideOf(p.l) },
+      joints: { pelvis: r(p.pelvis), lumbarTop: r(p.lumbarTop), thorax: r(p.thorax), shoulderC: r(p.shoulderC), neckTop: r(p.neckTop), head: r(p.head), ...(ex.face ? { face: r(p.face) } : {}), r: sideOf(p.r), l: sideOf(p.l) },
       objects: p.objects.map(o => (o.type === 'rope' ? { type: 'rope', points: o.points.map(r), ...(o.w ? { w: o.w } : {}) }
         : o.type === 'cord' ? { type: 'cord', a: r(o.a), b: r(o.b) }
           : { type: o.type, at: r(o.at), ...(o.phi !== undefined ? { phi: r2(o.phi) } : {}), ...(o.r ? { r: o.r } : {}), ...(o.hw ? { hw: o.hw } : {}) })),

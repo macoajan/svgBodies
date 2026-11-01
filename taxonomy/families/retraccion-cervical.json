@@ -1,0 +1,43 @@
+{
+  "id": "retraccion-cervical",
+  "name": {
+    "es": "Retracción cervical",
+    "en": "Chin tuck"
+  },
+  "plane": "sagital",
+  "mechanics": "aislado",
+  "action": "estabilidad",
+  "position": "sentado",
+  "laterality": "bilateral",
+  "pattern": "movilidad",
+  "level": 1,
+  "equipment": [
+    "silla"
+  ],
+  "demands": [],
+  "muscles": {
+    "flexores-profundos-cuello": 55,
+    "extensores-cuello": 30,
+    "trapecio": 15
+  },
+  "variants": [
+    {
+      "id": "retraccion-cervical",
+      "name": {
+        "es": "Retracción cervical",
+        "en": "Seated chin tuck"
+      },
+      "regions": [
+        "cervical"
+      ],
+      "goals": [
+        "control-motor",
+        "movilidad-activa"
+      ],
+      "mode": "activo",
+      "progressions": [
+        "flexo-extension-cervical"
+      ]
+    }
+  ]
+}

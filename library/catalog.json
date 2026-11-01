@@ -390,6 +390,31 @@
     "es": "Antebrazo / agarre",
     "en": "Forearm / grip",
     "parent": "tren-superior"
+   },
+   "cuello": {
+    "es": "Cuello",
+    "en": "Neck",
+    "parent": "tren-superior"
+   },
+   "flexores-profundos-cuello": {
+    "es": "Flexores profundos del cuello",
+    "en": "Deep neck flexors",
+    "parent": "cuello"
+   },
+   "extensores-cuello": {
+    "es": "Extensores cervicales",
+    "en": "Neck extensors",
+    "parent": "cuello"
+   },
+   "esternocleidomastoideo": {
+    "es": "Esternocleidomastoideo",
+    "en": "Sternocleidomastoid",
+    "parent": "cuello"
+   },
+   "escalenos": {
+    "es": "Escalenos",
+    "en": "Scalenes",
+    "parent": "cuello"
    }
   },
   "patterns": {
@@ -4922,6 +4947,328 @@
    }
   },
   {
+   "id": "flexo-extension-cervical",
+   "family": "movilidad-cervical",
+   "name": {
+    "es": "Flexión y extensión cervical",
+    "en": "Neck flexion and extension"
+   },
+   "familyName": {
+    "es": "Movilidad cervical",
+    "en": "Neck range of motion"
+   },
+   "params": {
+    "movimiento": "flexo-extension"
+   },
+   "pattern": "movilidad",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "aislado",
+   "action": "movilidad",
+   "position": "sentado",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "silla"
+   ],
+   "demands": [],
+   "regions": [
+    "cervical"
+   ],
+   "goals": [
+    "movilidad-activa"
+   ],
+   "mode": "activo",
+   "muscles": [
+    {
+     "id": "flexores-profundos-cuello",
+     "pct": 30
+    },
+    {
+     "id": "extensores-cuello",
+     "pct": 30
+    },
+    {
+     "id": "esternocleidomastoideo",
+     "pct": 20
+    },
+    {
+     "id": "trapecio",
+     "pct": 10
+    },
+    {
+     "id": "escalenos",
+     "pct": 10
+    }
+   ],
+   "progressions": [],
+   "therapeutic": true,
+   "regressions": [
+    "retraccion-cervical"
+   ],
+   "sheet": {
+    "patient": {
+     "start": "Siéntate con la espalda recta y la mirada al frente.",
+     "steps": [
+      "Baja la barbilla hacia el pecho despacio.",
+      "Vuelve al centro.",
+      "Mira hacia arriba hasta donde puedas sin molestias y vuelve al centro."
+     ],
+     "avoid": [
+      "No muevas la espalda ni los hombros.",
+      "No fuerces el final del movimiento ni hagas rebotes."
+     ]
+    },
+    "pro": {
+     "goal": "Movilidad activa de la columna cervical en el plano sagital.",
+     "notes": [
+      "Recorrido dentro de la tolerancia; detener si aparecen mareo o síntomas en los brazos.",
+      "Iniciar la flexión con un gesto de asentir (flexión cervical alta).",
+      "Combinar con retracción para el control de la posición neutra."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "flexores-profundos-cuello",
+    "cuello",
+    "tren-superior",
+    "extensores-cuello",
+    "esternocleidomastoideo",
+    "trapecio",
+    "escalenos"
+   ],
+   "equipmentCategories": [
+    "estructura"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#flexo-extension-cervical",
+    "views": [
+     "svg/flexo-extension-cervical-lateral.svg",
+     "svg/flexo-extension-cervical-frontal.svg",
+     "svg/flexo-extension-cervical-iso.svg"
+    ],
+    "duration": 6.6,
+    "cue": "Sentado con la espalda recta, baja la barbilla hacia el pecho y después mira hacia arriba, sin forzar el final."
+   }
+  },
+  {
+   "id": "rotacion-cervical",
+   "family": "movilidad-cervical",
+   "name": {
+    "es": "Rotación cervical",
+    "en": "Neck rotation"
+   },
+   "familyName": {
+    "es": "Movilidad cervical",
+    "en": "Neck range of motion"
+   },
+   "params": {
+    "movimiento": "rotacion"
+   },
+   "pattern": "movilidad",
+   "patterns2": [],
+   "plane": "transversal",
+   "mechanics": "aislado",
+   "action": "movilidad",
+   "position": "sentado",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "silla"
+   ],
+   "demands": [],
+   "regions": [
+    "cervical"
+   ],
+   "goals": [
+    "movilidad-activa"
+   ],
+   "mode": "activo",
+   "muscles": [
+    {
+     "id": "esternocleidomastoideo",
+     "pct": 35
+    },
+    {
+     "id": "extensores-cuello",
+     "pct": 30
+    },
+    {
+     "id": "escalenos",
+     "pct": 15
+    },
+    {
+     "id": "trapecio",
+     "pct": 10
+    },
+    {
+     "id": "flexores-profundos-cuello",
+     "pct": 10
+    }
+   ],
+   "progressions": [],
+   "therapeutic": true,
+   "regressions": [],
+   "sheet": {
+    "patient": {
+     "start": "Siéntate con la espalda recta y la mirada al frente.",
+     "steps": [
+      "Gira la cabeza despacio para mirar por encima de un hombro.",
+      "Vuelve al centro.",
+      "Gira hacia el otro lado y vuelve al centro."
+     ],
+     "avoid": [
+      "No gires los hombros con la cabeza.",
+      "No inclines la cabeza al girar."
+     ]
+    },
+    "pro": {
+     "goal": "Movilidad activa de la columna cervical en rotación.",
+     "notes": [
+      "Comparar el rango de ambos lados para seguir la evolución.",
+      "Detener si aparecen mareo, visión borrosa o síntomas neurológicos.",
+      "Puede añadirse una ligera sobrepresión con la mano si se tolera."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "esternocleidomastoideo",
+    "cuello",
+    "tren-superior",
+    "extensores-cuello",
+    "escalenos",
+    "trapecio",
+    "flexores-profundos-cuello"
+   ],
+   "equipmentCategories": [
+    "estructura"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#rotacion-cervical",
+    "views": [
+     "svg/rotacion-cervical-frontal.svg",
+     "svg/rotacion-cervical-lateral.svg",
+     "svg/rotacion-cervical-iso.svg"
+    ],
+    "duration": 7,
+    "cue": "Sentado con la espalda recta, gira la cabeza para mirar por encima de un hombro y después del otro, sin girar los hombros."
+   }
+  },
+  {
+   "id": "inclinacion-cervical",
+   "family": "movilidad-cervical",
+   "name": {
+    "es": "Inclinación cervical",
+    "en": "Neck side bending"
+   },
+   "familyName": {
+    "es": "Movilidad cervical",
+    "en": "Neck range of motion"
+   },
+   "params": {
+    "movimiento": "inclinacion"
+   },
+   "pattern": "movilidad",
+   "patterns2": [],
+   "plane": "frontal",
+   "mechanics": "aislado",
+   "action": "movilidad",
+   "position": "sentado",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "silla"
+   ],
+   "demands": [],
+   "regions": [
+    "cervical"
+   ],
+   "goals": [
+    "movilidad-activa",
+    "flexibilidad"
+   ],
+   "mode": "activo",
+   "muscles": [
+    {
+     "id": "escalenos",
+     "pct": 30
+    },
+    {
+     "id": "esternocleidomastoideo",
+     "pct": 25
+    },
+    {
+     "id": "trapecio",
+     "pct": 25
+    },
+    {
+     "id": "extensores-cuello",
+     "pct": 20
+    }
+   ],
+   "progressions": [],
+   "therapeutic": true,
+   "regressions": [],
+   "sheet": {
+    "patient": {
+     "start": "Siéntate con la espalda recta, los hombros relajados y la mirada al frente.",
+     "steps": [
+      "Acerca la oreja al hombro despacio, sin levantar el hombro.",
+      "Vuelve al centro.",
+      "Hazlo hacia el otro lado y vuelve al centro."
+     ],
+     "avoid": [
+      "No gires la cabeza: la nariz sigue mirando al frente.",
+      "No subas el hombro hacia la oreja."
+     ]
+    },
+    "pro": {
+     "goal": "Movilidad activa en inclinación lateral cervical; estiramiento del trapecio superior y los escalenos del lado contrario.",
+     "notes": [
+      "Mantener la posición final 20-30 s convierte el ejercicio en un estiramiento.",
+      "Sujetar el borde de la silla con la mano del lado contrario aumenta el estiramiento.",
+      "Vigilar la aparición de síntomas en el brazo (tensión neural)."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "escalenos",
+    "cuello",
+    "tren-superior",
+    "esternocleidomastoideo",
+    "trapecio",
+    "extensores-cuello"
+   ],
+   "equipmentCategories": [
+    "estructura"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#inclinacion-cervical",
+    "views": [
+     "svg/inclinacion-cervical-frontal.svg",
+     "svg/inclinacion-cervical-lateral.svg",
+     "svg/inclinacion-cervical-iso.svg"
+    ],
+    "duration": 7,
+    "cue": "Sentado con la espalda recta, acerca la oreja al hombro sin levantarlo y después hacia el otro lado."
+   }
+  },
+  {
    "id": "pallof-press",
    "family": "pallof-press",
    "name": {
@@ -6526,6 +6873,105 @@
     ],
     "duration": 2.7,
     "cue": "Cuerpo en bloque apoyado en los talones; el pecho sube a la barra y baja hasta estirar los brazos."
+   }
+  },
+  {
+   "id": "retraccion-cervical",
+   "family": "retraccion-cervical",
+   "name": {
+    "es": "Retracción cervical",
+    "en": "Seated chin tuck"
+   },
+   "familyName": {
+    "es": "Retracción cervical",
+    "en": "Chin tuck"
+   },
+   "params": {},
+   "pattern": "movilidad",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "aislado",
+   "action": "estabilidad",
+   "position": "sentado",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "silla"
+   ],
+   "demands": [],
+   "regions": [
+    "cervical"
+   ],
+   "goals": [
+    "control-motor",
+    "movilidad-activa"
+   ],
+   "mode": "activo",
+   "muscles": [
+    {
+     "id": "flexores-profundos-cuello",
+     "pct": 55
+    },
+    {
+     "id": "extensores-cuello",
+     "pct": 30
+    },
+    {
+     "id": "trapecio",
+     "pct": 15
+    }
+   ],
+   "progressions": [
+    "flexo-extension-cervical"
+   ],
+   "therapeutic": true,
+   "regressions": [],
+   "sheet": {
+    "patient": {
+     "start": "Siéntate con la espalda recta, los pies apoyados y la mirada al frente.",
+     "steps": [
+      "Lleva la cabeza hacia atrás en línea recta, como si quisieras hacer papada.",
+      "Mantén unos segundos sin bajar ni subir la mirada.",
+      "Vuelve despacio a la posición inicial."
+     ],
+     "avoid": [
+      "No inclines la cabeza hacia abajo: la mirada sigue al frente.",
+      "No eches los hombros hacia atrás ni los encojas."
+     ]
+    },
+    "pro": {
+     "goal": "Control motor de los flexores profundos del cuello y corrección de la postura de cabeza adelantada.",
+     "notes": [
+      "Movimiento de traslación posterior: flexión cervical alta con extensión cervical baja.",
+      "Puede hacerse en supino como regresión (deslizando la cabeza sobre la almohada).",
+      "Útil en cervicalgia mecánica y cefalea de origen cervical."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "flexores-profundos-cuello",
+    "cuello",
+    "tren-superior",
+    "extensores-cuello",
+    "trapecio"
+   ],
+   "equipmentCategories": [
+    "estructura"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#retraccion-cervical",
+    "views": [
+     "svg/retraccion-cervical-lateral.svg",
+     "svg/retraccion-cervical-frontal.svg",
+     "svg/retraccion-cervical-iso.svg"
+    ],
+    "duration": 3.9,
+    "cue": "Sentado con la espalda recta, lleva la cabeza hacia atrás como para hacer papada, mirando al frente, y vuelve despacio."
    }
   },
   {
