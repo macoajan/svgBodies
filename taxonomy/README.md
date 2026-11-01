@@ -26,7 +26,7 @@ animaciones y exporta `library/catalog.json` (para apps) y `library/catalog-flag
 | `position` | uno | `positions` |
 | `laterality` | uno | `laterality` |
 | `level` | uno | `levels` (1–4) |
-| `muscles.primary`, `muscles.secondary` | listas | `muscles` (un músculo no puede estar en las dos) |
+| `muscles` | `{ músculo: % }` | `muscles`: reparto estimado del trabajo muscular (ver abajo) |
 | `equipment` | lista no vacía | `equipment` (`peso-corporal` si no hay material) |
 | `demands` | lista | `demands`: exigencias mecánicas descriptivas, no contraindicaciones |
 | `regions` | lista (terapéutico) | `regions`: región corporal a la que se dirige |
@@ -41,6 +41,23 @@ Cada variante tiene `id` (el mismo que su animación), `name.es`, `name.en` y op
 `set` (valores de los `params` de la familia) y cualquier campo de clasificación, que
 **sustituye** al de la familia (no se mezcla: si una variante declara `muscles`, declara los
 suyos completos).
+
+## Músculos y porcentajes
+
+`muscles` reparte el trabajo muscular estimado del ejercicio entre 1 y 8 músculos:
+
+```json
+"muscles": { "cuadriceps": 45, "gluteo-mayor": 30, "aductores": 10, "erectores": 5, "soleo": 5, "recto-abdominal": 5 }
+```
+
+- Enteros múltiplos de 5 que suman 100, ordenados de mayor a menor.
+- Un grupo y una de sus partes no pueden aparecer a la vez (`gluteo` y `gluteo-medio`).
+- Es una estimación clínica de la contribución de cada músculo (no una medida
+  electromiográfica). En los estiramientos indica qué músculos se estiran y en qué proporción.
+- La familia declara el reparto por defecto y cada variante que difiere declara el suyo completo.
+- `catalog.json` lo exporta como lista ordenada `[{ "id", "pct" }]`; en `catalog-flags.csv`
+  las columnas `musculo:<id>` llevan el porcentaje. Qué músculos se muestran como principales
+  y cuáles se agrupan como indirectos lo decide quien consume el catálogo.
 
 ## Ejercicio terapéutico
 

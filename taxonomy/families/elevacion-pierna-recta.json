@@ -12,13 +12,11 @@
   "pattern": "analitico",
   "level": 1,
   "muscles": {
-    "primary": [
-      "cuadriceps",
-      "flexores-cadera"
-    ],
-    "secondary": [
-      "recto-abdominal"
-    ]
+    "cuadriceps": 45,
+    "flexores-cadera": 35,
+    "recto-abdominal": 10,
+    "tibial-anterior": 5,
+    "oblicuos": 5
   },
   "equipment": [
     "esterilla"

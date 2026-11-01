@@ -268,6 +268,11 @@
     "en": "Hip flexors",
     "parent": "tren-inferior"
    },
+   "rotadores-externos-cadera": {
+    "es": "Rotadores externos de cadera",
+    "en": "Hip external rotators",
+    "parent": "tren-inferior"
+   },
    "triceps-sural": {
     "es": "Tríceps sural",
     "en": "Calves",
@@ -664,14 +669,24 @@
     "fortalecimiento"
    ],
    "mode": "activo",
-   "muscles": {
-    "primary": [
-     "gluteo-medio"
-    ],
-    "secondary": [
-     "oblicuos"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "gluteo-medio",
+     "pct": 60
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 15
+    },
+    {
+     "id": "oblicuos",
+     "pct": 15
+    },
+    {
+     "id": "cuadrado-lumbar",
+     "pct": 10
+    }
+   ],
    "progressions": [],
    "therapeutic": true,
    "regressions": [
@@ -703,8 +718,10 @@
     "gluteo-medio",
     "gluteo",
     "tren-inferior",
+    "gluteo-mayor",
     "oblicuos",
-    "core"
+    "core",
+    "cuadrado-lumbar"
    ],
    "equipmentCategories": [
     "accesorio"
@@ -760,12 +777,20 @@
     "control-motor"
    ],
    "mode": "activo",
-   "muscles": {
-    "primary": [
-     "gluteo-medio"
-    ],
-    "secondary": []
-   },
+   "muscles": [
+    {
+     "id": "gluteo-medio",
+     "pct": 50
+    },
+    {
+     "id": "rotadores-externos-cadera",
+     "pct": 35
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 15
+    }
+   ],
    "progressions": [
     "abduccion-cadera-lateral"
    ],
@@ -796,7 +821,9 @@
    "muscleGroups": [
     "gluteo-medio",
     "gluteo",
-    "tren-inferior"
+    "tren-inferior",
+    "rotadores-externos-cadera",
+    "gluteo-mayor"
    ],
    "equipmentCategories": [
     "accesorio"
@@ -852,15 +879,28 @@
     "control-motor"
    ],
    "mode": "activo",
-   "muscles": {
-    "primary": [
-     "cuadriceps"
-    ],
-    "secondary": [
-     "gluteo-medio",
-     "gluteo-mayor"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "cuadriceps",
+     "pct": 50
+    },
+    {
+     "id": "gluteo-medio",
+     "pct": 20
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 15
+    },
+    {
+     "id": "soleo",
+     "pct": 10
+    },
+    {
+     "id": "aductores",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": true,
    "regressions": [
@@ -893,7 +933,10 @@
     "tren-inferior",
     "gluteo-medio",
     "gluteo",
-    "gluteo-mayor"
+    "gluteo-mayor",
+    "soleo",
+    "triceps-sural",
+    "aductores"
    ],
    "equipmentCategories": [
     "estructura"
@@ -941,26 +984,40 @@
    "demands": [
     "equilibrio"
    ],
-   "muscles": {
-    "primary": [
-     "isquiotibiales",
-     "flexores-cadera"
-    ],
-    "secondary": [
-     "gluteo-mayor",
-     "gluteo-medio"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "flexores-cadera",
+     "pct": 30
+    },
+    {
+     "id": "isquiotibiales",
+     "pct": 25
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 20
+    },
+    {
+     "id": "gluteo-medio",
+     "pct": 15
+    },
+    {
+     "id": "transverso",
+     "pct": 10
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
    "muscleGroups": [
-    "isquiotibiales",
-    "tren-inferior",
     "flexores-cadera",
+    "tren-inferior",
+    "isquiotibiales",
     "gluteo-mayor",
     "gluteo",
-    "gluteo-medio"
+    "gluteo-medio",
+    "transverso",
+    "core"
    ],
    "equipmentCategories": [
     "ninguno"
@@ -1008,27 +1065,57 @@
    "demands": [
     "agarre"
    ],
-   "muscles": {
-    "primary": [
-     "deltoides",
-     "antebrazo"
-    ],
-    "secondary": [
-     "transverso",
-     "cuadriceps"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "deltoides-anterior",
+     "pct": 30
+    },
+    {
+     "id": "antebrazo",
+     "pct": 15
+    },
+    {
+     "id": "biceps",
+     "pct": 10
+    },
+    {
+     "id": "triceps",
+     "pct": 10
+    },
+    {
+     "id": "transverso",
+     "pct": 10
+    },
+    {
+     "id": "cuadriceps",
+     "pct": 10
+    },
+    {
+     "id": "trapecio",
+     "pct": 10
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
    "muscleGroups": [
+    "deltoides-anterior",
     "deltoides",
     "tren-superior",
     "antebrazo",
+    "biceps",
+    "triceps",
     "transverso",
     "core",
     "cuadriceps",
-    "tren-inferior"
+    "tren-inferior",
+    "trapecio",
+    "gluteo-mayor",
+    "gluteo"
    ],
    "equipmentCategories": [
     "accesorio"
@@ -1074,16 +1161,40 @@
    "demands": [
     "carga-muneca"
    ],
-   "muscles": {
-    "primary": [
-     "deltoides-anterior",
-     "cuadriceps"
-    ],
-    "secondary": [
-     "transverso",
-     "serrato"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "deltoides-anterior",
+     "pct": 20
+    },
+    {
+     "id": "cuadriceps",
+     "pct": 20
+    },
+    {
+     "id": "transverso",
+     "pct": 15
+    },
+    {
+     "id": "recto-abdominal",
+     "pct": 10
+    },
+    {
+     "id": "serrato",
+     "pct": 10
+    },
+    {
+     "id": "triceps",
+     "pct": 10
+    },
+    {
+     "id": "flexores-cadera",
+     "pct": 10
+    },
+    {
+     "id": "pectoral",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -1095,7 +1206,11 @@
     "tren-inferior",
     "transverso",
     "core",
-    "serrato"
+    "recto-abdominal",
+    "serrato",
+    "triceps",
+    "flexores-cadera",
+    "pectoral"
    ],
    "equipmentCategories": [
     "ninguno"
@@ -1154,16 +1269,36 @@
     "control-motor"
    ],
    "mode": "activo",
-   "muscles": {
-    "primary": [
-     "erectores",
-     "gluteo-mayor"
-    ],
-    "secondary": [
-     "transverso",
-     "deltoides"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "erectores",
+     "pct": 30
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 25
+    },
+    {
+     "id": "transverso",
+     "pct": 10
+    },
+    {
+     "id": "oblicuos",
+     "pct": 10
+    },
+    {
+     "id": "deltoides-anterior",
+     "pct": 10
+    },
+    {
+     "id": "trapecio",
+     "pct": 10
+    },
+    {
+     "id": "gluteo-medio",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": true,
    "regressions": [
@@ -1198,8 +1333,12 @@
     "gluteo",
     "tren-inferior",
     "transverso",
+    "oblicuos",
+    "deltoides-anterior",
     "deltoides",
-    "tren-superior"
+    "tren-superior",
+    "trapecio",
+    "gluteo-medio"
    ],
    "equipmentCategories": [
     "accesorio"
@@ -1255,13 +1394,20 @@
     "circulatorio"
    ],
    "mode": "activo",
-   "muscles": {
-    "primary": [
-     "tibial-anterior",
-     "triceps-sural"
-    ],
-    "secondary": []
-   },
+   "muscles": [
+    {
+     "id": "tibial-anterior",
+     "pct": 50
+    },
+    {
+     "id": "gemelos",
+     "pct": 25
+    },
+    {
+     "id": "soleo",
+     "pct": 25
+    }
+   ],
    "progressions": [
     "elevacion-talones"
    ],
@@ -1291,7 +1437,9 @@
    "muscleGroups": [
     "tibial-anterior",
     "tren-inferior",
-    "triceps-sural"
+    "gemelos",
+    "triceps-sural",
+    "soleo"
    ],
    "equipmentCategories": [
     "ninguno"
@@ -1341,15 +1489,20 @@
     "carga-axial",
     "flexion-cadera-cargada"
    ],
-   "muscles": {
-    "primary": [
-     "isquiotibiales",
-     "erectores"
-    ],
-    "secondary": [
-     "gluteo-mayor"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "isquiotibiales",
+     "pct": 40
+    },
+    {
+     "id": "erectores",
+     "pct": 35
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 25
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -1411,17 +1564,40 @@
     "impacto",
     "carga-muneca"
    ],
-   "muscles": {
-    "primary": [
-     "cuadriceps",
-     "pectoral"
-    ],
-    "secondary": [
-     "gluteo-mayor",
-     "deltoides-anterior",
-     "recto-abdominal"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "cuadriceps",
+     "pct": 25
+    },
+    {
+     "id": "pectoral",
+     "pct": 15
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 15
+    },
+    {
+     "id": "triceps",
+     "pct": 10
+    },
+    {
+     "id": "deltoides-anterior",
+     "pct": 10
+    },
+    {
+     "id": "recto-abdominal",
+     "pct": 10
+    },
+    {
+     "id": "gemelos",
+     "pct": 10
+    },
+    {
+     "id": "flexores-cadera",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -1432,10 +1608,14 @@
     "tren-superior",
     "gluteo-mayor",
     "gluteo",
+    "triceps",
     "deltoides-anterior",
     "deltoides",
     "recto-abdominal",
-    "core"
+    "core",
+    "gemelos",
+    "triceps-sural",
+    "flexores-cadera"
    ],
    "equipmentCategories": [
     "ninguno"
@@ -1484,17 +1664,36 @@
     "flexion-cadera-cargada",
     "agarre"
    ],
-   "muscles": {
-    "primary": [
-     "gluteo-mayor",
-     "isquiotibiales"
-    ],
-    "secondary": [
-     "trapecio",
-     "deltoides-anterior",
-     "antebrazo"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "gluteo-mayor",
+     "pct": 30
+    },
+    {
+     "id": "isquiotibiales",
+     "pct": 20
+    },
+    {
+     "id": "trapecio",
+     "pct": 15
+    },
+    {
+     "id": "erectores",
+     "pct": 10
+    },
+    {
+     "id": "deltoides-anterior",
+     "pct": 10
+    },
+    {
+     "id": "antebrazo",
+     "pct": 10
+    },
+    {
+     "id": "biceps",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -1505,9 +1704,12 @@
     "isquiotibiales",
     "trapecio",
     "tren-superior",
+    "erectores",
+    "core",
     "deltoides-anterior",
     "deltoides",
-    "antebrazo"
+    "antebrazo",
+    "biceps"
    ],
    "equipmentCategories": [
     "peso-libre"
@@ -1556,17 +1758,32 @@
    "demands": [
     "impacto"
    ],
-   "muscles": {
-    "primary": [
-     "cuadriceps",
-     "isquiotibiales",
-     "gemelos"
-    ],
-    "secondary": [
-     "gluteo-mayor",
-     "flexores-cadera"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "cuadriceps",
+     "pct": 25
+    },
+    {
+     "id": "isquiotibiales",
+     "pct": 20
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 15
+    },
+    {
+     "id": "gemelos",
+     "pct": 15
+    },
+    {
+     "id": "soleo",
+     "pct": 15
+    },
+    {
+     "id": "flexores-cadera",
+     "pct": 10
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -1574,10 +1791,11 @@
     "cuadriceps",
     "tren-inferior",
     "isquiotibiales",
-    "gemelos",
-    "triceps-sural",
     "gluteo-mayor",
     "gluteo",
+    "gemelos",
+    "triceps-sural",
+    "soleo",
     "flexores-cadera"
    ],
    "equipmentCategories": [
@@ -1628,16 +1846,36 @@
    "demands": [
     "impacto"
    ],
-   "muscles": {
-    "primary": [
-     "flexores-cadera",
-     "gemelos"
-    ],
-    "secondary": [
-     "cuadriceps",
-     "recto-abdominal"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "flexores-cadera",
+     "pct": 30
+    },
+    {
+     "id": "gemelos",
+     "pct": 15
+    },
+    {
+     "id": "soleo",
+     "pct": 15
+    },
+    {
+     "id": "cuadriceps",
+     "pct": 15
+    },
+    {
+     "id": "recto-abdominal",
+     "pct": 10
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 10
+    },
+    {
+     "id": "tibial-anterior",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -1646,9 +1884,13 @@
     "tren-inferior",
     "gemelos",
     "triceps-sural",
+    "soleo",
     "cuadriceps",
     "recto-abdominal",
-    "core"
+    "core",
+    "gluteo-mayor",
+    "gluteo",
+    "tibial-anterior"
    ],
    "equipmentCategories": [
     "ninguno"
@@ -1698,16 +1940,32 @@
    "demands": [
     "impacto"
    ],
-   "muscles": {
-    "primary": [
-     "isquiotibiales",
-     "gemelos"
-    ],
-    "secondary": [
-     "cuadriceps",
-     "flexores-cadera"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "isquiotibiales",
+     "pct": 40
+    },
+    {
+     "id": "gemelos",
+     "pct": 15
+    },
+    {
+     "id": "soleo",
+     "pct": 15
+    },
+    {
+     "id": "cuadriceps",
+     "pct": 15
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 10
+    },
+    {
+     "id": "flexores-cadera",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -1716,7 +1974,10 @@
     "tren-inferior",
     "gemelos",
     "triceps-sural",
+    "soleo",
     "cuadriceps",
+    "gluteo-mayor",
+    "gluteo",
     "flexores-cadera"
    ],
    "equipmentCategories": [
@@ -1765,21 +2026,42 @@
    "demands": [
     "brazos-sobre-cabeza"
    ],
-   "muscles": {
-    "primary": [
-     "deltoides"
-    ],
-    "secondary": [
-     "trapecio",
-     "serrato"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "deltoides-anterior",
+     "pct": 20
+    },
+    {
+     "id": "deltoides-lateral",
+     "pct": 20
+    },
+    {
+     "id": "deltoides-posterior",
+     "pct": 15
+    },
+    {
+     "id": "manguito-rotador",
+     "pct": 15
+    },
+    {
+     "id": "trapecio",
+     "pct": 15
+    },
+    {
+     "id": "serrato",
+     "pct": 15
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
    "muscleGroups": [
+    "deltoides-anterior",
     "deltoides",
     "tren-superior",
+    "deltoides-lateral",
+    "deltoides-posterior",
+    "manguito-rotador",
     "trapecio",
     "serrato"
    ],
@@ -1830,16 +2112,28 @@
     "decubito",
     "carga-muneca"
    ],
-   "muscles": {
-    "primary": [
-     "recto-abdominal",
-     "flexores-cadera"
-    ],
-    "secondary": [
-     "erectores",
-     "pectoral"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "recto-abdominal",
+     "pct": 40
+    },
+    {
+     "id": "flexores-cadera",
+     "pct": 25
+    },
+    {
+     "id": "erectores",
+     "pct": 15
+    },
+    {
+     "id": "oblicuos",
+     "pct": 10
+    },
+    {
+     "id": "pectoral",
+     "pct": 10
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -1849,6 +2143,7 @@
     "flexores-cadera",
     "tren-inferior",
     "erectores",
+    "oblicuos",
     "pectoral",
     "tren-superior"
    ],
@@ -1898,15 +2193,36 @@
    "demands": [
     "impacto"
    ],
-   "muscles": {
-    "primary": [
-     "gemelos"
-    ],
-    "secondary": [
-     "antebrazo",
-     "deltoides"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "gemelos",
+     "pct": 35
+    },
+    {
+     "id": "soleo",
+     "pct": 30
+    },
+    {
+     "id": "cuadriceps",
+     "pct": 10
+    },
+    {
+     "id": "antebrazo",
+     "pct": 10
+    },
+    {
+     "id": "tibial-anterior",
+     "pct": 5
+    },
+    {
+     "id": "deltoides-anterior",
+     "pct": 5
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -1914,9 +2230,15 @@
     "gemelos",
     "triceps-sural",
     "tren-inferior",
+    "soleo",
+    "cuadriceps",
     "antebrazo",
     "tren-superior",
-    "deltoides"
+    "tibial-anterior",
+    "deltoides-anterior",
+    "deltoides",
+    "gluteo-mayor",
+    "gluteo"
    ],
    "equipmentCategories": [
     "accesorio"
@@ -1971,15 +2293,28 @@
     "control-motor"
    ],
    "mode": "activo",
-   "muscles": {
-    "primary": [
-     "recto-abdominal",
-     "transverso"
-    ],
-    "secondary": [
-     "flexores-cadera"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "recto-abdominal",
+     "pct": 30
+    },
+    {
+     "id": "transverso",
+     "pct": 30
+    },
+    {
+     "id": "oblicuos",
+     "pct": 20
+    },
+    {
+     "id": "flexores-cadera",
+     "pct": 15
+    },
+    {
+     "id": "deltoides-anterior",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": true,
    "regressions": [],
@@ -2009,8 +2344,12 @@
     "recto-abdominal",
     "core",
     "transverso",
+    "oblicuos",
     "flexores-cadera",
-    "tren-inferior"
+    "tren-inferior",
+    "deltoides-anterior",
+    "deltoides",
+    "tren-superior"
    ],
    "equipmentCategories": [
     "accesorio"
@@ -2066,15 +2405,28 @@
     "control-motor"
    ],
    "mode": "activo",
-   "muscles": {
-    "primary": [
-     "serrato",
-     "trapecio"
-    ],
-    "secondary": [
-     "deltoides-anterior"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "serrato",
+     "pct": 35
+    },
+    {
+     "id": "trapecio",
+     "pct": 25
+    },
+    {
+     "id": "deltoides-anterior",
+     "pct": 20
+    },
+    {
+     "id": "manguito-rotador",
+     "pct": 15
+    },
+    {
+     "id": "triceps",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": true,
    "regressions": [
@@ -2107,7 +2459,9 @@
     "tren-superior",
     "trapecio",
     "deltoides-anterior",
-    "deltoides"
+    "deltoides",
+    "manguito-rotador",
+    "triceps"
    ],
    "equipmentCategories": [
     "estructura"
@@ -2162,14 +2516,24 @@
     "movilidad-activa"
    ],
    "mode": "activo",
-   "muscles": {
-    "primary": [
-     "isquiotibiales"
-    ],
-    "secondary": [
-     "flexores-cadera"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "isquiotibiales",
+     "pct": 45
+    },
+    {
+     "id": "flexores-cadera",
+     "pct": 35
+    },
+    {
+     "id": "cuadriceps",
+     "pct": 10
+    },
+    {
+     "id": "gemelos",
+     "pct": 10
+    }
+   ],
    "progressions": [],
    "therapeutic": true,
    "regressions": [],
@@ -2198,7 +2562,10 @@
    "muscleGroups": [
     "isquiotibiales",
     "tren-inferior",
-    "flexores-cadera"
+    "flexores-cadera",
+    "cuadriceps",
+    "gemelos",
+    "triceps-sural"
    ],
    "equipmentCategories": [
     "accesorio"
@@ -2248,17 +2615,36 @@
     "agarre",
     "brazos-sobre-cabeza"
    ],
-   "muscles": {
-    "primary": [
-     "dorsal",
-     "biceps"
-    ],
-    "secondary": [
-     "romboides",
-     "trapecio",
-     "antebrazo"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "dorsal",
+     "pct": 40
+    },
+    {
+     "id": "biceps",
+     "pct": 20
+    },
+    {
+     "id": "romboides",
+     "pct": 10
+    },
+    {
+     "id": "trapecio",
+     "pct": 10
+    },
+    {
+     "id": "antebrazo",
+     "pct": 10
+    },
+    {
+     "id": "deltoides-posterior",
+     "pct": 5
+    },
+    {
+     "id": "recto-abdominal",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -2268,7 +2654,11 @@
     "biceps",
     "romboides",
     "trapecio",
-    "antebrazo"
+    "antebrazo",
+    "deltoides-posterior",
+    "deltoides",
+    "recto-abdominal",
+    "core"
    ],
    "equipmentCategories": [
     "estructura"
@@ -2325,15 +2715,28 @@
     "control-motor"
    ],
    "mode": "activo",
-   "muscles": {
-    "primary": [
-     "cuadriceps",
-     "flexores-cadera"
-    ],
-    "secondary": [
-     "recto-abdominal"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "cuadriceps",
+     "pct": 45
+    },
+    {
+     "id": "flexores-cadera",
+     "pct": 35
+    },
+    {
+     "id": "recto-abdominal",
+     "pct": 10
+    },
+    {
+     "id": "tibial-anterior",
+     "pct": 5
+    },
+    {
+     "id": "oblicuos",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": true,
    "regressions": [
@@ -2366,7 +2769,9 @@
     "tren-inferior",
     "flexores-cadera",
     "recto-abdominal",
-    "core"
+    "core",
+    "tibial-anterior",
+    "oblicuos"
    ],
    "equipmentCategories": [
     "accesorio"
@@ -2421,13 +2826,20 @@
     "fortalecimiento"
    ],
    "mode": "activo",
-   "muscles": {
-    "primary": [
-     "gemelos",
-     "soleo"
-    ],
-    "secondary": []
-   },
+   "muscles": [
+    {
+     "id": "gemelos",
+     "pct": 55
+    },
+    {
+     "id": "soleo",
+     "pct": 40
+    },
+    {
+     "id": "tibial-anterior",
+     "pct": 5
+    }
+   ],
    "progressions": [
     "elevacion-talones-unipodal"
    ],
@@ -2461,7 +2873,8 @@
     "gemelos",
     "triceps-sural",
     "tren-inferior",
-    "soleo"
+    "soleo",
+    "tibial-anterior"
    ],
    "equipmentCategories": [
     "estructura"
@@ -2518,13 +2931,24 @@
     "propiocepcion"
    ],
    "mode": "activo",
-   "muscles": {
-    "primary": [
-     "gemelos",
-     "soleo"
-    ],
-    "secondary": []
-   },
+   "muscles": [
+    {
+     "id": "gemelos",
+     "pct": 50
+    },
+    {
+     "id": "soleo",
+     "pct": 35
+    },
+    {
+     "id": "gluteo-medio",
+     "pct": 10
+    },
+    {
+     "id": "tibial-anterior",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": true,
    "regressions": [
@@ -2556,7 +2980,10 @@
     "gemelos",
     "triceps-sural",
     "tren-inferior",
-    "soleo"
+    "soleo",
+    "gluteo-medio",
+    "gluteo",
+    "tibial-anterior"
    ],
    "equipmentCategories": [
     "estructura"
@@ -2613,15 +3040,36 @@
     "control-motor"
    ],
    "mode": "activo",
-   "muscles": {
-    "primary": [
-     "gluteo-medio"
-    ],
-    "secondary": [
-     "triceps-sural",
-     "tibial-anterior"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "gluteo-medio",
+     "pct": 30
+    },
+    {
+     "id": "soleo",
+     "pct": 20
+    },
+    {
+     "id": "tibial-anterior",
+     "pct": 15
+    },
+    {
+     "id": "gemelos",
+     "pct": 10
+    },
+    {
+     "id": "cuadriceps",
+     "pct": 10
+    },
+    {
+     "id": "flexores-cadera",
+     "pct": 10
+    },
+    {
+     "id": "transverso",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": true,
    "regressions": [],
@@ -2651,8 +3099,14 @@
     "gluteo-medio",
     "gluteo",
     "tren-inferior",
+    "soleo",
     "triceps-sural",
-    "tibial-anterior"
+    "tibial-anterior",
+    "gemelos",
+    "cuadriceps",
+    "flexores-cadera",
+    "transverso",
+    "core"
    ],
    "equipmentCategories": [
     "ninguno"
@@ -2701,14 +3155,16 @@
     "equilibrio",
     "flexion-profunda-rodilla"
    ],
-   "muscles": {
-    "primary": [
-     "cuadriceps"
-    ],
-    "secondary": [
-     "flexores-cadera"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "cuadriceps",
+     "pct": 70
+    },
+    {
+     "id": "flexores-cadera",
+     "pct": 30
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -2764,15 +3220,20 @@
     "apoyo-rodilla",
     "brazos-sobre-cabeza"
    ],
-   "muscles": {
-    "primary": [
-     "flexores-cadera"
-    ],
-    "secondary": [
-     "cuadriceps",
-     "oblicuos"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "flexores-cadera",
+     "pct": 60
+    },
+    {
+     "id": "cuadriceps",
+     "pct": 25
+    },
+    {
+     "id": "oblicuos",
+     "pct": 15
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -2834,14 +3295,20 @@
     "flexibilidad"
    ],
    "mode": "activo",
-   "muscles": {
-    "primary": [
-     "gemelos"
-    ],
-    "secondary": [
-     "isquiotibiales"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "gemelos",
+     "pct": 70
+    },
+    {
+     "id": "soleo",
+     "pct": 25
+    },
+    {
+     "id": "isquiotibiales",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": true,
    "regressions": [],
@@ -2871,6 +3338,7 @@
     "gemelos",
     "triceps-sural",
     "tren-inferior",
+    "soleo",
     "isquiotibiales"
    ],
    "equipmentCategories": [
@@ -2916,15 +3384,24 @@
     "peso-corporal"
    ],
    "demands": [],
-   "muscles": {
-    "primary": [
-     "deltoides-posterior"
-    ],
-    "secondary": [
-     "romboides",
-     "trapecio"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "deltoides-posterior",
+     "pct": 50
+    },
+    {
+     "id": "romboides",
+     "pct": 20
+    },
+    {
+     "id": "manguito-rotador",
+     "pct": 20
+    },
+    {
+     "id": "trapecio",
+     "pct": 10
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -2933,6 +3410,7 @@
     "deltoides",
     "tren-superior",
     "romboides",
+    "manguito-rotador",
     "trapecio"
    ],
    "equipmentCategories": [
@@ -2979,15 +3457,20 @@
     "peso-corporal"
    ],
    "demands": [],
-   "muscles": {
-    "primary": [
-     "isquiotibiales"
-    ],
-    "secondary": [
-     "gemelos",
-     "erectores"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "isquiotibiales",
+     "pct": 70
+    },
+    {
+     "id": "gemelos",
+     "pct": 15
+    },
+    {
+     "id": "erectores",
+     "pct": 15
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -3054,15 +3537,20 @@
     "control-motor"
    ],
    "mode": "activo",
-   "muscles": {
-    "primary": [
-     "gluteo-mayor"
-    ],
-    "secondary": [
-     "isquiotibiales",
-     "erectores"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "gluteo-mayor",
+     "pct": 55
+    },
+    {
+     "id": "isquiotibiales",
+     "pct": 30
+    },
+    {
+     "id": "erectores",
+     "pct": 15
+    }
+   ],
    "progressions": [
     "bird-dog"
    ],
@@ -3154,12 +3642,16 @@
     "control-motor"
    ],
    "mode": "activo",
-   "muscles": {
-    "primary": [
-     "cuadriceps"
-    ],
-    "secondary": []
-   },
+   "muscles": [
+    {
+     "id": "cuadriceps",
+     "pct": 90
+    },
+    {
+     "id": "tibial-anterior",
+     "pct": 10
+    }
+   ],
    "progressions": [
     "elevacion-pierna-recta",
     "extension-rodilla-sentado"
@@ -3190,7 +3682,8 @@
    },
    "muscleGroups": [
     "cuadriceps",
-    "tren-inferior"
+    "tren-inferior",
+    "tibial-anterior"
    ],
    "equipmentCategories": [
     "accesorio"
@@ -3244,12 +3737,20 @@
     "fortalecimiento"
    ],
    "mode": "activo",
-   "muscles": {
-    "primary": [
-     "cuadriceps"
-    ],
-    "secondary": []
-   },
+   "muscles": [
+    {
+     "id": "cuadriceps",
+     "pct": 90
+    },
+    {
+     "id": "tibial-anterior",
+     "pct": 5
+    },
+    {
+     "id": "flexores-cadera",
+     "pct": 5
+    }
+   ],
    "progressions": [
     "sentarse-levantarse",
     "sentadilla-pared"
@@ -3282,7 +3783,9 @@
    },
    "muscleGroups": [
     "cuadriceps",
-    "tren-inferior"
+    "tren-inferior",
+    "tibial-anterior",
+    "flexores-cadera"
    ],
    "equipmentCategories": [
     "estructura"
@@ -3338,14 +3841,28 @@
     "movilidad-autoasistida"
    ],
    "mode": "autoasistido",
-   "muscles": {
-    "primary": [
-     "deltoides-anterior"
-    ],
-    "secondary": [
-     "serrato"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "deltoides-anterior",
+     "pct": 40
+    },
+    {
+     "id": "serrato",
+     "pct": 20
+    },
+    {
+     "id": "manguito-rotador",
+     "pct": 20
+    },
+    {
+     "id": "trapecio",
+     "pct": 15
+    },
+    {
+     "id": "triceps",
+     "pct": 5
+    }
+   ],
    "progressions": [
     "deslizamiento-pared"
    ],
@@ -3379,7 +3896,10 @@
     "deltoides-anterior",
     "deltoides",
     "tren-superior",
-    "serrato"
+    "serrato",
+    "manguito-rotador",
+    "trapecio",
+    "triceps"
    ],
    "equipmentCategories": [
     "accesorio"
@@ -3426,17 +3946,28 @@
    "demands": [
     "carga-muneca"
    ],
-   "muscles": {
-    "primary": [
-     "pectoral",
-     "triceps"
-    ],
-    "secondary": [
-     "deltoides-anterior",
-     "serrato",
-     "recto-abdominal"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "pectoral",
+     "pct": 40
+    },
+    {
+     "id": "triceps",
+     "pct": 25
+    },
+    {
+     "id": "deltoides-anterior",
+     "pct": 15
+    },
+    {
+     "id": "serrato",
+     "pct": 10
+    },
+    {
+     "id": "recto-abdominal",
+     "pct": 10
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -3497,24 +4028,34 @@
     "suspension",
     "extension-hombro-cargada"
    ],
-   "muscles": {
-    "primary": [
-     "pectoral",
-     "triceps"
-    ],
-    "secondary": [
-     "deltoides-anterior"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "triceps",
+     "pct": 40
+    },
+    {
+     "id": "pectoral",
+     "pct": 35
+    },
+    {
+     "id": "deltoides-anterior",
+     "pct": 20
+    },
+    {
+     "id": "trapecio",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
    "muscleGroups": [
-    "pectoral",
-    "tren-superior",
     "triceps",
+    "tren-superior",
+    "pectoral",
     "deltoides-anterior",
-    "deltoides"
+    "deltoides",
+    "trapecio"
    ],
    "equipmentCategories": [
     "estructura"
@@ -3563,18 +4104,40 @@
    "demands": [
     "carga-muneca"
    ],
-   "muscles": {
-    "primary": [
-     "isquiotibiales",
-     "recto-abdominal"
-    ],
-    "secondary": [
-     "deltoides",
-     "pectoral",
-     "triceps",
-     "gemelos"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "isquiotibiales",
+     "pct": 25
+    },
+    {
+     "id": "recto-abdominal",
+     "pct": 15
+    },
+    {
+     "id": "deltoides-anterior",
+     "pct": 15
+    },
+    {
+     "id": "pectoral",
+     "pct": 10
+    },
+    {
+     "id": "triceps",
+     "pct": 10
+    },
+    {
+     "id": "serrato",
+     "pct": 10
+    },
+    {
+     "id": "gemelos",
+     "pct": 10
+    },
+    {
+     "id": "transverso",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -3583,12 +4146,15 @@
     "tren-inferior",
     "recto-abdominal",
     "core",
+    "deltoides-anterior",
     "deltoides",
     "tren-superior",
     "pectoral",
     "triceps",
+    "serrato",
     "gemelos",
-    "triceps-sural"
+    "triceps-sural",
+    "transverso"
    ],
    "equipmentCategories": [
     "ninguno"
@@ -3636,16 +4202,32 @@
    "demands": [
     "impacto"
    ],
-   "muscles": {
-    "primary": [
-     "gemelos"
-    ],
-    "secondary": [
-     "gluteo-medio",
-     "aductores",
-     "deltoides-lateral"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "gemelos",
+     "pct": 25
+    },
+    {
+     "id": "soleo",
+     "pct": 20
+    },
+    {
+     "id": "gluteo-medio",
+     "pct": 20
+    },
+    {
+     "id": "deltoides-lateral",
+     "pct": 15
+    },
+    {
+     "id": "aductores",
+     "pct": 15
+    },
+    {
+     "id": "trapecio",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -3653,12 +4235,14 @@
     "gemelos",
     "triceps-sural",
     "tren-inferior",
+    "soleo",
     "gluteo-medio",
     "gluteo",
-    "aductores",
     "deltoides-lateral",
     "deltoides",
-    "tren-superior"
+    "tren-superior",
+    "aductores",
+    "trapecio"
    ],
    "equipmentCategories": [
     "ninguno"
@@ -3704,28 +4288,47 @@
     "polea"
    ],
    "demands": [],
-   "muscles": {
-    "primary": [
-     "oblicuos"
-    ],
-    "secondary": [
-     "deltoides",
-     "gluteo-mayor",
-     "recto-abdominal"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "oblicuos",
+     "pct": 40
+    },
+    {
+     "id": "deltoides-anterior",
+     "pct": 15
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 15
+    },
+    {
+     "id": "recto-abdominal",
+     "pct": 10
+    },
+    {
+     "id": "transverso",
+     "pct": 10
+    },
+    {
+     "id": "dorsal",
+     "pct": 10
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
    "muscleGroups": [
     "oblicuos",
     "core",
+    "deltoides-anterior",
     "deltoides",
     "tren-superior",
     "gluteo-mayor",
     "gluteo",
     "tren-inferior",
-    "recto-abdominal"
+    "recto-abdominal",
+    "transverso",
+    "dorsal"
    ],
    "equipmentCategories": [
     "maquina"
@@ -3773,16 +4376,40 @@
    "demands": [
     "carga-muneca"
    ],
-   "muscles": {
-    "primary": [
-     "recto-abdominal",
-     "flexores-cadera"
-    ],
-    "secondary": [
-     "deltoides-anterior",
-     "cuadriceps"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "recto-abdominal",
+     "pct": 25
+    },
+    {
+     "id": "flexores-cadera",
+     "pct": 25
+    },
+    {
+     "id": "deltoides-anterior",
+     "pct": 15
+    },
+    {
+     "id": "cuadriceps",
+     "pct": 10
+    },
+    {
+     "id": "transverso",
+     "pct": 10
+    },
+    {
+     "id": "pectoral",
+     "pct": 5
+    },
+    {
+     "id": "triceps",
+     "pct": 5
+    },
+    {
+     "id": "serrato",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -3794,7 +4421,11 @@
     "deltoides-anterior",
     "deltoides",
     "tren-superior",
-    "cuadriceps"
+    "cuadriceps",
+    "transverso",
+    "pectoral",
+    "triceps",
+    "serrato"
    ],
    "equipmentCategories": [
     "ninguno"
@@ -3840,15 +4471,32 @@
     "polea"
    ],
    "demands": [],
-   "muscles": {
-    "primary": [
-     "oblicuos",
-     "transverso"
-    ],
-    "secondary": [
-     "recto-abdominal"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "oblicuos",
+     "pct": 40
+    },
+    {
+     "id": "transverso",
+     "pct": 30
+    },
+    {
+     "id": "recto-abdominal",
+     "pct": 10
+    },
+    {
+     "id": "gluteo-medio",
+     "pct": 10
+    },
+    {
+     "id": "deltoides-anterior",
+     "pct": 5
+    },
+    {
+     "id": "pectoral",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -3856,7 +4504,14 @@
     "oblicuos",
     "core",
     "transverso",
-    "recto-abdominal"
+    "recto-abdominal",
+    "gluteo-medio",
+    "gluteo",
+    "tren-inferior",
+    "deltoides-anterior",
+    "deltoides",
+    "tren-superior",
+    "pectoral"
    ],
    "equipmentCategories": [
     "maquina"
@@ -3907,14 +4562,32 @@
     "movilidad-autoasistida"
    ],
    "mode": "autoasistido",
-   "muscles": {
-    "primary": [
-     "manguito-rotador"
-    ],
-    "secondary": [
-     "deltoides"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "manguito-rotador",
+     "pct": 40
+    },
+    {
+     "id": "deltoides-anterior",
+     "pct": 15
+    },
+    {
+     "id": "deltoides-lateral",
+     "pct": 15
+    },
+    {
+     "id": "erectores",
+     "pct": 15
+    },
+    {
+     "id": "isquiotibiales",
+     "pct": 10
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 5
+    }
+   ],
    "progressions": [
     "flexion-hombro-baston"
    ],
@@ -3945,7 +4618,15 @@
    "muscleGroups": [
     "manguito-rotador",
     "tren-superior",
-    "deltoides"
+    "deltoides-anterior",
+    "deltoides",
+    "deltoides-lateral",
+    "erectores",
+    "core",
+    "isquiotibiales",
+    "tren-inferior",
+    "gluteo-mayor",
+    "gluteo"
    ],
    "equipmentCategories": [
     "estructura"
@@ -3993,17 +4674,32 @@
     "carga-muneca",
     "brazos-sobre-cabeza"
    ],
-   "muscles": {
-    "primary": [
-     "isquiotibiales",
-     "gemelos"
-    ],
-    "secondary": [
-     "dorsal",
-     "deltoides",
-     "erectores"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "isquiotibiales",
+     "pct": 35
+    },
+    {
+     "id": "gemelos",
+     "pct": 25
+    },
+    {
+     "id": "dorsal",
+     "pct": 15
+    },
+    {
+     "id": "soleo",
+     "pct": 10
+    },
+    {
+     "id": "deltoides-anterior",
+     "pct": 10
+    },
+    {
+     "id": "erectores",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -4014,6 +4710,8 @@
     "triceps-sural",
     "dorsal",
     "tren-superior",
+    "soleo",
+    "deltoides-anterior",
     "deltoides",
     "erectores",
     "core"
@@ -4069,18 +4767,36 @@
     "flexion-cadera-cargada",
     "agarre"
    ],
-   "muscles": {
-    "primary": [
-     "gluteo-mayor",
-     "isquiotibiales",
-     "erectores"
-    ],
-    "secondary": [
-     "cuadriceps",
-     "trapecio",
-     "antebrazo"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "gluteo-mayor",
+     "pct": 25
+    },
+    {
+     "id": "isquiotibiales",
+     "pct": 20
+    },
+    {
+     "id": "erectores",
+     "pct": 20
+    },
+    {
+     "id": "cuadriceps",
+     "pct": 15
+    },
+    {
+     "id": "antebrazo",
+     "pct": 10
+    },
+    {
+     "id": "trapecio",
+     "pct": 5
+    },
+    {
+     "id": "dorsal",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -4092,9 +4808,10 @@
     "erectores",
     "core",
     "cuadriceps",
-    "trapecio",
+    "antebrazo",
     "tren-superior",
-    "antebrazo"
+    "trapecio",
+    "dorsal"
    ],
    "equipmentCategories": [
     "peso-libre"
@@ -4145,16 +4862,28 @@
     "flexion-cadera-cargada",
     "agarre"
    ],
-   "muscles": {
-    "primary": [
-     "isquiotibiales",
-     "gluteo-mayor"
-    ],
-    "secondary": [
-     "erectores",
-     "antebrazo"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "isquiotibiales",
+     "pct": 40
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 30
+    },
+    {
+     "id": "erectores",
+     "pct": 15
+    },
+    {
+     "id": "antebrazo",
+     "pct": 10
+    },
+    {
+     "id": "dorsal",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -4166,7 +4895,8 @@
     "erectores",
     "core",
     "antebrazo",
-    "tren-superior"
+    "tren-superior",
+    "dorsal"
    ],
    "equipmentCategories": [
     "peso-libre"
@@ -4216,16 +4946,32 @@
     "flexion-cadera-cargada",
     "equilibrio"
    ],
-   "muscles": {
-    "primary": [
-     "isquiotibiales",
-     "gluteo-mayor"
-    ],
-    "secondary": [
-     "gluteo-medio",
-     "erectores"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "isquiotibiales",
+     "pct": 35
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 30
+    },
+    {
+     "id": "gluteo-medio",
+     "pct": 15
+    },
+    {
+     "id": "erectores",
+     "pct": 10
+    },
+    {
+     "id": "oblicuos",
+     "pct": 5
+    },
+    {
+     "id": "soleo",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -4236,7 +4982,10 @@
     "gluteo",
     "gluteo-medio",
     "erectores",
-    "core"
+    "core",
+    "oblicuos",
+    "soleo",
+    "triceps-sural"
    ],
    "equipmentCategories": [
     "peso-libre"
@@ -4291,16 +5040,36 @@
     "control-motor"
    ],
    "mode": "activo",
-   "muscles": {
-    "primary": [
-     "recto-abdominal",
-     "transverso"
-    ],
-    "secondary": [
-     "gluteo-mayor",
-     "deltoides-anterior"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "recto-abdominal",
+     "pct": 35
+    },
+    {
+     "id": "transverso",
+     "pct": 25
+    },
+    {
+     "id": "oblicuos",
+     "pct": 15
+    },
+    {
+     "id": "deltoides-anterior",
+     "pct": 10
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 5
+    },
+    {
+     "id": "cuadriceps",
+     "pct": 5
+    },
+    {
+     "id": "serrato",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": true,
    "regressions": [],
@@ -4330,12 +5099,15 @@
     "recto-abdominal",
     "core",
     "transverso",
+    "oblicuos",
+    "deltoides-anterior",
+    "deltoides",
+    "tren-superior",
     "gluteo-mayor",
     "gluteo",
     "tren-inferior",
-    "deltoides-anterior",
-    "deltoides",
-    "tren-superior"
+    "cuadriceps",
+    "serrato"
    ],
    "equipmentCategories": [
     "accesorio"
@@ -4383,16 +5155,32 @@
     "esterilla"
    ],
    "demands": [],
-   "muscles": {
-    "primary": [
-     "oblicuos",
-     "cuadrado-lumbar"
-    ],
-    "secondary": [
-     "gluteo-medio",
-     "deltoides"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "oblicuos",
+     "pct": 40
+    },
+    {
+     "id": "cuadrado-lumbar",
+     "pct": 20
+    },
+    {
+     "id": "gluteo-medio",
+     "pct": 15
+    },
+    {
+     "id": "transverso",
+     "pct": 10
+    },
+    {
+     "id": "deltoides-lateral",
+     "pct": 10
+    },
+    {
+     "id": "aductores",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -4403,8 +5191,11 @@
     "gluteo-medio",
     "gluteo",
     "tren-inferior",
+    "transverso",
+    "deltoides-lateral",
     "deltoides",
-    "tren-superior"
+    "tren-superior",
+    "aductores"
    ],
    "equipmentCategories": [
     "accesorio"
@@ -4454,16 +5245,28 @@
     "flexion-profunda-rodilla",
     "brazos-sobre-cabeza"
    ],
-   "muscles": {
-    "primary": [
-     "erectores",
-     "dorsal"
-    ],
-    "secondary": [
-     "gluteo-mayor",
-     "cuadriceps"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "erectores",
+     "pct": 35
+    },
+    {
+     "id": "dorsal",
+     "pct": 25
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 20
+    },
+    {
+     "id": "cuadriceps",
+     "pct": 10
+    },
+    {
+     "id": "deltoides-posterior",
+     "pct": 10
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -4475,7 +5278,9 @@
     "gluteo-mayor",
     "gluteo",
     "tren-inferior",
-    "cuadriceps"
+    "cuadriceps",
+    "deltoides-posterior",
+    "deltoides"
    ],
    "equipmentCategories": [
     "accesorio"
@@ -4523,15 +5328,24 @@
     "rack"
    ],
    "demands": [],
-   "muscles": {
-    "primary": [
-     "pectoral",
-     "triceps"
-    ],
-    "secondary": [
-     "deltoides-anterior"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "pectoral",
+     "pct": 50
+    },
+    {
+     "id": "triceps",
+     "pct": 25
+    },
+    {
+     "id": "deltoides-anterior",
+     "pct": 20
+    },
+    {
+     "id": "serrato",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -4540,7 +5354,8 @@
     "tren-superior",
     "triceps",
     "deltoides-anterior",
-    "deltoides"
+    "deltoides",
+    "serrato"
    ],
    "equipmentCategories": [
     "peso-libre",
@@ -4589,17 +5404,32 @@
     "brazos-sobre-cabeza",
     "carga-axial"
    ],
-   "muscles": {
-    "primary": [
-     "deltoides-anterior",
-     "triceps"
-    ],
-    "secondary": [
-     "deltoides-lateral",
-     "trapecio",
-     "serrato"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "deltoides-anterior",
+     "pct": 35
+    },
+    {
+     "id": "triceps",
+     "pct": 25
+    },
+    {
+     "id": "deltoides-lateral",
+     "pct": 15
+    },
+    {
+     "id": "trapecio",
+     "pct": 10
+    },
+    {
+     "id": "serrato",
+     "pct": 10
+    },
+    {
+     "id": "recto-abdominal",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -4610,7 +5440,9 @@
     "triceps",
     "deltoides-lateral",
     "trapecio",
-    "serrato"
+    "serrato",
+    "recto-abdominal",
+    "core"
    ],
    "equipmentCategories": [
     "peso-libre",
@@ -4670,14 +5502,24 @@
     "control-motor"
    ],
    "mode": "activo",
-   "muscles": {
-    "primary": [
-     "gluteo-mayor"
-    ],
-    "secondary": [
-     "isquiotibiales"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "gluteo-mayor",
+     "pct": 55
+    },
+    {
+     "id": "isquiotibiales",
+     "pct": 25
+    },
+    {
+     "id": "erectores",
+     "pct": 10
+    },
+    {
+     "id": "aductores",
+     "pct": 10
+    }
+   ],
    "progressions": [
     "puente-una-pierna"
    ],
@@ -4709,7 +5551,10 @@
     "gluteo-mayor",
     "gluteo",
     "tren-inferior",
-    "isquiotibiales"
+    "isquiotibiales",
+    "erectores",
+    "core",
+    "aductores"
    ],
    "equipmentCategories": [
     "accesorio"
@@ -4770,15 +5615,28 @@
     "control-motor"
    ],
    "mode": "activo",
-   "muscles": {
-    "primary": [
-     "gluteo-mayor"
-    ],
-    "secondary": [
-     "isquiotibiales",
-     "gluteo-medio"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "gluteo-mayor",
+     "pct": 50
+    },
+    {
+     "id": "isquiotibiales",
+     "pct": 25
+    },
+    {
+     "id": "gluteo-medio",
+     "pct": 15
+    },
+    {
+     "id": "erectores",
+     "pct": 5
+    },
+    {
+     "id": "oblicuos",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": true,
    "regressions": [
@@ -4811,7 +5669,10 @@
     "gluteo",
     "tren-inferior",
     "isquiotibiales",
-    "gluteo-medio"
+    "gluteo-medio",
+    "erectores",
+    "core",
+    "oblicuos"
    ],
    "equipmentCategories": [
     "accesorio"
@@ -4862,14 +5723,28 @@
     "banco"
    ],
    "demands": [],
-   "muscles": {
-    "primary": [
-     "gluteo-mayor"
-    ],
-    "secondary": [
-     "isquiotibiales"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "gluteo-mayor",
+     "pct": 60
+    },
+    {
+     "id": "isquiotibiales",
+     "pct": 15
+    },
+    {
+     "id": "cuadriceps",
+     "pct": 15
+    },
+    {
+     "id": "aductores",
+     "pct": 5
+    },
+    {
+     "id": "erectores",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -4877,7 +5752,11 @@
     "gluteo-mayor",
     "gluteo",
     "tren-inferior",
-    "isquiotibiales"
+    "isquiotibiales",
+    "cuadriceps",
+    "aductores",
+    "erectores",
+    "core"
    ],
    "equipmentCategories": [
     "peso-libre",
@@ -4928,17 +5807,36 @@
     "flexion-cadera-cargada",
     "agarre"
    ],
-   "muscles": {
-    "primary": [
-     "dorsal",
-     "romboides"
-    ],
-    "secondary": [
-     "deltoides-posterior",
-     "biceps",
-     "erectores"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "dorsal",
+     "pct": 30
+    },
+    {
+     "id": "romboides",
+     "pct": 20
+    },
+    {
+     "id": "trapecio",
+     "pct": 15
+    },
+    {
+     "id": "deltoides-posterior",
+     "pct": 10
+    },
+    {
+     "id": "biceps",
+     "pct": 10
+    },
+    {
+     "id": "erectores",
+     "pct": 10
+    },
+    {
+     "id": "antebrazo",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -4946,11 +5844,13 @@
     "dorsal",
     "tren-superior",
     "romboides",
+    "trapecio",
     "deltoides-posterior",
     "deltoides",
     "biceps",
     "erectores",
-    "core"
+    "core",
+    "antebrazo"
    ],
    "equipmentCategories": [
     "peso-libre"
@@ -5000,17 +5900,32 @@
    "demands": [
     "apoyo-rodilla"
    ],
-   "muscles": {
-    "primary": [
-     "dorsal",
-     "romboides"
-    ],
-    "secondary": [
-     "deltoides-posterior",
-     "biceps",
-     "trapecio"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "dorsal",
+     "pct": 35
+    },
+    {
+     "id": "romboides",
+     "pct": 20
+    },
+    {
+     "id": "trapecio",
+     "pct": 15
+    },
+    {
+     "id": "biceps",
+     "pct": 15
+    },
+    {
+     "id": "deltoides-posterior",
+     "pct": 10
+    },
+    {
+     "id": "antebrazo",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -5018,10 +5933,11 @@
     "dorsal",
     "tren-superior",
     "romboides",
+    "trapecio",
+    "biceps",
     "deltoides-posterior",
     "deltoides",
-    "biceps",
-    "trapecio"
+    "antebrazo"
    ],
    "equipmentCategories": [
     "peso-libre",
@@ -5072,17 +5988,36 @@
    "demands": [
     "agarre"
    ],
-   "muscles": {
-    "primary": [
-     "dorsal",
-     "romboides"
-    ],
-    "secondary": [
-     "deltoides-posterior",
-     "biceps",
-     "trapecio"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "dorsal",
+     "pct": 30
+    },
+    {
+     "id": "romboides",
+     "pct": 20
+    },
+    {
+     "id": "trapecio",
+     "pct": 15
+    },
+    {
+     "id": "biceps",
+     "pct": 15
+    },
+    {
+     "id": "deltoides-posterior",
+     "pct": 10
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 5
+    },
+    {
+     "id": "recto-abdominal",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -5090,10 +6025,15 @@
     "dorsal",
     "tren-superior",
     "romboides",
+    "trapecio",
+    "biceps",
     "deltoides-posterior",
     "deltoides",
-    "biceps",
-    "trapecio"
+    "gluteo-mayor",
+    "gluteo",
+    "tren-inferior",
+    "recto-abdominal",
+    "core"
    ],
    "equipmentCategories": [
     "estructura"
@@ -5143,16 +6083,28 @@
     "apoyo-rodilla",
     "carga-muneca"
    ],
-   "muscles": {
-    "primary": [
-     "oblicuos",
-     "erectores"
-    ],
-    "secondary": [
-     "romboides",
-     "trapecio"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "oblicuos",
+     "pct": 35
+    },
+    {
+     "id": "erectores",
+     "pct": 25
+    },
+    {
+     "id": "romboides",
+     "pct": 15
+    },
+    {
+     "id": "trapecio",
+     "pct": 15
+    },
+    {
+     "id": "deltoides-posterior",
+     "pct": 10
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -5162,7 +6114,9 @@
     "erectores",
     "romboides",
     "tren-superior",
-    "trapecio"
+    "trapecio",
+    "deltoides-posterior",
+    "deltoides"
    ],
    "equipmentCategories": [
     "accesorio"
@@ -5211,16 +6165,32 @@
     "apoyo-rodilla",
     "brazos-sobre-cabeza"
    ],
-   "muscles": {
-    "primary": [
-     "recto-abdominal",
-     "transverso"
-    ],
-    "secondary": [
-     "dorsal",
-     "serrato"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "recto-abdominal",
+     "pct": 40
+    },
+    {
+     "id": "transverso",
+     "pct": 20
+    },
+    {
+     "id": "dorsal",
+     "pct": 15
+    },
+    {
+     "id": "oblicuos",
+     "pct": 10
+    },
+    {
+     "id": "serrato",
+     "pct": 10
+    },
+    {
+     "id": "triceps",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -5230,7 +6200,9 @@
     "transverso",
     "dorsal",
     "tren-superior",
-    "serrato"
+    "oblicuos",
+    "serrato",
+    "triceps"
    ],
    "equipmentCategories": [
     "accesorio"
@@ -5277,15 +6249,36 @@
    "demands": [
     "impacto"
    ],
-   "muscles": {
-    "primary": [
-     "cuadriceps",
-     "gluteo-mayor"
-    ],
-    "secondary": [
-     "gemelos"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "cuadriceps",
+     "pct": 30
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 25
+    },
+    {
+     "id": "gemelos",
+     "pct": 15
+    },
+    {
+     "id": "soleo",
+     "pct": 10
+    },
+    {
+     "id": "isquiotibiales",
+     "pct": 10
+    },
+    {
+     "id": "erectores",
+     "pct": 5
+    },
+    {
+     "id": "deltoides-anterior",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -5295,7 +6288,14 @@
     "gluteo-mayor",
     "gluteo",
     "gemelos",
-    "triceps-sural"
+    "triceps-sural",
+    "soleo",
+    "isquiotibiales",
+    "erectores",
+    "core",
+    "deltoides-anterior",
+    "deltoides",
+    "tren-superior"
    ],
    "equipmentCategories": [
     "estructura"
@@ -5341,17 +6341,32 @@
    "demands": [
     "impacto"
    ],
-   "muscles": {
-    "primary": [
-     "gluteo-mayor",
-     "cuadriceps",
-     "isquiotibiales"
-    ],
-    "secondary": [
-     "gemelos",
-     "erectores"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "gluteo-mayor",
+     "pct": 30
+    },
+    {
+     "id": "cuadriceps",
+     "pct": 25
+    },
+    {
+     "id": "isquiotibiales",
+     "pct": 15
+    },
+    {
+     "id": "gemelos",
+     "pct": 10
+    },
+    {
+     "id": "soleo",
+     "pct": 10
+    },
+    {
+     "id": "erectores",
+     "pct": 10
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -5363,6 +6378,7 @@
     "isquiotibiales",
     "gemelos",
     "triceps-sural",
+    "soleo",
     "erectores",
     "core"
    ],
@@ -5415,17 +6431,36 @@
    "demands": [
     "impacto"
    ],
-   "muscles": {
-    "primary": [
-     "cuadriceps",
-     "gluteo-mayor",
-     "gemelos"
-    ],
-    "secondary": [
-     "isquiotibiales",
-     "erectores"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "cuadriceps",
+     "pct": 30
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 25
+    },
+    {
+     "id": "gemelos",
+     "pct": 15
+    },
+    {
+     "id": "soleo",
+     "pct": 10
+    },
+    {
+     "id": "isquiotibiales",
+     "pct": 10
+    },
+    {
+     "id": "erectores",
+     "pct": 5
+    },
+    {
+     "id": "deltoides-anterior",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -5436,9 +6471,13 @@
     "gluteo",
     "gemelos",
     "triceps-sural",
+    "soleo",
     "isquiotibiales",
     "erectores",
-    "core"
+    "core",
+    "deltoides-anterior",
+    "deltoides",
+    "tren-superior"
    ],
    "equipmentCategories": [
     "ninguno"
@@ -5490,17 +6529,36 @@
     "impacto",
     "flexion-profunda-rodilla"
    ],
-   "muscles": {
-    "primary": [
-     "cuadriceps",
-     "gluteo-mayor",
-     "gemelos"
-    ],
-    "secondary": [
-     "isquiotibiales",
-     "erectores"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "cuadriceps",
+     "pct": 35
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 25
+    },
+    {
+     "id": "gemelos",
+     "pct": 15
+    },
+    {
+     "id": "soleo",
+     "pct": 10
+    },
+    {
+     "id": "isquiotibiales",
+     "pct": 5
+    },
+    {
+     "id": "erectores",
+     "pct": 5
+    },
+    {
+     "id": "aductores",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -5511,9 +6569,11 @@
     "gluteo",
     "gemelos",
     "triceps-sural",
+    "soleo",
     "isquiotibiales",
     "erectores",
-    "core"
+    "core",
+    "aductores"
    ],
    "equipmentCategories": [
     "ninguno"
@@ -5564,18 +6624,36 @@
    "demands": [
     "impacto"
    ],
-   "muscles": {
-    "primary": [
-     "cuadriceps",
-     "gluteo-mayor",
-     "gemelos",
-     "flexores-cadera"
-    ],
-    "secondary": [
-     "recto-abdominal",
-     "isquiotibiales"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "cuadriceps",
+     "pct": 25
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 20
+    },
+    {
+     "id": "flexores-cadera",
+     "pct": 15
+    },
+    {
+     "id": "gemelos",
+     "pct": 15
+    },
+    {
+     "id": "soleo",
+     "pct": 10
+    },
+    {
+     "id": "recto-abdominal",
+     "pct": 10
+    },
+    {
+     "id": "isquiotibiales",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -5584,9 +6662,10 @@
     "tren-inferior",
     "gluteo-mayor",
     "gluteo",
+    "flexores-cadera",
     "gemelos",
     "triceps-sural",
-    "flexores-cadera",
+    "soleo",
     "recto-abdominal",
     "core",
     "isquiotibiales"
@@ -5638,17 +6717,36 @@
     "impacto",
     "equilibrio"
    ],
-   "muscles": {
-    "primary": [
-     "gluteo-medio",
-     "gluteo-mayor",
-     "cuadriceps"
-    ],
-    "secondary": [
-     "aductores",
-     "gemelos"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "gluteo-medio",
+     "pct": 25
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 25
+    },
+    {
+     "id": "cuadriceps",
+     "pct": 20
+    },
+    {
+     "id": "aductores",
+     "pct": 10
+    },
+    {
+     "id": "gemelos",
+     "pct": 10
+    },
+    {
+     "id": "soleo",
+     "pct": 5
+    },
+    {
+     "id": "oblicuos",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -5660,7 +6758,10 @@
     "cuadriceps",
     "aductores",
     "gemelos",
-    "triceps-sural"
+    "triceps-sural",
+    "soleo",
+    "oblicuos",
+    "core"
    ],
    "equipmentCategories": [
     "ninguno"
@@ -5708,14 +6809,24 @@
    "demands": [
     "impacto"
    ],
-   "muscles": {
-    "primary": [
-     "gemelos"
-    ],
-    "secondary": [
-     "cuadriceps"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "gemelos",
+     "pct": 45
+    },
+    {
+     "id": "soleo",
+     "pct": 35
+    },
+    {
+     "id": "tibial-anterior",
+     "pct": 10
+    },
+    {
+     "id": "cuadriceps",
+     "pct": 10
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -5723,6 +6834,8 @@
     "gemelos",
     "triceps-sural",
     "tren-inferior",
+    "soleo",
+    "tibial-anterior",
     "cuadriceps"
    ],
    "equipmentCategories": [
@@ -5777,14 +6890,28 @@
     "fortalecimiento"
    ],
    "mode": "activo",
-   "muscles": {
-    "primary": [
-     "cuadriceps"
-    ],
-    "secondary": [
-     "gluteo-mayor"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "cuadriceps",
+     "pct": 70
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 15
+    },
+    {
+     "id": "aductores",
+     "pct": 5
+    },
+    {
+     "id": "soleo",
+     "pct": 5
+    },
+    {
+     "id": "erectores",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": true,
    "regressions": [
@@ -5816,7 +6943,12 @@
     "cuadriceps",
     "tren-inferior",
     "gluteo-mayor",
-    "gluteo"
+    "gluteo",
+    "aductores",
+    "soleo",
+    "triceps-sural",
+    "erectores",
+    "core"
    ],
    "equipmentCategories": [
     "estructura"
@@ -5867,16 +6999,32 @@
    "demands": [
     "flexion-profunda-rodilla"
    ],
-   "muscles": {
-    "primary": [
-     "cuadriceps",
-     "gluteo-mayor"
-    ],
-    "secondary": [
-     "aductores",
-     "erectores"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "cuadriceps",
+     "pct": 45
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 30
+    },
+    {
+     "id": "aductores",
+     "pct": 10
+    },
+    {
+     "id": "erectores",
+     "pct": 5
+    },
+    {
+     "id": "soleo",
+     "pct": 5
+    },
+    {
+     "id": "recto-abdominal",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -5887,7 +7035,10 @@
     "gluteo",
     "aductores",
     "erectores",
-    "core"
+    "core",
+    "soleo",
+    "triceps-sural",
+    "recto-abdominal"
    ],
    "equipmentCategories": [
     "ninguno"
@@ -5939,16 +7090,36 @@
    "demands": [
     "flexion-profunda-rodilla"
    ],
-   "muscles": {
-    "primary": [
-     "cuadriceps",
-     "gluteo-mayor"
-    ],
-    "secondary": [
-     "aductores",
-     "erectores"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "cuadriceps",
+     "pct": 40
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 25
+    },
+    {
+     "id": "aductores",
+     "pct": 10
+    },
+    {
+     "id": "erectores",
+     "pct": 10
+    },
+    {
+     "id": "recto-abdominal",
+     "pct": 5
+    },
+    {
+     "id": "antebrazo",
+     "pct": 5
+    },
+    {
+     "id": "deltoides-anterior",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -5959,7 +7130,12 @@
     "gluteo",
     "aductores",
     "erectores",
-    "core"
+    "core",
+    "recto-abdominal",
+    "antebrazo",
+    "tren-superior",
+    "deltoides-anterior",
+    "deltoides"
    ],
    "equipmentCategories": [
     "peso-libre"
@@ -6012,16 +7188,28 @@
     "flexion-profunda-rodilla",
     "carga-axial"
    ],
-   "muscles": {
-    "primary": [
-     "cuadriceps",
-     "gluteo-mayor"
-    ],
-    "secondary": [
-     "aductores",
-     "erectores"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "cuadriceps",
+     "pct": 40
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 30
+    },
+    {
+     "id": "erectores",
+     "pct": 15
+    },
+    {
+     "id": "aductores",
+     "pct": 10
+    },
+    {
+     "id": "isquiotibiales",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -6030,9 +7218,10 @@
     "tren-inferior",
     "gluteo-mayor",
     "gluteo",
-    "aductores",
     "erectores",
-    "core"
+    "core",
+    "aductores",
+    "isquiotibiales"
    ],
    "equipmentCategories": [
     "peso-libre",
@@ -6086,16 +7275,32 @@
     "carga-axial",
     "carga-muneca"
    ],
-   "muscles": {
-    "primary": [
-     "cuadriceps",
-     "gluteo-mayor"
-    ],
-    "secondary": [
-     "erectores",
-     "recto-abdominal"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "cuadriceps",
+     "pct": 50
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 20
+    },
+    {
+     "id": "erectores",
+     "pct": 15
+    },
+    {
+     "id": "recto-abdominal",
+     "pct": 5
+    },
+    {
+     "id": "aductores",
+     "pct": 5
+    },
+    {
+     "id": "deltoides-anterior",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -6106,7 +7311,11 @@
     "gluteo",
     "erectores",
     "core",
-    "recto-abdominal"
+    "recto-abdominal",
+    "aductores",
+    "deltoides-anterior",
+    "deltoides",
+    "tren-superior"
    ],
    "equipmentCategories": [
     "peso-libre",
@@ -6155,16 +7364,28 @@
     "cajon"
    ],
    "demands": [],
-   "muscles": {
-    "primary": [
-     "gluteo-mayor",
-     "cuadriceps"
-    ],
-    "secondary": [
-     "isquiotibiales",
-     "aductores"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "gluteo-mayor",
+     "pct": 35
+    },
+    {
+     "id": "cuadriceps",
+     "pct": 30
+    },
+    {
+     "id": "isquiotibiales",
+     "pct": 15
+    },
+    {
+     "id": "aductores",
+     "pct": 10
+    },
+    {
+     "id": "erectores",
+     "pct": 10
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -6174,7 +7395,9 @@
     "tren-inferior",
     "cuadriceps",
     "isquiotibiales",
-    "aductores"
+    "aductores",
+    "erectores",
+    "core"
    ],
    "equipmentCategories": [
     "estructura"
@@ -6227,15 +7450,28 @@
     "funcional"
    ],
    "mode": "activo",
-   "muscles": {
-    "primary": [
-     "cuadriceps",
-     "gluteo-mayor"
-    ],
-    "secondary": [
-     "erectores"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "cuadriceps",
+     "pct": 50
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 30
+    },
+    {
+     "id": "erectores",
+     "pct": 10
+    },
+    {
+     "id": "isquiotibiales",
+     "pct": 5
+    },
+    {
+     "id": "soleo",
+     "pct": 5
+    }
+   ],
    "progressions": [
     "step-up"
    ],
@@ -6271,7 +7507,10 @@
     "gluteo-mayor",
     "gluteo",
     "erectores",
-    "core"
+    "core",
+    "isquiotibiales",
+    "soleo",
+    "triceps-sural"
    ],
    "equipmentCategories": [
     "estructura"
@@ -6316,17 +7555,40 @@
     "trineo"
    ],
    "demands": [],
-   "muscles": {
-    "primary": [
-     "cuadriceps",
-     "gluteo-mayor"
-    ],
-    "secondary": [
-     "gemelos",
-     "triceps",
-     "deltoides-anterior"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "cuadriceps",
+     "pct": 35
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 25
+    },
+    {
+     "id": "gemelos",
+     "pct": 10
+    },
+    {
+     "id": "soleo",
+     "pct": 10
+    },
+    {
+     "id": "triceps",
+     "pct": 5
+    },
+    {
+     "id": "deltoides-anterior",
+     "pct": 5
+    },
+    {
+     "id": "pectoral",
+     "pct": 5
+    },
+    {
+     "id": "recto-abdominal",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -6337,10 +7599,14 @@
     "gluteo",
     "gemelos",
     "triceps-sural",
+    "soleo",
     "triceps",
     "tren-superior",
     "deltoides-anterior",
-    "deltoides"
+    "deltoides",
+    "pectoral",
+    "recto-abdominal",
+    "core"
    ],
    "equipmentCategories": [
     "maquina"
@@ -6389,16 +7655,28 @@
     "flexion-profunda-rodilla",
     "brazos-sobre-cabeza"
    ],
-   "muscles": {
-    "primary": [
-     "aductores",
-     "isquiotibiales"
-    ],
-    "secondary": [
-     "gluteo-mayor",
-     "erectores"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "aductores",
+     "pct": 30
+    },
+    {
+     "id": "isquiotibiales",
+     "pct": 30
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 15
+    },
+    {
+     "id": "erectores",
+     "pct": 15
+    },
+    {
+     "id": "cuadriceps",
+     "pct": 10
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -6409,7 +7687,8 @@
     "gluteo-mayor",
     "gluteo",
     "erectores",
-    "core"
+    "core",
+    "cuadriceps"
    ],
    "equipmentCategories": [
     "ninguno"
@@ -6466,15 +7745,28 @@
     "funcional"
    ],
    "mode": "activo",
-   "muscles": {
-    "primary": [
-     "cuadriceps",
-     "gluteo-mayor"
-    ],
-    "secondary": [
-     "gluteo-medio"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "cuadriceps",
+     "pct": 45
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 30
+    },
+    {
+     "id": "gluteo-medio",
+     "pct": 15
+    },
+    {
+     "id": "soleo",
+     "pct": 5
+    },
+    {
+     "id": "gemelos",
+     "pct": 5
+    }
+   ],
    "progressions": [
     "bajada-escalon"
    ],
@@ -6509,7 +7801,10 @@
     "tren-inferior",
     "gluteo-mayor",
     "gluteo",
-    "gluteo-medio"
+    "gluteo-medio",
+    "soleo",
+    "triceps-sural",
+    "gemelos"
    ],
    "equipmentCategories": [
     "estructura"
@@ -6556,17 +7851,32 @@
     "flexion-cadera-cargada",
     "agarre"
    ],
-   "muscles": {
-    "primary": [
-     "gluteo-mayor",
-     "isquiotibiales"
-    ],
-    "secondary": [
-     "erectores",
-     "transverso",
-     "antebrazo"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "gluteo-mayor",
+     "pct": 35
+    },
+    {
+     "id": "isquiotibiales",
+     "pct": 25
+    },
+    {
+     "id": "erectores",
+     "pct": 15
+    },
+    {
+     "id": "transverso",
+     "pct": 10
+    },
+    {
+     "id": "antebrazo",
+     "pct": 10
+    },
+    {
+     "id": "deltoides-anterior",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -6579,7 +7889,9 @@
     "core",
     "transverso",
     "antebrazo",
-    "tren-superior"
+    "tren-superior",
+    "deltoides-anterior",
+    "deltoides"
    ],
    "equipmentCategories": [
     "peso-libre"
@@ -6632,17 +7944,36 @@
     "carga-axial",
     "carga-muneca"
    ],
-   "muscles": {
-    "primary": [
-     "cuadriceps",
-     "gluteo-mayor",
-     "deltoides-anterior"
-    ],
-    "secondary": [
-     "triceps",
-     "erectores"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "cuadriceps",
+     "pct": 30
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 20
+    },
+    {
+     "id": "deltoides-anterior",
+     "pct": 20
+    },
+    {
+     "id": "triceps",
+     "pct": 15
+    },
+    {
+     "id": "erectores",
+     "pct": 5
+    },
+    {
+     "id": "trapecio",
+     "pct": 5
+    },
+    {
+     "id": "recto-abdominal",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -6656,7 +7987,9 @@
     "tren-superior",
     "triceps",
     "erectores",
-    "core"
+    "core",
+    "trapecio",
+    "recto-abdominal"
    ],
    "equipmentCategories": [
     "peso-libre"
@@ -6704,16 +8037,36 @@
    "demands": [
     "agarre"
    ],
-   "muscles": {
-    "primary": [
-     "antebrazo",
-     "trapecio"
-    ],
-    "secondary": [
-     "transverso",
-     "gluteo-medio"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "antebrazo",
+     "pct": 35
+    },
+    {
+     "id": "trapecio",
+     "pct": 30
+    },
+    {
+     "id": "transverso",
+     "pct": 10
+    },
+    {
+     "id": "gluteo-medio",
+     "pct": 10
+    },
+    {
+     "id": "oblicuos",
+     "pct": 5
+    },
+    {
+     "id": "cuadrado-lumbar",
+     "pct": 5
+    },
+    {
+     "id": "erectores",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -6725,7 +8078,10 @@
     "core",
     "gluteo-medio",
     "gluteo",
-    "tren-inferior"
+    "tren-inferior",
+    "oblicuos",
+    "cuadrado-lumbar",
+    "erectores"
    ],
    "equipmentCategories": [
     "peso-libre"
@@ -6776,16 +8132,28 @@
    "demands": [
     "agarre"
    ],
-   "muscles": {
-    "primary": [
-     "oblicuos",
-     "cuadrado-lumbar",
-     "antebrazo"
-    ],
-    "secondary": [
-     "gluteo-medio"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "oblicuos",
+     "pct": 30
+    },
+    {
+     "id": "cuadrado-lumbar",
+     "pct": 25
+    },
+    {
+     "id": "antebrazo",
+     "pct": 20
+    },
+    {
+     "id": "gluteo-medio",
+     "pct": 15
+    },
+    {
+     "id": "trapecio",
+     "pct": 10
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -6797,7 +8165,8 @@
     "tren-superior",
     "gluteo-medio",
     "gluteo",
-    "tren-inferior"
+    "tren-inferior",
+    "trapecio"
    ],
    "equipmentCategories": [
     "peso-libre"
@@ -6846,26 +8215,50 @@
    "demands": [
     "brazos-sobre-cabeza"
    ],
-   "muscles": {
-    "primary": [
-     "deltoides",
-     "trapecio"
-    ],
-    "secondary": [
-     "serrato",
-     "oblicuos"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "deltoides-anterior",
+     "pct": 20
+    },
+    {
+     "id": "trapecio",
+     "pct": 20
+    },
+    {
+     "id": "deltoides-lateral",
+     "pct": 15
+    },
+    {
+     "id": "serrato",
+     "pct": 15
+    },
+    {
+     "id": "triceps",
+     "pct": 10
+    },
+    {
+     "id": "oblicuos",
+     "pct": 10
+    },
+    {
+     "id": "manguito-rotador",
+     "pct": 10
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
    "muscleGroups": [
+    "deltoides-anterior",
     "deltoides",
     "tren-superior",
     "trapecio",
+    "deltoides-lateral",
     "serrato",
+    "triceps",
     "oblicuos",
-    "core"
+    "core",
+    "manguito-rotador"
    ],
    "equipmentCategories": [
     "peso-libre"
@@ -6915,21 +8308,45 @@
     "apoyo-rodilla",
     "carga-muneca"
    ],
-   "muscles": {
-    "primary": [
-     "deltoides",
-     "oblicuos",
-     "gluteo-mayor"
-    ],
-    "secondary": [
-     "serrato",
-     "cuadriceps"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "deltoides-anterior",
+     "pct": 20
+    },
+    {
+     "id": "oblicuos",
+     "pct": 20
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 15
+    },
+    {
+     "id": "manguito-rotador",
+     "pct": 10
+    },
+    {
+     "id": "serrato",
+     "pct": 10
+    },
+    {
+     "id": "cuadriceps",
+     "pct": 10
+    },
+    {
+     "id": "triceps",
+     "pct": 10
+    },
+    {
+     "id": "transverso",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
    "muscleGroups": [
+    "deltoides-anterior",
     "deltoides",
     "tren-superior",
     "oblicuos",
@@ -6937,8 +8354,11 @@
     "gluteo-mayor",
     "gluteo",
     "tren-inferior",
+    "manguito-rotador",
     "serrato",
-    "cuadriceps"
+    "cuadriceps",
+    "triceps",
+    "transverso"
    ],
    "equipmentCategories": [
     "peso-libre"
@@ -6990,16 +8410,36 @@
     "flexion-profunda-rodilla",
     "brazos-sobre-cabeza"
    ],
-   "muscles": {
-    "primary": [
-     "cuadriceps",
-     "gluteo-mayor",
-     "deltoides-anterior"
-    ],
-    "secondary": [
-     "triceps"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "cuadriceps",
+     "pct": 35
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 20
+    },
+    {
+     "id": "deltoides-anterior",
+     "pct": 20
+    },
+    {
+     "id": "triceps",
+     "pct": 10
+    },
+    {
+     "id": "erectores",
+     "pct": 5
+    },
+    {
+     "id": "recto-abdominal",
+     "pct": 5
+    },
+    {
+     "id": "gemelos",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -7011,7 +8451,12 @@
     "deltoides-anterior",
     "deltoides",
     "tren-superior",
-    "triceps"
+    "triceps",
+    "erectores",
+    "core",
+    "recto-abdominal",
+    "gemelos",
+    "triceps-sural"
    ],
    "equipmentCategories": [
     "peso-libre",
@@ -7062,18 +8507,36 @@
     "flexion-profunda-rodilla",
     "carga-muneca"
    ],
-   "muscles": {
-    "primary": [
-     "flexores-cadera",
-     "isquiotibiales",
-     "oblicuos"
-    ],
-    "secondary": [
-     "aductores",
-     "gluteo-mayor",
-     "erectores"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "flexores-cadera",
+     "pct": 25
+    },
+    {
+     "id": "isquiotibiales",
+     "pct": 20
+    },
+    {
+     "id": "oblicuos",
+     "pct": 15
+    },
+    {
+     "id": "aductores",
+     "pct": 15
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 10
+    },
+    {
+     "id": "erectores",
+     "pct": 10
+    },
+    {
+     "id": "pectoral",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -7086,7 +8549,9 @@
     "aductores",
     "gluteo-mayor",
     "gluteo",
-    "erectores"
+    "erectores",
+    "pectoral",
+    "tren-superior"
    ],
    "equipmentCategories": [
     "ninguno"
@@ -7138,17 +8603,36 @@
     "flexion-profunda-rodilla",
     "equilibrio"
    ],
-   "muscles": {
-    "primary": [
-     "cuadriceps",
-     "gluteo-mayor"
-    ],
-    "secondary": [
-     "gemelos",
-     "aductores",
-     "flexores-cadera"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "cuadriceps",
+     "pct": 35
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 25
+    },
+    {
+     "id": "gemelos",
+     "pct": 10
+    },
+    {
+     "id": "soleo",
+     "pct": 10
+    },
+    {
+     "id": "aductores",
+     "pct": 10
+    },
+    {
+     "id": "flexores-cadera",
+     "pct": 5
+    },
+    {
+     "id": "isquiotibiales",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -7159,8 +8643,10 @@
     "gluteo",
     "gemelos",
     "triceps-sural",
+    "soleo",
     "aductores",
-    "flexores-cadera"
+    "flexores-cadera",
+    "isquiotibiales"
    ],
    "equipmentCategories": [
     "ninguno"
@@ -7212,16 +8698,32 @@
     "flexion-profunda-rodilla",
     "equilibrio"
    ],
-   "muscles": {
-    "primary": [
-     "cuadriceps",
-     "gluteo-mayor"
-    ],
-    "secondary": [
-     "aductores",
-     "gluteo-medio"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "cuadriceps",
+     "pct": 40
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 30
+    },
+    {
+     "id": "aductores",
+     "pct": 10
+    },
+    {
+     "id": "gluteo-medio",
+     "pct": 10
+    },
+    {
+     "id": "isquiotibiales",
+     "pct": 5
+    },
+    {
+     "id": "soleo",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -7231,7 +8733,10 @@
     "gluteo-mayor",
     "gluteo",
     "aductores",
-    "gluteo-medio"
+    "gluteo-medio",
+    "isquiotibiales",
+    "soleo",
+    "triceps-sural"
    ],
    "equipmentCategories": [
     "ninguno"
@@ -7283,26 +8788,39 @@
     "flexion-profunda-rodilla",
     "equilibrio"
    ],
-   "muscles": {
-    "primary": [
-     "cuadriceps",
-     "gluteo-mayor",
-     "aductores"
-    ],
-    "secondary": [
-     "gluteo-medio"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "aductores",
+     "pct": 30
+    },
+    {
+     "id": "cuadriceps",
+     "pct": 30
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 25
+    },
+    {
+     "id": "gluteo-medio",
+     "pct": 10
+    },
+    {
+     "id": "isquiotibiales",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
    "muscleGroups": [
-    "cuadriceps",
+    "aductores",
     "tren-inferior",
+    "cuadriceps",
     "gluteo-mayor",
     "gluteo",
-    "aductores",
-    "gluteo-medio"
+    "gluteo-medio",
+    "isquiotibiales"
    ],
    "equipmentCategories": [
     "ninguno"
@@ -7354,16 +8872,32 @@
     "flexion-profunda-rodilla",
     "equilibrio"
    ],
-   "muscles": {
-    "primary": [
-     "cuadriceps",
-     "gluteo-mayor"
-    ],
-    "secondary": [
-     "aductores",
-     "gluteo-medio"
-    ]
-   },
+   "muscles": [
+    {
+     "id": "cuadriceps",
+     "pct": 40
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 30
+    },
+    {
+     "id": "gluteo-medio",
+     "pct": 10
+    },
+    {
+     "id": "aductores",
+     "pct": 10
+    },
+    {
+     "id": "isquiotibiales",
+     "pct": 5
+    },
+    {
+     "id": "flexores-cadera",
+     "pct": 5
+    }
+   ],
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -7372,8 +8906,10 @@
     "tren-inferior",
     "gluteo-mayor",
     "gluteo",
+    "gluteo-medio",
     "aductores",
-    "gluteo-medio"
+    "isquiotibiales",
+    "flexores-cadera"
    ],
    "equipmentCategories": [
     "estructura"

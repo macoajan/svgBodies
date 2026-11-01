@@ -12,11 +12,9 @@
   "pattern": "analitico",
   "level": 1,
   "muscles": {
-    "primary": [
-      "gemelos",
-      "soleo"
-    ],
-    "secondary": []
+    "gemelos": 55,
+    "soleo": 40,
+    "tibial-anterior": 5
   },
   "equipment": [
     "pared"
@@ -70,7 +68,13 @@
         "fortalecimiento",
         "propiocepcion"
       ],
-      "mode": "activo"
+      "mode": "activo",
+      "muscles": {
+        "gemelos": 50,
+        "soleo": 35,
+        "gluteo-medio": 10,
+        "tibial-anterior": 5
+      }
     }
   ]
 }

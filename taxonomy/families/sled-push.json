@@ -12,15 +12,14 @@
   "pattern": "locomocion",
   "level": 2,
   "muscles": {
-    "primary": [
-      "cuadriceps",
-      "gluteo-mayor"
-    ],
-    "secondary": [
-      "gemelos",
-      "triceps",
-      "deltoides-anterior"
-    ]
+    "cuadriceps": 35,
+    "gluteo-mayor": 25,
+    "gemelos": 10,
+    "soleo": 10,
+    "triceps": 5,
+    "deltoides-anterior": 5,
+    "pectoral": 5,
+    "recto-abdominal": 5
   },
   "equipment": [
     "trineo"

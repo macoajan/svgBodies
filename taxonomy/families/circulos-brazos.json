@@ -12,13 +12,12 @@
   "pattern": "movilidad",
   "level": 1,
   "muscles": {
-    "primary": [
-      "deltoides"
-    ],
-    "secondary": [
-      "trapecio",
-      "serrato"
-    ]
+    "deltoides-anterior": 20,
+    "deltoides-lateral": 20,
+    "deltoides-posterior": 15,
+    "manguito-rotador": 15,
+    "trapecio": 15,
+    "serrato": 15
   },
   "equipment": [
     "peso-corporal"

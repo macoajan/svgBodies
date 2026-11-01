@@ -15,16 +15,14 @@
   ],
   "level": 2,
   "muscles": {
-    "primary": [
-      "isquiotibiales",
-      "recto-abdominal"
-    ],
-    "secondary": [
-      "deltoides",
-      "pectoral",
-      "triceps",
-      "gemelos"
-    ]
+    "isquiotibiales": 25,
+    "recto-abdominal": 15,
+    "deltoides-anterior": 15,
+    "pectoral": 10,
+    "triceps": 10,
+    "serrato": 10,
+    "gemelos": 10,
+    "transverso": 5
   },
   "equipment": [
     "peso-corporal"

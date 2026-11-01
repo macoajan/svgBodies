@@ -12,14 +12,11 @@
   "pattern": "estiramiento",
   "level": 1,
   "muscles": {
-    "primary": [
-      "erectores",
-      "dorsal"
-    ],
-    "secondary": [
-      "gluteo-mayor",
-      "cuadriceps"
-    ]
+    "erectores": 35,
+    "dorsal": 25,
+    "gluteo-mayor": 20,
+    "cuadriceps": 10,
+    "deltoides-posterior": 10
   },
   "equipment": [
     "esterilla"

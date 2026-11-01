@@ -12,13 +12,11 @@
   "pattern": "zancada",
   "level": 2,
   "muscles": {
-    "primary": [
-      "cuadriceps"
-    ],
-    "secondary": [
-      "gluteo-medio",
-      "gluteo-mayor"
-    ]
+    "cuadriceps": 50,
+    "gluteo-medio": 20,
+    "gluteo-mayor": 15,
+    "soleo": 10,
+    "aductores": 5
   },
   "equipment": [
     "escalon"

@@ -12,15 +12,13 @@
   "pattern": "bisagra",
   "level": 3,
   "muscles": {
-    "primary": [
-      "gluteo-mayor",
-      "isquiotibiales"
-    ],
-    "secondary": [
-      "trapecio",
-      "deltoides-anterior",
-      "antebrazo"
-    ]
+    "gluteo-mayor": 30,
+    "isquiotibiales": 20,
+    "trapecio": 15,
+    "erectores": 10,
+    "deltoides-anterior": 10,
+    "antebrazo": 10,
+    "biceps": 5
   },
   "equipment": [
     "kettlebell"

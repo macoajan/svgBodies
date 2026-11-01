@@ -12,15 +12,11 @@
   "pattern": "empuje-horizontal",
   "level": 1,
   "muscles": {
-    "primary": [
-      "pectoral",
-      "triceps"
-    ],
-    "secondary": [
-      "deltoides-anterior",
-      "serrato",
-      "recto-abdominal"
-    ]
+    "pectoral": 40,
+    "triceps": 25,
+    "deltoides-anterior": 15,
+    "serrato": 10,
+    "recto-abdominal": 10
   },
   "equipment": [
     "peso-corporal"

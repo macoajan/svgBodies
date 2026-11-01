@@ -15,14 +15,11 @@
   ],
   "level": 1,
   "muscles": {
-    "primary": [
-      "aductores",
-      "isquiotibiales"
-    ],
-    "secondary": [
-      "gluteo-mayor",
-      "erectores"
-    ]
+    "aductores": 30,
+    "isquiotibiales": 30,
+    "gluteo-mayor": 15,
+    "erectores": 15,
+    "cuadriceps": 10
   },
   "equipment": [
     "peso-corporal"

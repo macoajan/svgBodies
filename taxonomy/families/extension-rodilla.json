@@ -12,10 +12,8 @@
   "pattern": "analitico",
   "level": 1,
   "muscles": {
-    "primary": [
-      "cuadriceps"
-    ],
-    "secondary": []
+    "cuadriceps": 90,
+    "tibial-anterior": 10
   },
   "equipment": [
     "rodillo"
@@ -76,7 +74,12 @@
       "progressions": [
         "sentarse-levantarse",
         "sentadilla-pared"
-      ]
+      ],
+      "muscles": {
+        "cuadriceps": 90,
+        "tibial-anterior": 5,
+        "flexores-cadera": 5
+      }
     }
   ]
 }

@@ -12,12 +12,10 @@
   "pattern": "bisagra",
   "level": 1,
   "muscles": {
-    "primary": [
-      "gluteo-mayor"
-    ],
-    "secondary": [
-      "isquiotibiales"
-    ]
+    "gluteo-mayor": 55,
+    "isquiotibiales": 25,
+    "erectores": 10,
+    "aductores": 10
   },
   "equipment": [
     "esterilla"
@@ -80,13 +78,11 @@
       "laterality": "unilateral",
       "level": 2,
       "muscles": {
-        "primary": [
-          "gluteo-mayor"
-        ],
-        "secondary": [
-          "isquiotibiales",
-          "gluteo-medio"
-        ]
+        "gluteo-mayor": 50,
+        "isquiotibiales": 25,
+        "gluteo-medio": 15,
+        "erectores": 5,
+        "oblicuos": 5
       },
       "regions": [
         "cadera",
@@ -115,7 +111,14 @@
         "banco"
       ],
       "level": 2,
-      "demands": []
+      "demands": [],
+      "muscles": {
+        "gluteo-mayor": 60,
+        "isquiotibiales": 15,
+        "cuadriceps": 15,
+        "aductores": 5,
+        "erectores": 5
+      }
     }
   ]
 }

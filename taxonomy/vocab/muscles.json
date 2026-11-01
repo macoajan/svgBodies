@@ -8,6 +8,7 @@
   "gluteo-medio": { "parent": "gluteo", "es": "Glúteo medio", "en": "Gluteus medius" },
   "aductores": { "parent": "tren-inferior", "es": "Aductores", "en": "Adductors" },
   "flexores-cadera": { "parent": "tren-inferior", "es": "Flexores de cadera", "en": "Hip flexors" },
+  "rotadores-externos-cadera": { "parent": "tren-inferior", "es": "Rotadores externos de cadera", "en": "Hip external rotators" },
   "triceps-sural": { "parent": "tren-inferior", "es": "Tríceps sural", "en": "Calves" },
   "gemelos": { "parent": "triceps-sural", "es": "Gemelos", "en": "Gastrocnemius" },
   "soleo": { "parent": "triceps-sural", "es": "Sóleo", "en": "Soleus" },

@@ -15,14 +15,14 @@
   ],
   "level": 1,
   "muscles": {
-    "primary": [
-      "recto-abdominal",
-      "flexores-cadera"
-    ],
-    "secondary": [
-      "deltoides-anterior",
-      "cuadriceps"
-    ]
+    "recto-abdominal": 25,
+    "flexores-cadera": 25,
+    "deltoides-anterior": 15,
+    "cuadriceps": 10,
+    "transverso": 10,
+    "pectoral": 5,
+    "triceps": 5,
+    "serrato": 5
   },
   "equipment": [
     "peso-corporal"

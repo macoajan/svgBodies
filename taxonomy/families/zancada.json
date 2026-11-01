@@ -12,14 +12,12 @@
   "pattern": "zancada",
   "level": 1,
   "muscles": {
-    "primary": [
-      "cuadriceps",
-      "gluteo-mayor"
-    ],
-    "secondary": [
-      "aductores",
-      "gluteo-medio"
-    ]
+    "cuadriceps": 40,
+    "gluteo-mayor": 30,
+    "aductores": 10,
+    "gluteo-medio": 10,
+    "isquiotibiales": 5,
+    "soleo": 5
   },
   "equipment": [
     "peso-corporal"
@@ -62,14 +60,11 @@
       },
       "plane": "frontal",
       "muscles": {
-        "primary": [
-          "cuadriceps",
-          "gluteo-mayor",
-          "aductores"
-        ],
-        "secondary": [
-          "gluteo-medio"
-        ]
+        "aductores": 30,
+        "cuadriceps": 30,
+        "gluteo-mayor": 25,
+        "gluteo-medio": 10,
+        "isquiotibiales": 5
       }
     },
     {
@@ -86,7 +81,15 @@
       "equipment": [
         "banco"
       ],
-      "level": 2
+      "level": 2,
+      "muscles": {
+        "cuadriceps": 40,
+        "gluteo-mayor": 30,
+        "gluteo-medio": 10,
+        "aductores": 10,
+        "isquiotibiales": 5,
+        "flexores-cadera": 5
+      }
     }
   ]
 }

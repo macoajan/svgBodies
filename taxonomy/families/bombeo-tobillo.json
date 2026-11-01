@@ -12,11 +12,9 @@
   "pattern": "movilidad",
   "level": 1,
   "muscles": {
-    "primary": [
-      "tibial-anterior",
-      "triceps-sural"
-    ],
-    "secondary": []
+    "tibial-anterior": 50,
+    "gemelos": 25,
+    "soleo": 25
   },
   "equipment": [
     "peso-corporal"

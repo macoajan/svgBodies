@@ -12,13 +12,10 @@
   "pattern": "empuje-vertical",
   "level": 3,
   "muscles": {
-    "primary": [
-      "pectoral",
-      "triceps"
-    ],
-    "secondary": [
-      "deltoides-anterior"
-    ]
+    "triceps": 40,
+    "pectoral": 35,
+    "deltoides-anterior": 20,
+    "trapecio": 5
   },
   "equipment": [
     "paralelas"

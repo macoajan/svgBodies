@@ -15,15 +15,13 @@
   ],
   "level": 3,
   "muscles": {
-    "primary": [
-      "cuadriceps",
-      "gluteo-mayor"
-    ],
-    "secondary": [
-      "gemelos",
-      "aductores",
-      "flexores-cadera"
-    ]
+    "cuadriceps": 35,
+    "gluteo-mayor": 25,
+    "gemelos": 10,
+    "soleo": 10,
+    "aductores": 10,
+    "flexores-cadera": 5,
+    "isquiotibiales": 5
   },
   "equipment": [
     "peso-corporal"

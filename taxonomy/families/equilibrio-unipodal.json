@@ -12,13 +12,13 @@
   "pattern": "equilibrio",
   "level": 1,
   "muscles": {
-    "primary": [
-      "gluteo-medio"
-    ],
-    "secondary": [
-      "triceps-sural",
-      "tibial-anterior"
-    ]
+    "gluteo-medio": 30,
+    "soleo": 20,
+    "tibial-anterior": 15,
+    "gemelos": 10,
+    "cuadriceps": 10,
+    "flexores-cadera": 10,
+    "transverso": 5
   },
   "equipment": [
     "peso-corporal"

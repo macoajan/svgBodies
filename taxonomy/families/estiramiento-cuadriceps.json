@@ -12,12 +12,8 @@
   "pattern": "estiramiento",
   "level": 1,
   "muscles": {
-    "primary": [
-      "cuadriceps"
-    ],
-    "secondary": [
-      "flexores-cadera"
-    ]
+    "cuadriceps": 70,
+    "flexores-cadera": 30
   },
   "equipment": [
     "peso-corporal"

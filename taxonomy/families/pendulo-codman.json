@@ -12,12 +12,12 @@
   "pattern": "movilidad",
   "level": 1,
   "muscles": {
-    "primary": [
-      "manguito-rotador"
-    ],
-    "secondary": [
-      "deltoides"
-    ]
+    "manguito-rotador": 40,
+    "deltoides-anterior": 15,
+    "deltoides-lateral": 15,
+    "erectores": 15,
+    "isquiotibiales": 10,
+    "gluteo-mayor": 5
   },
   "equipment": [
     "mesa"

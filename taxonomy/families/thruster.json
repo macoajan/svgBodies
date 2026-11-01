@@ -16,15 +16,13 @@
   ],
   "level": 3,
   "muscles": {
-    "primary": [
-      "cuadriceps",
-      "gluteo-mayor",
-      "deltoides-anterior"
-    ],
-    "secondary": [
-      "triceps",
-      "erectores"
-    ]
+    "cuadriceps": 30,
+    "gluteo-mayor": 20,
+    "deltoides-anterior": 20,
+    "triceps": 15,
+    "erectores": 5,
+    "trapecio": 5,
+    "recto-abdominal": 5
   },
   "equipment": [
     "barra"

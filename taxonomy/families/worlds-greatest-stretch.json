@@ -16,16 +16,13 @@
   ],
   "level": 2,
   "muscles": {
-    "primary": [
-      "flexores-cadera",
-      "isquiotibiales",
-      "oblicuos"
-    ],
-    "secondary": [
-      "aductores",
-      "gluteo-mayor",
-      "erectores"
-    ]
+    "flexores-cadera": 25,
+    "isquiotibiales": 20,
+    "oblicuos": 15,
+    "aductores": 15,
+    "gluteo-mayor": 10,
+    "erectores": 10,
+    "pectoral": 5
   },
   "equipment": [
     "peso-corporal"

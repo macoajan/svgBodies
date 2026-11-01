@@ -12,13 +12,11 @@
   "pattern": "antiextension",
   "level": 1,
   "muscles": {
-    "primary": [
-      "recto-abdominal",
-      "transverso"
-    ],
-    "secondary": [
-      "flexores-cadera"
-    ]
+    "recto-abdominal": 30,
+    "transverso": 30,
+    "oblicuos": 20,
+    "flexores-cadera": 15,
+    "deltoides-anterior": 5
   },
   "equipment": [
     "esterilla"

@@ -12,10 +12,9 @@
   "pattern": "analitico",
   "level": 1,
   "muscles": {
-    "primary": [
-      "gluteo-medio"
-    ],
-    "secondary": []
+    "gluteo-medio": 50,
+    "rotadores-externos-cadera": 35,
+    "gluteo-mayor": 15
   },
   "equipment": [
     "esterilla"

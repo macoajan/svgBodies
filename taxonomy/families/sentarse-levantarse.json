@@ -12,13 +12,11 @@
   "pattern": "sentadilla",
   "level": 1,
   "muscles": {
-    "primary": [
-      "cuadriceps",
-      "gluteo-mayor"
-    ],
-    "secondary": [
-      "erectores"
-    ]
+    "cuadriceps": 50,
+    "gluteo-mayor": 30,
+    "erectores": 10,
+    "isquiotibiales": 5,
+    "soleo": 5
   },
   "equipment": [
     "silla"

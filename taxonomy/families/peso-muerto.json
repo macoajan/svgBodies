@@ -12,16 +12,13 @@
   "pattern": "bisagra",
   "level": 2,
   "muscles": {
-    "primary": [
-      "gluteo-mayor",
-      "isquiotibiales",
-      "erectores"
-    ],
-    "secondary": [
-      "cuadriceps",
-      "trapecio",
-      "antebrazo"
-    ]
+    "gluteo-mayor": 25,
+    "isquiotibiales": 20,
+    "erectores": 20,
+    "cuadriceps": 15,
+    "antebrazo": 10,
+    "trapecio": 5,
+    "dorsal": 5
   },
   "equipment": [
     "barra"
@@ -65,14 +62,11 @@
         "variante": "rumano"
       },
       "muscles": {
-        "primary": [
-          "isquiotibiales",
-          "gluteo-mayor"
-        ],
-        "secondary": [
-          "erectores",
-          "antebrazo"
-        ]
+        "isquiotibiales": 40,
+        "gluteo-mayor": 30,
+        "erectores": 15,
+        "antebrazo": 10,
+        "dorsal": 5
       }
     },
     {
@@ -95,14 +89,12 @@
         "equilibrio"
       ],
       "muscles": {
-        "primary": [
-          "isquiotibiales",
-          "gluteo-mayor"
-        ],
-        "secondary": [
-          "gluteo-medio",
-          "erectores"
-        ]
+        "isquiotibiales": 35,
+        "gluteo-mayor": 30,
+        "gluteo-medio": 15,
+        "erectores": 10,
+        "oblicuos": 5,
+        "soleo": 5
       }
     }
   ]

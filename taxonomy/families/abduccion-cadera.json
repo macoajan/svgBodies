@@ -12,12 +12,10 @@
   "pattern": "analitico",
   "level": 1,
   "muscles": {
-    "primary": [
-      "gluteo-medio"
-    ],
-    "secondary": [
-      "oblicuos"
-    ]
+    "gluteo-medio": 60,
+    "gluteo-mayor": 15,
+    "oblicuos": 15,
+    "cuadrado-lumbar": 10
   },
   "equipment": [
     "esterilla"

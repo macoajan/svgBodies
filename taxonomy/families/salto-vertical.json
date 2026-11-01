@@ -12,15 +12,13 @@
   "pattern": "salto",
   "level": 2,
   "muscles": {
-    "primary": [
-      "cuadriceps",
-      "gluteo-mayor",
-      "gemelos"
-    ],
-    "secondary": [
-      "isquiotibiales",
-      "erectores"
-    ]
+    "cuadriceps": 30,
+    "gluteo-mayor": 25,
+    "gemelos": 15,
+    "soleo": 10,
+    "isquiotibiales": 10,
+    "erectores": 5,
+    "deltoides-anterior": 5
   },
   "equipment": [
     "peso-corporal"
@@ -63,7 +61,16 @@
       "demands": [
         "impacto",
         "flexion-profunda-rodilla"
-      ]
+      ],
+      "muscles": {
+        "cuadriceps": 35,
+        "gluteo-mayor": 25,
+        "gemelos": 15,
+        "soleo": 10,
+        "isquiotibiales": 5,
+        "erectores": 5,
+        "aductores": 5
+      }
     },
     {
       "id": "salto-rodillas-pecho",
@@ -77,16 +84,13 @@
       },
       "level": 3,
       "muscles": {
-        "primary": [
-          "cuadriceps",
-          "gluteo-mayor",
-          "gemelos",
-          "flexores-cadera"
-        ],
-        "secondary": [
-          "recto-abdominal",
-          "isquiotibiales"
-        ]
+        "cuadriceps": 25,
+        "gluteo-mayor": 20,
+        "flexores-cadera": 15,
+        "gemelos": 15,
+        "soleo": 10,
+        "recto-abdominal": 10,
+        "isquiotibiales": 5
       }
     }
   ]

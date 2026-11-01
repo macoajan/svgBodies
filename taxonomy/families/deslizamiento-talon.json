@@ -12,12 +12,10 @@
   "pattern": "movilidad",
   "level": 1,
   "muscles": {
-    "primary": [
-      "isquiotibiales"
-    ],
-    "secondary": [
-      "flexores-cadera"
-    ]
+    "isquiotibiales": 45,
+    "flexores-cadera": 35,
+    "cuadriceps": 10,
+    "gemelos": 10
   },
   "equipment": [
     "esterilla"

@@ -27,7 +27,8 @@ node tools/build.mjs     # valida taxonomía, fichas y posturas, genera library/
 |---|---|---|
 | [Revisión de la taxonomía](https://claude.ai/artifact/C1Ny8wERm4PGUhzqwX6QNZ) | Revisión en el móvil de la clasificación de los 46 ejercicios de los lotes A–D: Correcto/Cambiar y notas por ejercicio, más «Criterios generales». Guarda en la base de datos del artefacto (`revision/<id>` con `{status, note, at}` y `revision-general/notas`). | Cerrada: el propietario dio los 46 por válidos; las 46 marcas están en `ok`. No incluye el lote E. |
 | [Lote E de monigotes](https://claude.ai/artifact/A8gUFgokYJm4TMgddV2wr8) | Galería móvil de los 24 ejercicios del lote E. | Cerrada: revisada, corregida y fusionada. |
-| [Piloto terapéutico](https://claude.ai/artifact/N1182gQxiSMhf3oTcUsk3f) | Revisión móvil de los 24 ejercicios terapéuticos: dos vistas animadas, hoja del paciente, nota profesional, regresiones y progresiones. Marcas por ejercicio en la base de datos del artefacto: colección `revision-f`, documento `<id>` con `{anim, text, note, at}` (`anim`/`text` = `ok` o `cambiar`), y `revision-f-general/notas` con `{text, at}`. | Publicada; esperando la revisión del propietario. |
+| [Piloto terapéutico](https://claude.ai/artifact/N1182gQxiSMhf3oTcUsk3f) | Revisión móvil de los 24 ejercicios terapéuticos (colección `revision-f`: `{anim, text, note, at}`). | Cerrada: las 24 marcadas `ok` en animación y textos, sin notas. |
+| [Músculos por ejercicio](https://claude.ai/artifact/3YXhL1bBnQNnFeJ1h9hXYL) | Revisión móvil del reparto muscular en % de los 88 ejercicios, con los tres primeros y los indirectos. Colección `revision-musculos`: documento `<id>` con `{status, note, at}` (`status` = `ok` o `cambiar`), y `revision-musculos-general/notas` con `{text, at}`. | Publicada; esperando la revisión del propietario. |
 
 Para actualizar un artefacto desde otra sesión: leerlo primero (`Artifact` con `action: "read"` y
 su URL) y publicar con `url`. Las marcas de revisión se leen con `ArtifactData` (`list` de la
@@ -62,10 +63,20 @@ Limitaciones conocidas: tronco recto (sin columna segmentada), sin escápula, si
 orientable, sin banda elástica que se estire y sin señal visual de isometría. Por eso aún no
 hay ejercicios lumbares de movilidad, cervicales, escapulares ni con banda.
 
+## Músculos en porcentaje (rama, sin PR)
+
+Petición del propietario para todos los ejercicios: listar los músculos con el porcentaje
+estimado de uso. `muscles` pasa a ser `{ músculo: % }` (múltiplos de 5, suma 100, 1–8
+músculos, ordenado, sin grupo y parte a la vez); sustituye a `primary`/`secondary`. La app
+tomará los tres primeros y sumará el resto como indirectos (eso lo hace la app, no la
+biblioteca). Nuevo músculo `rotadores-externos-cadera`. Hay 27 ejercicios con empate entre el
+tercer y el cuarto músculo: pendiente de decidir cómo se resuelve.
+
 ## Próximos pasos
 
-1. Leer las marcas del propietario (`ArtifactData` `list` de `revision-f` y
-   `revision-f-general`), corregir animaciones y textos, y abrir la PR cuando lo pida.
+1. Leer las marcas del propietario en `revision-musculos` y `revision-musculos-general`,
+   corregir los porcentajes y resolver los empates del tercer puesto. Abrir la PR (piloto
+   terapéutico + porcentajes) cuando lo pida.
 2. Motor, por orden: columna en tres segmentos (lumbar, dorsal, cervical), banda elástica y
    señal de isometría, y después escápula y cabeza orientable.
 3. Ampliar el catálogo terapéutico por regiones (lumbar y hombro primero), y el texto en inglés.

@@ -12,14 +12,13 @@
   "pattern": "antiextension",
   "level": 1,
   "muscles": {
-    "primary": [
-      "recto-abdominal",
-      "transverso"
-    ],
-    "secondary": [
-      "gluteo-mayor",
-      "deltoides-anterior"
-    ]
+    "recto-abdominal": 35,
+    "transverso": 25,
+    "oblicuos": 15,
+    "deltoides-anterior": 10,
+    "gluteo-mayor": 5,
+    "cuadriceps": 5,
+    "serrato": 5
   },
   "equipment": [
     "esterilla"
@@ -64,14 +63,12 @@
       "position": "suelo-lateral",
       "level": 2,
       "muscles": {
-        "primary": [
-          "oblicuos",
-          "cuadrado-lumbar"
-        ],
-        "secondary": [
-          "gluteo-medio",
-          "deltoides"
-        ]
+        "oblicuos": 40,
+        "cuadrado-lumbar": 20,
+        "gluteo-medio": 15,
+        "transverso": 10,
+        "deltoides-lateral": 10,
+        "aductores": 5
       }
     }
   ]
