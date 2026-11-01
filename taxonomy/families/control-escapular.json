@@ -1,0 +1,116 @@
+{
+  "id": "control-escapular",
+  "name": {
+    "es": "Control escapular",
+    "en": "Scapular control"
+  },
+  "plane": "frontal",
+  "mechanics": "aislado",
+  "action": "estabilidad",
+  "position": "de-pie",
+  "laterality": "bilateral",
+  "pattern": "movilidad",
+  "level": 1,
+  "muscles": {
+    "trapecio": 55,
+    "serrato": 15,
+    "dorsal": 15,
+    "romboides": 10,
+    "pectoral": 5
+  },
+  "equipment": [
+    "peso-corporal"
+  ],
+  "demands": [],
+  "params": {
+    "movimiento": [
+      "elevacion-depresion",
+      "retraccion",
+      "protraccion"
+    ]
+  },
+  "variants": [
+    {
+      "id": "elevacion-depresion-escapular",
+      "name": {
+        "es": "Elevación y depresión escapular",
+        "en": "Scapular elevation and depression"
+      },
+      "set": {
+        "movimiento": "elevacion-depresion"
+      },
+      "regions": [
+        "hombro",
+        "cervical"
+      ],
+      "goals": [
+        "control-motor",
+        "movilidad-activa"
+      ],
+      "mode": "activo"
+    },
+    {
+      "id": "retraccion-escapular",
+      "name": {
+        "es": "Retracción escapular",
+        "en": "Scapular retraction"
+      },
+      "set": {
+        "movimiento": "retraccion"
+      },
+      "plane": "transversal",
+      "muscles": {
+        "romboides": 40,
+        "trapecio": 35,
+        "deltoides-posterior": 15,
+        "dorsal": 10
+      },
+      "regions": [
+        "hombro",
+        "dorsal"
+      ],
+      "goals": [
+        "control-motor"
+      ],
+      "mode": "activo",
+      "progressions": [
+        "remo-banda"
+      ]
+    },
+    {
+      "id": "protraccion-escapular-supino",
+      "name": {
+        "es": "Protracción escapular en supino",
+        "en": "Supine serratus punch"
+      },
+      "set": {
+        "movimiento": "protraccion"
+      },
+      "plane": "transversal",
+      "position": "suelo-supino",
+      "equipment": [
+        "esterilla"
+      ],
+      "demands": [
+        "decubito"
+      ],
+      "muscles": {
+        "serrato": 60,
+        "pectoral": 20,
+        "deltoides-anterior": 15,
+        "triceps": 5
+      },
+      "regions": [
+        "hombro"
+      ],
+      "goals": [
+        "control-motor",
+        "fortalecimiento"
+      ],
+      "mode": "activo",
+      "progressions": [
+        "deslizamiento-pared"
+      ]
+    }
+  ]
+}

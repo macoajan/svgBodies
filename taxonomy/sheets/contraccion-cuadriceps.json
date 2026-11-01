@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "Túmbate boca arriba con las piernas estiradas y una toalla pequeña enrollada debajo de una rodilla.",
+    "steps": [
+      "Aprieta el muslo empujando la rodilla contra la toalla y llevando la punta del pie hacia ti.",
+      "Mantén la contracción unos segundos.",
+      "Relaja y repite; después cambia de pierna."
+    ],
+    "avoid": [
+      "No levantes la pierna del suelo.",
+      "No aguantes la respiración."
+    ]
+  },
+  "pro": {
+    "goal": "Activación isométrica del cuádriceps en extensión completa de rodilla.",
+    "notes": [
+      "Primer ejercicio tras cirugía de rodilla o derrame; ayuda a recuperar la extensión activa.",
+      "Palpar el vasto medial para confirmar la contracción.",
+      "Progresión: extensión de rodilla sobre rodillo."
+    ]
+  }
+}

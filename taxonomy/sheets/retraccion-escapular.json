@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "De pie, o sentado, con los brazos relajados.",
+    "steps": [
+      "Junta las escápulas llevando los hombros hacia atrás.",
+      "Mantén unos segundos sin subir los hombros.",
+      "Suelta despacio."
+    ],
+    "avoid": [
+      "No subas los hombros.",
+      "No arquees la zona lumbar."
+    ]
+  },
+  "pro": {
+    "goal": "Control motor de la retracción escapular (romboides y trapecio medio).",
+    "notes": [
+      "Base del control escapular antes de añadir carga.",
+      "Útil en hombro doloroso con discinesia escapular y en postura cifótica.",
+      "Progresión: remo con banda."
+    ]
+  }
+}

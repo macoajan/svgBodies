@@ -687,7 +687,9 @@ figcaption{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:upp
       if (o.type === 'cord' || o.type === 'band') return { ...o, a: lerp3(o.a, ob.a, k), b: lerp3(o.b, ob.b, k) };
       return { ...o, at: lerp3(o.at, ob.at, k), phi: o.phi === undefined ? 0 : o.phi + (ob.phi - o.phi) * k };
     });
-    return { J, objects };
+    const ef = (e, i) => (Array.isArray(e) ? e[i] : e) ?? 0;
+    const effort = i => ef(a.effort, i) + (ef(b.effort, i) - ef(a.effort, i)) * k;
+    return { J, objects, effort };
   }
 
   function mount(svg, ex, opts = {}) {
@@ -711,6 +713,17 @@ figcaption{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:upp
       items.push({ e, update: (p, c) => { const P = c.proj(get(p)); e.setAttribute('cx', f2(P.x)); e.setAttribute('cy', f2(P.y)); return P.d + bias; } });
     };
     const dot = get => disc(get, 1.7, { fill: INK, stroke: 'none' }, 0.05);
+    // Isometric halo: a wide translucent line whose width follows the effort.
+    const pointOf = (p, name) => { const [a, b] = name.split('.'); return b ? p.J[a][b] : p.J[a]; };
+    (ex.glow || []).forEach(([a, b], i) => {
+      const e = node('line', { stroke: '#F2A93B', 'stroke-opacity': 0.55 }, layer);
+      items.push({ e, update: (p, c) => {
+        const P = c.proj(pointOf(p, a)), Q = c.proj(pointOf(p, b));
+        e.setAttribute('x1', f2(P.x)); e.setAttribute('y1', f2(P.y)); e.setAttribute('x2', f2(Q.x)); e.setAttribute('y2', f2(Q.y));
+        e.setAttribute('stroke-width', f2(10 * p.effort(i)));
+        return -1e3;
+      } });
+    });
     // Short cylinder along z centred on get(p), from z0 to z1 (relative): hull of both faces.
     const cyl = (get, r, z0, z1, attrs, bias = 0) => {
       const e = node('polygon', { 'stroke-linejoin': 'round', ...attrs }, layer);

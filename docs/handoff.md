@@ -10,12 +10,13 @@ El propietario escribe en español y espera respuestas en español.
 
 ## Estado del repositorio
 
-- `main` = `79fd08f`: lotes A–E, piloto terapéutico, porcentajes musculares y columna
-  segmentada fusionados ([macoajan/svgBodies#1](https://github.com/macoajan/svgBodies/pull/1) a
-  [macoajan/svgBodies#5](https://github.com/macoajan/svgBodies/pull/5)).
-- Rama de trabajo `claude/eager-heisenberg-cgodjv`: **cervical, bastón, antebrazo/muñeca y
-  bandas**, validados por el propietario; PR abierta, se fusiona cuando lo pida.
-- Biblioteca: **108 ejercicios**, de ellos 44 terapéuticos. Todo valida y compila.
+- `main`: todo fusionado ([macoajan/svgBodies#1](https://github.com/macoajan/svgBodies/pull/1) a
+  [macoajan/svgBodies#7](https://github.com/macoajan/svgBodies/pull/7)): lotes A–F, columna
+  segmentada, cervical, bastón, muñeca, bandas, señal de isometría y escápula.
+- Rama de trabajo `claude/eager-heisenberg-cgodjv`. Si su última PR ya se fusionó, se reinicia
+  desde `origin/main` antes del trabajo nuevo.
+- Biblioteca: **113 ejercicios**, de ellos 49 terapéuticos. Todo valida y compila.
+- El propietario pasa a otra fase; los fallos que encuentre en las pruebas los irá indicando.
 
 ```
 node tools/build.mjs     # valida taxonomía, fichas y posturas, genera library/
@@ -27,7 +28,7 @@ node tools/build.mjs     # valida taxonomía, fichas y posturas, genera library/
 |---|---|---|
 | [Revisión de la taxonomía](https://claude.ai/artifact/C1Ny8wERm4PGUhzqwX6QNZ) | Revisión en el móvil de la clasificación de los 46 ejercicios de los lotes A–D: Correcto/Cambiar y notas por ejercicio, más «Criterios generales». Guarda en la base de datos del artefacto (`revision/<id>` con `{status, note, at}` y `revision-general/notas`). | Cerrada: el propietario dio los 46 por válidos; las 46 marcas están en `ok`. No incluye el lote E. |
 | [Lote E de monigotes](https://claude.ai/artifact/A8gUFgokYJm4TMgddV2wr8) | Galería móvil de los 24 ejercicios del lote E. | Cerrada: revisada, corregida y fusionada. |
-| [Piloto terapéutico](https://claude.ai/artifact/N1182gQxiSMhf3oTcUsk3f) | Revisión móvil de los ejercicios terapéuticos (colección `revision-f`: `{anim, text, note, at}`). Versión 2: 28 terapéuticos, con los 4 de columna lumbar marcados «Nuevo · columna» y una tarjeta de la cobra rehecha (sólo `anim`). | Versión 5: 44 terapéuticos. Cerrada: todos en `ok` (los 16 últimos, validados por el propietario en el chat). |
+| [Piloto terapéutico](https://claude.ai/artifact/N1182gQxiSMhf3oTcUsk3f) | Revisión móvil de los ejercicios terapéuticos (colección `revision-f`: `{anim, text, note, at}`). Versión 2: 28 terapéuticos, con los 4 de columna lumbar marcados «Nuevo · columna» y una tarjeta de la cobra rehecha (sólo `anim`). | Versión 6: 49 terapéuticos. Cerrada: todos en `ok`. Los 5 últimos (isometrías y escápula) los dio por válidos el propietario sin revisarlos; se revisarán en la fase de pruebas. |
 | [Músculos por ejercicio](https://claude.ai/artifact/3YXhL1bBnQNnFeJ1h9hXYL) | Revisión móvil del reparto muscular en % de los 88 ejercicios, con los tres primeros y los indirectos. Colección `revision-musculos`: documento `<id>` con `{status, note, at}` (`status` = `ok` o `cambiar`), y `revision-musculos-general/notas` con `{text, at}`. | Dados por buenos por el propietario; los sigue revisando con calma. Consultar de vez en cuando si hay marcas `cambiar` o notas. |
 
 Para actualizar un artefacto desde otra sesión: leerlo primero (`Artifact` con `action: "read"` y
@@ -63,7 +64,7 @@ Limitaciones conocidas: tronco recto (sin columna segmentada), sin escápula, si
 orientable, sin banda elástica que se estire y sin señal visual de isometría. Por eso aún no
 hay ejercicios lumbares de movilidad, cervicales, escapulares ni con banda.
 
-## Cervical (rama, sin PR)
+## Cervical (fusionado)
 
 - `trunk()` acepta `neckSide` y `headSide` (inclinación lateral del cuello y de la cabeza, en
   grados, positivo hacia la derecha; la cabeza sigue al cuello por defecto) y `headYaw`
@@ -76,7 +77,20 @@ hay ejercicios lumbares de movilidad, cervicales, escapulares ni con banda.
 - Ejercicios (lote F, sentado en silla): retracción cervical, flexión y extensión, rotación e
   inclinación, con taxonomía, fichas y porcentajes.
 
-## Bastón, antebrazo/muñeca y bandas (rama, sin PR)
+## Señal de isometría y escápula (fusionado)
+
+- Isometría: `ex.glow = [['r.hip', 'r.knee'], ...]` dibuja un halo ámbar translúcido (`GLOW`)
+  detrás de cada segmento; su anchura sigue `pose.effort` (0–1, o un valor por halo). En
+  `exercises-f.mjs`, `isoHold(dur, pose, side)` hace el mantenimiento con el halo que aparece,
+  late y desaparece, y `swapLR` intercambia el par de esfuerzos [derecha, izquierda]. Lo llevan
+  la sentadilla en pared, la extensión de rodilla sobre rodillo, la retracción cervical y la
+  plancha. `poses.json` exporta `glow` y `effort`, y el visor 3D los dibuja.
+- Escápula: `trunk(..., { scap: { r: { up, fwd }, l: { up, fwd } } })` mueve cada hombro
+  (elevación +/depresión −, protracción +/retracción −).
+- Ejercicios: contracción isométrica de cuádriceps, isometría de rotación externa contra la
+  pared, elevación y depresión escapular, retracción escapular y protracción en supino.
+
+## Bastón, antebrazo/muñeca y bandas (fusionado)
 
 - Motor: objeto `band` (`{ type: 'band', a, b }`, verde `BAND`), segmento de la mano
   (`fingers`, `L.palm = 3.8`) que sólo se dibuja con `hands: true` y se valida en longitud, y el
@@ -115,14 +129,13 @@ resolvieron con criterio clínico.
 
 ## Próximos pasos
 
-1. Porcentajes dados por buenos; el propietario sigue revisando en segundo plano: leer de vez
-   en cuando `revision-musculos` y `revision-musculos-general` y corregir lo marcado.
-2. Cervicales y bastón, muñeca y banda validados; PR abierta, fusionar cuando lo pida.
-3. Motor, por orden: señal de isometría y después escápula.
-4. Ampliar el catálogo terapéutico por regiones (lumbar y hombro primero), y el texto en inglés.
-5. La app y la hoja del paciente quedan fuera por ahora (decisión del propietario): no se
-   diseña ni se plantea nada de la app hasta que lo pida. La biblioteca sólo exporta los datos
-   (`catalog.json` con `sheet`).
+1. El propietario pasa a otra cosa; atender los fallos que indique en la fase de pruebas.
+2. Leer de vez en cuando las colecciones de revisión (`revision-f`, `revision-musculos` y sus
+   `-general`) por si hay marcas `cambiar` o notas nuevas.
+3. Pendientes del motor: grosor del cuerpo (para la extensión completa de codos en McKenzie) y
+   texto en inglés de las fichas.
+4. La app y la hoja del paciente quedan fuera hasta que el propietario lo pida. La biblioteca
+   sólo exporta los datos (`catalog.json` con `sheet`).
 
 ## Cómo revisar visualmente
 

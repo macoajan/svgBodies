@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "De pie con los brazos relajados a los lados del cuerpo.",
+    "steps": [
+      "Sube los hombros hacia las orejas.",
+      "Bájalos despacio, alejándolos de las orejas todo lo que puedas.",
+      "Vuelve a la posición relajada."
+    ],
+    "avoid": [
+      "No muevas la cabeza.",
+      "No dobles los codos."
+    ]
+  },
+  "pro": {
+    "goal": "Control y movilidad escapular en elevación y depresión.",
+    "notes": [
+      "La fase de depresión activa el trapecio inferior y el dorsal.",
+      "Útil en cervicalgia con hiperactividad del trapecio superior.",
+      "Puede hacerse sentado."
+    ]
+  }
+}

@@ -90,7 +90,7 @@ export function footFromShin(knee, ankle, plantar = 0) {
 // the chest. shift moves the whole trunk sideways (z); twist turns the shoulders about the trunk
 // axis (positive = right shoulder back), e.g. for a woodchop.
 export function trunk(hip, alpha, neck = 0, { neckDir = null, headDir = null, shift = 0, twist = 0, lumbar = 0, thoracic = 0,
-  neckSide = 0, headSide = null, headYaw = 0 } = {}) {
+  neckSide = 0, headSide = null, headYaw = 0, scap = null } = {}) {
   const dirs = [alpha + lumbar / 2, alpha + lumbar + thoracic / 2, alpha + lumbar + thoracic];
   const pelvis = V(hip.x, hip.y, shift);
   const spine = [pelvis];
@@ -121,8 +121,15 @@ export function trunk(hip, alpha, neck = 0, { neckDir = null, headDir = null, sh
   const eye = sg => add(head, add(add(mul(fDir, FACE.eyeFwd), mul(right, sg * FACE.eyeSide)), mul(hAxis, FACE.eyeUp)));
   const eyeR = eye(1), eyeL = eye(-1);
   // Shoulder offset turned about the upper trunk axis u = (s, -c, 0): cos·z + sin·(u × z).
-  const shoulderOf = sg => V(shoulderC.x - sg * Z.shoulder * Math.sin(rad(twist)) * c, shoulderC.y - sg * Z.shoulder * Math.sin(rad(twist)) * s,
-    shift + sg * Z.shoulder * Math.cos(rad(twist)));
+  // scap = { r: { up, fwd }, l: { up, fwd } } moves each shoulder with its scapula: `up` along
+  // the trunk (elevation +, depression -) and `fwd` towards the chest (protraction +,
+  // retraction -), in body units.
+  const shoulderOf = sg => {
+    const q = V(shoulderC.x - sg * Z.shoulder * Math.sin(rad(twist)) * c, shoulderC.y - sg * Z.shoulder * Math.sin(rad(twist)) * s,
+      shift + sg * Z.shoulder * Math.cos(rad(twist)));
+    const m = scap && scap[sg > 0 ? 'r' : 'l'];
+    return m ? V(q.x + (m.up ?? 0) * s + (m.fwd ?? 0) * c, q.y - (m.up ?? 0) * c + (m.fwd ?? 0) * s, q.z) : q;
+  };
   return { alpha, pelvis, lumbarTop, thorax, shoulderC, shoulder: shoulderOf(1), shoulderOf, neckTop, head, face, eyeR, eyeL, at, shift, twist, lumbar, thoracic };
 }
 
@@ -177,9 +184,9 @@ export const mirrorSide = s => Object.fromEntries(Object.entries(s).map(([k, v])
 // General pose: right side `r`, left side `l` (left joints with negative z).
 // objects: [{ type: 'barbell' | 'kb', at: V, phi?: deg (kettlebell hang angle) }]
 // load: { m: mass as a fraction of body mass, x } for the balance solver.
-export function poseLR({ trunk: t, r, l, objects = [], load = null }) {
+export function poseLR({ trunk: t, r, l, objects = [], load = null, effort = 0 }) {
   return {
-    alpha: t.alpha, pelvis: t.pelvis, lumbarTop: t.lumbarTop, thorax: t.thorax, shoulderC: t.shoulderC, neckTop: t.neckTop, head: t.head, face: t.face, eyeR: t.eyeR, eyeL: t.eyeL,
+    effort, alpha: t.alpha, pelvis: t.pelvis, lumbarTop: t.lumbarTop, thorax: t.thorax, shoulderC: t.shoulderC, neckTop: t.neckTop, head: t.head, face: t.face, eyeR: t.eyeR, eyeL: t.eyeL,
     r: limbs(t, 1, r), l: limbs(t, -1, l), objects, load,
   };
 }
@@ -384,6 +391,11 @@ export function hull(pts) {
 // ---------- Rendering ----------
 
 export const INK = '#C2410C', IRON = '#0F2A3D', FLOOR = '#AEB8C1', BAND = '#2E8B6E';
+// Isometric signal: a translucent halo over the working segment, as wide as `effort` (0..1;
+// a number for every halo, or one value per halo in ex.glow order).
+export const GLOW = { color: '#F2A93B', opacity: 0.55, width: 10 };
+// Resolves a pose point by name: 'pelvis', 'neckTop', 'r.knee', ...
+const pointOf = (p, name) => name.split('.').reduce((o, k) => o[k], p);
 const PLATE_FILL = '#DCE4EA', FLOOR_FILL = '#E2EAEF';
 const BOX_FILL = { top: '#EEF2F5', side: '#C9D3DB', front: '#DCE4EA' };
 const VIEWBOX = '-7 -15 78 78';
@@ -407,6 +419,7 @@ function unwrap(frames) {
 function fmt(kind, f, useScale) {
   const t = `translate(${r1(f.tx)}px,${r1(f.ty)}px)`;
   if (kind === 'pt') return t;
+  if (kind === 'glow') return `${t} rotate(${r1(f.rot)}deg) scale(${r2(f.sx)},${r2(f.sy)})`;
   return `${t} rotate(${r1(f.rot)}deg)` + (useScale ? ` scaleY(${r2(f.sy)})` : '');
 }
 
@@ -467,8 +480,15 @@ function propSvg(pr, cam) {
 }
 
 // Elements of a view: { key, kind: 'seg'|'pt'|'rot', svg, at(p) -> params, depth(p) }.
-function elements(p0, cam, { face = false, hands = false } = {}) {
+function elements(p0, cam, { face = false, hands = false, glow = [] } = {}) {
   const els = [];
+  // Isometric halos first in depth order, so they sit behind the figure.
+  glow.forEach(([a, b], i) => els.push({
+    key: `glow${i}`, kind: 'glow',
+    svg: line0(`glow${i}`, 10, ` stroke="${GLOW.color}" stroke-opacity="${GLOW.opacity}" stroke-width="${GLOW.width}"`),
+    at: p => ({ ...segParams(cam.proj(pointOf(p, a)), cam.proj(pointOf(p, b)), 10), sx: (Array.isArray(p.effort) ? p.effort[i] : p.effort) ?? 0 }),
+    depth: () => -1e3,
+  }));
   const segE = (key, P, Q, L0, attrs = '') => els.push({
     key, kind: 'seg', svg: line0(key, L0, attrs),
     at: p => segParams(cam.proj(P(p)), cam.proj(Q(p)), L0), depth: p => (cam.depth(P(p)) + cam.depth(Q(p))) / 2,
@@ -545,7 +565,7 @@ export function renderView(ex, view, { T, frames }, size) {
   const cls = `ex-${ex.id}-${view}`;
   const ext = extent(frames);
   const cam = camera(view, ext.mid, view === 'iso' ? ex.isoCam : null);
-  const els = elements(frames[0].p, cam, { face: !!ex.face, hands: !!ex.hands });
+  const els = elements(frames[0].p, cam, { face: !!ex.face, hands: !!ex.hands, glow: ex.glow || [] });
   // Back-to-front order: mean depth over the cycle (fixed, so it can live in static SVG).
   const meanDepth = new Map(els.map(e => [e, frames.reduce((s, f) => s + e.depth(f.p), 0) / frames.length]));
   els.sort((a, b) => meanDepth.get(a) - meanDepth.get(b));
@@ -553,7 +573,7 @@ export function renderView(ex, view, { T, frames }, size) {
   let css = `.${cls} *{transform-box:view-box;transform-origin:0 0}\n`;
   for (const el of els) {
     const fr = frames.map(f => el.at(f.p));
-    if (el.kind === 'seg' || el.kind === 'rot') unwrap(fr);
+    if (el.kind === 'seg' || el.kind === 'rot' || el.kind === 'glow') unwrap(fr);
     const useScale = el.kind === 'seg' && fr.some(f => Math.abs(f.sy - 1) > 0.005);
     const strs = fr.map(f => fmt(el.kind, f, useScale));
     const sel = `.${cls} .k-${el.key}`;
@@ -590,8 +610,9 @@ export function poseData(ex, { T, frames }) {
     id: ex.id, name: ex.name, batch: ex.batch, duration: r2(T), still: ex.still || 0,
     centre: r2(ext.mid), extent: { lo: r2(ext.lo), hi: r2(ext.hi) }, props: ex.props || [],
     camera: { ...{ yaw: VIEWS.iso.yaw, pitch: VIEWS.iso.pitch }, ...(ex.isoCam || {}) },
+    ...(ex.glow ? { glow: ex.glow } : {}),
     frames: frames.map(({ t, p }) => ({
-      t: r2(t),
+      t: r2(t), ...(ex.glow ? { effort: Array.isArray(p.effort) ? p.effort.map(r2) : r2(p.effort ?? 0) } : {}),
       joints: { pelvis: r(p.pelvis), lumbarTop: r(p.lumbarTop), thorax: r(p.thorax), shoulderC: r(p.shoulderC), neckTop: r(p.neckTop), head: r(p.head), ...(ex.face ? { face: r(p.face), eyeR: r(p.eyeR), eyeL: r(p.eyeL) } : {}), r: sideOf(p.r), l: sideOf(p.l) },
       objects: p.objects.map(o => (o.type === 'rope' ? { type: 'rope', points: o.points.map(r), ...(o.w ? { w: o.w } : {}) }
         : o.type === 'cord' || o.type === 'band' ? { type: o.type, a: r(o.a), b: r(o.b) }

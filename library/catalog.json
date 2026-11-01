@@ -2532,6 +2532,434 @@
    }
   },
   {
+   "id": "contraccion-cuadriceps",
+   "family": "contraccion-cuadriceps",
+   "name": {
+    "es": "Contracción isométrica de cuádriceps",
+    "en": "Quadriceps set"
+   },
+   "familyName": {
+    "es": "Contracción isométrica de cuádriceps",
+    "en": "Quadriceps set"
+   },
+   "params": {},
+   "pattern": "analitico",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "isometrico",
+   "action": "fuerza",
+   "position": "suelo-supino",
+   "laterality": "unilateral",
+   "level": 1,
+   "equipment": [
+    "esterilla",
+    "toalla"
+   ],
+   "demands": [
+    "decubito"
+   ],
+   "regions": [
+    "rodilla"
+   ],
+   "goals": [
+    "isometria",
+    "control-motor"
+   ],
+   "mode": "activo",
+   "muscles": [
+    {
+     "id": "cuadriceps",
+     "pct": 85
+    },
+    {
+     "id": "tibial-anterior",
+     "pct": 10
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 5
+    }
+   ],
+   "progressions": [
+    "extension-rodilla-rodillo"
+   ],
+   "therapeutic": true,
+   "regressions": [],
+   "sheet": {
+    "patient": {
+     "start": "Túmbate boca arriba con las piernas estiradas y una toalla pequeña enrollada debajo de una rodilla.",
+     "steps": [
+      "Aprieta el muslo empujando la rodilla contra la toalla y llevando la punta del pie hacia ti.",
+      "Mantén la contracción unos segundos.",
+      "Relaja y repite; después cambia de pierna."
+     ],
+     "avoid": [
+      "No levantes la pierna del suelo.",
+      "No aguantes la respiración."
+     ]
+    },
+    "pro": {
+     "goal": "Activación isométrica del cuádriceps en extensión completa de rodilla.",
+     "notes": [
+      "Primer ejercicio tras cirugía de rodilla o derrame; ayuda a recuperar la extensión activa.",
+      "Palpar el vasto medial para confirmar la contracción.",
+      "Progresión: extensión de rodilla sobre rodillo."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "cuadriceps",
+    "tren-inferior",
+    "tibial-anterior",
+    "gluteo-mayor",
+    "gluteo"
+   ],
+   "equipmentCategories": [
+    "accesorio"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#contraccion-cuadriceps",
+    "views": [
+     "svg/contraccion-cuadriceps-lateral.svg",
+     "svg/contraccion-cuadriceps-cenital.svg",
+     "svg/contraccion-cuadriceps-iso.svg"
+    ],
+    "duration": 8.8,
+    "cue": "Tumbado con las piernas estiradas y una toalla bajo la rodilla, aprieta el muslo empujando la rodilla contra la toalla y mantén."
+   }
+  },
+  {
+   "id": "elevacion-depresion-escapular",
+   "family": "control-escapular",
+   "name": {
+    "es": "Elevación y depresión escapular",
+    "en": "Scapular elevation and depression"
+   },
+   "familyName": {
+    "es": "Control escapular",
+    "en": "Scapular control"
+   },
+   "params": {
+    "movimiento": "elevacion-depresion"
+   },
+   "pattern": "movilidad",
+   "patterns2": [],
+   "plane": "frontal",
+   "mechanics": "aislado",
+   "action": "estabilidad",
+   "position": "de-pie",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "peso-corporal"
+   ],
+   "demands": [],
+   "regions": [
+    "hombro",
+    "cervical"
+   ],
+   "goals": [
+    "control-motor",
+    "movilidad-activa"
+   ],
+   "mode": "activo",
+   "muscles": [
+    {
+     "id": "trapecio",
+     "pct": 55
+    },
+    {
+     "id": "serrato",
+     "pct": 15
+    },
+    {
+     "id": "dorsal",
+     "pct": 15
+    },
+    {
+     "id": "romboides",
+     "pct": 10
+    },
+    {
+     "id": "pectoral",
+     "pct": 5
+    }
+   ],
+   "progressions": [],
+   "therapeutic": true,
+   "regressions": [],
+   "sheet": {
+    "patient": {
+     "start": "De pie con los brazos relajados a los lados del cuerpo.",
+     "steps": [
+      "Sube los hombros hacia las orejas.",
+      "Bájalos despacio, alejándolos de las orejas todo lo que puedas.",
+      "Vuelve a la posición relajada."
+     ],
+     "avoid": [
+      "No muevas la cabeza.",
+      "No dobles los codos."
+     ]
+    },
+    "pro": {
+     "goal": "Control y movilidad escapular en elevación y depresión.",
+     "notes": [
+      "La fase de depresión activa el trapecio inferior y el dorsal.",
+      "Útil en cervicalgia con hiperactividad del trapecio superior.",
+      "Puede hacerse sentado."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "trapecio",
+    "tren-superior",
+    "serrato",
+    "dorsal",
+    "romboides",
+    "pectoral"
+   ],
+   "equipmentCategories": [
+    "ninguno"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#elevacion-depresion-escapular",
+    "views": [
+     "svg/elevacion-depresion-escapular-frontal.svg",
+     "svg/elevacion-depresion-escapular-lateral.svg",
+     "svg/elevacion-depresion-escapular-iso.svg"
+    ],
+    "duration": 4.6,
+    "cue": "De pie con los brazos relajados, sube los hombros hacia las orejas y después bájalos alejándolos de ellas."
+   }
+  },
+  {
+   "id": "retraccion-escapular",
+   "family": "control-escapular",
+   "name": {
+    "es": "Retracción escapular",
+    "en": "Scapular retraction"
+   },
+   "familyName": {
+    "es": "Control escapular",
+    "en": "Scapular control"
+   },
+   "params": {
+    "movimiento": "retraccion"
+   },
+   "pattern": "movilidad",
+   "patterns2": [],
+   "plane": "transversal",
+   "mechanics": "aislado",
+   "action": "estabilidad",
+   "position": "de-pie",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "peso-corporal"
+   ],
+   "demands": [],
+   "regions": [
+    "hombro",
+    "dorsal"
+   ],
+   "goals": [
+    "control-motor"
+   ],
+   "mode": "activo",
+   "muscles": [
+    {
+     "id": "romboides",
+     "pct": 40
+    },
+    {
+     "id": "trapecio",
+     "pct": 35
+    },
+    {
+     "id": "deltoides-posterior",
+     "pct": 15
+    },
+    {
+     "id": "dorsal",
+     "pct": 10
+    }
+   ],
+   "progressions": [
+    "remo-banda"
+   ],
+   "therapeutic": true,
+   "regressions": [],
+   "sheet": {
+    "patient": {
+     "start": "De pie, o sentado, con los brazos relajados.",
+     "steps": [
+      "Junta las escápulas llevando los hombros hacia atrás.",
+      "Mantén unos segundos sin subir los hombros.",
+      "Suelta despacio."
+     ],
+     "avoid": [
+      "No subas los hombros.",
+      "No arquees la zona lumbar."
+     ]
+    },
+    "pro": {
+     "goal": "Control motor de la retracción escapular (romboides y trapecio medio).",
+     "notes": [
+      "Base del control escapular antes de añadir carga.",
+      "Útil en hombro doloroso con discinesia escapular y en postura cifótica.",
+      "Progresión: remo con banda."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "romboides",
+    "tren-superior",
+    "trapecio",
+    "deltoides-posterior",
+    "deltoides",
+    "dorsal"
+   ],
+   "equipmentCategories": [
+    "ninguno"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#retraccion-escapular",
+    "views": [
+     "svg/retraccion-escapular-cenital.svg",
+     "svg/retraccion-escapular-lateral.svg",
+     "svg/retraccion-escapular-iso.svg"
+    ],
+    "duration": 3.4,
+    "cue": "De pie con los brazos relajados, junta las escápulas llevando los hombros hacia atrás, sin subirlos, y mantén."
+   }
+  },
+  {
+   "id": "protraccion-escapular-supino",
+   "family": "control-escapular",
+   "name": {
+    "es": "Protracción escapular en supino",
+    "en": "Supine serratus punch"
+   },
+   "familyName": {
+    "es": "Control escapular",
+    "en": "Scapular control"
+   },
+   "params": {
+    "movimiento": "protraccion"
+   },
+   "pattern": "movilidad",
+   "patterns2": [],
+   "plane": "transversal",
+   "mechanics": "aislado",
+   "action": "estabilidad",
+   "position": "suelo-supino",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "esterilla"
+   ],
+   "demands": [
+    "decubito"
+   ],
+   "regions": [
+    "hombro"
+   ],
+   "goals": [
+    "control-motor",
+    "fortalecimiento"
+   ],
+   "mode": "activo",
+   "muscles": [
+    {
+     "id": "serrato",
+     "pct": 60
+    },
+    {
+     "id": "pectoral",
+     "pct": 20
+    },
+    {
+     "id": "deltoides-anterior",
+     "pct": 15
+    },
+    {
+     "id": "triceps",
+     "pct": 5
+    }
+   ],
+   "progressions": [
+    "deslizamiento-pared"
+   ],
+   "therapeutic": true,
+   "regressions": [],
+   "sheet": {
+    "patient": {
+     "start": "Túmbate boca arriba con las rodillas dobladas y los brazos estirados hacia el techo.",
+     "steps": [
+      "Empuja las manos hacia el techo, separando los hombros del suelo.",
+      "Mantén un momento sin doblar los codos.",
+      "Baja los hombros despacio."
+     ],
+     "avoid": [
+      "No dobles los codos.",
+      "No levantes la cabeza."
+     ]
+    },
+    "pro": {
+     "goal": "Activación del serrato anterior en protracción escapular.",
+     "notes": [
+      "En supino el control escapular resulta más sencillo y sin carga sobre el hombro.",
+      "Puede añadirse un peso ligero en las manos.",
+      "Progresión: deslizamiento en pared."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "serrato",
+    "tren-superior",
+    "pectoral",
+    "deltoides-anterior",
+    "deltoides",
+    "triceps"
+   ],
+   "equipmentCategories": [
+    "accesorio"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#protraccion-escapular-supino",
+    "views": [
+     "svg/protraccion-escapular-supino-lateral.svg",
+     "svg/protraccion-escapular-supino-frontal.svg",
+     "svg/protraccion-escapular-supino-iso.svg"
+    ],
+    "duration": 2.9,
+    "cue": "Tumbado con los brazos estirados hacia el techo, empuja las manos hacia arriba separando los hombros del suelo, sin doblar los codos."
+   }
+  },
+  {
    "id": "dead-bug",
    "family": "dead-bug",
    "name": {
@@ -2703,6 +3131,7 @@
    "progressions": [],
    "therapeutic": true,
    "regressions": [
+    "protraccion-escapular-supino",
     "flexion-hombro-baston",
     "abduccion-hombro-baston"
    ],
@@ -4281,7 +4710,9 @@
     "extension-rodilla-sentado"
    ],
    "therapeutic": true,
-   "regressions": [],
+   "regressions": [
+    "contraccion-cuadriceps"
+   ],
    "sheet": {
     "patient": {
      "start": "Túmbate boca arriba con un rodillo o una toalla enrollada debajo de las rodillas.",
@@ -4324,7 +4755,7 @@
      "svg/extension-rodilla-rodillo-cenital.svg",
      "svg/extension-rodilla-rodillo-iso.svg"
     ],
-    "duration": 6.6,
+    "duration": 7.6,
     "cue": "Con un rodillo bajo las rodillas, estira una rodilla levantando el talón y mantén unos segundos sin despegar el muslo."
    }
   },
@@ -4921,6 +5352,109 @@
     ],
     "duration": 6.6,
     "cue": "Plegarse hasta apoyar las manos y caminar con ellas hasta la plancha; volver igual y subir."
+   }
+  },
+  {
+   "id": "isometria-rotacion-externa",
+   "family": "isometria-hombro",
+   "name": {
+    "es": "Isometría de rotación externa",
+    "en": "Isometric external rotation against a wall"
+   },
+   "familyName": {
+    "es": "Isometría de hombro",
+    "en": "Shoulder isometrics"
+   },
+   "params": {},
+   "pattern": "analitico",
+   "patterns2": [],
+   "plane": "transversal",
+   "mechanics": "isometrico",
+   "action": "fuerza",
+   "position": "de-pie",
+   "laterality": "unilateral",
+   "level": 1,
+   "equipment": [
+    "pared"
+   ],
+   "demands": [],
+   "regions": [
+    "hombro"
+   ],
+   "goals": [
+    "isometria"
+   ],
+   "mode": "activo",
+   "muscles": [
+    {
+     "id": "manguito-rotador",
+     "pct": 60
+    },
+    {
+     "id": "deltoides-posterior",
+     "pct": 25
+    },
+    {
+     "id": "romboides",
+     "pct": 10
+    },
+    {
+     "id": "trapecio",
+     "pct": 5
+    }
+   ],
+   "progressions": [
+    "rotacion-externa-banda"
+   ],
+   "therapeutic": true,
+   "regressions": [],
+   "sheet": {
+    "patient": {
+     "start": "De pie de lado a una pared, con el codo pegado al cuerpo y doblado a 90° y el dorso de la mano apoyado en la pared.",
+     "steps": [
+      "Empuja la pared con el dorso de la mano, sin moverte.",
+      "Mantén la fuerza unos segundos.",
+      "Relaja despacio y repite."
+     ],
+     "avoid": [
+      "No separes el codo del cuerpo.",
+      "No gires el tronco para empujar."
+     ]
+    },
+    "pro": {
+     "goal": "Activación isométrica de los rotadores externos sin movimiento articular.",
+     "notes": [
+      "Útil en fases dolorosas o tras cirugía, cuando el movimiento aún no se tolera.",
+      "Graduar la intensidad (por ejemplo, del 30 % al 70 % del máximo).",
+      "Progresión: rotación externa con banda."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "manguito-rotador",
+    "tren-superior",
+    "deltoides-posterior",
+    "deltoides",
+    "romboides",
+    "trapecio"
+   ],
+   "equipmentCategories": [
+    "estructura"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#isometria-rotacion-externa",
+    "views": [
+     "svg/isometria-rotacion-externa-frontal.svg",
+     "svg/isometria-rotacion-externa-cenital.svg",
+     "svg/isometria-rotacion-externa-iso.svg"
+    ],
+    "duration": 5.5,
+    "cue": "De lado a la pared con el codo pegado al cuerpo y doblado a 90°, empuja la pared con el dorso de la mano, sin moverte, y mantén."
    }
   },
   {
@@ -7934,7 +8468,9 @@
    ],
    "progressions": [],
    "therapeutic": true,
-   "regressions": [],
+   "regressions": [
+    "retraccion-escapular"
+   ],
    "sheet": {
     "patient": {
      "start": "De pie con una banda anclada delante a la altura del pecho, sujeta con las dos manos y los brazos estirados.",
@@ -8081,7 +8617,7 @@
      "svg/retraccion-cervical-frontal.svg",
      "svg/retraccion-cervical-iso.svg"
     ],
-    "duration": 3.9,
+    "duration": 4.4,
     "cue": "Sentado con la espalda recta, lleva la cabeza hacia atrás como para hacer papada, mirando al frente, y vuelve despacio."
    }
   },
@@ -8140,6 +8676,7 @@
    "progressions": [],
    "therapeutic": true,
    "regressions": [
+    "isometria-rotacion-externa",
     "rotacion-externa-baston"
    ],
    "sheet": {

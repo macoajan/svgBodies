@@ -1,0 +1,43 @@
+{
+  "id": "isometria-hombro",
+  "name": {
+    "es": "Isometría de hombro",
+    "en": "Shoulder isometrics"
+  },
+  "plane": "transversal",
+  "mechanics": "isometrico",
+  "action": "fuerza",
+  "position": "de-pie",
+  "laterality": "unilateral",
+  "pattern": "analitico",
+  "level": 1,
+  "muscles": {
+    "manguito-rotador": 60,
+    "deltoides-posterior": 25,
+    "romboides": 10,
+    "trapecio": 5
+  },
+  "equipment": [
+    "pared"
+  ],
+  "demands": [],
+  "variants": [
+    {
+      "id": "isometria-rotacion-externa",
+      "name": {
+        "es": "Isometría de rotación externa",
+        "en": "Isometric external rotation against a wall"
+      },
+      "regions": [
+        "hombro"
+      ],
+      "goals": [
+        "isometria"
+      ],
+      "mode": "activo",
+      "progressions": [
+        "rotacion-externa-banda"
+      ]
+    }
+  ]
+}
