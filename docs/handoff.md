@@ -28,7 +28,7 @@ node tools/build.mjs     # valida taxonomía, fichas y posturas, genera library/
 | [Revisión de la taxonomía](https://claude.ai/artifact/C1Ny8wERm4PGUhzqwX6QNZ) | Revisión en el móvil de la clasificación de los 46 ejercicios de los lotes A–D: Correcto/Cambiar y notas por ejercicio, más «Criterios generales». Guarda en la base de datos del artefacto (`revision/<id>` con `{status, note, at}` y `revision-general/notas`). | Cerrada: el propietario dio los 46 por válidos; las 46 marcas están en `ok`. No incluye el lote E. |
 | [Lote E de monigotes](https://claude.ai/artifact/A8gUFgokYJm4TMgddV2wr8) | Galería móvil de los 24 ejercicios del lote E. | Cerrada: revisada, corregida y fusionada. |
 | [Piloto terapéutico](https://claude.ai/artifact/N1182gQxiSMhf3oTcUsk3f) | Revisión móvil de los 24 ejercicios terapéuticos (colección `revision-f`: `{anim, text, note, at}`). | Cerrada: las 24 marcadas `ok` en animación y textos, sin notas. |
-| [Músculos por ejercicio](https://claude.ai/artifact/3YXhL1bBnQNnFeJ1h9hXYL) | Revisión móvil del reparto muscular en % de los 88 ejercicios, con los tres primeros y los indirectos. Colección `revision-musculos`: documento `<id>` con `{status, note, at}` (`status` = `ok` o `cambiar`), y `revision-musculos-general/notas` con `{text, at}`. | Publicada; esperando la revisión del propietario. |
+| [Músculos por ejercicio](https://claude.ai/artifact/3YXhL1bBnQNnFeJ1h9hXYL) | Revisión móvil del reparto muscular en % de los 88 ejercicios, con los tres primeros y los indirectos. Colección `revision-musculos`: documento `<id>` con `{status, note, at}` (`status` = `ok` o `cambiar`), y `revision-musculos-general/notas` con `{text, at}`. | Dados por buenos por el propietario; los sigue revisando con calma. Consultar de vez en cuando si hay marcas `cambiar` o notas. |
 
 Para actualizar un artefacto desde otra sesión: leerlo primero (`Artifact` con `action: "read"` y
 su URL) y publicar con `url`. Las marcas de revisión se leen con `ArtifactData` (`list` de la
@@ -75,8 +75,8 @@ resolvieron con criterio clínico.
 
 ## Próximos pasos
 
-1. Leer las marcas del propietario en `revision-musculos` y `revision-musculos-general`,
-   y corregir los porcentajes. Abrir la PR (piloto
+1. Porcentajes dados por buenos; el propietario sigue revisando en segundo plano: leer de vez
+   en cuando `revision-musculos` y `revision-musculos-general` y corregir lo marcado. Abrir la PR (piloto
    terapéutico + porcentajes) cuando lo pida.
 2. Motor, por orden: columna en tres segmentos (lumbar, dorsal, cervical), banda elástica y
    señal de isometría, y después escápula y cabeza orientable.
