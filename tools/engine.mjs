@@ -12,6 +12,8 @@ export const FLOOR_TOP = GROUND - 0.6;
 export const ANKLE_Y = 58;           // contact line: centre of a stroke resting on the floor
 export const MAX_Y = FLOOR_TOP - 1.7 + 0.05;
 export const L = { shin: 13.5, thigh: 13.5, sh: 15, neck: 4, head: 5, upper: 11.5, fore: 9.5, foot: 6, heel: 2 };
+// The trunk (L.sh) is three segments: lumbar (pelvis to L1), lower and upper thoracic (L1-T7-C7).
+export const SPINE = [6, 4.5, 4.5];
 export const Z = { hip: 4, shoulder: 7.5 };
 export const HEAD_R = 4.5;
 export const PLATE = { r: 6.5, w: 2.2 };
@@ -72,22 +74,39 @@ export function footFromShin(knee, ankle, plantar = 0) {
 }
 
 // Trunk from the hip centre at `alpha` degrees of forward lean (90 = face down, -90 = face up).
-// `neck` turns the head relative to the trunk. neckDir/headDir (absolute, same convention as
-// alpha) bend the cervical spine and set the head, e.g. to rest the head on the floor.
-// at(along, front) gives a point on the trunk: `along` from the hip, `front` towards the chest.
-// shift moves the whole trunk sideways (z); twist turns the shoulders about the trunk axis
-// (positive = right shoulder back), e.g. for a woodchop.
-export function trunk(hip, alpha, neck = 0, { neckDir = alpha, headDir = null, shift = 0, twist = 0 } = {}) {
-  const s = Math.sin(rad(alpha)), c = Math.cos(rad(alpha));
-  const at = (al, front = 0) => V(hip.x + al * s + front * c, hip.y - al * c + front * s, shift);
+// `alpha` is the orientation of the pelvis and of the trunk when the spine is straight.
+// `lumbar` and `thoracic` bend the spine (degrees, positive = flexion/rounding forward,
+// negative = extension/arching): half of each bend goes to the joint below its region and half
+// to the joint above, so the chest ends up at alpha + lumbar + thoracic.
+// `neck` turns the head relative to the upper trunk. neckDir/headDir (absolute, same convention
+// as alpha) bend the cervical spine and set the head, e.g. to rest the head on the floor.
+// at(along, front) gives a point on the trunk: `along` the spine from the hip, `front` towards
+// the chest. shift moves the whole trunk sideways (z); twist turns the shoulders about the trunk
+// axis (positive = right shoulder back), e.g. for a woodchop.
+export function trunk(hip, alpha, neck = 0, { neckDir = null, headDir = null, shift = 0, twist = 0, lumbar = 0, thoracic = 0 } = {}) {
+  const dirs = [alpha + lumbar / 2, alpha + lumbar + thoracic / 2, alpha + lumbar + thoracic];
   const pelvis = V(hip.x, hip.y, shift);
-  const shoulderC = at(L.sh);
-  const neckTop = along(shoulderC, up(neckDir), L.neck);
-  const head = along(neckTop, up(headDir ?? neckDir + neck), L.head);
-  // Shoulder offset turned about the trunk axis u = (s, -c, 0): cos·z + sin·(u × z).
+  const spine = [pelvis];
+  dirs.forEach((a, i) => spine.push(along(spine[i], up(a), SPINE[i])));
+  const [, lumbarTop, thorax, shoulderC] = spine;
+  const segAt = al => {
+    let i = 0, rest = al;
+    while (i < 2 && rest > SPINE[i]) { rest -= SPINE[i]; i++; }
+    return [i, rest];
+  };
+  const at = (al, front = 0) => {
+    const [i, rest] = segAt(al), a = dirs[i], s = Math.sin(rad(a)), c = Math.cos(rad(a));
+    const b = spine[i];
+    return V(b.x + rest * s + front * c, b.y - rest * c + front * s, shift);
+  };
+  const top = dirs[2], s = Math.sin(rad(top)), c = Math.cos(rad(top));
+  const nd = neckDir ?? top;
+  const neckTop = along(shoulderC, up(nd), L.neck);
+  const head = along(neckTop, up(headDir ?? nd + neck), L.head);
+  // Shoulder offset turned about the upper trunk axis u = (s, -c, 0): cos·z + sin·(u × z).
   const shoulderOf = sg => V(shoulderC.x - sg * Z.shoulder * Math.sin(rad(twist)) * c, shoulderC.y - sg * Z.shoulder * Math.sin(rad(twist)) * s,
     shift + sg * Z.shoulder * Math.cos(rad(twist)));
-  return { alpha, pelvis, shoulderC, shoulder: shoulderOf(1), shoulderOf, neckTop, head, at, shift, twist };
+  return { alpha, pelvis, lumbarTop, thorax, shoulderC, shoulder: shoulderOf(1), shoulderOf, neckTop, head, at, shift, twist, lumbar, thoracic };
 }
 
 // Sagittal reach of a straight arm whose hand sits at lateral offset handZ.
@@ -139,7 +158,7 @@ export const mirrorSide = s => Object.fromEntries(Object.entries(s).map(([k, v])
 // load: { m: mass as a fraction of body mass, x } for the balance solver.
 export function poseLR({ trunk: t, r, l, objects = [], load = null }) {
   return {
-    alpha: t.alpha, pelvis: t.pelvis, shoulderC: t.shoulderC, neckTop: t.neckTop, head: t.head,
+    alpha: t.alpha, pelvis: t.pelvis, lumbarTop: t.lumbarTop, thorax: t.thorax, shoulderC: t.shoulderC, neckTop: t.neckTop, head: t.head,
     r: limbs(t, 1, r), l: limbs(t, -1, l), objects, load,
   };
 }
@@ -155,7 +174,7 @@ export function pose({ legs: lg, trunk: t, hand, pole = V(0, 1, 0.3), objects = 
 export function transformPose(p, f) {
   const side = q => Object.fromEntries(Object.entries(q).map(([k, v]) => [k, f(v)]));
   const obj = o => ({ ...o, ...(o.at ? { at: f(o.at) } : {}), ...(o.a ? { a: f(o.a), b: f(o.b) } : {}), ...(o.points ? { points: o.points.map(f) } : {}) });
-  return { ...p, pelvis: f(p.pelvis), shoulderC: f(p.shoulderC), neckTop: f(p.neckTop), head: f(p.head), r: side(p.r), l: side(p.l), objects: p.objects.map(obj) };
+  return { ...p, pelvis: f(p.pelvis), lumbarTop: f(p.lumbarTop), thorax: f(p.thorax), shoulderC: f(p.shoulderC), neckTop: f(p.neckTop), head: f(p.head), r: side(p.r), l: side(p.l), objects: p.objects.map(obj) };
 }
 // Rotation about an axis parallel to x (roll) or z (in the sagittal plane), through point c.
 export const rollX = (deg_, c) => q => {
@@ -170,7 +189,9 @@ export function com(p) {
   let m = 0, x = 0;
   const acc = (mm, a, b = a) => { m += mm; x += mm * (a.x + b.x) / 2; };
   acc(M.head, p.head);
-  acc(M.trunk, p.pelvis, p.shoulderC);
+  // Trunk mass spread over the spine segments in proportion to their length.
+  const sp = [p.pelvis, p.lumbarTop, p.thorax, p.shoulderC];
+  SPINE.forEach((l, i) => acc(M.trunk * l / L.sh, sp[i], sp[i + 1]));
   for (const s of [p.r, p.l]) {
     acc(M.upper / 2, s.shoulder, s.elbow);
     acc(M.fore / 2, s.elbow, s.hand);
@@ -253,7 +274,9 @@ export function validate(ex, frames) {
       throw new Error(`${ex.id}: ${what} ${l3.toFixed(3)} != ${Lx} @${t.toFixed(2)}`);
   };
   for (const { t, p } of frames) {
-    seg(p.pelvis, p.shoulderC, L.sh, 'trunk', t);
+    seg(p.pelvis, p.lumbarTop, SPINE[0], 'lumbar spine', t);
+    seg(p.lumbarTop, p.thorax, SPINE[1], 'lower thoracic spine', t);
+    seg(p.thorax, p.shoulderC, SPINE[2], 'upper thoracic spine', t);
     seg(p.shoulderC, p.neckTop, L.neck, 'neck', t);
     seg(p.neckTop, p.head, L.head, 'head', t);
     for (const s of ['r', 'l']) {
@@ -442,7 +465,9 @@ function elements(p0, cam) {
     for (const j of ['knee', 'elbow', 'hand']) ptE(`${j}-${s}`, J(j), jointDot(`${j}-${s}`), 0.05);
   }
   segE('pelvis', p => p.l.hip, p => p.r.hip, 2 * Z.hip);
-  segE('trunk', p => p.shoulderC, p => p.pelvis, L.sh);
+  segE('spine0', p => p.lumbarTop, p => p.pelvis, SPINE[0]);
+  segE('spine1', p => p.thorax, p => p.lumbarTop, SPINE[1]);
+  segE('spine2', p => p.shoulderC, p => p.thorax, SPINE[2]);
   segE('neck', p => p.neckTop, p => p.shoulderC, L.neck);
   segE('shoulders', p => p.l.shoulder, p => p.r.shoulder, 2 * Z.shoulder);
   ptE('head', p => p.head, `<circle class="k-head" r="${HEAD_R}"></circle>`, 0.2);
@@ -536,7 +561,7 @@ export function poseData(ex, { T, frames }) {
     camera: { ...{ yaw: VIEWS.iso.yaw, pitch: VIEWS.iso.pitch }, ...(ex.isoCam || {}) },
     frames: frames.map(({ t, p }) => ({
       t: r2(t),
-      joints: { pelvis: r(p.pelvis), shoulderC: r(p.shoulderC), neckTop: r(p.neckTop), head: r(p.head), r: sideOf(p.r), l: sideOf(p.l) },
+      joints: { pelvis: r(p.pelvis), lumbarTop: r(p.lumbarTop), thorax: r(p.thorax), shoulderC: r(p.shoulderC), neckTop: r(p.neckTop), head: r(p.head), r: sideOf(p.r), l: sideOf(p.l) },
       objects: p.objects.map(o => (o.type === 'rope' ? { type: 'rope', points: o.points.map(r), ...(o.w ? { w: o.w } : {}) }
         : o.type === 'cord' ? { type: 'cord', a: r(o.a), b: r(o.b) }
           : { type: o.type, at: r(o.at), ...(o.phi !== undefined ? { phi: r2(o.phi) } : {}), ...(o.r ? { r: o.r } : {}), ...(o.hw ? { hw: o.hw } : {}) })),

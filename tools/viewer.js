@@ -52,7 +52,7 @@
     while (i < F.length - 2 && F[i + 1].t <= t) i++;
     const a = F[i], b = F[i + 1], k = b.t > a.t ? Math.min(1, (t - a.t) / (b.t - a.t)) : 0;
     const J = {};
-    for (const j of ['pelvis', 'shoulderC', 'neckTop', 'head']) J[j] = lerp3(a.joints[j], b.joints[j], k);
+    for (const j of ['pelvis', 'lumbarTop', 'thorax', 'shoulderC', 'neckTop', 'head']) if (a.joints[j]) J[j] = lerp3(a.joints[j], b.joints[j], k);
     for (const s of ['r', 'l']) { J[s] = {}; for (const j of SIDE_J) J[s][j] = lerp3(a.joints[s][j], b.joints[s][j], k); }
     const objects = a.objects.map((o, n) => {
       const ob = b.objects[n];
@@ -109,7 +109,12 @@
       for (const j of ['knee', 'elbow', 'hand']) dot(J(j));
     }
     seg(p => p.J.l.hip, p => p.J.r.hip);
-    seg(p => p.J.shoulderC, p => p.J.pelvis);
+    // Spine: three segments when the data has them, a single trunk line otherwise.
+    if (ex.frames[0].joints.lumbarTop) {
+      seg(p => p.J.lumbarTop, p => p.J.pelvis);
+      seg(p => p.J.thorax, p => p.J.lumbarTop);
+      seg(p => p.J.shoulderC, p => p.J.thorax);
+    } else seg(p => p.J.shoulderC, p => p.J.pelvis);
     seg(p => p.J.neckTop, p => p.J.shoulderC);
     seg(p => p.J.l.shoulder, p => p.J.r.shoulder);
     disc(p => p.J.head, HEAD_R, {}, 0.2);
