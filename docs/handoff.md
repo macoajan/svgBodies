@@ -1,6 +1,6 @@
 # Handoff — svgBodies
 
-Estado al cerrar la sesión del 2026-11-01. Para retomar el trabajo en una sesión nueva.
+Estado al cerrar la sesión del 2026-11-01 (actualizado con el piloto terapéutico). Para retomar el trabajo en una sesión nueva.
 
 ## Objetivo del proyecto
 
@@ -10,16 +10,15 @@ El propietario escribe en español y espera respuestas en español.
 
 ## Estado del repositorio
 
-- `main` = `e9f2b02` (PR [macoajan/svgBodies#1](https://github.com/macoajan/svgBodies/pull/1)
-  lotes A–D, y PR [macoajan/svgBodies#2](https://github.com/macoajan/svgBodies/pull/2)
-  taxonomía; las dos fusionadas).
-- Rama de trabajo `claude/eager-heisenberg-cgodjv` (traída íntegra de `claude/magical-galileo-y9nh2n`,
-  que queda abandonada): lote E revisado por el propietario y corregido (carrera, saltos de
-  patinador y saltos de tobillo). **PR abierta, pendiente de fusionar** cuando el propietario lo pida.
-- Biblioteca: **70 ejercicios, 52 familias**, lotes A a E. Todo valida y compila.
+- `main` = `6526bc6`: lotes A–E fusionados ([macoajan/svgBodies#1](https://github.com/macoajan/svgBodies/pull/1),
+  [macoajan/svgBodies#2](https://github.com/macoajan/svgBodies/pull/2) y
+  [macoajan/svgBodies#3](https://github.com/macoajan/svgBodies/pull/3)).
+- Rama de trabajo `claude/eager-heisenberg-cgodjv`: **piloto de ejercicio terapéutico (lote F),
+  sin PR**, pendiente de la revisión del propietario. No tocar `claude/magical-galileo-y9nh2n`.
+- Biblioteca: **88 ejercicios**, de ellos 24 terapéuticos. Todo valida y compila.
 
 ```
-node tools/build.mjs     # valida taxonomía y posturas, genera library/
+node tools/build.mjs     # valida taxonomía, fichas y posturas, genera library/
 ```
 
 ## Artefactos publicados (privados, del propietario)
@@ -27,43 +26,51 @@ node tools/build.mjs     # valida taxonomía y posturas, genera library/
 | Artefacto | Para qué | Estado |
 |---|---|---|
 | [Revisión de la taxonomía](https://claude.ai/artifact/C1Ny8wERm4PGUhzqwX6QNZ) | Revisión en el móvil de la clasificación de los 46 ejercicios de los lotes A–D: Correcto/Cambiar y notas por ejercicio, más «Criterios generales». Guarda en la base de datos del artefacto (`revision/<id>` con `{status, note, at}` y `revision-general/notas`). | Cerrada: el propietario dio los 46 por válidos; las 46 marcas están en `ok`. No incluye el lote E. |
-| [Lote E de monigotes](https://claude.ai/artifact/A8gUFgokYJm4TMgddV2wr8) | Galería móvil de los 24 ejercicios del lote E (dos vistas CSS + vista 3D giratoria, chips de clasificación). Generada a partir de `library/lote-e.html` con estilos adaptados a móvil y modo oscuro. | Publicada; esperando la opinión del propietario. No se ha abierto en el dispositivo para comprobarla. |
+| [Lote E de monigotes](https://claude.ai/artifact/A8gUFgokYJm4TMgddV2wr8) | Galería móvil de los 24 ejercicios del lote E. | Cerrada: revisada, corregida y fusionada. |
+| [Piloto terapéutico](https://claude.ai/artifact/N1182gQxiSMhf3oTcUsk3f) | Revisión móvil de los 24 ejercicios terapéuticos: dos vistas animadas, hoja del paciente, nota profesional, regresiones y progresiones. Marcas por ejercicio en la base de datos del artefacto: colección `revision-f`, documento `<id>` con `{anim, text, note, at}` (`anim`/`text` = `ok` o `cambiar`), y `revision-f-general/notas` con `{text, at}`. | Publicada; esperando la revisión del propietario. |
 
 Para actualizar un artefacto desde otra sesión: leerlo primero (`Artifact` con `action: "read"` y
 su URL) y publicar con `url`. Las marcas de revisión se leen con `ArtifactData` (`list` de la
 colección `revision`).
 
-## Lote E (rama, sin PR)
+## Piloto terapéutico (rama, sin PR)
 
-`tools/exercises-e.mjs`, 24 ejercicios:
+Objetivo: que el fisioterapeuta sustituya las fotocopias. En la app elige ejercicios del
+catálogo, pone la dosificación y envía al paciente un enlace con la hoja animada. La
+dosificación no está en la biblioteca.
 
-- **Movilidad:** circulos-brazos, balanceo-pierna, gusano, squat-to-stand, rotacion-toracica,
-  worlds-greatest-stretch.
-- **Estiramientos:** estiramiento-isquios, estiramiento-cuadriceps, estiramiento-flexor-cadera,
-  postura-nino, perro-boca-abajo, cobra, estiramiento-gemelo, estiramiento-hombro.
-- **Carrera en el sitio:** carrera, skipping, talones-gluteo (generador común `runner`).
-- **Saltos:** salto-vertical, sentadilla-salto, salto-rodillas-pecho, salto-horizontal,
-  zancada-salto, saltos-patinador, saltos-tobillo (estados interpolados con `jumper`).
+- **Taxonomía:** vocabularios `regions`, `therapy-goals` y `therapy-modes`; facetas opcionales
+  `regions`/`goals`/`mode` (las tres o ninguna, en la variante); `progressions` por variante
+  (regresiones derivadas, sin ciclos); material de rehabilitación; posición `sentado`; patrones
+  `analitico` y `equilibrio`; músculos `triceps-sural` (padre de `gemelos` y `soleo`),
+  `tibial-anterior` y `manguito-rotador`. Documentado en `taxonomy/README.md`.
+- **Fichas:** `taxonomy/sheets/<id>.json` con `patient {start, steps, avoid}` (llano, de tú) y
+  `pro {goal, notes}`. Obligatoria en cada terapéutico; se exporta en `catalog.json` (`sheet`).
+- **Lote F** (`tools/exercises-f.mjs`, 18 animaciones): bombeo de tobillos, elevación de
+  talones (dos pies y uno), equilibrio a una pierna, deslizamiento de talón, extensión de
+  rodilla sobre rodillo y sentado, elevación de pierna recta, sentadilla isométrica en pared,
+  sentarse y levantarse, bajada de escalón, puente a una pierna, almeja, abducción de cadera
+  de lado, extensión de cadera boca abajo, péndulo de Codman, flexión de hombro con bastón y
+  deslizamiento en pared. Seis existentes etiquetados: puente de glúteo, dead bug, bird dog,
+  plancha, step-up y estiramiento de gemelo.
+- **Técnicas nuevas:** `sideLying` construye la postura boca abajo y la rueda sobre el costado
+  izquierdo; `rotAxis` (Rodrigues) para la almeja; silla dibujada con `lines`; rodillo con el
+  objeto `wheel`; bastón con `rope` de dos puntos.
+- El índice tiene filtros de región y objetivo terapéutico.
 
-Técnica nueva: `swapLR` repite las fases reflejadas para hacer los dos lados (la postura de reposo
-debe ser simétrica, incluidos los polos del codo). Taxonomía: patrones nuevos `movilidad` y
-`estiramiento`; familias `carrera` (parámetro `tecnica`) y `salto-vertical` (`inicio`, `vuelo`).
-`tools/build.mjs` genera las páginas de lote a partir de la lista `BATCHES`.
-
-Limitación conocida: el tronco es un segmento recto (sin curvar la columna), por eso no hay
-gato-camello, y la cobra y la postura del niño se leen por cadera y cabeza.
+Limitaciones conocidas: tronco recto (sin columna segmentada), sin escápula, sin cabeza
+orientable, sin banda elástica que se estire y sin señal visual de isometría. Por eso aún no
+hay ejercicios lumbares de movilidad, cervicales, escapulares ni con banda.
 
 ## Próximos pasos
 
-1. Fusionar la PR del lote E sólo cuando el propietario lo pida (en este repo no hay CI).
-   Correcciones de su revisión: la carrera extiende la pierna de apoyo al despegar (~160°), el
-   salto de patinador tiene una fase de impulso con la pierna estirada en diagonal, y el pogo
-   baja el talón en el contacto (unos 25° de flexión dorsal).
-2. Propuesta pendiente de decisión: que los parámetros de familia generen variantes en el motor
-   (piloto con sentadilla y zancada: implemento × posición de carga × apoyo × anchura ×
-   profundidad), con una página de revisión móvil para aceptar o descartar variantes.
-3. Otras opciones planteadas: lote de bandas y máquinas, paquete reproductor para las apps,
-   revisión experta de músculos, niveles y exigencias.
+1. Leer las marcas del propietario (`ArtifactData` `list` de `revision-f` y
+   `revision-f-general`), corregir animaciones y textos, y abrir la PR cuando lo pida.
+2. Motor, por orden: columna en tres segmentos (lumbar, dorsal, cervical), banda elástica y
+   señal de isometría, y después escápula y cabeza orientable.
+3. Ampliar el catálogo terapéutico por regiones (lumbar y hombro primero), y el texto en inglés.
+4. Pendiente de decisión: si la plantilla de la hoja del paciente se diseña en esta biblioteca o
+   la hace el equipo de la app.
 
 ## Cómo revisar visualmente
 
