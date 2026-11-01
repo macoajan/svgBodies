@@ -13,9 +13,9 @@
   "level": 1,
   "muscles": {
     "manguito-rotador": 40,
-    "deltoides-anterior": 15,
+    "deltoides-anterior": 20,
     "deltoides-lateral": 15,
-    "erectores": 15,
+    "erectores": 10,
     "isquiotibiales": 10,
     "gluteo-mayor": 5
   },

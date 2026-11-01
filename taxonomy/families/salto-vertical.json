@@ -86,10 +86,10 @@
       "muscles": {
         "cuadriceps": 25,
         "gluteo-mayor": 20,
-        "flexores-cadera": 15,
+        "flexores-cadera": 20,
         "gemelos": 15,
         "soleo": 10,
-        "recto-abdominal": 10,
+        "recto-abdominal": 5,
         "isquiotibiales": 5
       }
     }

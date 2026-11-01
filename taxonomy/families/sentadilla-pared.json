@@ -12,9 +12,9 @@
   "pattern": "sentadilla",
   "level": 1,
   "muscles": {
-    "cuadriceps": 70,
+    "cuadriceps": 65,
     "gluteo-mayor": 15,
-    "aductores": 5,
+    "aductores": 10,
     "soleo": 5,
     "erectores": 5
   },

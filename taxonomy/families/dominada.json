@@ -14,11 +14,10 @@
   "muscles": {
     "dorsal": 40,
     "biceps": 20,
-    "romboides": 10,
+    "romboides": 15,
     "trapecio": 10,
     "antebrazo": 10,
-    "deltoides-posterior": 5,
-    "recto-abdominal": 5
+    "deltoides-posterior": 5
   },
   "equipment": [
     "barra-dominadas"

@@ -14,11 +14,11 @@
   "muscles": {
     "deltoides-anterior": 30,
     "antebrazo": 15,
+    "transverso": 15,
     "biceps": 10,
     "triceps": 10,
-    "transverso": 10,
     "cuadriceps": 10,
-    "trapecio": 10,
+    "trapecio": 5,
     "gluteo-mayor": 5
   },
   "equipment": [

@@ -17,8 +17,8 @@
   "muscles": {
     "aductores": 30,
     "isquiotibiales": 30,
-    "gluteo-mayor": 15,
-    "erectores": 15,
+    "erectores": 20,
+    "gluteo-mayor": 10,
     "cuadriceps": 10
   },
   "equipment": [

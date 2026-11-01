@@ -14,10 +14,9 @@
   "muscles": {
     "antebrazo": 35,
     "trapecio": 30,
-    "transverso": 10,
+    "transverso": 15,
     "gluteo-medio": 10,
     "oblicuos": 5,
-    "cuadrado-lumbar": 5,
     "erectores": 5
   },
   "equipment": [
@@ -79,11 +78,11 @@
       "muscles": {
         "deltoides-anterior": 20,
         "trapecio": 20,
+        "serrato": 20,
         "deltoides-lateral": 15,
-        "serrato": 15,
         "triceps": 10,
         "oblicuos": 10,
-        "manguito-rotador": 10
+        "manguito-rotador": 5
       },
       "demands": [
         "brazos-sobre-cabeza"

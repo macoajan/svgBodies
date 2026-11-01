@@ -17,9 +17,9 @@
   "muscles": {
     "cuadriceps": 35,
     "gluteo-mayor": 25,
-    "gemelos": 10,
+    "gemelos": 15,
     "soleo": 10,
-    "aductores": 10,
+    "aductores": 5,
     "flexores-cadera": 5,
     "isquiotibiales": 5
   },

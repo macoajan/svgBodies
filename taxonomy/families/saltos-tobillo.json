@@ -14,8 +14,8 @@
   "muscles": {
     "gemelos": 45,
     "soleo": 35,
-    "tibial-anterior": 10,
-    "cuadriceps": 10
+    "tibial-anterior": 15,
+    "cuadriceps": 5
   },
   "equipment": [
     "peso-corporal"

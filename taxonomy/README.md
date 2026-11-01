@@ -52,6 +52,7 @@ suyos completos).
 
 - Enteros múltiplos de 5 que suman 100, ordenados de mayor a menor.
 - Un grupo y una de sus partes no pueden aparecer a la vez (`gluteo` y `gluteo-medio`).
+- Sin empate entre el tercer y el cuarto músculo: los tres primeros quedan siempre definidos.
 - Es una estimación clínica de la contribución de cada músculo (no una medida
   electromiográfica). En los estiramientos indica qué músculos se estiran y en qué proporción.
 - La familia declara el reparto por defecto y cada variante que difiere declara el suyo completo.

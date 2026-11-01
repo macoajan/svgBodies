@@ -80,10 +80,10 @@
       "muscles": {
         "dorsal": 35,
         "romboides": 20,
-        "trapecio": 15,
         "biceps": 15,
+        "trapecio": 10,
         "deltoides-posterior": 10,
-        "antebrazo": 5
+        "antebrazo": 10
       }
     },
     {
@@ -103,11 +103,12 @@
       "muscles": {
         "dorsal": 30,
         "romboides": 20,
-        "trapecio": 15,
         "biceps": 15,
+        "trapecio": 10,
         "deltoides-posterior": 10,
         "gluteo-mayor": 5,
-        "recto-abdominal": 5
+        "recto-abdominal": 5,
+        "antebrazo": 5
       }
     }
   ]

@@ -17,8 +17,8 @@
   "muscles": {
     "oblicuos": 35,
     "erectores": 25,
-    "romboides": 15,
-    "trapecio": 15,
+    "romboides": 20,
+    "trapecio": 10,
     "deltoides-posterior": 10
   },
   "equipment": [

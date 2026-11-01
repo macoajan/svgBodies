@@ -14,9 +14,9 @@
   "muscles": {
     "cuadriceps": 25,
     "isquiotibiales": 20,
+    "soleo": 20,
     "gluteo-mayor": 15,
-    "gemelos": 15,
-    "soleo": 15,
+    "gemelos": 10,
     "flexores-cadera": 10
   },
   "equipment": [
@@ -55,9 +55,9 @@
       "level": 2,
       "muscles": {
         "flexores-cadera": 30,
-        "gemelos": 15,
+        "gemelos": 20,
         "soleo": 15,
-        "cuadriceps": 15,
+        "cuadriceps": 10,
         "recto-abdominal": 10,
         "gluteo-mayor": 10,
         "tibial-anterior": 5
@@ -74,9 +74,9 @@
       },
       "muscles": {
         "isquiotibiales": 40,
-        "gemelos": 15,
+        "gemelos": 20,
         "soleo": 15,
-        "cuadriceps": 15,
+        "cuadriceps": 10,
         "gluteo-mayor": 10,
         "flexores-cadera": 5
       }

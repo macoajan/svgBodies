@@ -72,11 +72,10 @@
       "muscles": {
         "cuadriceps": 40,
         "gluteo-mayor": 25,
+        "erectores": 15,
         "aductores": 10,
-        "erectores": 10,
         "recto-abdominal": 5,
-        "antebrazo": 5,
-        "deltoides-anterior": 5
+        "antebrazo": 5
       }
     },
     {

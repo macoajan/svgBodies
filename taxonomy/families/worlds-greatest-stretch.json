@@ -18,10 +18,10 @@
   "muscles": {
     "flexores-cadera": 25,
     "isquiotibiales": 20,
+    "aductores": 20,
     "oblicuos": 15,
-    "aductores": 15,
     "gluteo-mayor": 10,
-    "erectores": 10,
+    "erectores": 5,
     "pectoral": 5
   },
   "equipment": [

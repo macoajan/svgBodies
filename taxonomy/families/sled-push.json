@@ -14,11 +14,10 @@
   "muscles": {
     "cuadriceps": 35,
     "gluteo-mayor": 25,
-    "gemelos": 10,
+    "gemelos": 15,
     "soleo": 10,
     "triceps": 5,
     "deltoides-anterior": 5,
-    "pectoral": 5,
     "recto-abdominal": 5
   },
   "equipment": [

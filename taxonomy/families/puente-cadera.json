@@ -14,8 +14,8 @@
   "muscles": {
     "gluteo-mayor": 55,
     "isquiotibiales": 25,
-    "erectores": 10,
-    "aductores": 10
+    "erectores": 15,
+    "aductores": 5
   },
   "equipment": [
     "esterilla"

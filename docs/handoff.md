@@ -69,13 +69,14 @@ Petición del propietario para todos los ejercicios: listar los músculos con el
 estimado de uso. `muscles` pasa a ser `{ músculo: % }` (múltiplos de 5, suma 100, 1–8
 músculos, ordenado, sin grupo y parte a la vez); sustituye a `primary`/`secondary`. La app
 tomará los tres primeros y sumará el resto como indirectos (eso lo hace la app, no la
-biblioteca). Nuevo músculo `rotadores-externos-cadera`. Hay 27 ejercicios con empate entre el
-tercer y el cuarto músculo: pendiente de decidir cómo se resuelve.
+biblioteca). Nuevo músculo `rotadores-externos-cadera`. Por decisión del propietario, el
+validador prohíbe el empate entre el tercer y el cuarto músculo; los 27 empates iniciales se
+resolvieron con criterio clínico.
 
 ## Próximos pasos
 
 1. Leer las marcas del propietario en `revision-musculos` y `revision-musculos-general`,
-   corregir los porcentajes y resolver los empates del tercer puesto. Abrir la PR (piloto
+   y corregir los porcentajes. Abrir la PR (piloto
    terapéutico + porcentajes) cuando lo pida.
 2. Motor, por orden: columna en tres segmentos (lumbar, dorsal, cervical), banda elástica y
    señal de isometría, y después escápula y cabeza orientable.

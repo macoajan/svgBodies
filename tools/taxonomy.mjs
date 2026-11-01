@@ -99,6 +99,8 @@ export function loadTaxonomy(root) {
         for (const k of ks) for (let p = vocab.muscles[k]?.parent; p; p = vocab.muscles[p]?.parent)
           if (ks.includes(p)) err(where, `"muscles" incluye a la vez "${p}" y su parte "${k}"`);
         for (let i = 1; i < ks.length; i++) if (m[ks[i]] > m[ks[i - 1]]) { err(where, '"muscles" debe ir ordenado de mayor a menor porcentaje'); break; }
+        // The top three are shown as the main muscles: the third must beat the fourth.
+        if (ks.length > 3 && m[ks[2]] === m[ks[3]]) err(where, `"muscles": empate en el tercer puesto (${ks[2]} y ${ks[3]} con ${m[ks[2]]}); los tres primeros deben quedar definidos`);
       }
     } else if (required) err(where, 'falta "muscles"');
   };

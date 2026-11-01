@@ -14,10 +14,9 @@
   "muscles": {
     "cuadriceps": 40,
     "gluteo-mayor": 30,
-    "aductores": 10,
+    "aductores": 15,
     "gluteo-medio": 10,
-    "isquiotibiales": 5,
-    "soleo": 5
+    "isquiotibiales": 5
   },
   "equipment": [
     "peso-corporal"
@@ -85,10 +84,9 @@
       "muscles": {
         "cuadriceps": 40,
         "gluteo-mayor": 30,
-        "gluteo-medio": 10,
+        "gluteo-medio": 15,
         "aductores": 10,
-        "isquiotibiales": 5,
-        "flexores-cadera": 5
+        "isquiotibiales": 5
       }
     }
   ]

@@ -14,10 +14,10 @@
   "muscles": {
     "deltoides-anterior": 20,
     "deltoides-lateral": 20,
-    "deltoides-posterior": 15,
+    "deltoides-posterior": 20,
     "manguito-rotador": 15,
     "trapecio": 15,
-    "serrato": 15
+    "serrato": 10
   },
   "equipment": [
     "peso-corporal"
