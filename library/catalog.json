@@ -1040,6 +1040,120 @@
    }
   },
   {
+   "id": "basculacion-pelvica",
+   "family": "basculacion-pelvica",
+   "name": {
+    "es": "Báscula pélvica",
+    "en": "Supine pelvic tilt"
+   },
+   "familyName": {
+    "es": "Báscula pélvica",
+    "en": "Pelvic tilt"
+   },
+   "params": {},
+   "pattern": "movilidad",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "aislado",
+   "action": "estabilidad",
+   "position": "suelo-supino",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "esterilla"
+   ],
+   "demands": [
+    "decubito"
+   ],
+   "regions": [
+    "lumbar"
+   ],
+   "goals": [
+    "control-motor",
+    "movilidad-activa"
+   ],
+   "mode": "activo",
+   "muscles": [
+    {
+     "id": "recto-abdominal",
+     "pct": 30
+    },
+    {
+     "id": "transverso",
+     "pct": 25
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 20
+    },
+    {
+     "id": "erectores",
+     "pct": 15
+    },
+    {
+     "id": "oblicuos",
+     "pct": 10
+    }
+   ],
+   "progressions": [
+    "gato-camello",
+    "dead-bug"
+   ],
+   "therapeutic": true,
+   "regressions": [],
+   "sheet": {
+    "patient": {
+     "start": "Túmbate boca arriba con las rodillas dobladas, los pies apoyados y los brazos a los lados.",
+     "steps": [
+      "Aplana la zona lumbar contra el suelo, como si quisieras aplastar una mano debajo.",
+      "Después arquéala suavemente, separándola un poco del suelo.",
+      "Alterna despacio entre las dos posiciones, moviendo sólo la pelvis."
+     ],
+     "avoid": [
+      "No levantes la cadera del suelo.",
+      "No empujes con las piernas ni aguantes la respiración."
+     ]
+    },
+    "pro": {
+     "goal": "Control motor y movilidad lumbopélvica en descarga: disociación de la pelvis respecto al tórax.",
+     "notes": [
+      "Útil como primer ejercicio en dolor lumbar y como aprendizaje de la posición neutra.",
+      "Puede centrarse sólo en la retroversión si la extensión resulta molesta.",
+      "Progresión: gato-camello, dead bug."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "recto-abdominal",
+    "core",
+    "transverso",
+    "gluteo-mayor",
+    "gluteo",
+    "tren-inferior",
+    "erectores",
+    "oblicuos"
+   ],
+   "equipmentCategories": [
+    "accesorio"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#basculacion-pelvica",
+    "views": [
+     "svg/basculacion-pelvica-lateral.svg",
+     "svg/basculacion-pelvica-cenital.svg",
+     "svg/basculacion-pelvica-iso.svg"
+    ],
+    "duration": 5.1,
+    "cue": "Tumbado con las rodillas dobladas, aplana la zona lumbar contra el suelo y después arquéala suavemente, moviendo sólo la pelvis."
+   }
+  },
+  {
    "id": "battle-ropes",
    "family": "battle-ropes",
    "name": {
@@ -1302,7 +1416,8 @@
    "progressions": [],
    "therapeutic": true,
    "regressions": [
-    "extension-cadera-prono"
+    "extension-cadera-prono",
+    "gato-camello"
    ],
    "sheet": {
     "patient": {
@@ -2317,7 +2432,9 @@
    ],
    "progressions": [],
    "therapeutic": true,
-   "regressions": [],
+   "regressions": [
+    "basculacion-pelvica"
+   ],
    "sheet": {
     "patient": {
      "start": "Túmbate boca arriba con los brazos hacia el techo y las caderas y rodillas dobladas a 90°.",
@@ -3601,6 +3718,246 @@
    }
   },
   {
+   "id": "extension-codos-prono",
+   "family": "extension-lumbar-prono",
+   "name": {
+    "es": "Extensión lumbar sobre codos",
+    "en": "Prone on elbows (sphinx)"
+   },
+   "familyName": {
+    "es": "Extensión lumbar boca abajo",
+    "en": "Prone lumbar extension"
+   },
+   "params": {
+    "apoyo": "codos"
+   },
+   "pattern": "movilidad",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "movilidad",
+   "position": "suelo-prono",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "esterilla"
+   ],
+   "demands": [
+    "decubito"
+   ],
+   "regions": [
+    "lumbar"
+   ],
+   "goals": [
+    "movilidad-activa"
+   ],
+   "mode": "activo",
+   "muscles": [
+    {
+     "id": "recto-abdominal",
+     "pct": 35
+    },
+    {
+     "id": "erectores",
+     "pct": 25
+    },
+    {
+     "id": "serrato",
+     "pct": 15
+    },
+    {
+     "id": "trapecio",
+     "pct": 10
+    },
+    {
+     "id": "deltoides-anterior",
+     "pct": 10
+    },
+    {
+     "id": "flexores-cadera",
+     "pct": 5
+    }
+   ],
+   "progressions": [
+    "extension-mckenzie"
+   ],
+   "therapeutic": true,
+   "regressions": [],
+   "sheet": {
+    "patient": {
+     "start": "Túmbate boca abajo con los antebrazos en el suelo.",
+     "steps": [
+      "Coloca los codos debajo de los hombros y levanta el pecho apoyándote en los antebrazos.",
+      "Deja la pelvis y las piernas relajadas en el suelo.",
+      "Mantén la posición respirando con calma y baja despacio."
+     ],
+     "avoid": [
+      "No levantes la pelvis del suelo.",
+      "No encojas los hombros hacia las orejas."
+     ]
+    },
+    "pro": {
+     "goal": "Extensión lumbar mantenida en decúbito prono (posición de esfinge).",
+     "notes": [
+      "Paso intermedio entre el decúbito prono y la extensión con brazos.",
+      "Valorar la respuesta de los síntomas: centralización frente a periferalización.",
+      "Progresión: extensión lumbar con brazos (McKenzie)."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "recto-abdominal",
+    "core",
+    "erectores",
+    "serrato",
+    "tren-superior",
+    "trapecio",
+    "deltoides-anterior",
+    "deltoides",
+    "flexores-cadera",
+    "tren-inferior"
+   ],
+   "equipmentCategories": [
+    "accesorio"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#extension-codos-prono",
+    "views": [
+     "svg/extension-codos-prono-lateral.svg",
+     "svg/extension-codos-prono-cenital.svg",
+     "svg/extension-codos-prono-iso.svg"
+    ],
+    "duration": 5.9,
+    "cue": "Boca abajo, apóyate en los antebrazos con los codos bajo los hombros y deja que la zona lumbar se arquee, con la pelvis en el suelo."
+   }
+  },
+  {
+   "id": "extension-mckenzie",
+   "family": "extension-lumbar-prono",
+   "name": {
+    "es": "Extensión lumbar con brazos",
+    "en": "Prone press-up (McKenzie)"
+   },
+   "familyName": {
+    "es": "Extensión lumbar boca abajo",
+    "en": "Prone lumbar extension"
+   },
+   "params": {
+    "apoyo": "manos"
+   },
+   "pattern": "movilidad",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "movilidad",
+   "position": "suelo-prono",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "esterilla"
+   ],
+   "demands": [
+    "decubito",
+    "carga-muneca"
+   ],
+   "regions": [
+    "lumbar"
+   ],
+   "goals": [
+    "movilidad-autoasistida"
+   ],
+   "mode": "autoasistido",
+   "muscles": [
+    {
+     "id": "triceps",
+     "pct": 35
+    },
+    {
+     "id": "pectoral",
+     "pct": 20
+    },
+    {
+     "id": "deltoides-anterior",
+     "pct": 15
+    },
+    {
+     "id": "recto-abdominal",
+     "pct": 10
+    },
+    {
+     "id": "serrato",
+     "pct": 10
+    },
+    {
+     "id": "erectores",
+     "pct": 10
+    }
+   ],
+   "progressions": [],
+   "therapeutic": true,
+   "regressions": [
+    "extension-codos-prono"
+   ],
+   "sheet": {
+    "patient": {
+     "start": "Túmbate boca abajo con las manos apoyadas a la altura de la cabeza.",
+     "steps": [
+      "Empuja con los brazos para levantar el tronco.",
+      "Deja la pelvis y las piernas relajadas en el suelo: la espalda se arquea sola.",
+      "Baja despacio hasta quedar tumbado de nuevo."
+     ],
+     "avoid": [
+      "No levantes la pelvis del suelo.",
+      "No aprietes los glúteos."
+     ]
+    },
+    "pro": {
+     "goal": "Extensión lumbar repetida en decúbito prono (extensión en carga de brazos, método McKenzie).",
+     "notes": [
+      "La extensión la producen los brazos; la musculatura lumbar y glútea debe estar relajada.",
+      "Dosificar según la respuesta de los síntomas (centralización).",
+      "Progresión: añadir sobrepresión (espirar al final) o extensión en bipedestación según la evolución."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "triceps",
+    "tren-superior",
+    "pectoral",
+    "deltoides-anterior",
+    "deltoides",
+    "recto-abdominal",
+    "core",
+    "serrato",
+    "erectores"
+   ],
+   "equipmentCategories": [
+    "accesorio"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#extension-mckenzie",
+    "views": [
+     "svg/extension-mckenzie-lateral.svg",
+     "svg/extension-mckenzie-cenital.svg",
+     "svg/extension-mckenzie-iso.svg"
+    ],
+    "duration": 4,
+    "cue": "Boca abajo con las manos a la altura de la cabeza, empuja con los brazos para levantar el tronco dejando la pelvis y las piernas relajadas en el suelo."
+   }
+  },
+  {
    "id": "extension-rodilla-rodillo",
    "family": "extension-rodilla",
    "name": {
@@ -4068,6 +4425,129 @@
     ],
     "duration": 2.6,
     "cue": "Brazos bloqueados arriba; bajar con el tronco algo inclinado hasta el codo a 90° y empujar."
+   }
+  },
+  {
+   "id": "gato-camello",
+   "family": "gato-camello",
+   "name": {
+    "es": "Gato-camello",
+    "en": "Cat-camel"
+   },
+   "familyName": {
+    "es": "Gato-camello",
+    "en": "Cat-camel"
+   },
+   "params": {},
+   "pattern": "movilidad",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "movilidad",
+   "position": "cuadrupedia",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "esterilla"
+   ],
+   "demands": [
+    "apoyo-rodilla",
+    "carga-muneca"
+   ],
+   "regions": [
+    "lumbar",
+    "dorsal"
+   ],
+   "goals": [
+    "movilidad-activa",
+    "control-motor"
+   ],
+   "mode": "activo",
+   "muscles": [
+    {
+     "id": "erectores",
+     "pct": 30
+    },
+    {
+     "id": "recto-abdominal",
+     "pct": 25
+    },
+    {
+     "id": "oblicuos",
+     "pct": 20
+    },
+    {
+     "id": "transverso",
+     "pct": 10
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 10
+    },
+    {
+     "id": "serrato",
+     "pct": 5
+    }
+   ],
+   "progressions": [
+    "bird-dog"
+   ],
+   "therapeutic": true,
+   "regressions": [
+    "basculacion-pelvica"
+   ],
+   "sheet": {
+    "patient": {
+     "start": "Ponte a cuatro patas con las manos bajo los hombros y las rodillas bajo la cadera.",
+     "steps": [
+      "Redondea la espalda hacia el techo metiendo la barbilla hacia el pecho.",
+      "Después hunde la espalda levantando la mirada.",
+      "Pasa de una posición a otra despacio, sin forzar el final."
+     ],
+     "avoid": [
+      "No dobles los codos.",
+      "No muevas las manos ni las rodillas."
+     ]
+    },
+    "pro": {
+     "goal": "Movilidad activa segmentaria en flexión y extensión de la columna lumbar y dorsal, sin carga axial.",
+     "notes": [
+      "Recorrido dentro de la tolerancia: el objetivo es el movimiento, no llegar al final del rango.",
+      "Indicado en rigidez y dolor lumbar mecánico; coordinar con la respiración.",
+      "Progresión: bird dog (control en neutro)."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "erectores",
+    "core",
+    "recto-abdominal",
+    "oblicuos",
+    "transverso",
+    "gluteo-mayor",
+    "gluteo",
+    "tren-inferior",
+    "serrato",
+    "tren-superior"
+   ],
+   "equipmentCategories": [
+    "accesorio"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#gato-camello",
+    "views": [
+     "svg/gato-camello-lateral.svg",
+     "svg/gato-camello-frontal.svg",
+     "svg/gato-camello-iso.svg"
+    ],
+    "duration": 6.3,
+    "cue": "A cuatro patas, redondea la espalda hacia el techo metiendo la barbilla y después hunde la espalda levantando la mirada, despacio."
    }
   },
   {

@@ -47,12 +47,12 @@ const rep = (f, out, top, back, rest = 0.3) => [hold(rest, f(0)), { dur: out, po
 
 // The neck bends up and the head rests on the floor (as in batch B).
 const HEAD_REST_Y = FLOOR_TOP - HEAD_R - 1.7;
-function lyingTrunk(pelvis, alpha = -90) {
-  const t0 = trunk(pelvis, alpha);
+function lyingTrunk(pelvis, alpha = -90, spine = {}) {
+  const t0 = trunk(pelvis, alpha, 0, spine);
   const neckDir = -74;
   const neckY = t0.shoulderC.y - L.neck * Math.cos(rad(neckDir));
   const c = clamp01((neckY - HEAD_REST_Y) / L.head);
-  return trunk(pelvis, alpha, 0, { neckDir, headDir: -deg(Math.acos(c)) });
+  return trunk(pelvis, alpha, 0, { ...spine, neckDir, headDir: -deg(Math.acos(c)) });
 }
 const SUP = { pelvis: V(30, F) };
 const flatLeg = (t, sg, ang = -90) => legFrom(sideHip(t, sg), V(1, 0), 0, ang);
@@ -377,6 +377,74 @@ function wallSlide(e) {
   return poseLR({ trunk: t, r: side(1), l: side(-1) });
 }
 
+// ======================= Spine (segmented trunk) =======================
+
+// ---------- Pelvic tilt, lying with knees bent: the low back arches and flattens ----------
+// k: -1 posterior tilt (back flat) .. 0 neutral .. 1 anterior tilt (arched). The pelvis turns and
+// the lumbar spine bends the other way so the chest stays on the floor.
+const TILT = { neutral: 8, range: 24 };   // slightly exaggerated so the arch reads
+function pelvicTilt(k) {
+  const t0 = k < 0 ? TILT.neutral * (1 + k) : TILT.neutral + TILT.range * k;   // flat back at most
+  const t = lyingTrunk(SUP.pelvis, -90 + t0, { lumbar: -t0 });
+  const side = sg => ({ ...hookLeg(t, sg), ...armsAlong(t, sg) });
+  return poseLR({ trunk: t, r: side(1), l: side(-1) });
+}
+const TILT_PHASES = [
+  hold(0.3, pelvicTilt(0)), { dur: 1.0, pose: e => pelvicTilt(-e) }, hold(0.6, pelvicTilt(-1)),
+  { dur: 1.6, pose: e => pelvicTilt(-1 + 2 * e) }, hold(0.6, pelvicTilt(1)), { dur: 1.0, pose: e => pelvicTilt(1 - e) },
+];
+
+// ---------- Cat-camel on hands and knees: the spine rounds up and then arches down ----------
+// k: 1 rounded (cat), 0 neutral, -1 arched (cow). Hips over the knees, hands fixed on the floor;
+// the pelvis tilts with the spine so the shoulders stay over the hands.
+const QD = { knee: V(26, F), chord: 65, handZ: 9 };
+const QD_HIP = V(QD.knee.x, F - L.thigh);
+const QD_HAND = (() => { const S = trunk(QD_HIP, QD.chord).shoulderC; return V(S.x + 1, F); })();
+function chordOffset(lumbar, thoracic) {
+  const c = trunk(V(0, 0), 0, 0, { lumbar, thoracic }).shoulderC;
+  return deg(Math.atan2(c.x, -c.y));
+}
+function catCamel(k) {
+  const lumbar = k > 0 ? 16 * k : 24 * k, thoracic = k > 0 ? 38 * k : 12 * k;
+  const t = trunk(QD_HIP, QD.chord - chordOffset(lumbar, thoracic), k > 0 ? 18 + 30 * k : 18 + 40 * k, { lumbar, thoracic });
+  const side = sg => ({
+    ...legFrom(sideHip(t, sg), V(0, 1), 90, 180),
+    hand: V(QD_HAND.x, F, sg * QD.handZ), pole: V(-0.4, 0, sg),
+  });
+  return poseLR({ trunk: t, r: side(1), l: side(-1) });
+}
+const CAT_PHASES = [
+  hold(0.3, catCamel(0)), { dur: 1.4, pose: e => catCamel(e) }, hold(0.6, catCamel(1)),
+  { dur: 2.2, pose: e => catCamel(1 - 2 * e) }, hold(0.6, catCamel(-1)), { dur: 1.2, pose: e => catCamel(-1 + e) },
+];
+
+// ---------- Prone extensions: pelvis on the floor, the lumbar spine arches ----------
+// Head follows the chest, looking slightly down.
+function proneTrunk(lumbar, thoracic) {
+  const top = 90 + lumbar + thoracic;
+  return trunk(PR.pelvis, 90, 0, { lumbar, thoracic, neckDir: top - 18 + 8 * (1 + lumbar / 60), headDir: top - 50 * (1 + lumbar / 60) - 10 });
+}
+const proneLegs = (t, sg) => legFrom(sideHip(t, sg), V(-1, 0), 0, 180);
+// Sphinx: forearms on the floor, the elbows move under the shoulders as the chest rises.
+const SPHINX = { lumbar: -44, thoracic: -20 };
+function sphinx(e) {
+  const k = smooth(e), t = proneTrunk(SPHINX.lumbar * k, SPHINX.thoracic * k);
+  const side = sg => {
+    const S = sideShoulder(t, sg), h = Math.min(F - S.y, L.upper - 0.05);
+    const elbow = V(S.x + Math.sqrt(L.upper ** 2 - h * h), F, S.z);
+    return { ...proneLegs(t, sg), elbow, hand: V(elbow.x + L.fore, F, sg * 6) };
+  };
+  return poseLR({ trunk: t, r: side(1), l: side(-1) });
+}
+// Press-up (McKenzie): hands planted ahead of the shoulders, the arms push the chest up.
+const PRESS = { lumbar: -40, thoracic: -14 };
+const PRESS_HAND_X = PR.pelvis.x + L.sh + 3;
+function pressUp(e) {
+  const k = smooth(e), t = proneTrunk(PRESS.lumbar * k, PRESS.thoracic * k);
+  const side = sg => ({ ...proneLegs(t, sg), hand: V(PRESS_HAND_X, F, sg * 10), pole: V(-1, -0.4, 1.2 * sg) });
+  return poseLR({ trunk: t, r: side(1), l: side(-1) });
+}
+
 export const EXERCISES_F = [
   // ---------- Ankle ----------
   {
@@ -465,6 +533,27 @@ export const EXERCISES_F = [
     id: 'deslizamiento-pared', name: 'Deslizamiento en pared', still: 1.6, props: [WALL_SLIDE],
     cue: 'De cara a la pared con los antebrazos apoyados, deslízalos hacia arriba sin encoger los hombros y baja despacio.',
     phases: rep(wallSlide, 1.6, 0.5, 1.6),
+  },
+  // ---------- Spine ----------
+  {
+    id: 'basculacion-pelvica', name: 'Báscula pélvica', views: ['side', 'top'], isoCam: { yaw: 18, pitch: 35 }, still: 2.3,
+    cue: 'Tumbado con las rodillas dobladas, aplana la zona lumbar contra el suelo y después arquéala suavemente, moviendo sólo la pelvis.',
+    phases: TILT_PHASES,
+  },
+  {
+    id: 'gato-camello', name: 'Gato-camello', views: ['side', 'front'], isoCam: { yaw: 25, pitch: 25 }, still: 2.0,
+    cue: 'A cuatro patas, redondea la espalda hacia el techo metiendo la barbilla y después hunde la espalda levantando la mirada, despacio.',
+    phases: CAT_PHASES,
+  },
+  {
+    id: 'extension-codos-prono', name: 'Extensión lumbar sobre codos', views: ['side', 'top'], isoCam: { yaw: 18, pitch: 30 }, still: 2.5,
+    cue: 'Boca abajo, apóyate en los antebrazos con los codos bajo los hombros y deja que la zona lumbar se arquee, con la pelvis en el suelo.',
+    phases: [hold(0.4, sphinx(0)), { dur: 1.6, pose: sphinx }, hold(2.5, sphinx(1)), { dur: 1.4, pose: e => sphinx(1 - e) }],
+  },
+  {
+    id: 'extension-mckenzie', name: 'Extensión lumbar con brazos', views: ['side', 'top'], isoCam: { yaw: 18, pitch: 30 }, still: 1.8,
+    cue: 'Boca abajo con las manos a la altura de la cabeza, empuja con los brazos para levantar el tronco dejando la pelvis y las piernas relajadas en el suelo.',
+    phases: [hold(0.4, pressUp(0)), { dur: 1.4, pose: pressUp }, hold(0.8, pressUp(1)), { dur: 1.4, pose: e => pressUp(1 - e) }],
   },
   // ---------- Hip ----------
   {

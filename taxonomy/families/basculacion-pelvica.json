@@ -1,0 +1,48 @@
+{
+  "id": "basculacion-pelvica",
+  "name": {
+    "es": "Báscula pélvica",
+    "en": "Pelvic tilt"
+  },
+  "plane": "sagital",
+  "mechanics": "aislado",
+  "action": "estabilidad",
+  "position": "suelo-supino",
+  "laterality": "bilateral",
+  "pattern": "movilidad",
+  "level": 1,
+  "muscles": {
+    "recto-abdominal": 30,
+    "transverso": 25,
+    "gluteo-mayor": 20,
+    "erectores": 15,
+    "oblicuos": 10
+  },
+  "equipment": [
+    "esterilla"
+  ],
+  "demands": [
+    "decubito"
+  ],
+  "variants": [
+    {
+      "id": "basculacion-pelvica",
+      "name": {
+        "es": "Báscula pélvica",
+        "en": "Supine pelvic tilt"
+      },
+      "regions": [
+        "lumbar"
+      ],
+      "goals": [
+        "control-motor",
+        "movilidad-activa"
+      ],
+      "mode": "activo",
+      "progressions": [
+        "gato-camello",
+        "dead-bug"
+      ]
+    }
+  ]
+}

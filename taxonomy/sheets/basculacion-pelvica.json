@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "Túmbate boca arriba con las rodillas dobladas, los pies apoyados y los brazos a los lados.",
+    "steps": [
+      "Aplana la zona lumbar contra el suelo, como si quisieras aplastar una mano debajo.",
+      "Después arquéala suavemente, separándola un poco del suelo.",
+      "Alterna despacio entre las dos posiciones, moviendo sólo la pelvis."
+    ],
+    "avoid": [
+      "No levantes la cadera del suelo.",
+      "No empujes con las piernas ni aguantes la respiración."
+    ]
+  },
+  "pro": {
+    "goal": "Control motor y movilidad lumbopélvica en descarga: disociación de la pelvis respecto al tórax.",
+    "notes": [
+      "Útil como primer ejercicio en dolor lumbar y como aprendizaje de la posición neutra.",
+      "Puede centrarse sólo en la retroversión si la extensión resulta molesta.",
+      "Progresión: gato-camello, dead bug."
+    ]
+  }
+}

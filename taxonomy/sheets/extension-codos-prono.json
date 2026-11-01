@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "Túmbate boca abajo con los antebrazos en el suelo.",
+    "steps": [
+      "Coloca los codos debajo de los hombros y levanta el pecho apoyándote en los antebrazos.",
+      "Deja la pelvis y las piernas relajadas en el suelo.",
+      "Mantén la posición respirando con calma y baja despacio."
+    ],
+    "avoid": [
+      "No levantes la pelvis del suelo.",
+      "No encojas los hombros hacia las orejas."
+    ]
+  },
+  "pro": {
+    "goal": "Extensión lumbar mantenida en decúbito prono (posición de esfinge).",
+    "notes": [
+      "Paso intermedio entre el decúbito prono y la extensión con brazos.",
+      "Valorar la respuesta de los síntomas: centralización frente a periferalización.",
+      "Progresión: extensión lumbar con brazos (McKenzie)."
+    ]
+  }
+}

@@ -10,12 +10,12 @@ El propietario escribe en español y espera respuestas en español.
 
 ## Estado del repositorio
 
-- `main` = `6526bc6`: lotes A–E fusionados ([macoajan/svgBodies#1](https://github.com/macoajan/svgBodies/pull/1),
-  [macoajan/svgBodies#2](https://github.com/macoajan/svgBodies/pull/2) y
-  [macoajan/svgBodies#3](https://github.com/macoajan/svgBodies/pull/3)).
-- Rama de trabajo `claude/eager-heisenberg-cgodjv`: **piloto de ejercicio terapéutico (lote F),
-  sin PR**, pendiente de la revisión del propietario. No tocar `claude/magical-galileo-y9nh2n`.
-- Biblioteca: **88 ejercicios**, de ellos 24 terapéuticos. Todo valida y compila.
+- `main` = `bfaaeb0`: lotes A–E, piloto terapéutico (lote F) y porcentajes musculares
+  fusionados ([macoajan/svgBodies#1](https://github.com/macoajan/svgBodies/pull/1) a
+  [macoajan/svgBodies#4](https://github.com/macoajan/svgBodies/pull/4)).
+- Rama de trabajo `claude/eager-heisenberg-cgodjv`: **columna segmentada y ejercicios
+  lumbares, sin PR**, pendiente de la revisión del propietario.
+- Biblioteca: **92 ejercicios**, de ellos 28 terapéuticos. Todo valida y compila.
 
 ```
 node tools/build.mjs     # valida taxonomía, fichas y posturas, genera library/
@@ -27,7 +27,7 @@ node tools/build.mjs     # valida taxonomía, fichas y posturas, genera library/
 |---|---|---|
 | [Revisión de la taxonomía](https://claude.ai/artifact/C1Ny8wERm4PGUhzqwX6QNZ) | Revisión en el móvil de la clasificación de los 46 ejercicios de los lotes A–D: Correcto/Cambiar y notas por ejercicio, más «Criterios generales». Guarda en la base de datos del artefacto (`revision/<id>` con `{status, note, at}` y `revision-general/notas`). | Cerrada: el propietario dio los 46 por válidos; las 46 marcas están en `ok`. No incluye el lote E. |
 | [Lote E de monigotes](https://claude.ai/artifact/A8gUFgokYJm4TMgddV2wr8) | Galería móvil de los 24 ejercicios del lote E. | Cerrada: revisada, corregida y fusionada. |
-| [Piloto terapéutico](https://claude.ai/artifact/N1182gQxiSMhf3oTcUsk3f) | Revisión móvil de los 24 ejercicios terapéuticos (colección `revision-f`: `{anim, text, note, at}`). | Cerrada: las 24 marcadas `ok` en animación y textos, sin notas. |
+| [Piloto terapéutico](https://claude.ai/artifact/N1182gQxiSMhf3oTcUsk3f) | Revisión móvil de los ejercicios terapéuticos (colección `revision-f`: `{anim, text, note, at}`). Versión 2: 28 terapéuticos, con los 4 de columna lumbar marcados «Nuevo · columna» y una tarjeta de la cobra rehecha (sólo `anim`). | Los 24 primeros, cerrados (`ok`). Pendientes: basculacion-pelvica, gato-camello, extension-codos-prono, extension-mckenzie y cobra. |
 | [Músculos por ejercicio](https://claude.ai/artifact/3YXhL1bBnQNnFeJ1h9hXYL) | Revisión móvil del reparto muscular en % de los 88 ejercicios, con los tres primeros y los indirectos. Colección `revision-musculos`: documento `<id>` con `{status, note, at}` (`status` = `ok` o `cambiar`), y `revision-musculos-general/notas` con `{text, at}`. | Dados por buenos por el propietario; los sigue revisando con calma. Consultar de vez en cuando si hay marcas `cambiar` o notas. |
 
 Para actualizar un artefacto desde otra sesión: leerlo primero (`Artifact` con `action: "read"` y
@@ -63,7 +63,22 @@ Limitaciones conocidas: tronco recto (sin columna segmentada), sin escápula, si
 orientable, sin banda elástica que se estire y sin señal visual de isometría. Por eso aún no
 hay ejercicios lumbares de movilidad, cervicales, escapulares ni con banda.
 
-## Músculos en porcentaje (rama, sin PR)
+## Columna segmentada (rama, sin PR)
+
+- `trunk()` divide el tronco en tres segmentos (`SPINE = [6, 4.5, 4.5]`: lumbar, dorsal baja,
+  dorsal alta) y acepta `lumbar` y `thoracic` en grados (positivo = flexión, negativo =
+  extensión); `alpha` es la orientación de la pelvis. Con la columna recta las posturas son
+  idénticas a las de antes (comprobado articulación por articulación). Las posturas llevan
+  `lumbarTop` y `thorax`; render, validación, centro de masas, `poses.json` y visor 3D usan los
+  tres segmentos.
+- Nuevos (lote F): báscula pélvica, gato-camello, extensión lumbar sobre codos (esfinge) y
+  extensión lumbar con brazos (McKenzie), con taxonomía, fichas y porcentajes. La cobra del
+  lote E se rehízo arqueando la columna.
+- Limitación: el monigote no tiene grosor (las articulaciones apoyadas van sobre la línea de
+  contacto), así que en McKenzie los codos no llegan a estirarse del todo y la báscula
+  pélvica se ha exagerado un poco para que se vea.
+
+## Músculos en porcentaje (fusionado)
 
 Petición del propietario para todos los ejercicios: listar los músculos con el porcentaje
 estimado de uso. `muscles` pasa a ser `{ músculo: % }` (múltiplos de 5, suma 100, 1–8
@@ -78,10 +93,12 @@ resolvieron con criterio clínico.
 1. Porcentajes dados por buenos; el propietario sigue revisando en segundo plano: leer de vez
    en cuando `revision-musculos` y `revision-musculos-general` y corregir lo marcado. Abrir la PR (piloto
    terapéutico + porcentajes) cuando lo pida.
-2. Motor, por orden: columna en tres segmentos (lumbar, dorsal, cervical), banda elástica y
-   señal de isometría, y después escápula y cabeza orientable.
-3. Ampliar el catálogo terapéutico por regiones (lumbar y hombro primero), y el texto en inglés.
-4. La app y la hoja del paciente quedan fuera por ahora (decisión del propietario): no se
+2. Revisión del propietario de los ejercicios de columna y la cobra; corregir y abrir la PR
+   cuando lo pida.
+3. Motor, por orden: cervical (cabeza orientable y retracción), banda elástica y señal de
+   isometría, y después escápula.
+4. Ampliar el catálogo terapéutico por regiones (lumbar y hombro primero), y el texto en inglés.
+5. La app y la hoja del paciente quedan fuera por ahora (decisión del propietario): no se
    diseña ni se plantea nada de la app hasta que lo pida. La biblioteca sólo exporta los datos
    (`catalog.json` con `sheet`).
 
