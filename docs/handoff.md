@@ -14,8 +14,8 @@ El propietario escribe en español y espera respuestas en español.
   lotes A–D, y PR [macoajan/svgBodies#2](https://github.com/macoajan/svgBodies/pull/2)
   taxonomía; las dos fusionadas).
 - Rama de trabajo `claude/eager-heisenberg-cgodjv` (traída íntegra de `claude/magical-galileo-y9nh2n`,
-  que queda abandonada) = `6484a9c` + este handoff: **lote E sin PR**.
-  Pendiente de que el propietario revise las animaciones y pida abrir la PR.
+  que queda abandonada): lote E revisado por el propietario y corregido (carrera, saltos de
+  patinador y saltos de tobillo). **PR abierta, pendiente de fusionar** cuando el propietario lo pida.
 - Biblioteca: **70 ejercicios, 52 familias**, lotes A a E. Todo valida y compila.
 
 ```
@@ -55,8 +55,10 @@ gato-camello, y la cobra y la postura del niño se leen por cadera y cabeza.
 
 ## Próximos pasos
 
-1. Recoger la opinión del propietario sobre el lote E, corregir y abrir la PR (borrador no; en
-   este repo no hay CI). Fusionar sólo cuando lo pida.
+1. Fusionar la PR del lote E sólo cuando el propietario lo pida (en este repo no hay CI).
+   Correcciones de su revisión: la carrera extiende la pierna de apoyo al despegar (~160°), el
+   salto de patinador tiene una fase de impulso con la pierna estirada en diagonal, y el pogo
+   baja el talón en el contacto (unos 25° de flexión dorsal).
 2. Propuesta pendiente de decisión: que los parámetros de familia generen variantes en el motor
    (piloto con sentadilla y zancada: implemento × posición de carga × apoyo × anchura ×
    profundidad), con una página de revisión móvil para aceptar o descartar variantes.
