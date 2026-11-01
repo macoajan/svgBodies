@@ -13,7 +13,8 @@ El propietario escribe en español y espera respuestas en español.
 - `main` = `e9f2b02` (PR [macoajan/svgBodies#1](https://github.com/macoajan/svgBodies/pull/1)
   lotes A–D, y PR [macoajan/svgBodies#2](https://github.com/macoajan/svgBodies/pull/2)
   taxonomía; las dos fusionadas).
-- Rama de trabajo `claude/magical-galileo-y9nh2n` = `6484a9c` + este handoff: **lote E sin PR**.
+- Rama de trabajo `claude/eager-heisenberg-cgodjv` (traída íntegra de `claude/magical-galileo-y9nh2n`,
+  que queda abandonada) = `6484a9c` + este handoff: **lote E sin PR**.
   Pendiente de que el propietario revise las animaciones y pida abrir la PR.
 - Biblioteca: **70 ejercicios, 52 familias**, lotes A a E. Todo valida y compila.
 
@@ -71,6 +72,6 @@ coger el fotograma y llamar a `renderView` con todos los fotogramas iguales a es
 ## Convenciones
 
 - Commits en español, Conventional Commits, sin identificadores de modelo.
-- Rama designada `claude/magical-galileo-y9nh2n`. Si su PR ya se fusionó, se reinicia desde
+- Rama designada `claude/eager-heisenberg-cgodjv`; no tocar `claude/magical-galileo-y9nh2n`. Si su PR ya se fusionó, se reinicia desde
   `origin/main` antes del trabajo nuevo.
 - Las PR se abren sólo cuando el propietario lo pide; se fusionan sólo cuando lo pide.
