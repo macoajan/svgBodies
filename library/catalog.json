@@ -180,6 +180,10 @@
    "mesa": {
     "es": "Mesa",
     "en": "Table"
+   },
+   "martillo": {
+    "es": "Martillo o barra corta",
+    "en": "Hammer or short bar"
    }
   },
   "laterality": {
@@ -390,6 +394,51 @@
     "es": "Antebrazo / agarre",
     "en": "Forearm / grip",
     "parent": "tren-superior"
+   },
+   "flexores-muneca": {
+    "es": "Flexores de muñeca",
+    "en": "Wrist flexors",
+    "parent": "antebrazo"
+   },
+   "extensores-muneca": {
+    "es": "Extensores de muñeca",
+    "en": "Wrist extensors",
+    "parent": "antebrazo"
+   },
+   "pronadores": {
+    "es": "Pronadores",
+    "en": "Pronators",
+    "parent": "antebrazo"
+   },
+   "supinadores": {
+    "es": "Supinadores",
+    "en": "Supinators",
+    "parent": "antebrazo"
+   },
+   "cuello": {
+    "es": "Cuello",
+    "en": "Neck",
+    "parent": "tren-superior"
+   },
+   "flexores-profundos-cuello": {
+    "es": "Flexores profundos del cuello",
+    "en": "Deep neck flexors",
+    "parent": "cuello"
+   },
+   "extensores-cuello": {
+    "es": "Extensores cervicales",
+    "en": "Neck extensors",
+    "parent": "cuello"
+   },
+   "esternocleidomastoideo": {
+    "es": "Esternocleidomastoideo",
+    "en": "Sternocleidomastoid",
+    "parent": "cuello"
+   },
+   "escalenos": {
+    "es": "Escalenos",
+    "en": "Scalenes",
+    "parent": "cuello"
    }
   },
   "patterns": {
@@ -754,7 +803,9 @@
     "es": "Almeja",
     "en": "Clamshell"
    },
-   "params": {},
+   "params": {
+    "resistencia": "ninguna"
+   },
    "pattern": "analitico",
    "patterns2": [],
    "plane": "transversal",
@@ -792,7 +843,8 @@
     }
    ],
    "progressions": [
-    "abduccion-cadera-lateral"
+    "abduccion-cadera-lateral",
+    "almeja-banda"
    ],
    "therapeutic": true,
    "regressions": [],
@@ -843,6 +895,110 @@
     ],
     "duration": 3.1,
     "cue": "Tumbado de lado con caderas y rodillas dobladas, separa la rodilla de arriba sin despegar los pies ni girar la pelvis."
+   }
+  },
+  {
+   "id": "almeja-banda",
+   "family": "almeja",
+   "name": {
+    "es": "Almeja con banda",
+    "en": "Banded clamshell"
+   },
+   "familyName": {
+    "es": "Almeja",
+    "en": "Clamshell"
+   },
+   "params": {
+    "resistencia": "banda"
+   },
+   "pattern": "analitico",
+   "patterns2": [],
+   "plane": "transversal",
+   "mechanics": "aislado",
+   "action": "fuerza",
+   "position": "suelo-lateral",
+   "laterality": "unilateral",
+   "level": 2,
+   "equipment": [
+    "esterilla",
+    "banda-elastica"
+   ],
+   "demands": [
+    "decubito"
+   ],
+   "regions": [
+    "cadera"
+   ],
+   "goals": [
+    "fortalecimiento"
+   ],
+   "mode": "activo",
+   "muscles": [
+    {
+     "id": "gluteo-medio",
+     "pct": 55
+    },
+    {
+     "id": "rotadores-externos-cadera",
+     "pct": 30
+    },
+    {
+     "id": "gluteo-mayor",
+     "pct": 15
+    }
+   ],
+   "progressions": [],
+   "therapeutic": true,
+   "regressions": [
+    "almeja"
+   ],
+   "sheet": {
+    "patient": {
+     "start": "Túmbate de lado con las caderas y las rodillas dobladas, los pies juntos y una banda elástica por encima de las rodillas.",
+     "steps": [
+      "Sin separar los pies, abre la rodilla de arriba estirando la banda.",
+      "Mantén un momento.",
+      "Ciérrala despacio y repite; después túmbate del otro lado."
+     ],
+     "avoid": [
+      "No gires la pelvis hacia atrás al abrir.",
+      "No despegues los pies."
+     ]
+    },
+    "pro": {
+     "goal": "Fortalecimiento del glúteo medio y de los rotadores externos de cadera con resistencia elástica.",
+     "notes": [
+      "Progresión de la almeja sin banda.",
+      "La pelvis debe mantenerse perpendicular al suelo.",
+      "Aumentar la tensión de la banda antes que el número de repeticiones."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "gluteo-medio",
+    "gluteo",
+    "tren-inferior",
+    "rotadores-externos-cadera",
+    "gluteo-mayor"
+   ],
+   "equipmentCategories": [
+    "accesorio"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#almeja-banda",
+    "views": [
+     "svg/almeja-banda-lateral.svg",
+     "svg/almeja-banda-frontal.svg",
+     "svg/almeja-banda-iso.svg"
+    ],
+    "duration": 3.1,
+    "cue": "Como la almeja, con una banda elástica por encima de las rodillas: separa la rodilla de arriba contra la banda."
    }
   },
   {
@@ -2547,7 +2703,8 @@
    "progressions": [],
    "therapeutic": true,
    "regressions": [
-    "flexion-hombro-baston"
+    "flexion-hombro-baston",
+    "abduccion-hombro-baston"
    ],
    "sheet": {
     "patient": {
@@ -3715,6 +3872,122 @@
     ],
     "duration": 6.4,
     "cue": "Boca abajo con la frente sobre las manos, aprieta el glúteo y eleva la pierna estirada unos centímetros sin arquear la zona lumbar."
+   }
+  },
+  {
+   "id": "extension-hombro-banda",
+   "family": "extension-hombro-banda",
+   "name": {
+    "es": "Extensión de hombro con banda",
+    "en": "Banded straight-arm pull-down"
+   },
+   "familyName": {
+    "es": "Extensión de hombro con banda",
+    "en": "Banded straight-arm pull-down"
+   },
+   "params": {},
+   "pattern": "traccion-vertical",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "aislado",
+   "action": "fuerza",
+   "position": "de-pie",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "banda-elastica"
+   ],
+   "demands": [],
+   "regions": [
+    "hombro"
+   ],
+   "goals": [
+    "fortalecimiento",
+    "control-motor"
+   ],
+   "mode": "activo",
+   "muscles": [
+    {
+     "id": "dorsal",
+     "pct": 40
+    },
+    {
+     "id": "triceps",
+     "pct": 20
+    },
+    {
+     "id": "deltoides-posterior",
+     "pct": 15
+    },
+    {
+     "id": "pectoral",
+     "pct": 10
+    },
+    {
+     "id": "transverso",
+     "pct": 10
+    },
+    {
+     "id": "romboides",
+     "pct": 5
+    }
+   ],
+   "progressions": [],
+   "therapeutic": true,
+   "regressions": [
+    "extension-hombro-baston"
+   ],
+   "sheet": {
+    "patient": {
+     "start": "De pie con una banda anclada arriba y delante, sujeta con los brazos estirados.",
+     "steps": [
+      "Baja los brazos estirados hasta los muslos.",
+      "Mantén un momento con las escápulas hacia atrás y abajo.",
+      "Sube despacio controlando la banda."
+     ],
+     "avoid": [
+      "No dobles los codos.",
+      "No arquees la zona lumbar."
+     ]
+    },
+    "pro": {
+     "goal": "Fortalecimiento del dorsal ancho y de los extensores del hombro con control del tronco.",
+     "notes": [
+      "Activar el abdomen para evitar la extensión lumbar.",
+      "Útil para el control escapular en depresión.",
+      "Progresión: más tensión o un brazo."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "dorsal",
+    "tren-superior",
+    "triceps",
+    "deltoides-posterior",
+    "deltoides",
+    "pectoral",
+    "transverso",
+    "core",
+    "romboides"
+   ],
+   "equipmentCategories": [
+    "accesorio"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#extension-hombro-banda",
+    "views": [
+     "svg/extension-hombro-banda-lateral.svg",
+     "svg/extension-hombro-banda-frontal.svg",
+     "svg/extension-hombro-banda-iso.svg"
+    ],
+    "duration": 3.5,
+    "cue": "Con la banda anclada arriba y delante, baja los brazos estirados hasta los muslos y vuelve despacio."
    }
   },
   {
@@ -4922,6 +5195,973 @@
    }
   },
   {
+   "id": "flexo-extension-cervical",
+   "family": "movilidad-cervical",
+   "name": {
+    "es": "Flexión y extensión cervical",
+    "en": "Neck flexion and extension"
+   },
+   "familyName": {
+    "es": "Movilidad cervical",
+    "en": "Neck range of motion"
+   },
+   "params": {
+    "movimiento": "flexo-extension"
+   },
+   "pattern": "movilidad",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "aislado",
+   "action": "movilidad",
+   "position": "sentado",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "silla"
+   ],
+   "demands": [],
+   "regions": [
+    "cervical"
+   ],
+   "goals": [
+    "movilidad-activa"
+   ],
+   "mode": "activo",
+   "muscles": [
+    {
+     "id": "flexores-profundos-cuello",
+     "pct": 30
+    },
+    {
+     "id": "extensores-cuello",
+     "pct": 30
+    },
+    {
+     "id": "esternocleidomastoideo",
+     "pct": 20
+    },
+    {
+     "id": "trapecio",
+     "pct": 10
+    },
+    {
+     "id": "escalenos",
+     "pct": 10
+    }
+   ],
+   "progressions": [],
+   "therapeutic": true,
+   "regressions": [
+    "retraccion-cervical"
+   ],
+   "sheet": {
+    "patient": {
+     "start": "Siéntate con la espalda recta y la mirada al frente.",
+     "steps": [
+      "Baja la barbilla hacia el pecho despacio.",
+      "Vuelve al centro.",
+      "Mira hacia arriba hasta donde puedas sin molestias y vuelve al centro."
+     ],
+     "avoid": [
+      "No muevas la espalda ni los hombros.",
+      "No fuerces el final del movimiento ni hagas rebotes."
+     ]
+    },
+    "pro": {
+     "goal": "Movilidad activa de la columna cervical en el plano sagital.",
+     "notes": [
+      "Recorrido dentro de la tolerancia; detener si aparecen mareo o síntomas en los brazos.",
+      "Iniciar la flexión con un gesto de asentir (flexión cervical alta).",
+      "Combinar con retracción para el control de la posición neutra."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "flexores-profundos-cuello",
+    "cuello",
+    "tren-superior",
+    "extensores-cuello",
+    "esternocleidomastoideo",
+    "trapecio",
+    "escalenos"
+   ],
+   "equipmentCategories": [
+    "estructura"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#flexo-extension-cervical",
+    "views": [
+     "svg/flexo-extension-cervical-lateral.svg",
+     "svg/flexo-extension-cervical-frontal.svg",
+     "svg/flexo-extension-cervical-iso.svg"
+    ],
+    "duration": 6.6,
+    "cue": "Sentado con la espalda recta, baja la barbilla hacia el pecho y después mira hacia arriba, sin forzar el final."
+   }
+  },
+  {
+   "id": "rotacion-cervical",
+   "family": "movilidad-cervical",
+   "name": {
+    "es": "Rotación cervical",
+    "en": "Neck rotation"
+   },
+   "familyName": {
+    "es": "Movilidad cervical",
+    "en": "Neck range of motion"
+   },
+   "params": {
+    "movimiento": "rotacion"
+   },
+   "pattern": "movilidad",
+   "patterns2": [],
+   "plane": "transversal",
+   "mechanics": "aislado",
+   "action": "movilidad",
+   "position": "sentado",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "silla"
+   ],
+   "demands": [],
+   "regions": [
+    "cervical"
+   ],
+   "goals": [
+    "movilidad-activa"
+   ],
+   "mode": "activo",
+   "muscles": [
+    {
+     "id": "esternocleidomastoideo",
+     "pct": 35
+    },
+    {
+     "id": "extensores-cuello",
+     "pct": 30
+    },
+    {
+     "id": "escalenos",
+     "pct": 15
+    },
+    {
+     "id": "trapecio",
+     "pct": 10
+    },
+    {
+     "id": "flexores-profundos-cuello",
+     "pct": 10
+    }
+   ],
+   "progressions": [],
+   "therapeutic": true,
+   "regressions": [],
+   "sheet": {
+    "patient": {
+     "start": "Siéntate con la espalda recta y la mirada al frente.",
+     "steps": [
+      "Gira la cabeza despacio para mirar por encima de un hombro.",
+      "Vuelve al centro.",
+      "Gira hacia el otro lado y vuelve al centro."
+     ],
+     "avoid": [
+      "No gires los hombros con la cabeza.",
+      "No inclines la cabeza al girar."
+     ]
+    },
+    "pro": {
+     "goal": "Movilidad activa de la columna cervical en rotación.",
+     "notes": [
+      "Comparar el rango de ambos lados para seguir la evolución.",
+      "Detener si aparecen mareo, visión borrosa o síntomas neurológicos.",
+      "Puede añadirse una ligera sobrepresión con la mano si se tolera."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "esternocleidomastoideo",
+    "cuello",
+    "tren-superior",
+    "extensores-cuello",
+    "escalenos",
+    "trapecio",
+    "flexores-profundos-cuello"
+   ],
+   "equipmentCategories": [
+    "estructura"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#rotacion-cervical",
+    "views": [
+     "svg/rotacion-cervical-frontal.svg",
+     "svg/rotacion-cervical-lateral.svg",
+     "svg/rotacion-cervical-iso.svg"
+    ],
+    "duration": 7,
+    "cue": "Sentado con la espalda recta, gira la cabeza para mirar por encima de un hombro y después del otro, sin girar los hombros."
+   }
+  },
+  {
+   "id": "inclinacion-cervical",
+   "family": "movilidad-cervical",
+   "name": {
+    "es": "Inclinación cervical",
+    "en": "Neck side bending"
+   },
+   "familyName": {
+    "es": "Movilidad cervical",
+    "en": "Neck range of motion"
+   },
+   "params": {
+    "movimiento": "inclinacion"
+   },
+   "pattern": "movilidad",
+   "patterns2": [],
+   "plane": "frontal",
+   "mechanics": "aislado",
+   "action": "movilidad",
+   "position": "sentado",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "silla"
+   ],
+   "demands": [],
+   "regions": [
+    "cervical"
+   ],
+   "goals": [
+    "movilidad-activa",
+    "flexibilidad"
+   ],
+   "mode": "activo",
+   "muscles": [
+    {
+     "id": "escalenos",
+     "pct": 30
+    },
+    {
+     "id": "esternocleidomastoideo",
+     "pct": 25
+    },
+    {
+     "id": "trapecio",
+     "pct": 25
+    },
+    {
+     "id": "extensores-cuello",
+     "pct": 20
+    }
+   ],
+   "progressions": [],
+   "therapeutic": true,
+   "regressions": [],
+   "sheet": {
+    "patient": {
+     "start": "Siéntate con la espalda recta, los hombros relajados y la mirada al frente.",
+     "steps": [
+      "Acerca la oreja al hombro despacio, sin levantar el hombro.",
+      "Vuelve al centro.",
+      "Hazlo hacia el otro lado y vuelve al centro."
+     ],
+     "avoid": [
+      "No gires la cabeza: la nariz sigue mirando al frente.",
+      "No subas el hombro hacia la oreja."
+     ]
+    },
+    "pro": {
+     "goal": "Movilidad activa en inclinación lateral cervical; estiramiento del trapecio superior y los escalenos del lado contrario.",
+     "notes": [
+      "Mantener la posición final 20-30 s convierte el ejercicio en un estiramiento.",
+      "Sujetar el borde de la silla con la mano del lado contrario aumenta el estiramiento.",
+      "Vigilar la aparición de síntomas en el brazo (tensión neural)."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "escalenos",
+    "cuello",
+    "tren-superior",
+    "esternocleidomastoideo",
+    "trapecio",
+    "extensores-cuello"
+   ],
+   "equipmentCategories": [
+    "estructura"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#inclinacion-cervical",
+    "views": [
+     "svg/inclinacion-cervical-frontal.svg",
+     "svg/inclinacion-cervical-lateral.svg",
+     "svg/inclinacion-cervical-iso.svg"
+    ],
+    "duration": 7,
+    "cue": "Sentado con la espalda recta, acerca la oreja al hombro sin levantarlo y después hacia el otro lado."
+   }
+  },
+  {
+   "id": "rotacion-externa-baston",
+   "family": "movilidad-hombro-baston",
+   "name": {
+    "es": "Rotación externa con bastón",
+    "en": "Stick-assisted external rotation"
+   },
+   "familyName": {
+    "es": "Movilidad de hombro con bastón",
+    "en": "Stick-assisted shoulder mobility"
+   },
+   "params": {
+    "movimiento": "rotacion-externa"
+   },
+   "pattern": "movilidad",
+   "patterns2": [],
+   "plane": "transversal",
+   "mechanics": "aislado",
+   "action": "movilidad",
+   "position": "de-pie",
+   "laterality": "unilateral",
+   "level": 1,
+   "equipment": [
+    "baston"
+   ],
+   "demands": [],
+   "regions": [
+    "hombro"
+   ],
+   "goals": [
+    "movilidad-autoasistida"
+   ],
+   "mode": "autoasistido",
+   "muscles": [
+    {
+     "id": "manguito-rotador",
+     "pct": 40
+    },
+    {
+     "id": "deltoides-posterior",
+     "pct": 20
+    },
+    {
+     "id": "romboides",
+     "pct": 15
+    },
+    {
+     "id": "trapecio",
+     "pct": 10
+    },
+    {
+     "id": "pectoral",
+     "pct": 10
+    },
+    {
+     "id": "biceps",
+     "pct": 5
+    }
+   ],
+   "progressions": [
+    "rotacion-externa-banda"
+   ],
+   "therapeutic": true,
+   "regressions": [],
+   "sheet": {
+    "patient": {
+     "start": "De pie con los codos pegados al cuerpo, doblados a 90°, y un bastón sujeto con las dos manos por delante.",
+     "steps": [
+      "Con la mano sana, empuja el bastón hacia el lado del brazo afectado.",
+      "El antebrazo afectado gira hacia fuera sin que el codo se separe del cuerpo.",
+      "Mantén un momento y vuelve despacio."
+     ],
+     "avoid": [
+      "No separes el codo del cuerpo.",
+      "No gires el tronco."
+     ]
+    },
+    "pro": {
+     "goal": "Movilidad autoasistida de rotación externa glenohumeral con el brazo junto al cuerpo.",
+     "notes": [
+      "Una toalla enrollada entre el codo y el tronco ayuda a mantener la posición.",
+      "Puede hacerse en supino para descargar el hombro en fases iniciales.",
+      "Progresión: rotación externa con banda."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "manguito-rotador",
+    "tren-superior",
+    "deltoides-posterior",
+    "deltoides",
+    "romboides",
+    "trapecio",
+    "pectoral",
+    "biceps"
+   ],
+   "equipmentCategories": [
+    "accesorio"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#rotacion-externa-baston",
+    "views": [
+     "svg/rotacion-externa-baston-cenital.svg",
+     "svg/rotacion-externa-baston-frontal.svg",
+     "svg/rotacion-externa-baston-iso.svg"
+    ],
+    "duration": 4.1,
+    "cue": "De pie con los codos pegados al cuerpo y doblados a 90°, empuja el bastón con la mano sana para girar el antebrazo afectado hacia fuera."
+   }
+  },
+  {
+   "id": "rotacion-interna-baston",
+   "family": "movilidad-hombro-baston",
+   "name": {
+    "es": "Rotación interna con bastón",
+    "en": "Stick-assisted internal rotation (behind the back)"
+   },
+   "familyName": {
+    "es": "Movilidad de hombro con bastón",
+    "en": "Stick-assisted shoulder mobility"
+   },
+   "params": {
+    "movimiento": "rotacion-interna"
+   },
+   "pattern": "movilidad",
+   "patterns2": [],
+   "plane": "transversal",
+   "mechanics": "aislado",
+   "action": "movilidad",
+   "position": "de-pie",
+   "laterality": "unilateral",
+   "level": 1,
+   "equipment": [
+    "baston"
+   ],
+   "demands": [],
+   "regions": [
+    "hombro"
+   ],
+   "goals": [
+    "movilidad-autoasistida",
+    "flexibilidad"
+   ],
+   "mode": "autoasistido",
+   "muscles": [
+    {
+     "id": "manguito-rotador",
+     "pct": 35
+    },
+    {
+     "id": "deltoides-posterior",
+     "pct": 20
+    },
+    {
+     "id": "triceps",
+     "pct": 15
+    },
+    {
+     "id": "dorsal",
+     "pct": 10
+    },
+    {
+     "id": "pectoral",
+     "pct": 10
+    },
+    {
+     "id": "romboides",
+     "pct": 10
+    }
+   ],
+   "progressions": [
+    "rotacion-interna-banda"
+   ],
+   "therapeutic": true,
+   "regressions": [],
+   "sheet": {
+    "patient": {
+     "start": "De pie con un bastón detrás de la espalda: la mano sana arriba, por encima del hombro, y la afectada abajo, a la altura de la cintura.",
+     "steps": [
+      "Tira del bastón hacia arriba con la mano de arriba.",
+      "La mano de abajo sube por la espalda.",
+      "Mantén un momento y baja despacio."
+     ],
+     "avoid": [
+      "No arquees la espalda.",
+      "No fuerces si aparece dolor intenso en la parte delantera del hombro."
+     ]
+    },
+    "pro": {
+     "goal": "Movilidad autoasistida de rotación interna con extensión (mano a la espalda).",
+     "notes": [
+      "Se puede hacer con una toalla en lugar del bastón.",
+      "Registrar el nivel vertebral alcanzado con el pulgar para seguir la evolución.",
+      "Progresión: rotación interna con banda."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "manguito-rotador",
+    "tren-superior",
+    "deltoides-posterior",
+    "deltoides",
+    "triceps",
+    "dorsal",
+    "pectoral",
+    "romboides"
+   ],
+   "equipmentCategories": [
+    "accesorio"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#rotacion-interna-baston",
+    "views": [
+     "svg/rotacion-interna-baston-lateral.svg",
+     "svg/rotacion-interna-baston-frontal.svg",
+     "svg/rotacion-interna-baston-iso.svg"
+    ],
+    "duration": 4.1,
+    "cue": "Con el bastón detrás de la espalda, una mano arriba y la afectada abajo, tira hacia arriba con la de arriba para subir la de abajo por la espalda."
+   }
+  },
+  {
+   "id": "abduccion-hombro-baston",
+   "family": "movilidad-hombro-baston",
+   "name": {
+    "es": "Abducción de hombro con bastón",
+    "en": "Stick-assisted abduction"
+   },
+   "familyName": {
+    "es": "Movilidad de hombro con bastón",
+    "en": "Stick-assisted shoulder mobility"
+   },
+   "params": {
+    "movimiento": "abduccion"
+   },
+   "pattern": "movilidad",
+   "patterns2": [],
+   "plane": "frontal",
+   "mechanics": "aislado",
+   "action": "movilidad",
+   "position": "de-pie",
+   "laterality": "unilateral",
+   "level": 1,
+   "equipment": [
+    "baston"
+   ],
+   "demands": [],
+   "regions": [
+    "hombro"
+   ],
+   "goals": [
+    "movilidad-autoasistida"
+   ],
+   "mode": "autoasistido",
+   "muscles": [
+    {
+     "id": "deltoides-lateral",
+     "pct": 35
+    },
+    {
+     "id": "manguito-rotador",
+     "pct": 25
+    },
+    {
+     "id": "trapecio",
+     "pct": 20
+    },
+    {
+     "id": "serrato",
+     "pct": 15
+    },
+    {
+     "id": "deltoides-anterior",
+     "pct": 5
+    }
+   ],
+   "progressions": [
+    "deslizamiento-pared"
+   ],
+   "therapeutic": true,
+   "regressions": [],
+   "sheet": {
+    "patient": {
+     "start": "De pie con un bastón sujeto con las dos manos por delante del cuerpo.",
+     "steps": [
+      "Con el brazo sano, empuja el bastón hacia el lado afectado.",
+      "El brazo afectado sube de lado, estirado, hasta donde puedas sin dolor.",
+      "Vuelve despacio a la posición inicial."
+     ],
+     "avoid": [
+      "No encojas el hombro hacia la oreja.",
+      "No inclines el tronco hacia el otro lado."
+     ]
+    },
+    "pro": {
+     "goal": "Movilidad autoasistida de abducción glenohumeral.",
+     "notes": [
+      "Si aparece dolor hacia los 90°, girar la palma hacia arriba (rotación externa) puede mejorar la tolerancia.",
+      "También se puede hacer en supino.",
+      "Progresión: deslizamiento en pared."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "deltoides-lateral",
+    "deltoides",
+    "tren-superior",
+    "manguito-rotador",
+    "trapecio",
+    "serrato",
+    "deltoides-anterior"
+   ],
+   "equipmentCategories": [
+    "accesorio"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#abduccion-hombro-baston",
+    "views": [
+     "svg/abduccion-hombro-baston-frontal.svg",
+     "svg/abduccion-hombro-baston-lateral.svg",
+     "svg/abduccion-hombro-baston-iso.svg"
+    ],
+    "duration": 4.1,
+    "cue": "De pie con el bastón en las manos, empuja con el brazo sano para subir de lado el brazo afectado, estirado."
+   }
+  },
+  {
+   "id": "extension-hombro-baston",
+   "family": "movilidad-hombro-baston",
+   "name": {
+    "es": "Extensión de hombro con bastón",
+    "en": "Stick-assisted extension (behind the back)"
+   },
+   "familyName": {
+    "es": "Movilidad de hombro con bastón",
+    "en": "Stick-assisted shoulder mobility"
+   },
+   "params": {
+    "movimiento": "extension"
+   },
+   "pattern": "movilidad",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "aislado",
+   "action": "movilidad",
+   "position": "de-pie",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "baston"
+   ],
+   "demands": [],
+   "regions": [
+    "hombro"
+   ],
+   "goals": [
+    "movilidad-autoasistida"
+   ],
+   "mode": "autoasistido",
+   "muscles": [
+    {
+     "id": "deltoides-posterior",
+     "pct": 35
+    },
+    {
+     "id": "dorsal",
+     "pct": 20
+    },
+    {
+     "id": "triceps",
+     "pct": 20
+    },
+    {
+     "id": "romboides",
+     "pct": 15
+    },
+    {
+     "id": "trapecio",
+     "pct": 10
+    }
+   ],
+   "progressions": [
+    "extension-hombro-banda"
+   ],
+   "therapeutic": true,
+   "regressions": [],
+   "sheet": {
+    "patient": {
+     "start": "De pie con un bastón detrás del cuerpo, sujeto con las dos manos y los brazos estirados.",
+     "steps": [
+      "Separa el bastón del cuerpo llevándolo hacia atrás.",
+      "Mantén los brazos estirados y el tronco recto.",
+      "Vuelve despacio."
+     ],
+     "avoid": [
+      "No inclines el tronco hacia delante.",
+      "No encojas los hombros."
+     ]
+    },
+    "pro": {
+     "goal": "Movilidad autoasistida de extensión glenohumeral.",
+     "notes": [
+      "El tronco erguido evita compensar con flexión de tronco.",
+      "Útil tras inmovilización o en capsulitis.",
+      "Progresión: extensión de hombro con banda."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "deltoides-posterior",
+    "deltoides",
+    "tren-superior",
+    "dorsal",
+    "triceps",
+    "romboides",
+    "trapecio"
+   ],
+   "equipmentCategories": [
+    "accesorio"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#extension-hombro-baston",
+    "views": [
+     "svg/extension-hombro-baston-lateral.svg",
+     "svg/extension-hombro-baston-frontal.svg",
+     "svg/extension-hombro-baston-iso.svg"
+    ],
+    "duration": 3.5,
+    "cue": "De pie con el bastón detrás del cuerpo y los brazos estirados, sepáralo hacia atrás sin inclinar el tronco."
+   }
+  },
+  {
+   "id": "flexo-extension-muneca",
+   "family": "movilidad-muneca",
+   "name": {
+    "es": "Flexión y extensión de muñeca",
+    "en": "Wrist flexion and extension"
+   },
+   "familyName": {
+    "es": "Movilidad de muñeca",
+    "en": "Wrist mobility"
+   },
+   "params": {
+    "movimiento": "flexo-extension"
+   },
+   "pattern": "analitico",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "aislado",
+   "action": "movilidad",
+   "position": "sentado",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "silla"
+   ],
+   "demands": [],
+   "regions": [
+    "codo-muneca"
+   ],
+   "goals": [
+    "movilidad-activa"
+   ],
+   "mode": "activo",
+   "muscles": [
+    {
+     "id": "flexores-muneca",
+     "pct": 45
+    },
+    {
+     "id": "extensores-muneca",
+     "pct": 45
+    },
+    {
+     "id": "pronadores",
+     "pct": 10
+    }
+   ],
+   "progressions": [],
+   "therapeutic": true,
+   "regressions": [],
+   "sheet": {
+    "patient": {
+     "start": "Siéntate con los antebrazos apoyados en los muslos y las manos fuera, por delante de las rodillas, con las palmas hacia abajo.",
+     "steps": [
+      "Baja las manos doblando sólo la muñeca.",
+      "Súbelas todo lo que puedas.",
+      "Hazlo despacio, sin mover los antebrazos."
+     ],
+     "avoid": [
+      "No levantes los antebrazos de los muslos.",
+      "No cierres el puño con fuerza."
+     ]
+    },
+    "pro": {
+     "goal": "Movilidad activa de flexión y extensión de muñeca.",
+     "notes": [
+      "Con las palmas hacia arriba se insiste en la flexión.",
+      "Puede añadirse un peso ligero o una banda para fortalecer.",
+      "Útil tras inmovilización y en epicondilalgia (con carga progresiva)."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "flexores-muneca",
+    "antebrazo",
+    "tren-superior",
+    "extensores-muneca",
+    "pronadores"
+   ],
+   "equipmentCategories": [
+    "estructura"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#flexo-extension-muneca",
+    "views": [
+     "svg/flexo-extension-muneca-lateral.svg",
+     "svg/flexo-extension-muneca-frontal.svg",
+     "svg/flexo-extension-muneca-iso.svg"
+    ],
+    "duration": 4.9,
+    "cue": "Sentado con los antebrazos en los muslos y las manos fuera, palmas abajo, baja y sube las manos moviendo sólo la muñeca."
+   }
+  },
+  {
+   "id": "desviacion-muneca",
+   "family": "movilidad-muneca",
+   "name": {
+    "es": "Desviación radial y cubital",
+    "en": "Radial and ulnar deviation"
+   },
+   "familyName": {
+    "es": "Movilidad de muñeca",
+    "en": "Wrist mobility"
+   },
+   "params": {
+    "movimiento": "desviacion"
+   },
+   "pattern": "analitico",
+   "patterns2": [],
+   "plane": "frontal",
+   "mechanics": "aislado",
+   "action": "movilidad",
+   "position": "sentado",
+   "laterality": "unilateral",
+   "level": 1,
+   "equipment": [
+    "silla",
+    "martillo"
+   ],
+   "demands": [],
+   "regions": [
+    "codo-muneca"
+   ],
+   "goals": [
+    "movilidad-activa",
+    "fortalecimiento"
+   ],
+   "mode": "activo",
+   "muscles": [
+    {
+     "id": "extensores-muneca",
+     "pct": 50
+    },
+    {
+     "id": "flexores-muneca",
+     "pct": 50
+    }
+   ],
+   "progressions": [],
+   "therapeutic": true,
+   "regressions": [],
+   "sheet": {
+    "patient": {
+     "start": "Siéntate con el antebrazo apoyado en el muslo, el pulgar hacia arriba y un martillo sujeto en la mano.",
+     "steps": [
+      "Sube el martillo moviendo sólo la muñeca.",
+      "Bájalo despacio por debajo de la horizontal.",
+      "Repite y después cambia de mano."
+     ],
+     "avoid": [
+      "No muevas el antebrazo.",
+      "No gires la muñeca."
+     ]
+    },
+    "pro": {
+     "goal": "Movilidad activa y fortalecimiento en desviación radial y cubital.",
+     "notes": [
+      "La distancia de la mano a la cabeza del martillo regula la carga.",
+      "Útil tras fractura de muñeca y en tendinopatías del antebrazo.",
+      "Puede hacerse sin peso al principio."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "extensores-muneca",
+    "antebrazo",
+    "tren-superior",
+    "flexores-muneca"
+   ],
+   "equipmentCategories": [
+    "estructura",
+    "accesorio"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#desviacion-muneca",
+    "views": [
+     "svg/desviacion-muneca-lateral.svg",
+     "svg/desviacion-muneca-frontal.svg",
+     "svg/desviacion-muneca-iso.svg"
+    ],
+    "duration": 4.7,
+    "cue": "Sentado con el antebrazo en el muslo y el pulgar arriba, sujeta el martillo y muévelo arriba y abajo sólo con la muñeca."
+   }
+  },
+  {
    "id": "pallof-press",
    "family": "pallof-press",
    "name": {
@@ -5933,6 +7173,110 @@
    }
   },
   {
+   "id": "pronosupinacion",
+   "family": "pronosupinacion",
+   "name": {
+    "es": "Pronosupinación con martillo",
+    "en": "Forearm rotation with a hammer"
+   },
+   "familyName": {
+    "es": "Pronosupinación",
+    "en": "Forearm pronation-supination"
+   },
+   "params": {},
+   "pattern": "analitico",
+   "patterns2": [],
+   "plane": "transversal",
+   "mechanics": "aislado",
+   "action": "movilidad",
+   "position": "sentado",
+   "laterality": "unilateral",
+   "level": 1,
+   "equipment": [
+    "silla",
+    "martillo"
+   ],
+   "demands": [],
+   "regions": [
+    "codo-muneca"
+   ],
+   "goals": [
+    "movilidad-activa",
+    "fortalecimiento"
+   ],
+   "mode": "activo",
+   "muscles": [
+    {
+     "id": "supinadores",
+     "pct": 35
+    },
+    {
+     "id": "pronadores",
+     "pct": 35
+    },
+    {
+     "id": "biceps",
+     "pct": 20
+    },
+    {
+     "id": "flexores-muneca",
+     "pct": 10
+    }
+   ],
+   "progressions": [],
+   "therapeutic": true,
+   "regressions": [],
+   "sheet": {
+    "patient": {
+     "start": "Siéntate con el antebrazo apoyado en el muslo, el codo doblado y un martillo sujeto en vertical.",
+     "steps": [
+      "Gira el antebrazo para tumbar el martillo hacia fuera.",
+      "Vuelve al centro.",
+      "Gíralo hacia dentro y vuelve; después cambia de brazo."
+     ],
+     "avoid": [
+      "No muevas el codo ni el hombro.",
+      "No dejes caer el martillo de golpe: controla el movimiento."
+     ]
+    },
+    "pro": {
+     "goal": "Movilidad activa y fortalecimiento de pronadores y supinadores.",
+     "notes": [
+      "Sujetar el martillo más lejos de la cabeza aumenta la carga.",
+      "Útil tras fractura de radio distal o inmovilización del codo.",
+      "Puede empezarse sin peso."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "supinadores",
+    "antebrazo",
+    "tren-superior",
+    "pronadores",
+    "biceps",
+    "flexores-muneca"
+   ],
+   "equipmentCategories": [
+    "estructura",
+    "accesorio"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#pronosupinacion",
+    "views": [
+     "svg/pronosupinacion-frontal.svg",
+     "svg/pronosupinacion-lateral.svg",
+     "svg/pronosupinacion-iso.svg"
+    ],
+    "duration": 5.7,
+    "cue": "Sentado con el antebrazo apoyado en el muslo y el martillo en vertical, gira el antebrazo para tumbar el martillo hacia fuera y hacia dentro."
+   }
+  },
+  {
    "id": "puente-gluteo",
    "family": "puente-cadera",
    "name": {
@@ -6526,6 +7870,437 @@
     ],
     "duration": 2.7,
     "cue": "Cuerpo en bloque apoyado en los talones; el pecho sube a la barra y baja hasta estirar los brazos."
+   }
+  },
+  {
+   "id": "remo-banda",
+   "family": "remo",
+   "name": {
+    "es": "Remo con banda",
+    "en": "Banded row"
+   },
+   "familyName": {
+    "es": "Remo",
+    "en": "Row"
+   },
+   "params": {
+    "implemento": "banda",
+    "apoyo": "de-pie"
+   },
+   "pattern": "traccion-horizontal",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "compuesto",
+   "action": "fuerza",
+   "position": "de-pie",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "banda-elastica"
+   ],
+   "demands": [
+    "agarre"
+   ],
+   "regions": [
+    "hombro",
+    "dorsal"
+   ],
+   "goals": [
+    "fortalecimiento",
+    "control-motor"
+   ],
+   "mode": "activo",
+   "muscles": [
+    {
+     "id": "romboides",
+     "pct": 25
+    },
+    {
+     "id": "dorsal",
+     "pct": 25
+    },
+    {
+     "id": "trapecio",
+     "pct": 20
+    },
+    {
+     "id": "deltoides-posterior",
+     "pct": 15
+    },
+    {
+     "id": "biceps",
+     "pct": 15
+    }
+   ],
+   "progressions": [],
+   "therapeutic": true,
+   "regressions": [],
+   "sheet": {
+    "patient": {
+     "start": "De pie con una banda anclada delante a la altura del pecho, sujeta con las dos manos y los brazos estirados.",
+     "steps": [
+      "Tira de la banda llevando los codos hacia atrás, junto al cuerpo.",
+      "Junta las escápulas al final.",
+      "Vuelve despacio estirando los brazos."
+     ],
+     "avoid": [
+      "No encojas los hombros.",
+      "No eches el tronco hacia atrás."
+     ]
+    },
+    "pro": {
+     "goal": "Fortalecimiento de la musculatura escapular retractora y del dorsal.",
+     "notes": [
+      "Indicado en el control escapular y en el dolor de hombro con discinesia.",
+      "La distancia al anclaje regula la tensión.",
+      "Puede hacerse con un brazo."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "romboides",
+    "tren-superior",
+    "dorsal",
+    "trapecio",
+    "deltoides-posterior",
+    "deltoides",
+    "biceps"
+   ],
+   "equipmentCategories": [
+    "accesorio"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#remo-banda",
+    "views": [
+     "svg/remo-banda-lateral.svg",
+     "svg/remo-banda-frontal.svg",
+     "svg/remo-banda-iso.svg"
+    ],
+    "duration": 3.4,
+    "cue": "Con la banda anclada delante a la altura del pecho, tira llevando los codos atrás y juntando las escápulas."
+   }
+  },
+  {
+   "id": "retraccion-cervical",
+   "family": "retraccion-cervical",
+   "name": {
+    "es": "Retracción cervical",
+    "en": "Seated chin tuck"
+   },
+   "familyName": {
+    "es": "Retracción cervical",
+    "en": "Chin tuck"
+   },
+   "params": {},
+   "pattern": "movilidad",
+   "patterns2": [],
+   "plane": "sagital",
+   "mechanics": "aislado",
+   "action": "estabilidad",
+   "position": "sentado",
+   "laterality": "bilateral",
+   "level": 1,
+   "equipment": [
+    "silla"
+   ],
+   "demands": [],
+   "regions": [
+    "cervical"
+   ],
+   "goals": [
+    "control-motor",
+    "movilidad-activa"
+   ],
+   "mode": "activo",
+   "muscles": [
+    {
+     "id": "flexores-profundos-cuello",
+     "pct": 55
+    },
+    {
+     "id": "extensores-cuello",
+     "pct": 30
+    },
+    {
+     "id": "trapecio",
+     "pct": 15
+    }
+   ],
+   "progressions": [
+    "flexo-extension-cervical"
+   ],
+   "therapeutic": true,
+   "regressions": [],
+   "sheet": {
+    "patient": {
+     "start": "Siéntate con la espalda recta, los pies apoyados y la mirada al frente.",
+     "steps": [
+      "Lleva la cabeza hacia atrás en línea recta, como si quisieras hacer papada.",
+      "Mantén unos segundos sin bajar ni subir la mirada.",
+      "Vuelve despacio a la posición inicial."
+     ],
+     "avoid": [
+      "No inclines la cabeza hacia abajo: la mirada sigue al frente.",
+      "No eches los hombros hacia atrás ni los encojas."
+     ]
+    },
+    "pro": {
+     "goal": "Control motor de los flexores profundos del cuello y corrección de la postura de cabeza adelantada.",
+     "notes": [
+      "Movimiento de traslación posterior: flexión cervical alta con extensión cervical baja.",
+      "Puede hacerse en supino como regresión (deslizando la cabeza sobre la almohada).",
+      "Útil en cervicalgia mecánica y cefalea de origen cervical."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "flexores-profundos-cuello",
+    "cuello",
+    "tren-superior",
+    "extensores-cuello",
+    "trapecio"
+   ],
+   "equipmentCategories": [
+    "estructura"
+   ],
+   "places": [
+    "casa",
+    "gimnasio"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#retraccion-cervical",
+    "views": [
+     "svg/retraccion-cervical-lateral.svg",
+     "svg/retraccion-cervical-frontal.svg",
+     "svg/retraccion-cervical-iso.svg"
+    ],
+    "duration": 3.9,
+    "cue": "Sentado con la espalda recta, lleva la cabeza hacia atrás como para hacer papada, mirando al frente, y vuelve despacio."
+   }
+  },
+  {
+   "id": "rotacion-externa-banda",
+   "family": "rotacion-hombro-banda",
+   "name": {
+    "es": "Rotación externa con banda",
+    "en": "Banded external rotation"
+   },
+   "familyName": {
+    "es": "Rotación de hombro con banda",
+    "en": "Banded shoulder rotation"
+   },
+   "params": {
+    "movimiento": "externa"
+   },
+   "pattern": "analitico",
+   "patterns2": [],
+   "plane": "transversal",
+   "mechanics": "aislado",
+   "action": "fuerza",
+   "position": "de-pie",
+   "laterality": "unilateral",
+   "level": 1,
+   "equipment": [
+    "banda-elastica"
+   ],
+   "demands": [],
+   "regions": [
+    "hombro"
+   ],
+   "goals": [
+    "fortalecimiento",
+    "control-motor"
+   ],
+   "mode": "activo",
+   "muscles": [
+    {
+     "id": "manguito-rotador",
+     "pct": 50
+    },
+    {
+     "id": "deltoides-posterior",
+     "pct": 25
+    },
+    {
+     "id": "romboides",
+     "pct": 15
+    },
+    {
+     "id": "trapecio",
+     "pct": 10
+    }
+   ],
+   "progressions": [],
+   "therapeutic": true,
+   "regressions": [
+    "rotacion-externa-baston"
+   ],
+   "sheet": {
+    "patient": {
+     "start": "De pie con una banda anclada a la altura del codo, del lado contrario al brazo que trabaja.",
+     "steps": [
+      "Con el codo pegado al cuerpo y doblado a 90°, gira el antebrazo hacia fuera estirando la banda.",
+      "Mantén un momento.",
+      "Vuelve despacio controlando la banda."
+     ],
+     "avoid": [
+      "No separes el codo del cuerpo.",
+      "No gires el tronco."
+     ]
+    },
+    "pro": {
+     "goal": "Fortalecimiento de los rotadores externos del hombro.",
+     "notes": [
+      "Una toalla enrollada bajo el brazo mejora la posición y la activación.",
+      "Elegir una banda que permita el recorrido completo sin compensaciones.",
+      "Progresión: posición en 90° de abducción."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "manguito-rotador",
+    "tren-superior",
+    "deltoides-posterior",
+    "deltoides",
+    "romboides",
+    "trapecio"
+   ],
+   "equipmentCategories": [
+    "accesorio"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#rotacion-externa-banda",
+    "views": [
+     "svg/rotacion-externa-banda-cenital.svg",
+     "svg/rotacion-externa-banda-frontal.svg",
+     "svg/rotacion-externa-banda-iso.svg"
+    ],
+    "duration": 3.6,
+    "cue": "Con la banda anclada al otro lado y el codo pegado al cuerpo, gira el antebrazo hacia fuera y vuelve despacio."
+   }
+  },
+  {
+   "id": "rotacion-interna-banda",
+   "family": "rotacion-hombro-banda",
+   "name": {
+    "es": "Rotación interna con banda",
+    "en": "Banded internal rotation"
+   },
+   "familyName": {
+    "es": "Rotación de hombro con banda",
+    "en": "Banded shoulder rotation"
+   },
+   "params": {
+    "movimiento": "interna"
+   },
+   "pattern": "analitico",
+   "patterns2": [],
+   "plane": "transversal",
+   "mechanics": "aislado",
+   "action": "fuerza",
+   "position": "de-pie",
+   "laterality": "unilateral",
+   "level": 1,
+   "equipment": [
+    "banda-elastica"
+   ],
+   "demands": [],
+   "regions": [
+    "hombro"
+   ],
+   "goals": [
+    "fortalecimiento"
+   ],
+   "mode": "activo",
+   "muscles": [
+    {
+     "id": "manguito-rotador",
+     "pct": 40
+    },
+    {
+     "id": "pectoral",
+     "pct": 25
+    },
+    {
+     "id": "dorsal",
+     "pct": 15
+    },
+    {
+     "id": "deltoides-anterior",
+     "pct": 10
+    },
+    {
+     "id": "biceps",
+     "pct": 10
+    }
+   ],
+   "progressions": [],
+   "therapeutic": true,
+   "regressions": [
+    "rotacion-interna-baston"
+   ],
+   "sheet": {
+    "patient": {
+     "start": "De pie con una banda anclada a la altura del codo, del mismo lado que el brazo que trabaja.",
+     "steps": [
+      "Con el codo pegado al cuerpo y doblado a 90°, lleva el antebrazo hacia el abdomen estirando la banda.",
+      "Mantén un momento.",
+      "Vuelve despacio controlando la banda."
+     ],
+     "avoid": [
+      "No separes el codo del cuerpo.",
+      "No gires el tronco."
+     ]
+    },
+    "pro": {
+     "goal": "Fortalecimiento de los rotadores internos del hombro.",
+     "notes": [
+      "Mantener la escápula estable durante el recorrido.",
+      "Una toalla bajo el brazo ayuda a mantener la posición.",
+      "Combinar con rotación externa para equilibrar el manguito."
+     ]
+    }
+   },
+   "muscleGroups": [
+    "manguito-rotador",
+    "tren-superior",
+    "pectoral",
+    "dorsal",
+    "deltoides-anterior",
+    "deltoides",
+    "biceps"
+   ],
+   "equipmentCategories": [
+    "accesorio"
+   ],
+   "places": [
+    "casa",
+    "gimnasio",
+    "exterior"
+   ],
+   "animation": {
+    "batch": "F",
+    "page": "lote-f.html#rotacion-interna-banda",
+    "views": [
+     "svg/rotacion-interna-banda-cenital.svg",
+     "svg/rotacion-interna-banda-frontal.svg",
+     "svg/rotacion-interna-banda-iso.svg"
+    ],
+    "duration": 3.6,
+    "cue": "Con la banda anclada del mismo lado y el codo pegado al cuerpo, lleva el antebrazo hacia el abdomen y vuelve despacio."
    }
   },
   {

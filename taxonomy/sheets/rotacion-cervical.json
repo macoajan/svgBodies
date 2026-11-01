@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "Siéntate con la espalda recta y la mirada al frente.",
+    "steps": [
+      "Gira la cabeza despacio para mirar por encima de un hombro.",
+      "Vuelve al centro.",
+      "Gira hacia el otro lado y vuelve al centro."
+    ],
+    "avoid": [
+      "No gires los hombros con la cabeza.",
+      "No inclines la cabeza al girar."
+    ]
+  },
+  "pro": {
+    "goal": "Movilidad activa de la columna cervical en rotación.",
+    "notes": [
+      "Comparar el rango de ambos lados para seguir la evolución.",
+      "Detener si aparecen mareo, visión borrosa o síntomas neurológicos.",
+      "Puede añadirse una ligera sobrepresión con la mano si se tolera."
+    ]
+  }
+}

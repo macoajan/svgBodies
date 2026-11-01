@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "Túmbate de lado con las caderas y las rodillas dobladas, los pies juntos y una banda elástica por encima de las rodillas.",
+    "steps": [
+      "Sin separar los pies, abre la rodilla de arriba estirando la banda.",
+      "Mantén un momento.",
+      "Ciérrala despacio y repite; después túmbate del otro lado."
+    ],
+    "avoid": [
+      "No gires la pelvis hacia atrás al abrir.",
+      "No despegues los pies."
+    ]
+  },
+  "pro": {
+    "goal": "Fortalecimiento del glúteo medio y de los rotadores externos de cadera con resistencia elástica.",
+    "notes": [
+      "Progresión de la almeja sin banda.",
+      "La pelvis debe mantenerse perpendicular al suelo.",
+      "Aumentar la tensión de la banda antes que el número de repeticiones."
+    ]
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "id": "movilidad-muneca",
+  "name": {
+    "es": "Movilidad de muñeca",
+    "en": "Wrist mobility"
+  },
+  "plane": "sagital",
+  "mechanics": "aislado",
+  "action": "movilidad",
+  "position": "sentado",
+  "laterality": "bilateral",
+  "pattern": "analitico",
+  "level": 1,
+  "muscles": {
+    "flexores-muneca": 45,
+    "extensores-muneca": 45,
+    "pronadores": 10
+  },
+  "equipment": [
+    "silla"
+  ],
+  "demands": [],
+  "params": {
+    "movimiento": [
+      "flexo-extension",
+      "desviacion"
+    ]
+  },
+  "variants": [
+    {
+      "id": "flexo-extension-muneca",
+      "name": {
+        "es": "Flexión y extensión de muñeca",
+        "en": "Wrist flexion and extension"
+      },
+      "set": {
+        "movimiento": "flexo-extension"
+      },
+      "regions": [
+        "codo-muneca"
+      ],
+      "goals": [
+        "movilidad-activa"
+      ],
+      "mode": "activo"
+    },
+    {
+      "id": "desviacion-muneca",
+      "name": {
+        "es": "Desviación radial y cubital",
+        "en": "Radial and ulnar deviation"
+      },
+      "set": {
+        "movimiento": "desviacion"
+      },
+      "plane": "frontal",
+      "laterality": "unilateral",
+      "equipment": [
+        "silla",
+        "martillo"
+      ],
+      "muscles": {
+        "extensores-muneca": 50,
+        "flexores-muneca": 50
+      },
+      "regions": [
+        "codo-muneca"
+      ],
+      "goals": [
+        "movilidad-activa",
+        "fortalecimiento"
+      ],
+      "mode": "activo"
+    }
+  ]
+}

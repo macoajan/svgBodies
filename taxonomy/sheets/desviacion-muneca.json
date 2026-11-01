@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "Siéntate con el antebrazo apoyado en el muslo, el pulgar hacia arriba y un martillo sujeto en la mano.",
+    "steps": [
+      "Sube el martillo moviendo sólo la muñeca.",
+      "Bájalo despacio por debajo de la horizontal.",
+      "Repite y después cambia de mano."
+    ],
+    "avoid": [
+      "No muevas el antebrazo.",
+      "No gires la muñeca."
+    ]
+  },
+  "pro": {
+    "goal": "Movilidad activa y fortalecimiento en desviación radial y cubital.",
+    "notes": [
+      "La distancia de la mano a la cabeza del martillo regula la carga.",
+      "Útil tras fractura de muñeca y en tendinopatías del antebrazo.",
+      "Puede hacerse sin peso al principio."
+    ]
+  }
+}

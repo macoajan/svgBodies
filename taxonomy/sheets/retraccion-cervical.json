@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "Siéntate con la espalda recta, los pies apoyados y la mirada al frente.",
+    "steps": [
+      "Lleva la cabeza hacia atrás en línea recta, como si quisieras hacer papada.",
+      "Mantén unos segundos sin bajar ni subir la mirada.",
+      "Vuelve despacio a la posición inicial."
+    ],
+    "avoid": [
+      "No inclines la cabeza hacia abajo: la mirada sigue al frente.",
+      "No eches los hombros hacia atrás ni los encojas."
+    ]
+  },
+  "pro": {
+    "goal": "Control motor de los flexores profundos del cuello y corrección de la postura de cabeza adelantada.",
+    "notes": [
+      "Movimiento de traslación posterior: flexión cervical alta con extensión cervical baja.",
+      "Puede hacerse en supino como regresión (deslizando la cabeza sobre la almohada).",
+      "Útil en cervicalgia mecánica y cefalea de origen cervical."
+    ]
+  }
+}

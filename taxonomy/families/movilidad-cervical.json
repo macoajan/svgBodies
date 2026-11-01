@@ -1,0 +1,101 @@
+{
+  "id": "movilidad-cervical",
+  "name": {
+    "es": "Movilidad cervical",
+    "en": "Neck range of motion"
+  },
+  "plane": "sagital",
+  "mechanics": "aislado",
+  "action": "movilidad",
+  "position": "sentado",
+  "laterality": "bilateral",
+  "pattern": "movilidad",
+  "level": 1,
+  "equipment": [
+    "silla"
+  ],
+  "demands": [],
+  "muscles": {
+    "flexores-profundos-cuello": 30,
+    "extensores-cuello": 30,
+    "esternocleidomastoideo": 20,
+    "trapecio": 10,
+    "escalenos": 10
+  },
+  "params": {
+    "movimiento": [
+      "flexo-extension",
+      "rotacion",
+      "inclinacion"
+    ]
+  },
+  "variants": [
+    {
+      "id": "flexo-extension-cervical",
+      "name": {
+        "es": "Flexión y extensión cervical",
+        "en": "Neck flexion and extension"
+      },
+      "set": {
+        "movimiento": "flexo-extension"
+      },
+      "regions": [
+        "cervical"
+      ],
+      "goals": [
+        "movilidad-activa"
+      ],
+      "mode": "activo"
+    },
+    {
+      "id": "rotacion-cervical",
+      "name": {
+        "es": "Rotación cervical",
+        "en": "Neck rotation"
+      },
+      "set": {
+        "movimiento": "rotacion"
+      },
+      "plane": "transversal",
+      "muscles": {
+        "esternocleidomastoideo": 35,
+        "extensores-cuello": 30,
+        "escalenos": 15,
+        "trapecio": 10,
+        "flexores-profundos-cuello": 10
+      },
+      "regions": [
+        "cervical"
+      ],
+      "goals": [
+        "movilidad-activa"
+      ],
+      "mode": "activo"
+    },
+    {
+      "id": "inclinacion-cervical",
+      "name": {
+        "es": "Inclinación cervical",
+        "en": "Neck side bending"
+      },
+      "set": {
+        "movimiento": "inclinacion"
+      },
+      "plane": "frontal",
+      "muscles": {
+        "escalenos": 30,
+        "esternocleidomastoideo": 25,
+        "trapecio": 25,
+        "extensores-cuello": 20
+      },
+      "regions": [
+        "cervical"
+      ],
+      "goals": [
+        "movilidad-activa",
+        "flexibilidad"
+      ],
+      "mode": "activo"
+    }
+  ]
+}

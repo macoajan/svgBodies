@@ -7,7 +7,7 @@
 (function (global) {
   'use strict';
   const NS = 'http://www.w3.org/2000/svg';
-  const INK = '#C2410C', IRON = '#0F2A3D', PLATE_FILL = '#DCE4EA', FLOOR_FILL = '#E2EAEF';
+  const INK = '#C2410C', BAND = '#2E8B6E', IRON = '#0F2A3D', PLATE_FILL = '#DCE4EA', FLOOR_FILL = '#E2EAEF';
   const BOX_FILL = { top: '#EEF2F5', side: '#C9D3DB', front: '#DCE4EA' };
   const ANKLE_Y = 58, GROUND = 60.5, FLOOR_TOP = 59.9, HEAD_R = 4.5, PLATE_R = 6.5, PLATE_W = 2.2, KB_BELL = 7.2, KB_R = 4.2;
   const FOOT = 6, HEEL = 2;
@@ -52,12 +52,12 @@
     while (i < F.length - 2 && F[i + 1].t <= t) i++;
     const a = F[i], b = F[i + 1], k = b.t > a.t ? Math.min(1, (t - a.t) / (b.t - a.t)) : 0;
     const J = {};
-    for (const j of ['pelvis', 'lumbarTop', 'thorax', 'shoulderC', 'neckTop', 'head']) if (a.joints[j]) J[j] = lerp3(a.joints[j], b.joints[j], k);
-    for (const s of ['r', 'l']) { J[s] = {}; for (const j of SIDE_J) J[s][j] = lerp3(a.joints[s][j], b.joints[s][j], k); }
+    for (const j of ['pelvis', 'lumbarTop', 'thorax', 'shoulderC', 'neckTop', 'head', 'face', 'eyeR', 'eyeL']) if (a.joints[j]) J[j] = lerp3(a.joints[j], b.joints[j], k);
+    for (const s of ['r', 'l']) { J[s] = {}; for (const j of [...SIDE_J, 'fingers']) if (a.joints[s][j]) J[s][j] = lerp3(a.joints[s][j], b.joints[s][j], k); }
     const objects = a.objects.map((o, n) => {
       const ob = b.objects[n];
       if (o.type === 'rope') return { ...o, points: o.points.map((q, m) => lerp3(q, ob.points[m], k)) };
-      if (o.type === 'cord') return { ...o, a: lerp3(o.a, ob.a, k), b: lerp3(o.b, ob.b, k) };
+      if (o.type === 'cord' || o.type === 'band') return { ...o, a: lerp3(o.a, ob.a, k), b: lerp3(o.b, ob.b, k) };
       return { ...o, at: lerp3(o.at, ob.at, k), phi: o.phi === undefined ? 0 : o.phi + (ob.phi - o.phi) * k };
     });
     return { J, objects };
@@ -106,6 +106,7 @@
       seg(J('hip'), J('knee'));
       seg(J('shoulder'), J('elbow'));
       seg(J('elbow'), J('hand'));
+      if (ex.frames[0].joints[s].fingers) seg(J('hand'), J('fingers'), { 'stroke-width': 2.4 });
       for (const j of ['knee', 'elbow', 'hand']) dot(J(j));
     }
     seg(p => p.J.l.hip, p => p.J.r.hip);
@@ -118,6 +119,10 @@
     seg(p => p.J.neckTop, p => p.J.shoulderC);
     seg(p => p.J.l.shoulder, p => p.J.r.shoulder);
     disc(p => p.J.head, HEAD_R, {}, 0.2);
+    if (ex.frames[0].joints.face) {
+      disc(p => p.J.face, 0.8, { fill: INK, stroke: 'none' }, 0.3);
+      for (const e of ['eyeR', 'eyeL']) if (ex.frames[0].joints[e]) disc(p => p.J[e], 0.75, { fill: INK, stroke: 'none' }, 0.3);
+    }
 
     ex.frames[0].objects.forEach((o, n) => {
       if (o.type === 'rope') {
@@ -125,6 +130,8 @@
           seg(p => p.objects[n].points[m], p => p.objects[n].points[m + 1], { stroke: IRON, 'stroke-width': o.w || 1.3 });
       } else if (o.type === 'cord') {
         seg(p => p.objects[n].a, p => p.objects[n].b, { stroke: IRON, 'stroke-width': 1.1 });
+      } else if (o.type === 'band') {
+        seg(p => p.objects[n].a, p => p.objects[n].b, { stroke: BAND, 'stroke-width': 1.8 });
       } else if (o.type === 'ball') {
         disc(p => p.objects[n].at, o.r, { fill: IRON, stroke: 'none' });
       } else if (o.type === 'wheel') {

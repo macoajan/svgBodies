@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "De pie con una banda anclada a la altura del codo, del mismo lado que el brazo que trabaja.",
+    "steps": [
+      "Con el codo pegado al cuerpo y doblado a 90°, lleva el antebrazo hacia el abdomen estirando la banda.",
+      "Mantén un momento.",
+      "Vuelve despacio controlando la banda."
+    ],
+    "avoid": [
+      "No separes el codo del cuerpo.",
+      "No gires el tronco."
+    ]
+  },
+  "pro": {
+    "goal": "Fortalecimiento de los rotadores internos del hombro.",
+    "notes": [
+      "Mantener la escápula estable durante el recorrido.",
+      "Una toalla bajo el brazo ayuda a mantener la posición.",
+      "Combinar con rotación externa para equilibrar el manguito."
+    ]
+  }
+}

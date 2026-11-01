@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "De pie con un bastón sujeto con las dos manos por delante del cuerpo.",
+    "steps": [
+      "Con el brazo sano, empuja el bastón hacia el lado afectado.",
+      "El brazo afectado sube de lado, estirado, hasta donde puedas sin dolor.",
+      "Vuelve despacio a la posición inicial."
+    ],
+    "avoid": [
+      "No encojas el hombro hacia la oreja.",
+      "No inclines el tronco hacia el otro lado."
+    ]
+  },
+  "pro": {
+    "goal": "Movilidad autoasistida de abducción glenohumeral.",
+    "notes": [
+      "Si aparece dolor hacia los 90°, girar la palma hacia arriba (rotación externa) puede mejorar la tolerancia.",
+      "También se puede hacer en supino.",
+      "Progresión: deslizamiento en pared."
+    ]
+  }
+}

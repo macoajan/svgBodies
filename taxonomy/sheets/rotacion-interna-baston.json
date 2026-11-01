@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "De pie con un bastón detrás de la espalda: la mano sana arriba, por encima del hombro, y la afectada abajo, a la altura de la cintura.",
+    "steps": [
+      "Tira del bastón hacia arriba con la mano de arriba.",
+      "La mano de abajo sube por la espalda.",
+      "Mantén un momento y baja despacio."
+    ],
+    "avoid": [
+      "No arquees la espalda.",
+      "No fuerces si aparece dolor intenso en la parte delantera del hombro."
+    ]
+  },
+  "pro": {
+    "goal": "Movilidad autoasistida de rotación interna con extensión (mano a la espalda).",
+    "notes": [
+      "Se puede hacer con una toalla en lugar del bastón.",
+      "Registrar el nivel vertebral alcanzado con el pulgar para seguir la evolución.",
+      "Progresión: rotación interna con banda."
+    ]
+  }
+}

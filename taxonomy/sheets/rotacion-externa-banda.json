@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "De pie con una banda anclada a la altura del codo, del lado contrario al brazo que trabaja.",
+    "steps": [
+      "Con el codo pegado al cuerpo y doblado a 90°, gira el antebrazo hacia fuera estirando la banda.",
+      "Mantén un momento.",
+      "Vuelve despacio controlando la banda."
+    ],
+    "avoid": [
+      "No separes el codo del cuerpo.",
+      "No gires el tronco."
+    ]
+  },
+  "pro": {
+    "goal": "Fortalecimiento de los rotadores externos del hombro.",
+    "notes": [
+      "Una toalla enrollada bajo el brazo mejora la posición y la activación.",
+      "Elegir una banda que permita el recorrido completo sin compensaciones.",
+      "Progresión: posición en 90° de abducción."
+    ]
+  }
+}
