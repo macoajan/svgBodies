@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "De pie con una banda anclada arriba y delante, sujeta con los brazos estirados.",
+    "steps": [
+      "Baja los brazos estirados hasta los muslos.",
+      "Mantén un momento con las escápulas hacia atrás y abajo.",
+      "Sube despacio controlando la banda."
+    ],
+    "avoid": [
+      "No dobles los codos.",
+      "No arquees la zona lumbar."
+    ]
+  },
+  "pro": {
+    "goal": "Fortalecimiento del dorsal ancho y de los extensores del hombro con control del tronco.",
+    "notes": [
+      "Activar el abdomen para evitar la extensión lumbar.",
+      "Útil para el control escapular en depresión.",
+      "Progresión: más tensión o un brazo."
+    ]
+  }
+}

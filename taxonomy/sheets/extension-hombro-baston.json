@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "De pie con un bastón detrás del cuerpo, sujeto con las dos manos y los brazos estirados.",
+    "steps": [
+      "Separa el bastón del cuerpo llevándolo hacia atrás.",
+      "Mantén los brazos estirados y el tronco recto.",
+      "Vuelve despacio."
+    ],
+    "avoid": [
+      "No inclines el tronco hacia delante.",
+      "No encojas los hombros."
+    ]
+  },
+  "pro": {
+    "goal": "Movilidad autoasistida de extensión glenohumeral.",
+    "notes": [
+      "El tronco erguido evita compensar con flexión de tronco.",
+      "Útil tras inmovilización o en capsulitis.",
+      "Progresión: extensión de hombro con banda."
+    ]
+  }
+}

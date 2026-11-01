@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "De pie con una banda anclada delante a la altura del pecho, sujeta con las dos manos y los brazos estirados.",
+    "steps": [
+      "Tira de la banda llevando los codos hacia atrás, junto al cuerpo.",
+      "Junta las escápulas al final.",
+      "Vuelve despacio estirando los brazos."
+    ],
+    "avoid": [
+      "No encojas los hombros.",
+      "No eches el tronco hacia atrás."
+    ]
+  },
+  "pro": {
+    "goal": "Fortalecimiento de la musculatura escapular retractora y del dorsal.",
+    "notes": [
+      "Indicado en el control escapular y en el dolor de hombro con discinesia.",
+      "La distancia al anclaje regula la tensión.",
+      "Puede hacerse con un brazo."
+    ]
+  }
+}

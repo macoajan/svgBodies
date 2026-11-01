@@ -11,7 +11,7 @@ export const GROUND = 60.5;
 export const FLOOR_TOP = GROUND - 0.6;
 export const ANKLE_Y = 58;           // contact line: centre of a stroke resting on the floor
 export const MAX_Y = FLOOR_TOP - 1.7 + 0.05;
-export const L = { shin: 13.5, thigh: 13.5, sh: 15, neck: 4, head: 5, upper: 11.5, fore: 9.5, foot: 6, heel: 2 };
+export const L = { shin: 13.5, thigh: 13.5, sh: 15, neck: 4, head: 5, upper: 11.5, fore: 9.5, foot: 6, heel: 2, palm: 3.8 };
 // The trunk (L.sh) is three segments: lumbar (pelvis to L1), lower and upper thoracic (L1-T7-C7).
 export const SPINE = [6, 4.5, 4.5];
 export const Z = { hip: 4, shoulder: 7.5 };
@@ -163,10 +163,14 @@ export function circles(P, rP, Q, rQ) {
 // One side of the body. Hip and shoulder come from the trunk; the caller gives knee, ankle,
 // toe and hand, and either the elbow or a pole vector for the elbow IK. z of the given
 // joints must already carry the side's sign.
-function limbs(t, sg, { knee, ankle, toe, hand, elbow, pole }) {
+function limbs(t, sg, { knee, ankle, toe, hand, elbow, pole, fingers }) {
   const hip = V(t.pelvis.x, t.pelvis.y, t.pelvis.z + sg * Z.hip);
   const shoulder = t.shoulderOf(sg);
-  return { hip, knee, ankle, toe, shoulder, elbow: elbow ?? elbowIK(shoulder, hand, pole ?? V(0, 1, 0.3 * sg)), hand };
+  const el = elbow ?? elbowIK(shoulder, hand, pole ?? V(0, 1, 0.3 * sg));
+  // Hand segment (wrist to fingers): drawn only by exercises with `hands: true`; by default it
+  // continues the forearm.
+  const fg = fingers ?? add(hand, mul(unit(sub(hand, el)), L.palm));
+  return { hip, knee, ankle, toe, shoulder, elbow: el, hand, fingers: fg };
 }
 export const mirrorSide = s => Object.fromEntries(Object.entries(s).map(([k, v]) => [k, v && typeof v === 'object' ? mirror(v) : v]));
 
@@ -273,7 +277,7 @@ export function sample(ex) {
   ex.phases.forEach((ph, i) => {
     const next = ex.phases[(i + 1) % ex.phases.length];
     const a = ph.pose(1), b = next.pose(0);
-    const pairs = [['head', a.head, b.head], ...['r', 'l'].flatMap(s => SIDE_J.map(j => [`${s}.${j}`, a[s][j], b[s][j]]))];
+    const pairs = [['head', a.head, b.head], ...['r', 'l'].flatMap(s => [...SIDE_J, 'fingers'].map(j => [`${s}.${j}`, a[s][j], b[s][j]]))];
     for (const [j, qa, qb] of pairs) {
       const d = len(sub(qa, qb));
       if (d > 0.05) throw new Error(`${ex.id}: phase ${i}→${(i + 1) % ex.phases.length} jumps at ${j} (${d.toFixed(2)})`);
@@ -303,6 +307,7 @@ export function validate(ex, frames) {
       seg(q.ankle, q.toe, L.foot, `${s} foot`, t);
       seg(q.shoulder, q.elbow, L.upper, `${s} upper arm`, t);
       seg(q.elbow, q.hand, L.fore, `${s} forearm`, t);
+      if (ex.hands) seg(q.hand, q.fingers, L.palm, `${s} hand`, t);
       for (const j of SIDE_J) if (q[j].y > MAX_Y) throw new Error(`${ex.id}: ${s}.${j} below the floor @${t.toFixed(2)}`);
     }
     if (p.neckTop.y > MAX_Y) throw new Error(`${ex.id}: neck below the floor @${t.toFixed(2)}`);
@@ -323,7 +328,7 @@ export function validate(ex, frames) {
         if (low > FLOOR_TOP - 0.3) throw new Error(`${ex.id}: rope through the floor @${t.toFixed(2)}`);
         continue;
       }
-      if (o.type === 'cord') continue;
+      if (o.type === 'cord' || o.type === 'band') continue;
       if (o.type === 'ball' || o.type === 'wheel' || o.type === 'db') {
         const r0 = o.type === 'db' ? DB.r : o.r;
         if (o.at.y + r0 > FLOOR_TOP + 0.1) throw new Error(`${ex.id}: ${o.type} through the floor @${t.toFixed(2)}`);
@@ -378,7 +383,7 @@ export function hull(pts) {
 
 // ---------- Rendering ----------
 
-export const INK = '#C2410C', IRON = '#0F2A3D', FLOOR = '#AEB8C1';
+export const INK = '#C2410C', IRON = '#0F2A3D', FLOOR = '#AEB8C1', BAND = '#2E8B6E';
 const PLATE_FILL = '#DCE4EA', FLOOR_FILL = '#E2EAEF';
 const BOX_FILL = { top: '#EEF2F5', side: '#C9D3DB', front: '#DCE4EA' };
 const VIEWBOX = '-7 -15 78 78';
@@ -462,7 +467,7 @@ function propSvg(pr, cam) {
 }
 
 // Elements of a view: { key, kind: 'seg'|'pt'|'rot', svg, at(p) -> params, depth(p) }.
-function elements(p0, cam, { face = false } = {}) {
+function elements(p0, cam, { face = false, hands = false } = {}) {
   const els = [];
   const segE = (key, P, Q, L0, attrs = '') => els.push({
     key, kind: 'seg', svg: line0(key, L0, attrs),
@@ -479,6 +484,7 @@ function elements(p0, cam, { face = false } = {}) {
     segE(`thigh-${s}`, J('hip'), J('knee'), L.thigh);
     segE(`upper-${s}`, J('shoulder'), J('elbow'), L.upper);
     segE(`fore-${s}`, J('elbow'), J('hand'), L.fore);
+    if (hands) segE(`palm-${s}`, J('hand'), J('fingers'), L.palm, ' stroke-width="2.4"');
     for (const j of ['knee', 'elbow', 'hand']) ptE(`${j}-${s}`, J(j), jointDot(`${j}-${s}`), 0.05);
   }
   segE('pelvis', p => p.l.hip, p => p.r.hip, 2 * Z.hip);
@@ -500,6 +506,9 @@ function elements(p0, cam, { face = false } = {}) {
         segE(`o${i}s${k}`, p => p.objects[i].points[k], p => p.objects[i].points[k + 1], 5, ` stroke="${IRON}" stroke-width="${o.w ?? ROPE.width}"`);
     } else if (o.type === 'cord') {
       segE(`o${i}`, p => p.objects[i].a, p => p.objects[i].b, 20, ` stroke="${IRON}" stroke-width="1.1"`);
+    } else if (o.type === 'band') {
+      // Elastic band between two moving points (anchor and hand, or both knees).
+      segE(`o${i}`, p => p.objects[i].a, p => p.objects[i].b, 20, ` stroke="${BAND}" stroke-width="1.8"`);
     } else if (o.type === 'ball') {
       ptE(`o${i}`, p => p.objects[i].at, `<circle class="k-o${i}" r="${o.r}" fill="${IRON}" stroke="none"></circle>`);
     } else if (o.type === 'wheel') {
@@ -536,7 +545,7 @@ export function renderView(ex, view, { T, frames }, size) {
   const cls = `ex-${ex.id}-${view}`;
   const ext = extent(frames);
   const cam = camera(view, ext.mid, view === 'iso' ? ex.isoCam : null);
-  const els = elements(frames[0].p, cam, { face: !!ex.face });
+  const els = elements(frames[0].p, cam, { face: !!ex.face, hands: !!ex.hands });
   // Back-to-front order: mean depth over the cycle (fixed, so it can live in static SVG).
   const meanDepth = new Map(els.map(e => [e, frames.reduce((s, f) => s + e.depth(f.p), 0) / frames.length]));
   els.sort((a, b) => meanDepth.get(a) - meanDepth.get(b));
@@ -575,7 +584,7 @@ export function renderView(ex, view, { T, frames }, size) {
 // Pose data for native renderers: 3D joints of both sides (left side has negative z).
 export function poseData(ex, { T, frames }) {
   const r = v => ({ x: r2(v.x), y: r2(v.y), z: r2(v.z) });
-  const sideOf = q => Object.fromEntries(SIDE_J.map(j => [j, r(q[j])]));
+  const sideOf = q => Object.fromEntries([...SIDE_J, ...(ex.hands ? ['fingers'] : [])].map(j => [j, r(q[j])]));
   const ext = extent(frames);
   return {
     id: ex.id, name: ex.name, batch: ex.batch, duration: r2(T), still: ex.still || 0,
@@ -585,7 +594,7 @@ export function poseData(ex, { T, frames }) {
       t: r2(t),
       joints: { pelvis: r(p.pelvis), lumbarTop: r(p.lumbarTop), thorax: r(p.thorax), shoulderC: r(p.shoulderC), neckTop: r(p.neckTop), head: r(p.head), ...(ex.face ? { face: r(p.face), eyeR: r(p.eyeR), eyeL: r(p.eyeL) } : {}), r: sideOf(p.r), l: sideOf(p.l) },
       objects: p.objects.map(o => (o.type === 'rope' ? { type: 'rope', points: o.points.map(r), ...(o.w ? { w: o.w } : {}) }
-        : o.type === 'cord' ? { type: 'cord', a: r(o.a), b: r(o.b) }
+        : o.type === 'cord' || o.type === 'band' ? { type: o.type, a: r(o.a), b: r(o.b) }
           : { type: o.type, at: r(o.at), ...(o.phi !== undefined ? { phi: r2(o.phi) } : {}), ...(o.r ? { r: o.r } : {}), ...(o.hw ? { hw: o.hw } : {}) })),
     })),
   };

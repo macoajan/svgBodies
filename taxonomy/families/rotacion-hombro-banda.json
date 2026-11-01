@@ -1,0 +1,74 @@
+{
+  "id": "rotacion-hombro-banda",
+  "name": {
+    "es": "Rotación de hombro con banda",
+    "en": "Banded shoulder rotation"
+  },
+  "plane": "transversal",
+  "mechanics": "aislado",
+  "action": "fuerza",
+  "position": "de-pie",
+  "laterality": "unilateral",
+  "pattern": "analitico",
+  "level": 1,
+  "muscles": {
+    "manguito-rotador": 50,
+    "deltoides-posterior": 25,
+    "romboides": 15,
+    "trapecio": 10
+  },
+  "equipment": [
+    "banda-elastica"
+  ],
+  "demands": [],
+  "params": {
+    "movimiento": [
+      "externa",
+      "interna"
+    ]
+  },
+  "variants": [
+    {
+      "id": "rotacion-externa-banda",
+      "name": {
+        "es": "Rotación externa con banda",
+        "en": "Banded external rotation"
+      },
+      "set": {
+        "movimiento": "externa"
+      },
+      "regions": [
+        "hombro"
+      ],
+      "goals": [
+        "fortalecimiento",
+        "control-motor"
+      ],
+      "mode": "activo"
+    },
+    {
+      "id": "rotacion-interna-banda",
+      "name": {
+        "es": "Rotación interna con banda",
+        "en": "Banded internal rotation"
+      },
+      "set": {
+        "movimiento": "interna"
+      },
+      "muscles": {
+        "manguito-rotador": 40,
+        "pectoral": 25,
+        "dorsal": 15,
+        "deltoides-anterior": 10,
+        "biceps": 10
+      },
+      "regions": [
+        "hombro"
+      ],
+      "goals": [
+        "fortalecimiento"
+      ],
+      "mode": "activo"
+    }
+  ]
+}

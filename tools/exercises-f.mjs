@@ -473,6 +473,145 @@ const sides = f => [
   hold(0.3, f(0)), { dur: 1.2, pose: e => f(-e) }, hold(0.8, f(-1)), { dur: 1.2, pose: e => f(-1 + e) },
 ];
 
+// ======================= Shoulder with a stick, forearm and wrist, elastic bands =======================
+
+const standT = (lean = 0) => trunk(V(A, STAND_Y), lean);
+const standLegs = (t, sg) => legTo(t, sg, V(A, F, sg * 4.5), 0);
+// Elbow at the side, bent 90°: the forearm turns about the vertical through the elbow.
+// th: 0 = forearm straight ahead, positive = outwards (external rotation), negative = across the belly.
+const elbowAtSide = (t, sg) => add(sideShoulder(t, sg), V(0.5, L.upper - 0.05, 0));
+const forearmAt = (t, sg, th) => add(elbowAtSide(t, sg), V(L.fore * Math.cos(rad(th)), 0, sg * L.fore * Math.sin(rad(th))));
+const stickThrough = (a, b, over = 4) => {
+  const d = sub(b, a), u = mul(d, 1 / len(d));
+  return { type: 'rope', w: STICK.w, points: [sub(a, mul(u, over)), add(b, mul(u, over))] };
+};
+
+// ---------- External rotation with a stick: the other arm pushes the stick towards the working side ----------
+// Both elbows stay at the sides; the right forearm rotates out and the left one in, the stick rigid.
+const ER_GAP = len(sub(forearmAt(standT(), 1, 0), forearmAt(standT(), -1, 0)));
+function stickER(e) {
+  const t = standT(), thR = 55 * smooth(e);
+  const hr = forearmAt(t, 1, thR);
+  const thL = solve(th => len(sub(hr, forearmAt(t, -1, th))) - ER_GAP, -80, 0);
+  const hl = forearmAt(t, -1, thL);
+  const side = (sg, hand) => ({ ...standLegs(t, sg), elbow: elbowAtSide(t, sg), hand });
+  return poseLR({ trunk: t, r: side(1, hr), l: side(-1, hl), objects: [stickThrough(hl, hr)] });
+}
+
+// ---------- Internal rotation with a stick behind the back: the top hand pulls the bottom one up ----------
+function stickIR(e) {
+  const t = standT(), k = smooth(e);
+  const low = V(A - 5.5, 34 - 6 * k, 1.5), high = V(A - 6.5, 4 - 6 * k, -1.5);
+  const side = (sg, hand, pole) => ({ ...standLegs(t, sg), hand, pole });
+  return poseLR({ trunk: t, r: side(1, low, V(-0.6, 0.2, 1)), l: side(-1, high, V(-0.2, -1, -0.6)), objects: [stickThrough(low, high, 3)] });
+}
+
+// ---------- Abduction with a stick: the other arm pushes the straight arm out to the side ----------
+function stickAbd(e) {
+  const t = standT(), a = lerp(12, 95, smooth(e));
+  const Sr = sideShoulder(t, 1), hr = add(Sr, mul(V(0.15, Math.cos(rad(a)), Math.sin(rad(a))), ARM / Math.hypot(0.15, 1)));
+  // A real stick is longer than shoulder width: the healthy hand stays on its own side.
+  const aim = add(sideShoulder(t, -1), V(8, 7, 0)), d = sub(aim, hr), hl = add(hr, mul(d, Math.min(len(d), 26) / len(d)));
+  return poseLR({ trunk: t,
+    r: { ...standLegs(t, 1), hand: hr, pole: V(0, 0, 1) },
+    l: { ...standLegs(t, -1), hand: within(sideShoulder(t, -1), hl, ARM), pole: V(0, 1, -0.5) },
+    objects: [stickThrough(within(sideShoulder(t, -1), hl, ARM), hr)] });
+}
+
+// ---------- Extension with a stick behind the back: straight arms lift the stick backwards ----------
+function stickExt(e) {
+  const t = standT(), phi = -lerp(4, 40, smooth(e));
+  const hand = sg => straight(sideShoulder(t, sg), phi, sg * 9);
+  const side = sg => ({ ...standLegs(t, sg), hand: hand(sg), pole: V(-1, 0, 0.3 * sg) });
+  const hr = hand(1);
+  return poseLR({ trunk: t, r: side(1), l: side(-1), objects: [{ type: 'rope', w: STICK.w, points: [V(hr.x, hr.y, -13), V(hr.x, hr.y, 13)] }] });
+}
+
+// ---------- Seated, forearms resting on the thighs ----------
+// The trunk leans so the elbows rest on the thighs; the forearms lie along them, hands past the knees.
+const SEAT_HIP = V(CHAIR.x1 - 3, SEAT_HIP_Y);
+const FA = { elbowX: SEAT_HIP.x + 5.5, y: SEAT_HIP.y - 2.4, z: 6.5 };
+const FA_LEAN = solve(a => len(sub(trunk(SEAT_HIP, a).shoulderOf(1), V(FA.elbowX, FA.y, FA.z))) - L.upper, 0, 60);
+function seatedForearms(rHand) {
+  const t = trunk(SEAT_HIP, FA_LEAN, -0.5 * FA_LEAN);
+  const side = sg => {
+    const knee = V(SEAT_HIP.x + L.thigh, SEAT_HIP.y, sg * 5), ankle = V(knee.x, knee.y + L.shin, sg * 5);
+    const elbow = V(FA.elbowX, FA.y, sg * FA.z), hand = V(FA.elbowX + L.fore, FA.y, sg * FA.z);
+    return { knee, ankle, toe: footDir(ankle, 0), elbow, hand, ...rHand(sg, hand) };
+  };
+  return poseLR({ trunk: t, r: side(1), l: side(-1) });
+}
+const hammer = (hand, axis, objs = []) => [
+  { type: 'rope', w: 1.8, points: [sub(hand, mul(axis, 2)), add(hand, mul(axis, 8))] },
+  { type: 'ball', at: add(hand, mul(axis, 8.5)), r: 1.8 },
+];
+// Pronation-supination with a hammer: the forearm turns, the hammer tips in and out (right side).
+function pronoSup(phi) {
+  let objs = [];
+  const p = seatedForearms((sg, hand) => {
+    const ph = sg > 0 ? phi : 0, axis = V(0, -Math.cos(rad(ph)), sg * Math.sin(rad(ph)));
+    if (sg > 0) objs = hammer(hand, axis);
+    return { fingers: add(hand, V(L.palm, 0, 0)) };
+  });
+  return { ...p, objects: objs };
+}
+const PRONO = [
+  hold(0.3, pronoSup(0)), { dur: 1.2, pose: e => pronoSup(75 * e) }, hold(0.5, pronoSup(75)), { dur: 2.0, pose: e => pronoSup(75 - 150 * e) },
+  hold(0.5, pronoSup(-75)), { dur: 1.2, pose: e => pronoSup(-75 + 75 * e) },
+];
+// Wrist flexion-extension: palms down, the hands bend down and up past the knees.
+const wristFlex = w => seatedForearms((sg, hand) => ({ fingers: add(hand, V(L.palm * Math.cos(rad(w)), L.palm * Math.sin(rad(w)), 0)) }));
+const WRIST_FLEX = [
+  hold(0.3, wristFlex(0)), { dur: 1.0, pose: e => wristFlex(65 * e) }, hold(0.4, wristFlex(65)), { dur: 1.8, pose: e => wristFlex(65 - 125 * e) },
+  hold(0.4, wristFlex(-60)), { dur: 1.0, pose: e => wristFlex(-60 + 60 * e) },
+];
+// Radial-ulnar deviation, thumb up holding a hammer: the hand and the hammer tip up and down.
+function wristDev(d) {
+  let objs = [];
+  const p = seatedForearms((sg, hand) => {
+    const dir = V(Math.cos(rad(-d)), Math.sin(rad(-d)), 0), up_ = V(Math.sin(rad(-d)), -Math.cos(rad(-d)), 0);
+    if (sg > 0) objs = hammer(add(hand, mul(dir, 2)), up_);
+    return sg > 0 ? { fingers: add(hand, mul(dir, L.palm)) } : {};
+  });
+  return { ...p, objects: objs };
+}
+const WRIST_DEV = [
+  hold(0.3, wristDev(0)), { dur: 1.0, pose: e => wristDev(22 * e) }, hold(0.4, wristDev(22)), { dur: 1.6, pose: e => wristDev(22 - 50 * e) },
+  hold(0.4, wristDev(-28)), { dur: 1.0, pose: e => wristDev(-28 + 28 * e) },
+];
+
+// ---------- Elastic band, standing ----------
+const BAND_Y = elbowAtSide(standT(), 1).y;
+// Rotation against a band anchored to the side: external (anchor on the other side) or internal.
+function bandRot(th, anchorZ) {
+  const t = standT(), hr = forearmAt(t, 1, th);
+  return poseLR({ trunk: t,
+    r: { ...standLegs(t, 1), elbow: elbowAtSide(t, 1), hand: hr },
+    l: { ...standLegs(t, -1), hand: straight(sideShoulder(t, -1), 0, -9) },
+    objects: [{ type: 'band', a: V(A + 3, BAND_Y, anchorZ), b: hr }] });
+}
+// Row: band anchored in front at chest height, the hands come back beside the ribs.
+const ROW_ANCHOR = V(A + 34, 22, 0);
+function bandRow(e) {
+  const t = standT(), k = smooth(e);
+  const side = sg => {
+    const S = sideShoulder(t, sg), out = straight(S, 82, sg * 8.5), back = V(S.x + 1, S.y + 9.5, sg * 10);
+    return { ...standLegs(t, sg), hand: vlerp(out, back, k), pole: V(-1, 0.3, sg * 0.5) };
+  };
+  const p = poseLR({ trunk: t, r: side(1), l: side(-1) });
+  return { ...p, objects: ['r', 'l'].map(s => ({ type: 'band', a: ROW_ANCHOR, b: p[s].hand })) };
+}
+// Straight-arm pull-down: band anchored high in front, straight arms come down to the thighs.
+const PULL_ANCHOR = V(A + 30, -6, 0);
+function bandPull(e) {
+  const t = standT(), phi = lerp(95, 0, smooth(e));
+  const side = sg => ({ ...standLegs(t, sg), hand: straight(sideShoulder(t, sg), phi, sg * 9), pole: V(0, 1, 0.3 * sg) });
+  const p = poseLR({ trunk: t, r: side(1), l: side(-1) });
+  return { ...p, objects: ['r', 'l'].map(s => ({ type: 'band', a: PULL_ANCHOR, b: p[s].hand })) };
+}
+// Clamshell with a band around the knees (same movement as the clamshell).
+const clamBand = e => { const p = clam(e); return { ...p, objects: [{ type: 'band', a: p.r.knee, b: p.l.knee }] }; };
+
 export const EXERCISES_F = [
   // ---------- Ankle ----------
   {
@@ -561,6 +700,69 @@ export const EXERCISES_F = [
     id: 'deslizamiento-pared', name: 'Deslizamiento en pared', still: 1.6, props: [WALL_SLIDE],
     cue: 'De cara a la pared con los antebrazos apoyados, deslízalos hacia arriba sin encoger los hombros y baja despacio.',
     phases: rep(wallSlide, 1.6, 0.5, 1.6),
+  },
+  // ---------- Shoulder with a stick ----------
+  {
+    id: 'rotacion-externa-baston', name: 'Rotación externa con bastón', views: ['top', 'front'], isoCam: { yaw: 30, pitch: 55 }, still: 1.4,
+    cue: 'De pie con los codos pegados al cuerpo y doblados a 90°, empuja el bastón con la mano sana para girar el antebrazo afectado hacia fuera.',
+    phases: rep(stickER, 1.4, 1.0, 1.4),
+  },
+  {
+    id: 'rotacion-interna-baston', name: 'Rotación interna con bastón', views: ['side', 'front'], isoCam: { yaw: 150, pitch: 15 }, still: 1.4,
+    cue: 'Con el bastón detrás de la espalda, una mano arriba y la afectada abajo, tira hacia arriba con la de arriba para subir la de abajo por la espalda.',
+    phases: rep(stickIR, 1.4, 1.0, 1.4),
+  },
+  {
+    id: 'abduccion-hombro-baston', name: 'Abducción de hombro con bastón', views: ['front', 'side'], still: 1.5,
+    cue: 'De pie con el bastón en las manos, empuja con el brazo sano para subir de lado el brazo afectado, estirado.',
+    phases: rep(stickAbd, 1.5, 0.8, 1.5),
+  },
+  {
+    id: 'extension-hombro-baston', name: 'Extensión de hombro con bastón', views: ['side', 'front'], still: 1.3,
+    cue: 'De pie con el bastón detrás del cuerpo y los brazos estirados, sepáralo hacia atrás sin inclinar el tronco.',
+    phases: rep(stickExt, 1.2, 0.8, 1.2),
+  },
+  // ---------- Forearm and wrist ----------
+  {
+    id: 'pronosupinacion', name: 'Pronosupinación con martillo', hands: true, views: ['front', 'side'], props: [CHAIR_PROP], still: 1.5,
+    cue: 'Sentado con el antebrazo apoyado en el muslo y el martillo en vertical, gira el antebrazo para tumbar el martillo hacia fuera y hacia dentro.',
+    phases: PRONO,
+  },
+  {
+    id: 'flexo-extension-muneca', name: 'Flexión y extensión de muñeca', hands: true, views: ['side', 'front'], props: [CHAIR_PROP], still: 1.4,
+    cue: 'Sentado con los antebrazos en los muslos y las manos fuera, palmas abajo, baja y sube las manos moviendo sólo la muñeca.',
+    phases: WRIST_FLEX,
+  },
+  {
+    id: 'desviacion-muneca', name: 'Desviación radial y cubital', hands: true, views: ['side', 'front'], props: [CHAIR_PROP], still: 1.4,
+    cue: 'Sentado con el antebrazo en el muslo y el pulgar arriba, sujeta el martillo y muévelo arriba y abajo sólo con la muñeca.',
+    phases: WRIST_DEV,
+  },
+  // ---------- Elastic band ----------
+  {
+    id: 'rotacion-externa-banda', name: 'Rotación externa con banda', views: ['top', 'front'], isoCam: { yaw: 30, pitch: 55 }, still: 1.4,
+    cue: 'Con la banda anclada al otro lado y el codo pegado al cuerpo, gira el antebrazo hacia fuera y vuelve despacio.',
+    phases: rep(e => bandRot(lerp(-35, 50, smooth(e)), -24), 1.2, 0.6, 1.5),
+  },
+  {
+    id: 'rotacion-interna-banda', name: 'Rotación interna con banda', views: ['top', 'front'], isoCam: { yaw: 30, pitch: 55 }, still: 1.4,
+    cue: 'Con la banda anclada del mismo lado y el codo pegado al cuerpo, lleva el antebrazo hacia el abdomen y vuelve despacio.',
+    phases: rep(e => bandRot(lerp(45, -40, smooth(e)), 26), 1.2, 0.6, 1.5),
+  },
+  {
+    id: 'remo-banda', name: 'Remo con banda', still: 1.4,
+    cue: 'Con la banda anclada delante a la altura del pecho, tira llevando los codos atrás y juntando las escápulas.',
+    phases: rep(bandRow, 1.1, 0.6, 1.4),
+  },
+  {
+    id: 'extension-hombro-banda', name: 'Extensión de hombro con banda', still: 1.4,
+    cue: 'Con la banda anclada arriba y delante, baja los brazos estirados hasta los muslos y vuelve despacio.',
+    phases: rep(bandPull, 1.2, 0.5, 1.5),
+  },
+  {
+    id: 'almeja-banda', name: 'Almeja con banda', views: ['side', 'front'], isoCam: { yaw: 25, pitch: 30 }, still: 1.3,
+    cue: 'Como la almeja, con una banda elástica por encima de las rodillas: separa la rodilla de arriba contra la banda.',
+    phases: rep(clamBand, 1.0, 0.6, 1.2),
   },
   // ---------- Cervical ----------
   {

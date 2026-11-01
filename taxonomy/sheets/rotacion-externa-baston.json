@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "De pie con los codos pegados al cuerpo, doblados a 90°, y un bastón sujeto con las dos manos por delante.",
+    "steps": [
+      "Con la mano sana, empuja el bastón hacia el lado del brazo afectado.",
+      "El antebrazo afectado gira hacia fuera sin que el codo se separe del cuerpo.",
+      "Mantén un momento y vuelve despacio."
+    ],
+    "avoid": [
+      "No separes el codo del cuerpo.",
+      "No gires el tronco."
+    ]
+  },
+  "pro": {
+    "goal": "Movilidad autoasistida de rotación externa glenohumeral con el brazo junto al cuerpo.",
+    "notes": [
+      "Una toalla enrollada entre el codo y el tronco ayuda a mantener la posición.",
+      "Puede hacerse en supino para descargar el hombro en fases iniciales.",
+      "Progresión: rotación externa con banda."
+    ]
+  }
+}

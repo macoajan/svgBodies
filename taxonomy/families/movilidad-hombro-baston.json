@@ -1,0 +1,142 @@
+{
+  "id": "movilidad-hombro-baston",
+  "name": {
+    "es": "Movilidad de hombro con bastón",
+    "en": "Stick-assisted shoulder mobility"
+  },
+  "plane": "transversal",
+  "mechanics": "aislado",
+  "action": "movilidad",
+  "position": "de-pie",
+  "laterality": "unilateral",
+  "pattern": "movilidad",
+  "level": 1,
+  "muscles": {
+    "manguito-rotador": 40,
+    "deltoides-posterior": 20,
+    "romboides": 15,
+    "trapecio": 10,
+    "pectoral": 10,
+    "biceps": 5
+  },
+  "equipment": [
+    "baston"
+  ],
+  "demands": [],
+  "params": {
+    "movimiento": [
+      "rotacion-externa",
+      "rotacion-interna",
+      "abduccion",
+      "extension"
+    ]
+  },
+  "variants": [
+    {
+      "id": "rotacion-externa-baston",
+      "name": {
+        "es": "Rotación externa con bastón",
+        "en": "Stick-assisted external rotation"
+      },
+      "set": {
+        "movimiento": "rotacion-externa"
+      },
+      "regions": [
+        "hombro"
+      ],
+      "goals": [
+        "movilidad-autoasistida"
+      ],
+      "mode": "autoasistido",
+      "progressions": [
+        "rotacion-externa-banda"
+      ]
+    },
+    {
+      "id": "rotacion-interna-baston",
+      "name": {
+        "es": "Rotación interna con bastón",
+        "en": "Stick-assisted internal rotation (behind the back)"
+      },
+      "set": {
+        "movimiento": "rotacion-interna"
+      },
+      "muscles": {
+        "manguito-rotador": 35,
+        "deltoides-posterior": 20,
+        "triceps": 15,
+        "dorsal": 10,
+        "pectoral": 10,
+        "romboides": 10
+      },
+      "regions": [
+        "hombro"
+      ],
+      "goals": [
+        "movilidad-autoasistida",
+        "flexibilidad"
+      ],
+      "mode": "autoasistido",
+      "progressions": [
+        "rotacion-interna-banda"
+      ]
+    },
+    {
+      "id": "abduccion-hombro-baston",
+      "name": {
+        "es": "Abducción de hombro con bastón",
+        "en": "Stick-assisted abduction"
+      },
+      "set": {
+        "movimiento": "abduccion"
+      },
+      "plane": "frontal",
+      "muscles": {
+        "deltoides-lateral": 35,
+        "manguito-rotador": 25,
+        "trapecio": 20,
+        "serrato": 15,
+        "deltoides-anterior": 5
+      },
+      "regions": [
+        "hombro"
+      ],
+      "goals": [
+        "movilidad-autoasistida"
+      ],
+      "mode": "autoasistido",
+      "progressions": [
+        "deslizamiento-pared"
+      ]
+    },
+    {
+      "id": "extension-hombro-baston",
+      "name": {
+        "es": "Extensión de hombro con bastón",
+        "en": "Stick-assisted extension (behind the back)"
+      },
+      "set": {
+        "movimiento": "extension"
+      },
+      "plane": "sagital",
+      "laterality": "bilateral",
+      "muscles": {
+        "deltoides-posterior": 35,
+        "dorsal": 20,
+        "triceps": 20,
+        "romboides": 15,
+        "trapecio": 10
+      },
+      "regions": [
+        "hombro"
+      ],
+      "goals": [
+        "movilidad-autoasistida"
+      ],
+      "mode": "autoasistido",
+      "progressions": [
+        "extension-hombro-banda"
+      ]
+    }
+  ]
+}

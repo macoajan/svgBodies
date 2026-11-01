@@ -38,8 +38,45 @@
       ],
       "mode": "activo",
       "progressions": [
-        "abduccion-cadera-lateral"
-      ]
+        "abduccion-cadera-lateral",
+        "almeja-banda"
+      ],
+      "set": {
+        "resistencia": "ninguna"
+      }
+    },
+    {
+      "id": "almeja-banda",
+      "name": {
+        "es": "Almeja con banda",
+        "en": "Banded clamshell"
+      },
+      "set": {
+        "resistencia": "banda"
+      },
+      "level": 2,
+      "equipment": [
+        "esterilla",
+        "banda-elastica"
+      ],
+      "muscles": {
+        "gluteo-medio": 55,
+        "rotadores-externos-cadera": 30,
+        "gluteo-mayor": 15
+      },
+      "regions": [
+        "cadera"
+      ],
+      "goals": [
+        "fortalecimiento"
+      ],
+      "mode": "activo"
     }
-  ]
+  ],
+  "params": {
+    "resistencia": [
+      "ninguna",
+      "banda"
+    ]
+  }
 }

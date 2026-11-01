@@ -13,9 +13,9 @@ El propietario escribe en español y espera respuestas en español.
 - `main` = `79fd08f`: lotes A–E, piloto terapéutico, porcentajes musculares y columna
   segmentada fusionados ([macoajan/svgBodies#1](https://github.com/macoajan/svgBodies/pull/1) a
   [macoajan/svgBodies#5](https://github.com/macoajan/svgBodies/pull/5)).
-- Rama de trabajo `claude/eager-heisenberg-cgodjv`: **cervical (motor y 4 ejercicios), sin
-  PR**, pendiente de la revisión del propietario.
-- Biblioteca: **96 ejercicios**, de ellos 32 terapéuticos. Todo valida y compila.
+- Rama de trabajo `claude/eager-heisenberg-cgodjv`: **cervical, bastón, antebrazo/muñeca y
+  bandas, sin PR**, pendiente de la revisión del propietario.
+- Biblioteca: **108 ejercicios**, de ellos 44 terapéuticos. Todo valida y compila.
 
 ```
 node tools/build.mjs     # valida taxonomía, fichas y posturas, genera library/
@@ -27,7 +27,7 @@ node tools/build.mjs     # valida taxonomía, fichas y posturas, genera library/
 |---|---|---|
 | [Revisión de la taxonomía](https://claude.ai/artifact/C1Ny8wERm4PGUhzqwX6QNZ) | Revisión en el móvil de la clasificación de los 46 ejercicios de los lotes A–D: Correcto/Cambiar y notas por ejercicio, más «Criterios generales». Guarda en la base de datos del artefacto (`revision/<id>` con `{status, note, at}` y `revision-general/notas`). | Cerrada: el propietario dio los 46 por válidos; las 46 marcas están en `ok`. No incluye el lote E. |
 | [Lote E de monigotes](https://claude.ai/artifact/A8gUFgokYJm4TMgddV2wr8) | Galería móvil de los 24 ejercicios del lote E. | Cerrada: revisada, corregida y fusionada. |
-| [Piloto terapéutico](https://claude.ai/artifact/N1182gQxiSMhf3oTcUsk3f) | Revisión móvil de los ejercicios terapéuticos (colección `revision-f`: `{anim, text, note, at}`). Versión 2: 28 terapéuticos, con los 4 de columna lumbar marcados «Nuevo · columna» y una tarjeta de la cobra rehecha (sólo `anim`). | Versión 3: 32 terapéuticos; los 4 cervicales marcados «Nuevo · cervical». Los 28 anteriores y la cobra, en `ok`. Pendientes: retraccion-cervical, flexo-extension-cervical, rotacion-cervical, inclinacion-cervical. |
+| [Piloto terapéutico](https://claude.ai/artifact/N1182gQxiSMhf3oTcUsk3f) | Revisión móvil de los ejercicios terapéuticos (colección `revision-f`: `{anim, text, note, at}`). Versión 2: 28 terapéuticos, con los 4 de columna lumbar marcados «Nuevo · columna» y una tarjeta de la cobra rehecha (sólo `anim`). | Versión 5: 44 terapéuticos; los 12 de bastón, muñeca y banda marcados «Nuevo». Pendientes de marca: esos 12 y los 4 cervicales; el resto, en `ok`. |
 | [Músculos por ejercicio](https://claude.ai/artifact/3YXhL1bBnQNnFeJ1h9hXYL) | Revisión móvil del reparto muscular en % de los 88 ejercicios, con los tres primeros y los indirectos. Colección `revision-musculos`: documento `<id>` con `{status, note, at}` (`status` = `ok` o `cambiar`), y `revision-musculos-general/notas` con `{text, at}`. | Dados por buenos por el propietario; los sigue revisando con calma. Consultar de vez en cuando si hay marcas `cambiar` o notas. |
 
 Para actualizar un artefacto desde otra sesión: leerlo primero (`Artifact` con `action: "read"` y
@@ -76,6 +76,18 @@ hay ejercicios lumbares de movilidad, cervicales, escapulares ni con banda.
 - Ejercicios (lote F, sentado en silla): retracción cervical, flexión y extensión, rotación e
   inclinación, con taxonomía, fichas y porcentajes.
 
+## Bastón, antebrazo/muñeca y bandas (rama, sin PR)
+
+- Motor: objeto `band` (`{ type: 'band', a, b }`, verde `BAND`), segmento de la mano
+  (`fingers`, `L.palm = 3.8`) que sólo se dibuja con `hands: true` y se valida en longitud, y el
+  martillo como `rope` + `ball` sujeto en la mano. Sin cambios en las posturas anteriores.
+- Vocabulario: material `martillo`; músculos `flexores-muneca`, `extensores-muneca`,
+  `pronadores` y `supinadores` (hijos de `antebrazo`).
+- Ejercicios: rotación externa, rotación interna (detrás de la espalda), abducción y extensión
+  de hombro con bastón; pronosupinación con martillo, flexo-extensión y desviación de muñeca;
+  rotación externa e interna con banda, remo con banda (variante de `remo`), extensión de
+  hombro con banda y almeja con banda (variante de `almeja`). Progresiones de bastón a banda.
+
 ## Columna segmentada (fusionada)
 
 - `trunk()` divide el tronco en tres segmentos (`SPINE = [6, 4.5, 4.5]`: lumbar, dorsal baja,
@@ -105,8 +117,9 @@ resolvieron con criterio clínico.
 
 1. Porcentajes dados por buenos; el propietario sigue revisando en segundo plano: leer de vez
    en cuando `revision-musculos` y `revision-musculos-general` y corregir lo marcado.
-2. Revisión del propietario de los 4 cervicales; corregir y abrir la PR cuando lo pida.
-3. Motor, por orden: banda elástica y señal de isometría, y después escápula.
+2. Revisión del propietario de los 4 cervicales y los 12 de bastón, muñeca y banda; corregir y
+   abrir la PR cuando lo pida.
+3. Motor, por orden: señal de isometría y después escápula.
 4. Ampliar el catálogo terapéutico por regiones (lumbar y hombro primero), y el texto en inglés.
 5. La app y la hoja del paciente quedan fuera por ahora (decisión del propietario): no se
    diseña ni se plantea nada de la app hasta que lo pida. La biblioteca sólo exporta los datos

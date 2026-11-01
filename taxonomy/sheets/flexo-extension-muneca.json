@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "Siéntate con los antebrazos apoyados en los muslos y las manos fuera, por delante de las rodillas, con las palmas hacia abajo.",
+    "steps": [
+      "Baja las manos doblando sólo la muñeca.",
+      "Súbelas todo lo que puedas.",
+      "Hazlo despacio, sin mover los antebrazos."
+    ],
+    "avoid": [
+      "No levantes los antebrazos de los muslos.",
+      "No cierres el puño con fuerza."
+    ]
+  },
+  "pro": {
+    "goal": "Movilidad activa de flexión y extensión de muñeca.",
+    "notes": [
+      "Con las palmas hacia arriba se insiste en la flexión.",
+      "Puede añadirse un peso ligero o una banda para fortalecer.",
+      "Útil tras inmovilización y en epicondilalgia (con carga progresiva)."
+    ]
+  }
+}

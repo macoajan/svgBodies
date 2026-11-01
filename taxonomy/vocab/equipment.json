@@ -26,5 +26,6 @@
   "escalon": { "es": "Escalón", "en": "Step", "category": "estructura", "places": ["casa", "gimnasio", "exterior"] },
   "silla": { "es": "Silla", "en": "Chair", "category": "estructura", "places": ["casa", "gimnasio"] },
   "almohada": { "es": "Almohada / cojín", "en": "Pillow / cushion", "category": "accesorio", "places": ["casa"] },
-  "mesa": { "es": "Mesa", "en": "Table", "category": "estructura", "places": ["casa", "gimnasio"] }
+  "mesa": { "es": "Mesa", "en": "Table", "category": "estructura", "places": ["casa", "gimnasio"] },
+  "martillo": { "es": "Martillo o barra corta", "en": "Hammer or short bar", "category": "accesorio", "places": ["casa", "gimnasio"] }
 }

@@ -1,0 +1,43 @@
+{
+  "id": "extension-hombro-banda",
+  "name": {
+    "es": "Extensión de hombro con banda",
+    "en": "Banded straight-arm pull-down"
+  },
+  "plane": "sagital",
+  "mechanics": "aislado",
+  "action": "fuerza",
+  "position": "de-pie",
+  "laterality": "bilateral",
+  "pattern": "traccion-vertical",
+  "level": 1,
+  "muscles": {
+    "dorsal": 40,
+    "triceps": 20,
+    "deltoides-posterior": 15,
+    "pectoral": 10,
+    "transverso": 10,
+    "romboides": 5
+  },
+  "equipment": [
+    "banda-elastica"
+  ],
+  "demands": [],
+  "variants": [
+    {
+      "id": "extension-hombro-banda",
+      "name": {
+        "es": "Extensión de hombro con banda",
+        "en": "Banded straight-arm pull-down"
+      },
+      "regions": [
+        "hombro"
+      ],
+      "goals": [
+        "fortalecimiento",
+        "control-motor"
+      ],
+      "mode": "activo"
+    }
+  ]
+}

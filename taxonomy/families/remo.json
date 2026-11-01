@@ -30,7 +30,8 @@
     "implemento": [
       "barra",
       "mancuerna",
-      "peso-corporal"
+      "peso-corporal",
+      "banda"
     ],
     "apoyo": [
       "de-pie",
@@ -110,6 +111,36 @@
         "recto-abdominal": 5,
         "antebrazo": 5
       }
+    },
+    {
+      "id": "remo-banda",
+      "name": {
+        "es": "Remo con banda",
+        "en": "Banded row"
+      },
+      "set": {
+        "implemento": "banda",
+        "apoyo": "de-pie"
+      },
+      "equipment": [
+        "banda-elastica"
+      ],
+      "muscles": {
+        "romboides": 25,
+        "dorsal": 25,
+        "trapecio": 20,
+        "deltoides-posterior": 15,
+        "biceps": 15
+      },
+      "regions": [
+        "hombro",
+        "dorsal"
+      ],
+      "goals": [
+        "fortalecimiento",
+        "control-motor"
+      ],
+      "mode": "activo"
     }
   ]
 }

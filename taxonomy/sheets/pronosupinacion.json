@@ -1,0 +1,22 @@
+{
+  "patient": {
+    "start": "Siéntate con el antebrazo apoyado en el muslo, el codo doblado y un martillo sujeto en vertical.",
+    "steps": [
+      "Gira el antebrazo para tumbar el martillo hacia fuera.",
+      "Vuelve al centro.",
+      "Gíralo hacia dentro y vuelve; después cambia de brazo."
+    ],
+    "avoid": [
+      "No muevas el codo ni el hombro.",
+      "No dejes caer el martillo de golpe: controla el movimiento."
+    ]
+  },
+  "pro": {
+    "goal": "Movilidad activa y fortalecimiento de pronadores y supinadores.",
+    "notes": [
+      "Sujetar el martillo más lejos de la cabeza aumenta la carga.",
+      "Útil tras fractura de radio distal o inmovilización del codo.",
+      "Puede empezarse sin peso."
+    ]
+  }
+}
