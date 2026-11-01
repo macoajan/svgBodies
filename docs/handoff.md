@@ -14,7 +14,7 @@ El propietario escribe en español y espera respuestas en español.
   fusionados ([macoajan/svgBodies#1](https://github.com/macoajan/svgBodies/pull/1) a
   [macoajan/svgBodies#4](https://github.com/macoajan/svgBodies/pull/4)).
 - Rama de trabajo `claude/eager-heisenberg-cgodjv`: **columna segmentada y ejercicios
-  lumbares, sin PR**, pendiente de la revisión del propietario.
+  lumbares, validados por el propietario, sin PR** (se abre cuando lo pida).
 - Biblioteca: **92 ejercicios**, de ellos 28 terapéuticos. Todo valida y compila.
 
 ```
@@ -27,7 +27,7 @@ node tools/build.mjs     # valida taxonomía, fichas y posturas, genera library/
 |---|---|---|
 | [Revisión de la taxonomía](https://claude.ai/artifact/C1Ny8wERm4PGUhzqwX6QNZ) | Revisión en el móvil de la clasificación de los 46 ejercicios de los lotes A–D: Correcto/Cambiar y notas por ejercicio, más «Criterios generales». Guarda en la base de datos del artefacto (`revision/<id>` con `{status, note, at}` y `revision-general/notas`). | Cerrada: el propietario dio los 46 por válidos; las 46 marcas están en `ok`. No incluye el lote E. |
 | [Lote E de monigotes](https://claude.ai/artifact/A8gUFgokYJm4TMgddV2wr8) | Galería móvil de los 24 ejercicios del lote E. | Cerrada: revisada, corregida y fusionada. |
-| [Piloto terapéutico](https://claude.ai/artifact/N1182gQxiSMhf3oTcUsk3f) | Revisión móvil de los ejercicios terapéuticos (colección `revision-f`: `{anim, text, note, at}`). Versión 2: 28 terapéuticos, con los 4 de columna lumbar marcados «Nuevo · columna» y una tarjeta de la cobra rehecha (sólo `anim`). | Los 24 primeros, cerrados (`ok`). Pendientes: basculacion-pelvica, gato-camello, extension-codos-prono, extension-mckenzie y cobra. |
+| [Piloto terapéutico](https://claude.ai/artifact/N1182gQxiSMhf3oTcUsk3f) | Revisión móvil de los ejercicios terapéuticos (colección `revision-f`: `{anim, text, note, at}`). Versión 2: 28 terapéuticos, con los 4 de columna lumbar marcados «Nuevo · columna» y una tarjeta de la cobra rehecha (sólo `anim`). | Cerrada: los 28 terapéuticos y la cobra en `ok` (los de columna, validados por el propietario en el chat). |
 | [Músculos por ejercicio](https://claude.ai/artifact/3YXhL1bBnQNnFeJ1h9hXYL) | Revisión móvil del reparto muscular en % de los 88 ejercicios, con los tres primeros y los indirectos. Colección `revision-musculos`: documento `<id>` con `{status, note, at}` (`status` = `ok` o `cambiar`), y `revision-musculos-general/notas` con `{text, at}`. | Dados por buenos por el propietario; los sigue revisando con calma. Consultar de vez en cuando si hay marcas `cambiar` o notas. |
 
 Para actualizar un artefacto desde otra sesión: leerlo primero (`Artifact` con `action: "read"` y
@@ -92,8 +92,8 @@ resolvieron con criterio clínico.
 
 1. Porcentajes dados por buenos; el propietario sigue revisando en segundo plano: leer de vez
    en cuando `revision-musculos` y `revision-musculos-general` y corregir lo marcado.
-2. Revisión del propietario de los ejercicios de columna y la cobra; corregir y abrir la PR
-   cuando lo pida.
+2. Columna y ejercicios lumbares validados (incluidas las adaptaciones: codos de McKenzie y
+   báscula exagerada). Abrir la PR cuando el propietario lo pida.
 3. Motor, por orden: cervical (cabeza orientable y retracción), banda elástica y señal de
    isometría, y después escápula.
 4. Ampliar el catálogo terapéutico por regiones (lumbar y hombro primero), y el texto en inglés.
