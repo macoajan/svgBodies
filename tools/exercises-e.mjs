@@ -361,8 +361,8 @@ function runner(cfg) {
   };
 }
 const RUN = runner({
-  hipY: 32.4, bob: 1.0, lean: 8, duty: 0.35, land: [6, 0], push: [-9, 45], arm: 35, elbow: 90,
-  swing: [[-15, 8, 70], [-9, 15, 80], [3, 15, 40], [9, 7, 10]],
+  hipY: 32.4, bob: 1.0, lean: 8, duty: 0.35, land: [5, 0], push: [-13, 35], arm: 40, elbow: 90,
+  swing: [[-19, 9, 70], [-10, 16, 80], [5, 15, 40], [10, 6, 10]],
 });
 const SKIP = runner({
   hipY: 28.6, bob: 1.0, lean: 0, duty: 0.4, land: [2, 35], push: [-2, 45], arm: 50, elbow: 85,
