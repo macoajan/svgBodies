@@ -91,8 +91,7 @@ resolvieron con criterio clínico.
 ## Próximos pasos
 
 1. Porcentajes dados por buenos; el propietario sigue revisando en segundo plano: leer de vez
-   en cuando `revision-musculos` y `revision-musculos-general` y corregir lo marcado. Abrir la PR (piloto
-   terapéutico + porcentajes) cuando lo pida.
+   en cuando `revision-musculos` y `revision-musculos-general` y corregir lo marcado.
 2. Revisión del propietario de los ejercicios de columna y la cobra; corregir y abrir la PR
    cuando lo pida.
 3. Motor, por orden: cervical (cabeza orientable y retracción), banda elástica y señal de
