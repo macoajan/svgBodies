@@ -67,8 +67,9 @@ hay ejercicios lumbares de movilidad, cervicales, escapulares ni con banda.
 
 - `trunk()` acepta `neckSide` y `headSide` (inclinación lateral del cuello y de la cabeza, en
   grados, positivo hacia la derecha; la cabeza sigue al cuello por defecto) y `headYaw`
-  (rotación de la cabeza). Las posturas llevan `face`, un punto delante de la cara; sólo se
-  dibuja en los ejercicios con `face: true` (y sólo ellos lo exportan en `poses.json`), para no
+  (rotación de la cabeza). Las posturas llevan `face` (nariz: un punto pequeño delante de la
+  cara) y `eyeR`/`eyeL` (ojos, dentro del contorno de la cabeza); sólo se dibujan en los
+  ejercicios con `face: true` (y sólo ellos lo exportan en `poses.json`), para no
   cambiar el aspecto del resto. Sin estas opciones las posturas son idénticas a las de antes.
 - Músculos nuevos: grupo `cuello` con `flexores-profundos-cuello`, `extensores-cuello`,
   `esternocleidomastoideo` y `escalenos`.
