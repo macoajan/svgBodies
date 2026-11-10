@@ -16,6 +16,7 @@
     "gemelos": 25,
     "soleo": 25
   },
+  "met": 1.8,
   "equipment": [
     "peso-corporal"
   ],

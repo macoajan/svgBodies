@@ -18,6 +18,7 @@
     "serrato": 10,
     "recto-abdominal": 10
   },
+  "met": 3.8,
   "equipment": [
     "peso-corporal"
   ],

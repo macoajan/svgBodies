@@ -19,6 +19,7 @@
     "soleo": 5,
     "recto-abdominal": 5
   },
+  "met": 5,
   "equipment": [
     "peso-corporal"
   ],
@@ -76,7 +77,8 @@
         "aductores": 10,
         "recto-abdominal": 5,
         "antebrazo": 5
-      }
+      },
+      "met": 5.5
     },
     {
       "id": "sentadilla-trasera",
@@ -104,7 +106,8 @@
         "erectores": 15,
         "aductores": 10,
         "isquiotibiales": 5
-      }
+      },
+      "met": 6
     },
     {
       "id": "sentadilla-frontal",
@@ -134,7 +137,8 @@
         "recto-abdominal": 5,
         "aductores": 5,
         "deltoides-anterior": 5
-      }
+      },
+      "met": 6
     },
     {
       "id": "sentadilla-cajon",
@@ -157,7 +161,8 @@
         "isquiotibiales": 15,
         "aductores": 10,
         "erectores": 10
-      }
+      },
+      "met": 4
     }
   ]
 }

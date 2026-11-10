@@ -19,6 +19,7 @@
     "trapecio": 15,
     "serrato": 10
   },
+  "met": 2.5,
   "equipment": [
     "peso-corporal"
   ],

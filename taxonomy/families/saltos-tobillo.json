@@ -17,6 +17,7 @@
     "tibial-anterior": 15,
     "cuadriceps": 5
   },
+  "met": 7,
   "equipment": [
     "peso-corporal"
   ],

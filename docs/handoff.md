@@ -1,6 +1,6 @@
 # Handoff — svgBodies
 
-Estado al cerrar la sesión del 2026-11-01 (actualizado con el piloto terapéutico). Para retomar el trabajo en una sesión nueva.
+Estado al 2026-11-10 (biblioteca cerrada; la app, en diseño). Para retomar el trabajo en una sesión nueva.
 
 ## Objetivo del proyecto
 
@@ -29,6 +29,7 @@ node tools/build.mjs     # valida taxonomía, fichas y posturas, genera library/
 | [Revisión de la taxonomía](https://claude.ai/artifact/C1Ny8wERm4PGUhzqwX6QNZ) | Revisión en el móvil de la clasificación de los 46 ejercicios de los lotes A–D: Correcto/Cambiar y notas por ejercicio, más «Criterios generales». Guarda en la base de datos del artefacto (`revision/<id>` con `{status, note, at}` y `revision-general/notas`). | Cerrada: el propietario dio los 46 por válidos; las 46 marcas están en `ok`. No incluye el lote E. |
 | [Lote E de monigotes](https://claude.ai/artifact/A8gUFgokYJm4TMgddV2wr8) | Galería móvil de los 24 ejercicios del lote E. | Cerrada: revisada, corregida y fusionada. |
 | [Piloto terapéutico](https://claude.ai/artifact/N1182gQxiSMhf3oTcUsk3f) | Revisión móvil de los ejercicios terapéuticos (colección `revision-f`: `{anim, text, note, at}`). Versión 2: 28 terapéuticos, con los 4 de columna lumbar marcados «Nuevo · columna» y una tarjeta de la cobra rehecha (sólo `anim`). | Versión 6: 49 terapéuticos. Cerrada: todos en `ok`. Los 5 últimos (isometrías y escápula) los dio por válidos el propietario sin revisarlos; se revisarán en la fase de pruebas. |
+| [Pantallas de la app](https://claude.ai/artifact/JncynHqzHKV5zUpVjM7ZwC) | Lienzo de diseño (tipo Design) con el mockup de la app: pantallas de profesional, paciente (descanso, valoración), respuestas, compra Pro, canal público de gimnasio (lista, visibilidad, WOD del cliente), tres pantallas de tablet horizontal (profesional A1, paciente C, WOD en pared del box A2) y una fila por dirección visual (A Pista, A1, A2; C Cercano, C1, C2). | Estilo actual de las 11 pantallas: provisional (el propietario dijo que «huele a Claude»). Se conservan todas las variantes A y C como temas seleccionables; falta rehacer las pantallas con ellos. |
 | [Músculos por ejercicio](https://claude.ai/artifact/3YXhL1bBnQNnFeJ1h9hXYL) | Revisión móvil del reparto muscular en % de los 88 ejercicios, con los tres primeros y los indirectos. Colección `revision-musculos`: documento `<id>` con `{status, note, at}` (`status` = `ok` o `cambiar`), y `revision-musculos-general/notas` con `{text, at}`. | Dados por buenos por el propietario; los sigue revisando con calma. Consultar de vez en cuando si hay marcas `cambiar` o notas. |
 
 Para actualizar un artefacto desde otra sesión: leerlo primero (`Artifact` con `action: "read"` y
@@ -127,6 +128,52 @@ biblioteca). Nuevo músculo `rotadores-externos-cadera`. Por decisión del propi
 validador prohíbe el empate entre el tercer y el cuarto músculo; los 27 empates iniciales se
 resolvieron con criterio clínico.
 
+## App (en diseño)
+
+Decisiones del propietario (fisioterapeuta, funcionario docente; la parte legal la lleva un
+publisher, que solo gestiona el cobro, a mano):
+
+- **Distribución**: tiendas (iOS y Android) a través del publisher, que paga royalties al
+  propietario. App genérica (salud, deporte, música, danza…), no centrada en un colectivo.
+  Categoría «Salud y forma física», sin afirmaciones clínicas.
+- **Cobro**: app gratuita; el paciente nunca paga. Compra única «Pro» (pautas ilimitadas,
+  plantillas, logo, PDF); packs, sin decidir. Precio sin fijar.
+- **Versión 1 sin datos legibles en servidor**: la pauta se cifra en el dispositivo
+  (AES-GCM, clave en el fragmento `#` del enlace). Pautas del profesional guardadas en local.
+- **Acortador privado** («bitly privado») en el Coolify del propietario: Node simple + SQLite,
+  guarda solo bloques cifrados; enlace `<dominio>/p/<código>#<clave>`, con el enlace largo
+  `<dominio>/p#<clave>.<bloque>` como alternativa sin conexión. Dominio configurable
+  (`PUBLIC_URL`); para pruebas, `pautas.maroto.es`. Permite actualizar la pauta con el mismo enlace
+  (token de edición) y recoger las respuestas del paciente. QR generado en la app, nunca en
+  servicios externos. CloudKit descartado para esto (escribir exige Apple ID); posible en v2
+  para sincronizar las pautas del profesional entre sus dispositivos Apple.
+- **Descansos** en tres niveles: entre repeticiones (y al cambiar de lado), entre series y al
+  terminar el ejercicio (con un valor por defecto de la pauta). El paciente puede alargarlos
+  o acortarlos.
+- **Respuesta del paciente** por ejercicio: fácil/bien/difícil, dolor 0–10 y comentario.
+- **Ámbito y visibilidad**: pauta privada (`/p/…`) o canal público (`/c/…`, p. ej. el WOD de
+  un gimnasio para todos sus clientes). Cada pauta o sesión lleva visibilidad en claro
+  `{ mode: auto|show|hide, from?, until? }`: automático por fechas o forzado (override). El
+  servidor solo entrega lo visible. Las sesiones admiten `format` (series, AMRAP, EMOM, for
+  time, tabata).
+- **Calorías**: `met` por ejercicio en la taxonomía; la pauta lleva `show.kcal` para que el
+  profesional decida si el paciente las ve. Peso del usuario solo en su dispositivo.
+
+Código en `server/` (Node ≥ 22.5, sin dependencias):
+
+- `public/pauta-crypto.js`: cifrado y formato de enlaces, compartido por app, visor y pruebas.
+- `public/pauta-schema.js`: formato v1 de pauta y respuesta, validación y estimación de
+  duración y calorías.
+- `public/visibility.js`: visibilidad por fechas y modo.
+- `README.md`: ámbitos y API prevista.
+- `public/api-client.js`: único cliente del servidor (la app solo debe usar este).
+- `src/` (`app`, `store`, `ratelimit`, `config`, `main`) y `Dockerfile`: servidor
+  **provisional y sustituible**, API versionada `/api/v1`, SQLite tras la interfaz de
+  `store.mjs`. Visor web `/p/<código>` y `/c/<código>`. Detalles en `server/README.md`.
+- Despliegue de pruebas en el Coolify del propietario: `https://pautas.maroto.es`
+  (aplicación `pautas-server`, desde `main`, volumen en `/data`).
+- `npm test` en `server/`.
+
 ## Próximos pasos
 
 1. El propietario pasa a otra cosa; atender los fallos que indique en la fase de pruebas.
@@ -134,8 +181,14 @@ resolvieron con criterio clínico.
    `-general`) por si hay marcas `cambiar` o notas nuevas.
 3. Pendientes del motor: grosor del cuerpo (para la extensión completa de codos en McKenzie) y
    texto en inglés de las fichas.
-4. La app y la hoja del paciente quedan fuera hasta que el propietario lo pida. La biblioteca
-   sólo exporta los datos (`catalog.json` con `sheet`).
+4. Alcance acordado: **v1** pautas privadas 1:1 (descansos, respuestas, calorías, acortador,
+   compra Pro); **v1.1** canales públicos con visibilidad (lógica hecha); **v2** grupos
+   privados 1:n con invitación individual y expulsión (token por miembro que el servidor
+   revoca y rotación de la clave del grupo para los que quedan), sincronización entre
+   dispositivos y seguimiento en tiempo real. No añadir más funcionalidades sin acordarlo.
+5. App: rehacer las 11 pantallas del mockup con los temas A y C; terminar el servidor del
+   acortador y desplegarlo en Coolify (con el visto bueno del propietario); después, el diseño
+   técnico de la app (Capacitor, compras únicas con StoreKit 2 y Google Play Billing).
 
 ## Cómo revisar visualmente
 

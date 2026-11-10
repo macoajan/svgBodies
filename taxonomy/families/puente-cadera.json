@@ -17,6 +17,7 @@
     "erectores": 15,
     "aductores": 5
   },
+  "met": 3,
   "equipment": [
     "esterilla"
   ],
@@ -84,6 +85,7 @@
         "erectores": 5,
         "oblicuos": 5
       },
+      "met": 3.3,
       "regions": [
         "cadera",
         "lumbar"
@@ -118,7 +120,8 @@
         "cuadriceps": 15,
         "aductores": 5,
         "erectores": 5
-      }
+      },
+      "met": 5
     }
   ]
 }

@@ -20,6 +20,7 @@
     "extensores-cuello": 30,
     "trapecio": 15
   },
+  "met": 1.5,
   "variants": [
     {
       "id": "retraccion-cervical",

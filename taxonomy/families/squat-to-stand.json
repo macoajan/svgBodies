@@ -21,6 +21,7 @@
     "gluteo-mayor": 10,
     "cuadriceps": 10
   },
+  "met": 3,
   "equipment": [
     "peso-corporal"
   ],

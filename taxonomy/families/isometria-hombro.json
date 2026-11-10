@@ -17,6 +17,7 @@
     "romboides": 10,
     "trapecio": 5
   },
+  "met": 2,
   "equipment": [
     "pared"
   ],

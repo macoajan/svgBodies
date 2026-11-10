@@ -16,6 +16,7 @@
     "rotadores-externos-cadera": 35,
     "gluteo-mayor": 15
   },
+  "met": 2.5,
   "equipment": [
     "esterilla"
   ],
@@ -64,6 +65,7 @@
         "rotadores-externos-cadera": 30,
         "gluteo-mayor": 15
       },
+      "met": 2.8,
       "regions": [
         "cadera"
       ],

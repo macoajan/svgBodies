@@ -15,6 +15,7 @@
     "cuadriceps": 70,
     "flexores-cadera": 30
   },
+  "met": 2.3,
   "equipment": [
     "peso-corporal"
   ],

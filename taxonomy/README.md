@@ -27,6 +27,7 @@ animaciones y exporta `library/catalog.json` (para apps) y `library/catalog-flag
 | `laterality` | uno | `laterality` |
 | `level` | uno | `levels` (1–4) |
 | `muscles` | `{ músculo: % }` | `muscles`: reparto estimado del trabajo muscular (ver abajo) |
+| `met` | número | coste energético estimado en MET, para estimar calorías (ver abajo) |
 | `equipment` | lista no vacía | `equipment` (`peso-corporal` si no hay material) |
 | `demands` | lista | `demands`: exigencias mecánicas descriptivas, no contraindicaciones |
 | `regions` | lista (terapéutico) | `regions`: región corporal a la que se dirige |
@@ -59,6 +60,21 @@ suyos completos).
 - `catalog.json` lo exporta como lista ordenada `[{ "id", "pct" }]`; en `catalog-flags.csv`
   las columnas `musculo:<id>` llevan el porcentaje. Qué músculos se muestran como principales
   y cuáles se agrupan como indirectos lo decide quien consume el catálogo.
+
+## Coste energético (MET)
+
+`met` es el coste energético estimado del ejercicio mientras se ejecuta, en MET (múltiplos del
+gasto en reposo), con los rangos del *Compendium of Physical Activities* como referencia:
+movilidad y estiramiento suaves 1,5–2,5; terapéutico activo 2,5–3,5; fuerza con cargas 3,5–6;
+calistenia vigorosa, saltos y carrera 7–10 o más.
+
+- Número entre 1 y 20 con un decimal como mucho. La familia lo declara y la variante que
+  difiere declara el suyo.
+- Calorías estimadas: `kcal = MET × 3,5 × peso (kg) ÷ 200 × minutos`, con los minutos de
+  trabajo que salen de la dosis; los descansos se cuentan aparte con un MET de reposo (≈ 1,3).
+- Es una orientación (margen del 20–30 %): no tiene en cuenta la carga exacta, el ritmo ni la
+  condición física. La app decide si se muestra, y a quién.
+- `catalog.json` lo exporta tal cual (`met`) y `catalog-flags.csv` en la columna `met`.
 
 ## Ejercicio terapéutico
 

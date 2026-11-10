@@ -19,6 +19,7 @@
     "transverso": 10,
     "dorsal": 10
   },
+  "met": 4,
   "equipment": [
     "polea"
   ],

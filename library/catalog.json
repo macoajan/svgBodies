@@ -736,6 +736,7 @@
      "pct": 10
     }
    ],
+   "met": 2.8,
    "progressions": [],
    "therapeutic": true,
    "regressions": [
@@ -842,6 +843,7 @@
      "pct": 15
     }
    ],
+   "met": 2.5,
    "progressions": [
     "abduccion-cadera-lateral",
     "almeja-banda"
@@ -947,6 +949,7 @@
      "pct": 15
     }
    ],
+   "met": 2.8,
    "progressions": [],
    "therapeutic": true,
    "regressions": [
@@ -1057,6 +1060,7 @@
      "pct": 5
     }
    ],
+   "met": 3.5,
    "progressions": [],
    "therapeutic": true,
    "regressions": [
@@ -1162,6 +1166,7 @@
      "pct": 10
     }
    ],
+   "met": 3,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -1251,6 +1256,7 @@
      "pct": 10
     }
    ],
+   "met": 2,
    "progressions": [
     "gato-camello",
     "dead-bug"
@@ -1369,6 +1375,7 @@
      "pct": 5
     }
    ],
+   "met": 10,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -1465,6 +1472,7 @@
      "pct": 5
     }
    ],
+   "met": 7,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -1569,6 +1577,7 @@
      "pct": 5
     }
    ],
+   "met": 2.8,
    "progressions": [],
    "therapeutic": true,
    "regressions": [
@@ -1679,6 +1688,7 @@
      "pct": 25
     }
    ],
+   "met": 1.8,
    "progressions": [
     "elevacion-talones"
    ],
@@ -1774,6 +1784,7 @@
      "pct": 25
     }
    ],
+   "met": 5,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -1869,6 +1880,7 @@
      "pct": 5
     }
    ],
+   "met": 8,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -1965,6 +1977,7 @@
      "pct": 5
     }
    ],
+   "met": 8,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -2055,6 +2068,7 @@
      "pct": 10
     }
    ],
+   "met": 8.5,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -2147,6 +2161,7 @@
      "pct": 5
     }
    ],
+   "met": 8,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -2237,6 +2252,7 @@
      "pct": 5
     }
    ],
+   "met": 7.5,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -2323,6 +2339,7 @@
      "pct": 10
     }
    ],
+   "met": 2.5,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -2405,6 +2422,7 @@
      "pct": 10
     }
    ],
+   "met": 2.3,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -2494,6 +2512,7 @@
      "pct": 5
     }
    ],
+   "met": 10,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -2580,6 +2599,7 @@
      "pct": 5
     }
    ],
+   "met": 1.8,
    "progressions": [
     "extension-rodilla-rodillo"
    ],
@@ -2690,6 +2710,7 @@
      "pct": 5
     }
    ],
+   "met": 2,
    "progressions": [],
    "therapeutic": true,
    "regressions": [],
@@ -2795,6 +2816,7 @@
      "pct": 10
     }
    ],
+   "met": 2,
    "progressions": [
     "remo-banda"
    ],
@@ -2904,6 +2926,7 @@
      "pct": 5
     }
    ],
+   "met": 2,
    "progressions": [
     "deslizamiento-pared"
    ],
@@ -3014,6 +3037,7 @@
      "pct": 5
     }
    ],
+   "met": 3,
    "progressions": [],
    "therapeutic": true,
    "regressions": [
@@ -3128,6 +3152,7 @@
      "pct": 5
     }
    ],
+   "met": 2.3,
    "progressions": [],
    "therapeutic": true,
    "regressions": [
@@ -3237,6 +3262,7 @@
      "pct": 5
     }
    ],
+   "met": 2,
    "progressions": [],
    "therapeutic": true,
    "regressions": [],
@@ -3344,6 +3370,7 @@
      "pct": 5
     }
    ],
+   "met": 6,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -3434,6 +3461,7 @@
      "pct": 5
     }
    ],
+   "met": 2.5,
    "progressions": [],
    "therapeutic": true,
    "regressions": [
@@ -3537,6 +3565,7 @@
      "pct": 5
     }
    ],
+   "met": 2.8,
    "progressions": [
     "elevacion-talones-unipodal"
    ],
@@ -3646,6 +3675,7 @@
      "pct": 5
     }
    ],
+   "met": 3.3,
    "progressions": [],
    "therapeutic": true,
    "regressions": [
@@ -3767,6 +3797,7 @@
      "pct": 5
     }
    ],
+   "met": 2,
    "progressions": [],
    "therapeutic": true,
    "regressions": [],
@@ -3862,6 +3893,7 @@
      "pct": 30
     }
    ],
+   "met": 2.3,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -3931,6 +3963,7 @@
      "pct": 15
     }
    ],
+   "met": 2.3,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -4006,6 +4039,7 @@
      "pct": 5
     }
    ],
+   "met": 2.3,
    "progressions": [],
    "therapeutic": true,
    "regressions": [],
@@ -4099,6 +4133,7 @@
      "pct": 10
     }
    ],
+   "met": 2.3,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -4168,6 +4203,7 @@
      "pct": 15
     }
    ],
+   "met": 2.3,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -4248,6 +4284,7 @@
      "pct": 15
     }
    ],
+   "met": 2.5,
    "progressions": [
     "bird-dog"
    ],
@@ -4361,6 +4398,7 @@
      "pct": 5
     }
    ],
+   "met": 2.8,
    "progressions": [],
    "therapeutic": true,
    "regressions": [
@@ -4480,6 +4518,7 @@
      "pct": 5
     }
    ],
+   "met": 2,
    "progressions": [
     "extension-mckenzie"
    ],
@@ -4601,6 +4640,7 @@
      "pct": 10
     }
    ],
+   "met": 2,
    "progressions": [],
    "therapeutic": true,
    "regressions": [
@@ -4705,6 +4745,7 @@
      "pct": 10
     }
    ],
+   "met": 2,
    "progressions": [
     "elevacion-pierna-recta",
     "extension-rodilla-sentado"
@@ -4806,6 +4847,7 @@
      "pct": 5
     }
    ],
+   "met": 2,
    "progressions": [
     "sentarse-levantarse",
     "sentadilla-pared"
@@ -4918,6 +4960,7 @@
      "pct": 5
     }
    ],
+   "met": 2.3,
    "progressions": [
     "deslizamiento-pared"
    ],
@@ -5023,6 +5066,7 @@
      "pct": 10
     }
    ],
+   "met": 3.8,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -5101,6 +5145,7 @@
      "pct": 5
     }
    ],
+   "met": 6,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -5193,6 +5238,7 @@
      "pct": 5
     }
    ],
+   "met": 2.3,
    "progressions": [
     "bird-dog"
    ],
@@ -5316,6 +5362,7 @@
      "pct": 5
     }
    ],
+   "met": 4,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -5403,6 +5450,7 @@
      "pct": 5
     }
    ],
+   "met": 2,
    "progressions": [
     "rotacion-externa-banda"
    ],
@@ -5509,6 +5557,7 @@
      "pct": 5
     }
    ],
+   "met": 7.5,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -5595,6 +5644,7 @@
      "pct": 10
     }
    ],
+   "met": 4,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -5691,6 +5741,7 @@
      "pct": 5
     }
    ],
+   "met": 8,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -5783,6 +5834,7 @@
      "pct": 10
     }
    ],
+   "met": 1.8,
    "progressions": [],
    "therapeutic": true,
    "regressions": [
@@ -5893,6 +5945,7 @@
      "pct": 10
     }
    ],
+   "met": 1.8,
    "progressions": [],
    "therapeutic": true,
    "regressions": [],
@@ -5998,6 +6051,7 @@
      "pct": 20
     }
    ],
+   "met": 1.8,
    "progressions": [],
    "therapeutic": true,
    "regressions": [],
@@ -6109,6 +6163,7 @@
      "pct": 5
     }
    ],
+   "met": 2.3,
    "progressions": [
     "rotacion-externa-banda"
    ],
@@ -6225,6 +6280,7 @@
      "pct": 10
     }
    ],
+   "met": 2.3,
    "progressions": [
     "rotacion-interna-banda"
    ],
@@ -6336,6 +6392,7 @@
      "pct": 5
     }
    ],
+   "met": 2.3,
    "progressions": [
     "deslizamiento-pared"
    ],
@@ -6446,6 +6503,7 @@
      "pct": 10
     }
    ],
+   "met": 2.3,
    "progressions": [
     "extension-hombro-banda"
    ],
@@ -6548,6 +6606,7 @@
      "pct": 10
     }
    ],
+   "met": 1.8,
    "progressions": [],
    "therapeutic": true,
    "regressions": [],
@@ -6644,6 +6703,7 @@
      "pct": 50
     }
    ],
+   "met": 1.8,
    "progressions": [],
    "therapeutic": true,
    "regressions": [],
@@ -6741,6 +6801,7 @@
      "pct": 5
     }
    ],
+   "met": 3,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -6831,6 +6892,7 @@
      "pct": 5
     }
    ],
+   "met": 1.8,
    "progressions": [
     "flexion-hombro-baston"
    ],
@@ -6943,6 +7005,7 @@
      "pct": 5
     }
    ],
+   "met": 2.8,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -7040,6 +7103,7 @@
      "pct": 5
     }
    ],
+   "met": 6,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -7127,6 +7191,7 @@
      "pct": 5
     }
    ],
+   "met": 5.5,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -7215,6 +7280,7 @@
      "pct": 5
     }
    ],
+   "met": 5,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -7313,6 +7379,7 @@
      "pct": 5
     }
    ],
+   "met": 3.5,
    "progressions": [],
    "therapeutic": true,
    "regressions": [],
@@ -7424,6 +7491,7 @@
      "pct": 5
     }
    ],
+   "met": 3.5,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -7510,6 +7578,7 @@
      "pct": 10
     }
    ],
+   "met": 2,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -7589,6 +7658,7 @@
      "pct": 5
     }
    ],
+   "met": 5,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -7673,6 +7743,7 @@
      "pct": 5
     }
    ],
+   "met": 5,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -7757,6 +7828,7 @@
      "pct": 10
     }
    ],
+   "met": 1.8,
    "progressions": [],
    "therapeutic": true,
    "regressions": [],
@@ -7867,6 +7939,7 @@
      "pct": 5
     }
    ],
+   "met": 3,
    "progressions": [
     "puente-una-pierna"
    ],
@@ -7984,6 +8057,7 @@
      "pct": 5
     }
    ],
+   "met": 3.3,
    "progressions": [],
    "therapeutic": true,
    "regressions": [
@@ -8092,6 +8166,7 @@
      "pct": 5
     }
    ],
+   "met": 5,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -8184,6 +8259,7 @@
      "pct": 5
     }
    ],
+   "met": 5.5,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -8273,6 +8349,7 @@
      "pct": 10
     }
    ],
+   "met": 4.5,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -8369,6 +8446,7 @@
      "pct": 5
     }
    ],
+   "met": 5,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -8466,6 +8544,7 @@
      "pct": 15
     }
    ],
+   "met": 3.5,
    "progressions": [],
    "therapeutic": true,
    "regressions": [
@@ -8568,6 +8647,7 @@
      "pct": 15
     }
    ],
+   "met": 1.5,
    "progressions": [
     "flexo-extension-cervical"
    ],
@@ -8673,6 +8753,7 @@
      "pct": 10
     }
    ],
+   "met": 2.8,
    "progressions": [],
    "therapeutic": true,
    "regressions": [
@@ -8784,6 +8865,7 @@
      "pct": 10
     }
    ],
+   "met": 2.8,
    "progressions": [],
    "therapeutic": true,
    "regressions": [
@@ -8891,6 +8973,7 @@
      "pct": 10
     }
    ],
+   "met": 2.3,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -8977,6 +9060,7 @@
      "pct": 5
     }
    ],
+   "met": 4.5,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -9065,6 +9149,7 @@
      "pct": 5
     }
    ],
+   "met": 8,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -9153,6 +9238,7 @@
      "pct": 10
     }
    ],
+   "met": 8,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -9247,6 +9333,7 @@
      "pct": 5
     }
    ],
+   "met": 8,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -9345,6 +9432,7 @@
      "pct": 5
     }
    ],
+   "met": 8,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -9440,6 +9528,7 @@
      "pct": 5
     }
    ],
+   "met": 8.5,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -9533,6 +9622,7 @@
      "pct": 5
     }
    ],
+   "met": 8,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -9613,6 +9703,7 @@
      "pct": 5
     }
    ],
+   "met": 7,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -9698,6 +9789,7 @@
      "pct": 5
     }
    ],
+   "met": 3,
    "progressions": [],
    "therapeutic": true,
    "regressions": [
@@ -9811,6 +9903,7 @@
      "pct": 5
     }
    ],
+   "met": 5,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -9902,6 +9995,7 @@
      "pct": 5
     }
    ],
+   "met": 5.5,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -9990,6 +10084,7 @@
      "pct": 5
     }
    ],
+   "met": 6,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -10081,6 +10176,7 @@
      "pct": 5
     }
    ],
+   "met": 6,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -10166,6 +10262,7 @@
      "pct": 10
     }
    ],
+   "met": 4,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -10252,6 +10349,7 @@
      "pct": 5
     }
    ],
+   "met": 3.3,
    "progressions": [
     "step-up"
    ],
@@ -10365,6 +10463,7 @@
      "pct": 5
     }
    ],
+   "met": 9,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -10452,6 +10551,7 @@
      "pct": 10
     }
    ],
+   "met": 3,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -10542,6 +10642,7 @@
      "pct": 5
     }
    ],
+   "met": 5,
    "progressions": [
     "bajada-escalon"
    ],
@@ -10652,6 +10753,7 @@
      "pct": 5
     }
    ],
+   "met": 9.5,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -10749,6 +10851,7 @@
      "pct": 5
     }
    ],
+   "met": 8,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -10838,6 +10941,7 @@
      "pct": 5
     }
    ],
+   "met": 5,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -10924,6 +11028,7 @@
      "pct": 10
     }
    ],
+   "met": 5,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -11015,6 +11120,7 @@
      "pct": 5
     }
    ],
+   "met": 5,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -11112,6 +11218,7 @@
      "pct": 5
     }
    ],
+   "met": 5,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -11210,6 +11317,7 @@
      "pct": 5
     }
    ],
+   "met": 8,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -11307,6 +11415,7 @@
      "pct": 5
     }
    ],
+   "met": 3,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -11403,6 +11512,7 @@
      "pct": 5
     }
    ],
+   "met": 8.5,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -11490,6 +11600,7 @@
      "pct": 5
     }
    ],
+   "met": 4.5,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -11574,6 +11685,7 @@
      "pct": 5
     }
    ],
+   "met": 4.5,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],
@@ -11658,6 +11770,7 @@
      "pct": 5
     }
    ],
+   "met": 5,
    "progressions": [],
    "therapeutic": false,
    "regressions": [],

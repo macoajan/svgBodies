@@ -15,6 +15,7 @@
     "cuadriceps": 90,
     "tibial-anterior": 10
   },
+  "met": 2,
   "equipment": [
     "rodillo"
   ],
