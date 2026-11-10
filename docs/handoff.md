@@ -167,7 +167,7 @@ Código en `server/` (Node ≥ 22.5, sin dependencias):
 - `public/visibility.js`: visibilidad por fechas y modo.
 - `README.md`: ámbitos y API prevista.
 - `public/api-client.js`: único cliente del servidor (la app solo debe usar este).
-- Visor web con el tema Cercano y **siempre con fondo blanco** (el propietario descartó el modo oscuro azul). Fuente Lexend servida desde el propio servidor.
+- Visor web con el tema Cercano, botón «Ver en 3D» por ejercicio (visor de la biblioteca con cámara libre, encuadre automático; posturas por ejercicio en `/lib/poses/<id>.json`) y **siempre con fondo blanco** (el propietario descartó el modo oscuro azul). Fuente Lexend servida desde el propio servidor.
 - `src/` (`app`, `store`, `ratelimit`, `config`, `main`) y `Dockerfile`: servidor
   **provisional y sustituible**, API versionada `/api/v1`, SQLite tras la interfaz de
   `store.mjs`. Visor web `/p/<código>` y `/c/<código>`. Detalles en `server/README.md`.
