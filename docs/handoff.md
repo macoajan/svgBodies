@@ -29,7 +29,7 @@ node tools/build.mjs     # valida taxonomía, fichas y posturas, genera library/
 | [Revisión de la taxonomía](https://claude.ai/artifact/C1Ny8wERm4PGUhzqwX6QNZ) | Revisión en el móvil de la clasificación de los 46 ejercicios de los lotes A–D: Correcto/Cambiar y notas por ejercicio, más «Criterios generales». Guarda en la base de datos del artefacto (`revision/<id>` con `{status, note, at}` y `revision-general/notas`). | Cerrada: el propietario dio los 46 por válidos; las 46 marcas están en `ok`. No incluye el lote E. |
 | [Lote E de monigotes](https://claude.ai/artifact/A8gUFgokYJm4TMgddV2wr8) | Galería móvil de los 24 ejercicios del lote E. | Cerrada: revisada, corregida y fusionada. |
 | [Piloto terapéutico](https://claude.ai/artifact/N1182gQxiSMhf3oTcUsk3f) | Revisión móvil de los ejercicios terapéuticos (colección `revision-f`: `{anim, text, note, at}`). Versión 2: 28 terapéuticos, con los 4 de columna lumbar marcados «Nuevo · columna» y una tarjeta de la cobra rehecha (sólo `anim`). | Versión 6: 49 terapéuticos. Cerrada: todos en `ok`. Los 5 últimos (isometrías y escápula) los dio por válidos el propietario sin revisarlos; se revisarán en la fase de pruebas. |
-| [Pantallas de la app](https://claude.ai/artifact/JncynHqzHKV5zUpVjM7ZwC) | Lienzo de diseño (tipo Design) con el mockup de la app: pantallas de profesional, paciente (descanso, valoración), respuestas, compra Pro, canal público de gimnasio (lista, visibilidad, WOD del cliente) y una fila por dirección visual (A Pista, A1, A2; C Cercano, C1, C2). | Estilo actual de las 11 pantallas: provisional (el propietario dijo que «huele a Claude»). Se conservan todas las variantes A y C como temas seleccionables; falta rehacer las pantallas con ellos. |
+| [Pantallas de la app](https://claude.ai/artifact/JncynHqzHKV5zUpVjM7ZwC) | Lienzo de diseño (tipo Design) con el mockup de la app: pantallas de profesional, paciente (descanso, valoración), respuestas, compra Pro, canal público de gimnasio (lista, visibilidad, WOD del cliente), tres pantallas de tablet horizontal (profesional A1, paciente C, WOD en pared del box A2) y una fila por dirección visual (A Pista, A1, A2; C Cercano, C1, C2). | Estilo actual de las 11 pantallas: provisional (el propietario dijo que «huele a Claude»). Se conservan todas las variantes A y C como temas seleccionables; falta rehacer las pantallas con ellos. |
 | [Músculos por ejercicio](https://claude.ai/artifact/3YXhL1bBnQNnFeJ1h9hXYL) | Revisión móvil del reparto muscular en % de los 88 ejercicios, con los tres primeros y los indirectos. Colección `revision-musculos`: documento `<id>` con `{status, note, at}` (`status` = `ok` o `cambiar`), y `revision-musculos-general/notas` con `{text, at}`. | Dados por buenos por el propietario; los sigue revisando con calma. Consultar de vez en cuando si hay marcas `cambiar` o notas. |
 
 Para actualizar un artefacto desde otra sesión: leerlo primero (`Artifact` con `action: "read"` y
@@ -178,7 +178,12 @@ Código en `server/` (Node ≥ 22.5, sin dependencias):
    `-general`) por si hay marcas `cambiar` o notas nuevas.
 3. Pendientes del motor: grosor del cuerpo (para la extensión completa de codos en McKenzie) y
    texto en inglés de las fichas.
-4. App: rehacer las 11 pantallas del mockup con los temas A y C; terminar el servidor del
+4. Alcance acordado: **v1** pautas privadas 1:1 (descansos, respuestas, calorías, acortador,
+   compra Pro); **v1.1** canales públicos con visibilidad (lógica hecha); **v2** grupos
+   privados 1:n con invitación individual y expulsión (token por miembro que el servidor
+   revoca y rotación de la clave del grupo para los que quedan), sincronización entre
+   dispositivos y seguimiento en tiempo real. No añadir más funcionalidades sin acordarlo.
+5. App: rehacer las 11 pantallas del mockup con los temas A y C; terminar el servidor del
    acortador y desplegarlo en Coolify (con el visto bueno del propietario); después, el diseño
    técnico de la app (Capacitor, compras únicas con StoreKit 2 y Google Play Billing).
 
