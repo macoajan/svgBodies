@@ -120,6 +120,7 @@ test('visor, biblioteca y ficheros', async () => {
   assert.match(await viewer.text(), /\/assets\/viewer\.js/);
   assert.equal((await get('/c/AbCdEf12')).status, 200);
   assert.equal((await get('/assets/api-client.js')).status, 200);
+  assert.equal((await get('/assets/fonts/lexend-latin.woff2')).headers.get('content-type'), 'font/woff2');
   assert.equal((await get('/assets/../src/app.mjs')).status, 404);
   assert.equal((await get('/lib/catalog.json')).status, 200);
   assert.equal((await get('/lib/svg/sentadilla-pared-lateral.svg')).headers.get('content-type'), 'image/svg+xml; charset=utf-8');

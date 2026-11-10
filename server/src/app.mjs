@@ -210,12 +210,13 @@ export function createApp(config, store, { now = () => Date.now() } = {}) {
     return fileCache.get(path);
   };
   const SEC = {
-    'Content-Security-Policy': "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'",
+    'Content-Security-Policy': "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'",
   };
   const serveFile = async (res, path, type, cache, extra = {}) => {
     const f = await cached(path, type);
     if (!f) return send(res, 404, { error: 'no-existe' });
-    res.writeHead(200, { 'Content-Type': `${f.type}; charset=utf-8`, 'Cache-Control': cache, ...extra });
+    const ct = f.type.startsWith('font/') ? f.type : `${f.type}; charset=utf-8`;
+    res.writeHead(200, { 'Content-Type': ct, 'Cache-Control': cache, ...extra });
     res.end(f.b);
   };
   const wellKnown = path => {
@@ -257,6 +258,7 @@ export function createApp(config, store, { now = () => Date.now() } = {}) {
       if (/^\/(p|c)(\/[A-Za-z0-9]{8})?\/?$/.test(path)) return serveFile(res, join(config.publicDir, 'viewer.html'), 'text/html', 'no-cache', SEC);
       const pub = /^\/assets\/([a-z-]+\.(?:js|css|html))$/.exec(path);
       if (pub && PUBLIC_FILES[pub[1]]) return serveFile(res, join(config.publicDir, pub[1]), PUBLIC_FILES[pub[1]], 'public, max-age=300');
+      if (path === '/assets/fonts/lexend-latin.woff2') return serveFile(res, join(config.publicDir, 'fonts', 'lexend-latin.woff2'), 'font/woff2', 'public, max-age=31536000, immutable');
       if (path === '/lib/catalog.json') return serveFile(res, join(config.libraryDir, 'catalog.json'), 'application/json', 'public, max-age=3600');
       const svg = /^\/lib\/svg\/([a-z0-9-]+\.svg)$/.exec(path);
       if (svg) return serveFile(res, join(config.libraryDir, 'svg', svg[1]), TYPES[extname(svg[1])], 'public, max-age=86400');
