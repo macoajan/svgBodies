@@ -1,4 +1,5 @@
-// Configuración por variables de entorno. Valores por defecto pensados para pruebas.
+// PROVISIONAL — configuración del servidor de pautas por variables de entorno.
+// Valores por defecto pensados para pruebas.
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -20,6 +21,7 @@ export function loadConfig(env = process.env) {
     maxBlob: int(env.MAX_BLOB_BYTES, 16 * 1024),
     maxResponse: int(env.MAX_RESPONSE_BYTES, 8 * 1024),
     maxResponses: int(env.MAX_RESPONSES, 1000),
+    maxSesiones: int(env.MAX_SESIONES, 2000),
     // Límites por IP en ventanas de 10 minutos (solo en memoria; las IP no se registran).
     writeLimit: int(env.RATE_WRITES, 60),
     readLimit: int(env.RATE_READS, 600),

@@ -114,3 +114,20 @@ export function estimateSession(p, metOf, weightKg = DEFAULTS.weightKg) {
   });
   return { minutes: Math.round(seconds / 60), kcal: Math.round(kcal) };
 }
+
+// Dosis en lenguaje sencillo para el paciente: «3 series · 10 repeticiones con cada lado ·
+// mantén 3 s · descanso 45 s».
+// En formatos tipo WOD (AMRAP, EMOM…) las series no aplican y se omiten.
+export function doseText(it, format) {
+  const parts = format && format.type !== 'series' ? [] : [`${it.sets} ${it.sets === 1 ? 'serie' : 'series'}`];
+  const side = it.perSide ? ' con cada lado' : '';
+  if (it.reps !== undefined) parts.push(`${it.reps} ${it.reps === 1 ? 'repetición' : 'repeticiones'}${side}`);
+  else if (side) parts.push(side.trim());
+  if (it.hold) parts.push(`mantén ${it.hold} s`);
+  if (it.restRep) parts.push(`pausa ${it.restRep} s entre repeticiones`);
+  if (it.restSet) parts.push(`descanso ${it.restSet} s`);
+  if (it.load) parts.push(it.load);
+  return parts.join(' · ');
+}
+
+export const FORMAT_LABEL = { series: 'Series', amrap: 'AMRAP', emom: 'EMOM', fortime: 'For time', tabata: 'Tabata' };
