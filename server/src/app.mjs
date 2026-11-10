@@ -28,6 +28,18 @@ export function createApp(config, store, { now = () => Date.now() } = {}) {
   const limiter = createRateLimiter({ windowMs: 10 * 60_000, limits: { read: config.readLimit, write: config.writeLimit } });
   const expiry = t => t + config.ttlDays * DAY;
   const fileCache = new Map();
+  // Posturas 3D por ejercicio (para el visor con cámara libre), troceadas de poses.json al
+  // primer uso: el cliente descarga solo las del ejercicio que abre.
+  let posesById = null;
+  const posesOf = async id => {
+    if (!posesById) {
+      try {
+        const all = JSON.parse(await readFile(join(config.libraryDir, 'poses.json'), 'utf8'));
+        posesById = new Map(all.exercises.map(e => [e.id, Buffer.from(JSON.stringify(e))]));
+      } catch { posesById = new Map(); }
+    }
+    return posesById.get(id);
+  };
 
   const send = (res, status, body, headers = {}) => {
     const isBuf = Buffer.isBuffer(body) || typeof body === 'string';
@@ -259,6 +271,14 @@ export function createApp(config, store, { now = () => Date.now() } = {}) {
       const pub = /^\/assets\/([a-z-]+\.(?:js|css|html))$/.exec(path);
       if (pub && PUBLIC_FILES[pub[1]]) return serveFile(res, join(config.publicDir, pub[1]), PUBLIC_FILES[pub[1]], 'public, max-age=300');
       if (path === '/assets/fonts/lexend-latin.woff2') return serveFile(res, join(config.publicDir, 'fonts', 'lexend-latin.woff2'), 'font/woff2', 'public, max-age=31536000, immutable');
+      if (path === '/lib/viewer.js') return serveFile(res, join(config.libraryDir, 'viewer.js'), 'text/javascript', 'public, max-age=3600');
+      const pose = /^\/lib\/poses\/([a-z0-9-]+)\.json$/.exec(path);
+      if (pose) {
+        const body = await posesOf(pose[1]);
+        if (!body) return send(res, 404, { error: 'no-existe' });
+        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'public, max-age=3600' });
+        return res.end(body);
+      }
       if (path === '/lib/catalog.json') return serveFile(res, join(config.libraryDir, 'catalog.json'), 'application/json', 'public, max-age=3600');
       const svg = /^\/lib\/svg\/([a-z0-9-]+\.svg)$/.exec(path);
       if (svg) return serveFile(res, join(config.libraryDir, 'svg', svg[1]), TYPES[extname(svg[1])], 'public, max-age=86400');

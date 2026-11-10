@@ -49,6 +49,53 @@ async function loadCatalog() {
   return catalog;
 }
 
+// Visor 3D de la biblioteca (cámara libre: arrastrar para girar). Se carga solo al abrirlo.
+let viewerLib;
+const loadViewer = () => viewerLib ||= new Promise((resolve, reject) => {
+  const sc = document.createElement('script');
+  sc.src = '/lib/viewer.js';
+  sc.onload = () => resolve(window.PoseViewer);
+  sc.onerror = () => { viewerLib = null; reject(new Error('visor 3D no disponible')); };
+  document.head.append(sc);
+});
+const poseCache = new Map();
+const loadPoses = id => {
+  if (!poseCache.has(id)) poseCache.set(id, fetch(`/lib/poses/${id}.json`).then(r => { if (!r.ok) throw new Error('sin posturas'); return r.json(); }));
+  return poseCache.get(id);
+};
+const reduceMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+let loops = [];
+const stopLoops = () => { loops.forEach(cancelAnimationFrame); loops = []; };
+
+function viewer3d(id, name) {
+  const NS = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(NS, 'svg');
+  for (const [k, v] of Object.entries({ viewBox: '-14 -22 92 96', fill: 'none', stroke: '#C2410C', 'stroke-width': '3.4', 'stroke-linecap': 'round', 'stroke-linejoin': 'round', role: 'img', 'aria-label': `${name}, figura en 3D` })) svg.setAttribute(k, v);
+  const box = h('div', { class: 'visor3d' }, svg, h('p', { class: 'pista' }, 'Arrastra para girar · doble toque para volver'));
+  Promise.all([loadViewer(), loadPoses(id)]).then(([PV, ex]) => {
+    const fig = PV.mount(svg, ex);
+    // Encuadre automático: une la caja de la figura y el suelo a lo largo de la animación, y
+    // se recalcula cuando cambia la cámara (al girar o al volver con doble toque).
+    let fit = null, cam = '';
+    const draw = t => {
+      fig.render(t);
+      const key = `${Math.round(fig.state.yaw)}|${Math.round(fig.state.pitch)}`;
+      if (key !== cam) { cam = key; fit = null; }
+      const b = svg.getBBox();
+      fit = fit ? { x0: Math.min(fit.x0, b.x), y0: Math.min(fit.y0, b.y), x1: Math.max(fit.x1, b.x + b.width), y1: Math.max(fit.y1, b.y + b.height) }
+        : { x0: b.x, y0: b.y, x1: b.x + b.width, y1: b.y + b.height };
+      const pad = 3;
+      svg.setAttribute('viewBox', `${(fit.x0 - pad).toFixed(1)} ${(fit.y0 - pad).toFixed(1)} ${(fit.x1 - fit.x0 + 2 * pad).toFixed(1)} ${(fit.y1 - fit.y0 + 2 * pad).toFixed(1)}`);
+    };
+    if (reduceMotion()) { draw(ex.still ?? 0); return; }
+    const t0 = performance.now();
+    const slot = loops.length;
+    const frame = now => { draw((now - t0) / 1000); loops[slot] = requestAnimationFrame(frame); };
+    loops[slot] = requestAnimationFrame(frame);
+  }).catch(() => box.replaceChildren(h('p', { class: 'pista' }, 'No se ha podido cargar la vista 3D.')));
+  return box;
+}
+
 // Ejercicios hechos hoy: solo en este dispositivo (comodidad del paciente; no se envía).
 const today = () => new Date().toISOString().slice(0, 10);
 function doneStore(id) {
@@ -126,8 +173,10 @@ async function showPauta() {
   const fmt = pauta.format && pauta.format.type !== 'series' && `${FORMAT_LABEL[pauta.format.type]}${pauta.format.minutes ? ` ${pauta.format.minutes} min` : ''}`;
   const logo = initials(pauta.pro?.name);
   const form = code && feedbackForm(pauta, cat, code, key);
+  const open3d = new Set();
 
   const render = () => {
+    stopLoops();
     const n = pauta.items.length;
     const current = pauta.items.findIndex((_, i) => !done.has(i));
     const all = current === -1;
@@ -154,8 +203,11 @@ async function showPauta() {
             h('h2', {}, ex?.name?.es ?? it.id),
             h('p', { class: 'dosis' }, state === 'hecho' ? '¡Hecho!' : doseText(it, pauta.format)),
             it.note && state !== 'hecho' && h('p', { class: 'nota-ej' }, it.note)),
+          open3d.has(i) && viewer3d(it.id, ex?.name?.es ?? it.id),
           state !== 'hecho' && howTo(ex, pauta.show?.proText),
           h('div', { class: 'acciones' },
+            h('button', { type: 'button', class: 'btn-3d', 'aria-expanded': String(open3d.has(i)), onclick: () => { if (open3d.has(i)) open3d.delete(i); else open3d.add(i); render(); } },
+              open3d.has(i) ? 'Cerrar 3D' : 'Ver en 3D'),
             h('button', { type: 'button', class: 'btn-hecho', 'aria-pressed': String(done.has(i)), onclick: () => { done.toggle(i); render(); } },
               done.has(i) ? 'Deshacer' : 'Marcar como hecho')));
       })),

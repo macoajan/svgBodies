@@ -123,6 +123,13 @@ test('visor, biblioteca y ficheros', async () => {
   assert.equal((await get('/assets/fonts/lexend-latin.woff2')).headers.get('content-type'), 'font/woff2');
   assert.equal((await get('/assets/../src/app.mjs')).status, 404);
   assert.equal((await get('/lib/catalog.json')).status, 200);
+  const pose = await get('/lib/poses/sentadilla-pared.json');
+  assert.equal(pose.status, 200);
+  const ex = await pose.json();
+  assert.equal(ex.id, 'sentadilla-pared');
+  assert.ok(ex.frames.length > 1 && ex.duration > 0);
+  assert.equal((await get('/lib/poses/no-existe.json')).status, 404);
+  assert.equal((await get('/lib/viewer.js')).status, 200);
   assert.equal((await get('/lib/svg/sentadilla-pared-lateral.svg')).headers.get('content-type'), 'image/svg+xml; charset=utf-8');
   assert.equal((await get('/lib/svg/..%2Fcatalog.json')).status, 404);
   assert.equal((await get('/.well-known/assetlinks.json')).status, 404);

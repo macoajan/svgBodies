@@ -11,6 +11,7 @@ COPY server/src ./server/src
 COPY server/public ./server/public
 COPY library/catalog.json ./library/catalog.json
 COPY library/svg ./library/svg
+COPY library/poses.json library/viewer.js ./library/
 
 RUN mkdir -p /data && chown node:node /data
 USER node
