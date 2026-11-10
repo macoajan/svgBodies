@@ -170,8 +170,13 @@ Código en `server/` (Node ≥ 22.5, sin dependencias):
 - `src/` (`app`, `store`, `ratelimit`, `config`, `main`) y `Dockerfile`: servidor
   **provisional y sustituible**, API versionada `/api/v1`, SQLite tras la interfaz de
   `store.mjs`. Visor web `/p/<código>` y `/c/<código>`. Detalles en `server/README.md`.
-- Despliegue de pruebas en el Coolify del propietario: `https://pautas.maroto.es`
-  (aplicación `pautas-server`, desde `main`, volumen en `/data`).
+- **Desplegado** en el Coolify del propietario: `https://pautas.maroto.es` (proyecto «Pautas»,
+  aplicación `pautas-server`, uuid `dvod7uhtiyumwnqs9hnnxqha`; Dockerfile `/server/Dockerfile`
+  desde la raíz, rama `main`, redespliegue automático al cambiar `server/` o `library/`;
+  volumen persistente en `/data`; `PUBLIC_URL` en las variables). La comprobación de salud
+  de Coolify apunta a `127.0.0.1:3000/healthz`: con `localhost` falla, porque en Alpine
+  resuelve a IPv6 y el servidor escucha en IPv4. El token MCP de Coolify no puede leer
+  registros (`read:sensitive`).
 - `npm test` en `server/`.
 
 ## Próximos pasos
