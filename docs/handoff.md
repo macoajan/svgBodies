@@ -29,7 +29,7 @@ node tools/build.mjs     # valida taxonomía, fichas y posturas, genera library/
 | [Revisión de la taxonomía](https://claude.ai/artifact/C1Ny8wERm4PGUhzqwX6QNZ) | Revisión en el móvil de la clasificación de los 46 ejercicios de los lotes A–D: Correcto/Cambiar y notas por ejercicio, más «Criterios generales». Guarda en la base de datos del artefacto (`revision/<id>` con `{status, note, at}` y `revision-general/notas`). | Cerrada: el propietario dio los 46 por válidos; las 46 marcas están en `ok`. No incluye el lote E. |
 | [Lote E de monigotes](https://claude.ai/artifact/A8gUFgokYJm4TMgddV2wr8) | Galería móvil de los 24 ejercicios del lote E. | Cerrada: revisada, corregida y fusionada. |
 | [Piloto terapéutico](https://claude.ai/artifact/N1182gQxiSMhf3oTcUsk3f) | Revisión móvil de los ejercicios terapéuticos (colección `revision-f`: `{anim, text, note, at}`). Versión 2: 28 terapéuticos, con los 4 de columna lumbar marcados «Nuevo · columna» y una tarjeta de la cobra rehecha (sólo `anim`). | Versión 6: 49 terapéuticos. Cerrada: todos en `ok`. Los 5 últimos (isometrías y escápula) los dio por válidos el propietario sin revisarlos; se revisarán en la fase de pruebas. |
-| [Pantallas de la app](https://claude.ai/artifact/JncynHqzHKV5zUpVjM7ZwC) | Lienzo de diseño (tipo Design) con el mockup de la app: 11 pantallas (profesional, paciente, descanso, valoración, respuestas, compra Pro) y una fila por dirección visual (A Pista, A1, A2; C Cercano, C1, C2). | Estilo actual de las 11 pantallas: provisional (el propietario dijo que «huele a Claude»). Se conservan todas las variantes A y C como temas seleccionables; falta rehacer las pantallas con ellos. |
+| [Pantallas de la app](https://claude.ai/artifact/JncynHqzHKV5zUpVjM7ZwC) | Lienzo de diseño (tipo Design) con el mockup de la app: pantallas de profesional, paciente (descanso, valoración), respuestas, compra Pro, canal público de gimnasio (lista, visibilidad, WOD del cliente) y una fila por dirección visual (A Pista, A1, A2; C Cercano, C1, C2). | Estilo actual de las 11 pantallas: provisional (el propietario dijo que «huele a Claude»). Se conservan todas las variantes A y C como temas seleccionables; falta rehacer las pantallas con ellos. |
 | [Músculos por ejercicio](https://claude.ai/artifact/3YXhL1bBnQNnFeJ1h9hXYL) | Revisión móvil del reparto muscular en % de los 88 ejercicios, con los tres primeros y los indirectos. Colección `revision-musculos`: documento `<id>` con `{status, note, at}` (`status` = `ok` o `cambiar`), y `revision-musculos-general/notas` con `{text, at}`. | Dados por buenos por el propietario; los sigue revisando con calma. Consultar de vez en cuando si hay marcas `cambiar` o notas. |
 
 Para actualizar un artefacto desde otra sesión: leerlo primero (`Artifact` con `action: "read"` y
@@ -151,6 +151,11 @@ publisher, que solo gestiona el cobro, a mano):
   terminar el ejercicio (con un valor por defecto de la pauta). El paciente puede alargarlos
   o acortarlos.
 - **Respuesta del paciente** por ejercicio: fácil/bien/difícil, dolor 0–10 y comentario.
+- **Ámbito y visibilidad**: pauta privada (`/p/…`) o canal público (`/c/…`, p. ej. el WOD de
+  un gimnasio para todos sus clientes). Cada pauta o sesión lleva visibilidad en claro
+  `{ mode: auto|show|hide, from?, until? }`: automático por fechas o forzado (override). El
+  servidor solo entrega lo visible. Las sesiones admiten `format` (series, AMRAP, EMOM, for
+  time, tabata).
 - **Calorías**: `met` por ejercicio en la taxonomía; la pauta lleva `show.kcal` para que el
   profesional decida si el paciente las ve. Peso del usuario solo en su dispositivo.
 
@@ -159,8 +164,10 @@ Código en `server/` (Node ≥ 22.5, sin dependencias):
 - `public/pauta-crypto.js`: cifrado y formato de enlaces, compartido por app, visor y pruebas.
 - `public/pauta-schema.js`: formato v1 de pauta y respuesta, validación y estimación de
   duración y calorías.
-- `src/config.mjs`: configuración por entorno. **Pendiente**: el servidor en sí (API
-  `POST/GET/PUT/DELETE /api/p`, respuestas `/api/p/<código>/r`, visor `/p/<código>`,
+- `public/visibility.js`: visibilidad por fechas y modo.
+- `README.md`: ámbitos y API prevista.
+- `src/config.mjs`: configuración por entorno. **Pendiente**: el servidor en sí (API de
+  pautas `/api/p`, respuestas `/api/p/<código>/r`, canales `/api/c`, visores `/p` y `/c`,
   caducidad, límites por IP, Dockerfile para Coolify, asociación de dominio con la app).
 - `npm test` en `server/`.
 

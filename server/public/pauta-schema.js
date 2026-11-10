@@ -11,6 +11,8 @@
 //   schedule?: { perWeek: 1–14, weeks: 1–52 },
 //   restBetween?: 90,                     descanso por defecto entre ejercicios (s)
 //   show?: { kcal: false, proText: false },  qué ve el paciente (según el tipo de paciente)
+//   format?: { type: 'series'|'amrap'|'emom'|'fortime'|'tabata', minutes?: 1–180, rounds?: 1–100 },
+//                                         formato de la sesión (WOD de un canal público); por defecto 'series'
 //   items: [{                              1–40 ejercicios, en orden
 //     id: 'sentadilla-pared',             id del catálogo
 //     sets: 3, reps?: 10,                 series y repeticiones (por lado si perSide)
@@ -22,6 +24,9 @@
 //   }]
 // }
 //
+// El ámbito (privada o canal público) y la visibilidad por fechas no van aquí: viajan en claro
+// junto al bloque cifrado (visibility.js), porque es el servidor quien decide qué entrega.
+//
 // Respuesta del paciente:
 // { v: 1, kind: 'respuesta', at: '2026-11-10T18:20:00Z',
 //   items: [{ i: 0, diff: 'facil'|'bien'|'dificil', pain: 0–10, note?: '…' }] }
@@ -29,6 +34,7 @@
 export const LIMITS = { items: 40, title: 60, proField: 80, note: 500, itemNote: 300, load: 40, rest: 600, hold: 600 };
 export const DEFAULTS = { tempo: 3, restBetween: 90, restMet: 1.3, weightKg: 70 };
 const DIFF = ['facil', 'bien', 'dificil'];
+export const FORMATS = ['series', 'amrap', 'emom', 'fortime', 'tabata'];
 
 const isInt = (v, lo, hi) => Number.isInteger(v) && v >= lo && v <= hi;
 const isText = (v, max) => typeof v === 'string' && v.length <= max;
@@ -45,6 +51,14 @@ export function checkPauta(p, known) {
   if (p.schedule !== undefined && !(isInt(p.schedule.perWeek, 1, 14) && isInt(p.schedule.weeks, 1, 52))) bad('schedule');
   if (p.restBetween !== undefined && !isInt(p.restBetween, 0, LIMITS.rest)) bad('restBetween');
   if (p.show !== undefined) for (const k of ['kcal', 'proText']) if (p.show[k] !== undefined && typeof p.show[k] !== 'boolean') bad(`show.${k}`);
+  if (p.format !== undefined) {
+    const f = p.format;
+    if (!f || !FORMATS.includes(f.type)) bad('format.type');
+    else {
+      if (f.minutes !== undefined && !isInt(f.minutes, 1, 180)) bad('format.minutes');
+      if (f.rounds !== undefined && !isInt(f.rounds, 1, 100)) bad('format.rounds');
+    }
+  }
   if (!Array.isArray(p.items) || !p.items.length || p.items.length > LIMITS.items) { bad('items'); return errs; }
   p.items.forEach((it, n) => {
     const w = `items[${n}]`;
