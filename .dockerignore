@@ -6,6 +6,4 @@ server/data
 server/test
 **/node_modules
 library/*.html
-library/poses.json
-library/viewer.js
 library/catalog-flags.csv
