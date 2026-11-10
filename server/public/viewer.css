@@ -1,4 +1,4 @@
-/* Visor web de pautas (provisional) · tema «Cercano» (C; C2 en modo oscuro).
+/* Visor web de pautas (provisional) · tema «Cercano», siempre con fondo blanco.
    Sin recursos de terceros: la fuente Lexend (OFL) se sirve desde el propio servidor. */
 @font-face {
   font-family: 'Lexend';
@@ -8,6 +8,7 @@
   src: url(/assets/fonts/lexend-latin.woff2) format('woff2');
 }
 :root {
+  color-scheme: light;
   --ink: #14213D;
   --on-ink: #FFFFFF;
   --bg: #FFFFFF;
@@ -20,13 +21,6 @@
   --bad: #7F1D1D;
   --ok: #1F7A4D;
   --fig-bg: rgba(255, 255, 255, 0.6);
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --ink: #F4F1EA; --on-ink: #121A2E; --bg: #121A2E; --soft: #1B2440; --line: #2C3654; --idle: #3A4562;
-    --warm: #FFB98F; --done: #1B3A33; --bad-bg: #3A1F27; --bad: #FFB3B3; --ok: #7DDBA7; --fig-bg: rgba(255, 255, 255, 0.85);
-  }
-  .ej.actual, .ej.actual a, .pill.calida { color: #121A2E; }
 }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.5 Lexend, system-ui, -apple-system, sans-serif; }
@@ -69,7 +63,6 @@ details p { margin: 4px 0; }
 .btn-hecho { flex: 1; min-height: 52px; border-radius: 26px; border: 3px solid var(--ink); background: transparent; color: inherit; font: 700 16px Lexend, sans-serif; cursor: pointer; }
 .btn-hecho[aria-pressed="true"] { background: var(--ink); color: var(--on-ink); }
 .ej.actual .btn-hecho { background: var(--ink); color: #FFFFFF; border-color: var(--ink); }
-@media (prefers-color-scheme: dark) { .ej.actual .btn-hecho { background: #121A2E; border-color: #121A2E; color: #F4F1EA; } }
 
 .mensaje { display: flex; gap: 10px; align-items: flex-start; }
 .mensaje p { margin: 0; padding: 10px 16px; border-radius: 4px 22px 22px 22px; background: var(--soft); }
@@ -101,7 +94,6 @@ textarea { font: 15px Lexend, sans-serif; color: var(--ink); background: var(--b
 .sesion ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
 .sesion li { display: flex; align-items: center; gap: 12px; }
 .sesion li img { width: 52px; height: 52px; border-radius: 14px; background: var(--fig-bg); flex: none; }
-@media (prefers-color-scheme: dark) { .sesion:first-of-type, .sesion:first-of-type .pill { color: #121A2E; } }
 @media (max-width: 380px) {
   h1 { font-size: 28px; }
   .ej.actual { grid-template-columns: 76px 1fr; }
