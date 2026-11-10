@@ -10,7 +10,7 @@ para poder sustituirse**:
   `node:sqlite`); otro motor es otra implementación con los mismos métodos.
 
 Node ≥ 22.5, sin dependencias. Dominio configurable (`PUBLIC_URL`); para pruebas,
-`https://maroto.es`.
+`https://pautas.maroto.es`.
 
 ```
 npm test        # pruebas (unitarias y de extremo a extremo con el servidor real)
@@ -73,7 +73,7 @@ de respuestas o sesiones), 413 (demasiado grande), 429 (demasiadas peticiones).
 
 | Variable | Por defecto | Uso |
 |---|---|---|
-| `PUBLIC_URL` | `https://maroto.es` | Dominio de los enlaces |
+| `PUBLIC_URL` | `https://pautas.maroto.es` | Dominio de los enlaces |
 | `PORT` | `3000` | Puerto |
 | `DATA_DIR` | `server/data` (`/data` en Docker) | Base de datos SQLite (volumen persistente) |
 | `LIBRARY_DIR` | `library/` | Catálogo y SVG |

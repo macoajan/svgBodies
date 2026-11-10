@@ -143,7 +143,7 @@ publisher, que solo gestiona el cobro, a mano):
 - **Acortador privado** («bitly privado») en el Coolify del propietario: Node simple + SQLite,
   guarda solo bloques cifrados; enlace `<dominio>/p/<código>#<clave>`, con el enlace largo
   `<dominio>/p#<clave>.<bloque>` como alternativa sin conexión. Dominio configurable
-  (`PUBLIC_URL`); para pruebas, `maroto.es`. Permite actualizar la pauta con el mismo enlace
+  (`PUBLIC_URL`); para pruebas, `pautas.maroto.es`. Permite actualizar la pauta con el mismo enlace
   (token de edición) y recoger las respuestas del paciente. QR generado en la app, nunca en
   servicios externos. CloudKit descartado para esto (escribir exige Apple ID); posible en v2
   para sincronizar las pautas del profesional entre sus dispositivos Apple.
@@ -166,9 +166,12 @@ Código en `server/` (Node ≥ 22.5, sin dependencias):
   duración y calorías.
 - `public/visibility.js`: visibilidad por fechas y modo.
 - `README.md`: ámbitos y API prevista.
-- `src/config.mjs`: configuración por entorno. **Pendiente**: el servidor en sí (API de
-  pautas `/api/p`, respuestas `/api/p/<código>/r`, canales `/api/c`, visores `/p` y `/c`,
-  caducidad, límites por IP, Dockerfile para Coolify, asociación de dominio con la app).
+- `public/api-client.js`: único cliente del servidor (la app solo debe usar este).
+- `src/` (`app`, `store`, `ratelimit`, `config`, `main`) y `Dockerfile`: servidor
+  **provisional y sustituible**, API versionada `/api/v1`, SQLite tras la interfaz de
+  `store.mjs`. Visor web `/p/<código>` y `/c/<código>`. Detalles en `server/README.md`.
+- Despliegue de pruebas en el Coolify del propietario: `https://pautas.maroto.es`
+  (aplicación `pautas-server`, desde `main`, volumen en `/data`).
 - `npm test` en `server/`.
 
 ## Próximos pasos

@@ -20,7 +20,7 @@ ENV NODE_ENV=production \
     PORT=3000 \
     DATA_DIR=/data \
     LIBRARY_DIR=/app/library \
-    PUBLIC_URL=https://maroto.es
+    PUBLIC_URL=https://pautas.maroto.es
 
 VOLUME /data
 EXPOSE 3000

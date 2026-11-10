@@ -10,7 +10,7 @@ const list = v => (v ? v.split(',').map(s => s.trim()).filter(Boolean) : []);
 export function loadConfig(env = process.env) {
   return {
     // Dominio público con el que se construyen los enlaces (sin barra final).
-    publicUrl: (env.PUBLIC_URL || 'https://maroto.es').replace(/\/+$/, ''),
+    publicUrl: (env.PUBLIC_URL || 'https://pautas.maroto.es').replace(/\/+$/, ''),
     port: int(env.PORT, 3000),
     host: env.HOST || '0.0.0.0',
     dataDir: env.DATA_DIR || path.resolve(here, '../data'),
