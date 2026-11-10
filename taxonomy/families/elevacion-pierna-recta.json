@@ -18,6 +18,7 @@
     "tibial-anterior": 5,
     "oblicuos": 5
   },
+  "met": 2.5,
   "equipment": [
     "esterilla"
   ],

@@ -23,7 +23,9 @@ export const FACETS = [
 ];
 const THERAPY = FACETS.filter(f => f.therapy).map(f => f.field);
 const MAX_MUSCLES = 8;
-const FACET_FIELDS = new Set([...FACETS.map(f => f.field), 'muscles']);
+// Estimated energy cost (MET, Compendium of Physical Activities style), for calorie estimates.
+const MET_RANGE = [1, 20];
+const FACET_FIELDS = new Set([...FACETS.map(f => f.field), 'muscles', 'met']);
 const VARIANT_KEYS = new Set(['id', 'name', 'set', 'progressions', ...FACET_FIELDS]);
 const FAMILY_KEYS = new Set(['id', 'name', 'params', 'variants', ...FACET_FIELDS]);
 
@@ -103,6 +105,11 @@ export function loadTaxonomy(root) {
         if (ks.length > 3 && m[ks[2]] === m[ks[3]]) err(where, `"muscles": empate en el tercer puesto (${ks[2]} y ${ks[3]} con ${m[ks[2]]}); los tres primeros deben quedar definidos`);
       }
     } else if (required) err(where, 'falta "muscles"');
+    if (obj.met !== undefined) {
+      const v = obj.met;
+      if (typeof v !== 'number' || !(v >= MET_RANGE[0] && v <= MET_RANGE[1]) || Math.round(v * 10) !== v * 10)
+        err(where, `"met" = ${JSON.stringify(v)}: debe ser un número entre ${MET_RANGE[0]} y ${MET_RANGE[1]} con un decimal como mucho`);
+    } else if (required) err(where, 'falta "met"');
   };
 
   const entries = [], ids = new Map();
@@ -217,11 +224,11 @@ export function flagsCsv(entries, vocab) {
     ...(e.regions || []).map(x => `region:${x}`), ...(e.goals || []).map(x => `objetivo-terapeutico:${x}`), ...(e.mode ? [`modo:${e.mode}`] : []),
   ]);
   const q = s => (/[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s);
-  const rows = [['id', 'familia', 'nombre', ...cols].join(',')];
+  const rows = [['id', 'familia', 'nombre', 'met', ...cols].join(',')];
   // Flags are 1 or empty; the musculo:<id> columns carry the estimated percentage instead.
   for (const e of entries) {
     const h = has(e), pct = Object.fromEntries(e.muscles.map(m => [`musculo:${m.id}`, String(m.pct)]));
-    rows.push([e.id, e.family, q(e.name.es), ...cols.map(c => pct[c] ?? (h.has(c) ? '1' : ''))].join(','));
+    rows.push([e.id, e.family, q(e.name.es), String(e.met), ...cols.map(c => pct[c] ?? (h.has(c) ? '1' : ''))].join(','));
   }
   return rows.join('\n') + '\n';
 }

@@ -18,6 +18,7 @@
     "gluteo-medio": 15,
     "transverso": 10
   },
+  "met": 3,
   "equipment": [
     "peso-corporal"
   ],

@@ -24,6 +24,7 @@
     "trapecio": 5,
     "recto-abdominal": 5
   },
+  "met": 8,
   "equipment": [
     "barra"
   ],

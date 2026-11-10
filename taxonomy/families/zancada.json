@@ -18,6 +18,7 @@
     "gluteo-medio": 10,
     "isquiotibiales": 5
   },
+  "met": 4.5,
   "equipment": [
     "peso-corporal"
   ],
@@ -87,7 +88,8 @@
         "gluteo-medio": 15,
         "aductores": 10,
         "isquiotibiales": 5
-      }
+      },
+      "met": 5
     }
   ]
 }

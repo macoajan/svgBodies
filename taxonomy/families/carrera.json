@@ -19,6 +19,7 @@
     "gemelos": 10,
     "flexores-cadera": 10
   },
+  "met": 8.5,
   "equipment": [
     "peso-corporal"
   ],
@@ -61,7 +62,8 @@
         "recto-abdominal": 10,
         "gluteo-mayor": 10,
         "tibial-anterior": 5
-      }
+      },
+      "met": 8
     },
     {
       "id": "talones-gluteo",
@@ -79,7 +81,8 @@
         "cuadriceps": 10,
         "gluteo-mayor": 10,
         "flexores-cadera": 5
-      }
+      },
+      "met": 7.5
     }
   ]
 }

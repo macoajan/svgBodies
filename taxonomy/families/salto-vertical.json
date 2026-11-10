@@ -20,6 +20,7 @@
     "erectores": 5,
     "deltoides-anterior": 5
   },
+  "met": 8,
   "equipment": [
     "peso-corporal"
   ],
@@ -91,7 +92,8 @@
         "soleo": 10,
         "recto-abdominal": 5,
         "isquiotibiales": 5
-      }
+      },
+      "met": 8.5
     }
   ]
 }

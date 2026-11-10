@@ -20,6 +20,7 @@
     "trapecio": 5,
     "dorsal": 5
   },
+  "met": 6,
   "equipment": [
     "barra"
   ],
@@ -67,7 +68,8 @@
         "erectores": 15,
         "antebrazo": 10,
         "dorsal": 5
-      }
+      },
+      "met": 5.5
     },
     {
       "id": "peso-muerto-una-pierna",
@@ -95,7 +97,8 @@
         "erectores": 10,
         "oblicuos": 5,
         "soleo": 5
-      }
+      },
+      "met": 5
     }
   ]
 }

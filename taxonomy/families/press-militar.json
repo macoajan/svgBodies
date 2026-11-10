@@ -19,6 +19,7 @@
     "serrato": 10,
     "recto-abdominal": 5
   },
+  "met": 5,
   "equipment": [
     "barra",
     "rack"

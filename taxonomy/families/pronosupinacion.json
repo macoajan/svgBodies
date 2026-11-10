@@ -17,6 +17,7 @@
     "biceps": 20,
     "flexores-muneca": 10
   },
+  "met": 1.8,
   "equipment": [
     "silla",
     "martillo"

@@ -22,6 +22,7 @@
     "trapecio": 10,
     "escalenos": 10
   },
+  "met": 1.8,
   "params": {
     "movimiento": [
       "flexo-extension",

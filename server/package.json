@@ -1,0 +1,13 @@
+{
+  "name": "pautas-server",
+  "private": true,
+  "description": "Acortador privado de pautas: guarda bloques cifrados que no puede leer y sirve el visor web.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.5"
+  },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning src/main.mjs",
+    "test": "node --disable-warning=ExperimentalWarning --test test/*.test.mjs"
+  }
+}

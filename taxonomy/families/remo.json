@@ -20,6 +20,7 @@
     "erectores": 10,
     "antebrazo": 5
   },
+  "met": 5.5,
   "equipment": [
     "peso-corporal"
   ],
@@ -85,7 +86,8 @@
         "trapecio": 10,
         "deltoides-posterior": 10,
         "antebrazo": 10
-      }
+      },
+      "met": 4.5
     },
     {
       "id": "remo-invertido",
@@ -110,7 +112,8 @@
         "gluteo-mayor": 5,
         "recto-abdominal": 5,
         "antebrazo": 5
-      }
+      },
+      "met": 5
     },
     {
       "id": "remo-banda",
@@ -132,6 +135,7 @@
         "deltoides-posterior": 15,
         "biceps": 15
       },
+      "met": 3.5,
       "regions": [
         "hombro",
         "dorsal"

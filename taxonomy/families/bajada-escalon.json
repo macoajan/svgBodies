@@ -18,6 +18,7 @@
     "soleo": 10,
     "aductores": 5
   },
+  "met": 3.5,
   "equipment": [
     "escalon"
   ],

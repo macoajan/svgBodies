@@ -16,6 +16,7 @@
     "soleo": 40,
     "tibial-anterior": 5
   },
+  "met": 2.8,
   "equipment": [
     "pared"
   ],
@@ -74,7 +75,8 @@
         "soleo": 35,
         "gluteo-medio": 10,
         "tibial-anterior": 5
-      }
+      },
+      "met": 3.3
     }
   ]
 }
