@@ -167,7 +167,7 @@ Código en `server/` (Node ≥ 22.5, sin dependencias):
 - `public/visibility.js`: visibilidad por fechas y modo.
 - `README.md`: ámbitos y API prevista.
 - `public/api-client.js`: único cliente del servidor (la app solo debe usar este).
-- Visor web con el tema Cercano y **siempre con fondo blanco** (el propietario descartó el modo oscuro azul). Fuente Lexend servida desde el propio servidor.
+- Visor web con el tema Cercano, botón «Ver en 3D» por ejercicio (visor de la biblioteca con cámara libre, encuadre automático; posturas por ejercicio en `/lib/poses/<id>.json`) y **siempre con fondo blanco** (el propietario descartó el modo oscuro azul). Fuente Lexend servida desde el propio servidor.
 - `src/` (`app`, `store`, `ratelimit`, `config`, `main`) y `Dockerfile`: servidor
   **provisional y sustituible**, API versionada `/api/v1`, SQLite tras la interfaz de
   `store.mjs`. Visor web `/p/<código>` y `/c/<código>`. Detalles en `server/README.md`.
@@ -195,6 +195,14 @@ Código en `server/` (Node ≥ 22.5, sin dependencias):
 5. App: rehacer las 11 pantallas del mockup con los temas A y C; terminar el servidor del
    acortador y desplegarlo en Coolify (con el visto bueno del propietario); después, el diseño
    técnico de la app (Capacitor, compras únicas con StoreKit 2 y Google Play Billing).
+6. **Diseño técnico de la app escrito** en `docs/app-diseno-tecnico.md` (pila, datos locales,
+   enlaces, ejecución guiada, compra Pro, fases F0–F6). Siguiente: revisarlo con el propietario
+   y empezar por F0, una fase por sesión y PR.
+7. **F0 hecha** (`app/`, ver `app/README.md`): Capacitor 8 + Preact + Vite, router por hash,
+   temas, almacenamiento local con migraciones, biblioteca sin conexión
+   (`tools/build-app-library.mjs`), apertura de una pauta por enlace y proyectos `ios/`
+   (SPM) y `android/`. Identificador provisional `es.maroto.pautas`. El APK no se puede compilar
+   en el contenedor (red sin `dl.google.com`/`maven.google.com`). Siguiente: **F1 Biblioteca**.
 
 ## Cómo revisar visualmente
 

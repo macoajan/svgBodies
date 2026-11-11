@@ -17,6 +17,7 @@ export class ApiError extends Error {
 
 const trim = base => base.replace(/\/+$/, '');
 
+/** @param {string} base @param {string} method @param {string} path @param {{ token?: string, body?: any }} [opts] */
 async function call(base, method, path, { token, body } = {}) {
   const res = await fetch(`${trim(base)}/api/${API_VERSION}${path}`, {
     method,
@@ -33,6 +34,7 @@ async function call(base, method, path, { token, body } = {}) {
 // Publica una pauta. Devuelve lo que el profesional debe guardar en su dispositivo
 // ({ link, code, token, key }). Sin conexión o si el servidor falla, devuelve el enlace largo
 // ({ link, key, offline: true }), que funciona sin servidor pero no se puede actualizar.
+/** @param {string} base @param {object} pauta @param {{ visibility?: object }} [opts] */
 export async function publishPauta(base, pauta, { visibility } = {}) {
   const key = newKey();
   const blob = await seal(pauta, key);
@@ -46,6 +48,7 @@ export async function publishPauta(base, pauta, { visibility } = {}) {
 }
 
 // Sustituye la pauta y/o su visibilidad manteniendo el mismo enlace.
+/** @param {string} base @param {{ code: string, token: string, key: string }} ref @param {object} pauta @param {{ visibility?: object }} [opts] */
 export async function updatePauta(base, { code, token, key }, pauta, { visibility } = {}) {
   const body = {};
   if (pauta) body.blob = await seal(pauta, key);
@@ -57,6 +60,7 @@ export const deletePauta = (base, { code, token }) => call(base, 'DELETE', `/p/$
 
 // Abre una pauta desde su enlace (corto o largo). Con `token` (el profesional) la lee aunque
 // aún no sea visible. Si no es visible lanza ApiError 403 con body.estado y body.desde.
+/** @param {string} link @param {{ token?: string }} [opts] */
 export async function fetchPauta(link, { token } = {}) {
   const parsed = parseLink(link);
   if (!parsed) throw new Error('enlace no válido');
@@ -107,6 +111,7 @@ export const deleteSesion = (base, { code, token }, id) => call(base, 'DELETE', 
 
 // Lee un canal desde su enlace: cabecera y sesiones visibles ahora. Con `token` (el
 // gimnasio), todas con su visibilidad y estado.
+/** @param {string} link @param {{ token?: string }} [opts] */
 export async function fetchCanal(link, { token } = {}) {
   const url = new URL(link);
   const m = url.pathname.match(/^\/c\/([A-Za-z0-9]{8})\/?$/);

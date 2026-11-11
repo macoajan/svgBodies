@@ -1,0 +1,7 @@
+{
+  "appId": "es.maroto.pautas",
+  "appName": "Pautas",
+  "webDir": "dist",
+  "ios": { "contentInset": "never" },
+  "android": { "allowMixedContent": false }
+}
