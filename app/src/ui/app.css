@@ -1,0 +1,64 @@
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body {
+  background: var(--bg); color: var(--ink);
+  font: 17px/1.5 var(--font);
+  -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: transparent;
+}
+#app { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; }
+.pantalla {
+  flex: 1; width: 100%; max-width: 720px; margin: 0 auto;
+  padding: calc(env(safe-area-inset-top) + 16px) 16px calc(env(safe-area-inset-bottom) + 32px);
+  display: flex; flex-direction: column; gap: 16px;
+}
+.barra { display: flex; align-items: center; gap: 8px; min-height: 48px; }
+.barra .titulo { flex: 1; font: var(--display-weight) 20px/1.2 var(--font-display); text-transform: var(--display-case); letter-spacing: .02em; }
+h1 { margin: 0; font: var(--display-weight) 34px/1.05 var(--font-display); text-transform: var(--display-case); }
+h2 { margin: 0; font: var(--display-weight) 21px/1.2 var(--font-display); text-transform: var(--display-case); }
+p { margin: 0; }
+.apagado { color: var(--muted); }
+.icono-btn {
+  width: 48px; height: 48px; border: 0; border-radius: var(--pill); background: var(--surface);
+  color: var(--ink); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; text-decoration: none;
+}
+.tarjeta {
+  display: flex; flex-direction: column; gap: 8px; padding: 18px; border-radius: var(--radius-lg);
+  background: var(--surface); color: var(--ink); border: 2px solid var(--line); text-decoration: none;
+}
+a.tarjeta:active { transform: scale(.99); }
+.tarjeta.destacada { background: var(--accent); color: var(--on-accent); border-color: transparent; }
+.tarjeta .flecha { align-self: flex-end; font-weight: 700; }
+.boton {
+  min-height: 56px; padding: 0 22px; border: 0; border-radius: var(--pill);
+  background: var(--primary); color: var(--on-primary); font: 700 17px var(--font); cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none;
+}
+.boton.secundario { background: transparent; color: var(--ink); border: 2px solid var(--ink); }
+.boton.peligro { background: var(--bad-bg); color: var(--bad); }
+.boton:disabled { opacity: .55; cursor: default; }
+.campo { display: flex; flex-direction: column; gap: 6px; }
+.campo span { font-weight: 600; font-size: 15px; }
+input[type="text"], input[type="url"], input[type="number"], textarea {
+  font: 17px var(--font); color: var(--ink); background: var(--surface); border: 2px solid var(--line);
+  border-radius: var(--radius); padding: 12px 14px; min-height: 52px; width: 100%;
+}
+input:focus-visible, textarea:focus-visible, .boton:focus-visible, .icono-btn:focus-visible, a:focus-visible, .tema:has(input:focus-visible) {
+  outline: 3px solid var(--ink); outline-offset: 2px;
+}
+.temas { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+.tema {
+  position: relative; display: flex; flex-direction: column; gap: 8px; padding: 12px; cursor: pointer;
+  border: 2px solid var(--line); border-radius: var(--radius); background: var(--surface);
+}
+.tema input { position: absolute; opacity: 0; }
+.tema:has(input:checked) { border-color: var(--ink); box-shadow: inset 0 0 0 2px var(--ink); }
+.muestra { display: flex; height: 36px; border-radius: calc(var(--radius) / 2); overflow: hidden; border: 1px solid var(--line); }
+.muestra i { flex: 1; }
+.miniaturas { display: grid; grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: 8px; }
+.miniaturas img { width: 100%; aspect-ratio: 1; background: #FFFFFF; border-radius: var(--radius); border: 1px solid var(--line); }
+.aviso { padding: 12px 14px; border-radius: var(--radius); background: var(--surface); }
+.aviso.error { background: var(--bad-bg); color: var(--bad); }
+.pie { font-size: 13px; color: var(--muted); text-align: center; }
+fieldset { margin: 0; padding: 0; border: 0; display: flex; flex-direction: column; gap: 10px; }
+legend { padding: 0; margin-bottom: 10px; font: var(--display-weight) 21px/1.2 var(--font-display); text-transform: var(--display-case); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }

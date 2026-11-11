@@ -220,7 +220,7 @@ preparar → trabajo ─┬→ descansoRep ──→ trabajo
 
 | Fase | Contenido | Resultado comprobable | Tokens aprox. |
 |---|---|---|---|
-| F0 Esqueleto | `app/` con Vite, Preact y Capacitor; alias `@shared`; temas y fuentes; router; almacenamiento con migraciones; `build-app-library`; pruebas en marcha | La app arranca en web y en el emulador Android con el tema elegido | 250–400 k |
+| F0 Esqueleto (hecha) | `app/` con Vite, Preact y Capacitor; alias `@shared`; temas y fuentes; router; almacenamiento con migraciones; `build-app-library`; pruebas en marcha | La app arranca en web y en el emulador Android con el tema elegido | 250–400 k |
 | F1 Biblioteca | Catálogo con búsqueda y filtros (región, objetivo, material, nivel), ficha con 3 vistas y 3D | Navegar los 113 ejercicios sin red | 300–500 k |
 | F2 Editor | Pacientes por alias; pauta con dosis, descansos de tres niveles, notas, calendario y `show`; estimación de duración y kcal | Crear y editar pautas en local | 500–800 k |
 | F3 Envío y seguimiento | Publicar, QR, compartir, actualizar, retirar, visibilidad; leer respuestas | El paciente recibe el enlace y el profesional ve su respuesta | 300–500 k |

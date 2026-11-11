@@ -1,0 +1,55 @@
+/* Tokens de los temas. Cada tema define los mismos nombres; la interfaz solo usa var(--…). */
+:root, [data-theme="A1"] {
+  --bg: #F3F3EE; --surface: #FFFFFF; --surface-2: #E6E6E0; --line: #D6D6CF;
+  --ink: #111214; --muted: #55554F; --faint: #8A8A83;
+  --primary: #111214; --on-primary: #F3F3EE; --accent: #D4FF3A; --on-accent: #111214;
+  --warm: #D4FF3A; --done: #E6E6E0; --bad-bg: #FFE1D6; --bad: #8A2A0A;
+  --radius: 0px; --radius-lg: 0px; --pill: 0px;
+  --font: 'Barlow', system-ui, sans-serif; --font-display: 'Barlow Condensed', 'Barlow', sans-serif;
+  --display-case: uppercase; --display-weight: 700;
+}
+[data-theme="A"] {
+  --bg: #111214; --surface: #1C1D20; --surface-2: #2A2B2F; --line: #3A3B3F;
+  --ink: #F2F2EE; --muted: #A3A39C; --faint: #7D7D77;
+  --primary: #D4FF3A; --on-primary: #111214; --accent: #D4FF3A; --on-accent: #111214;
+  --warm: #D4FF3A; --done: #2A2B2F; --bad-bg: #3A1D14; --bad: #FFB59C;
+  --radius: 0px; --radius-lg: 0px; --pill: 0px;
+  --font: 'Barlow', system-ui, sans-serif; --font-display: 'Barlow Condensed', 'Barlow', sans-serif;
+  --display-case: uppercase; --display-weight: 700;
+}
+[data-theme="A2"] {
+  --bg: #0E0F11; --surface: #1A1B1E; --surface-2: #26272B; --line: #2E2F33;
+  --ink: #F2F2EE; --muted: #9C9C95; --faint: #77776F;
+  --primary: #FF6A3D; --on-primary: #0E0F11; --accent: #FF6A3D; --on-accent: #0E0F11;
+  --warm: #FF6A3D; --done: #26272B; --bad-bg: #3A1D14; --bad: #FFB59C;
+  --radius: 0px; --radius-lg: 0px; --pill: 0px;
+  --font: 'Barlow', system-ui, sans-serif; --font-display: 'Barlow Condensed', 'Barlow', sans-serif;
+  --display-case: uppercase; --display-weight: 700;
+}
+[data-theme="C"] {
+  --bg: #FFFFFF; --surface: #EEF1F7; --surface-2: #E3E7F0; --line: #E3E7F0;
+  --ink: #14213D; --muted: #46526E; --faint: #C5CCDA;
+  --primary: #14213D; --on-primary: #FFFFFF; --accent: #FFD2B3; --on-accent: #14213D;
+  --warm: #FFD2B3; --done: #E4F6EE; --bad-bg: #FDE8E8; --bad: #7F1D1D;
+  --radius: 22px; --radius-lg: 28px; --pill: 999px;
+  --font: 'Lexend', system-ui, sans-serif; --font-display: 'Lexend', system-ui, sans-serif;
+  --display-case: none; --display-weight: 700;
+}
+[data-theme="C1"] {
+  --bg: #FFFFFF; --surface: #EEF1F7; --surface-2: #E3E7F0; --line: #E3E7F0;
+  --ink: #14213D; --muted: #3F4A64; --faint: #C5CCDA;
+  --primary: #14213D; --on-primary: #FFFFFF; --accent: #DCD2FF; --on-accent: #14213D;
+  --warm: #DCD2FF; --done: #C6EEDB; --bad-bg: #FDE8E8; --bad: #7F1D1D;
+  --radius: 20px; --radius-lg: 26px; --pill: 999px;
+  --font: 'Atkinson Hyperlegible', system-ui, sans-serif; --font-display: 'Atkinson Hyperlegible', system-ui, sans-serif;
+  --display-case: none; --display-weight: 700;
+}
+[data-theme="C2"] {
+  --bg: #121A2E; --surface: #1B2440; --surface-2: #222C45; --line: #3A4562;
+  --ink: #F4F1EA; --muted: #C3C8D6; --faint: #8D97B2;
+  --primary: #FFB98F; --on-primary: #121A2E; --accent: #FFB98F; --on-accent: #121A2E;
+  --warm: #FFB98F; --done: #222C45; --bad-bg: #3A1D24; --bad: #FFC2C2;
+  --radius: 22px; --radius-lg: 28px; --pill: 999px;
+  --font: 'Lexend', system-ui, sans-serif; --font-display: 'Lexend', system-ui, sans-serif;
+  --display-case: none; --display-weight: 700;
+}

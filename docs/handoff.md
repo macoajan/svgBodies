@@ -198,6 +198,11 @@ Código en `server/` (Node ≥ 22.5, sin dependencias):
 6. **Diseño técnico de la app escrito** en `docs/app-diseno-tecnico.md` (pila, datos locales,
    enlaces, ejecución guiada, compra Pro, fases F0–F6). Siguiente: revisarlo con el propietario
    y empezar por F0, una fase por sesión y PR.
+7. **F0 hecha** (`app/`, ver `app/README.md`): Capacitor 8 + Preact + Vite, router por hash,
+   temas, almacenamiento local con migraciones, biblioteca sin conexión
+   (`tools/build-app-library.mjs`), apertura de una pauta por enlace y proyectos `ios/`
+   (SPM) y `android/`. Identificador provisional `es.maroto.pautas`. El APK no se puede compilar
+   en el contenedor (red sin `dl.google.com`/`maven.google.com`). Siguiente: **F1 Biblioteca**.
 
 ## Cómo revisar visualmente
 

@@ -1,0 +1,36 @@
+{
+  "name": "pautas-app",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "App de pautas de ejercicio (profesional y paciente). Capacitor + Preact + Vite.",
+  "scripts": {
+    "lib": "node ../tools/build-app-library.mjs",
+    "dev": "npm run lib && vite",
+    "build": "npm run lib && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -p jsconfig.json",
+    "test": "node --test test/*.test.mjs",
+    "cap:sync": "npm run build && cap sync",
+    "e2e": "node test/e2e-smoke.mjs"
+  },
+  "dependencies": {
+    "@capacitor/app": "^8.1.2",
+    "@capacitor/core": "^8.6.0",
+    "@capacitor/filesystem": "^8.1.5",
+    "@fontsource/atkinson-hyperlegible": "^5.3.0",
+    "@fontsource/barlow": "^5.3.0",
+    "@fontsource/barlow-condensed": "^5.3.0",
+    "@fontsource/lexend": "^5.3.0",
+    "@preact/signals": "^2.11.4",
+    "preact": "^11.2.0"
+  },
+  "devDependencies": {
+    "@capacitor/android": "^8.6.0",
+    "@capacitor/cli": "^8.6.0",
+    "@capacitor/ios": "^8.6.0",
+    "@preact/preset-vite": "^2.10.6",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.8"
+  }
+}
