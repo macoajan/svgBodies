@@ -195,6 +195,9 @@ Código en `server/` (Node ≥ 22.5, sin dependencias):
 5. App: rehacer las 11 pantallas del mockup con los temas A y C; terminar el servidor del
    acortador y desplegarlo en Coolify (con el visto bueno del propietario); después, el diseño
    técnico de la app (Capacitor, compras únicas con StoreKit 2 y Google Play Billing).
+6. **Diseño técnico de la app escrito** en `docs/app-diseno-tecnico.md` (pila, datos locales,
+   enlaces, ejecución guiada, compra Pro, fases F0–F6). Siguiente: revisarlo con el propietario
+   y empezar por F0, una fase por sesión y PR.
 
 ## Cómo revisar visualmente
 
