@@ -7,11 +7,15 @@ import { Inicio } from './Inicio.jsx';
 import { ProInicio } from './ProInicio.jsx';
 import { PacienteInicio } from './PacienteInicio.jsx';
 import { Ajustes } from './Ajustes.jsx';
+import { Catalogo } from './Catalogo.jsx';
+import { Ejercicio } from './Ejercicio.jsx';
 
 /** Rutas: `lado` decide el tema (profesional o paciente). */
 export const ROUTES = [
   { path: '/', lado: 'pro', Screen: Inicio },
   { path: '/pro', lado: 'pro', Screen: ProInicio },
+  { path: '/pro/catalogo', lado: 'pro', Screen: Catalogo },
+  { path: '/pro/ejercicio/:id', lado: 'pro', Screen: Ejercicio },
   { path: '/paciente', lado: 'paciente', Screen: PacienteInicio },
   { path: '/ajustes', lado: 'pro', Screen: Ajustes },
 ];

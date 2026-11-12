@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 // Copia la biblioteca a app/public/lib/ para que la app funcione sin conexión.
 // Misma fuente que el servidor (library/): catálogo, figuras, visor 3D y posturas partidas por
-// ejercicio (poses/<id>.json, como /lib/poses/<id>.json del servidor). Escribe manifest.json con
+// ejercicio (poses/<id>.json, como /lib/poses/<id>.json del servidor). Al vocabulario del catálogo
+// le añade la jerarquía de músculos (`parent`) y la categoría del material (`category`) desde
+// taxonomy/vocab/, que la app usa en los filtros. Escribe manifest.json con
 // una huella del contenido; si no ha cambiado, no reescribe nada.
-//   node tools/build-app-library.mjs [--src library] [--out app/public/lib] [--force]
+//   node tools/build-app-library.mjs [--src library] [--out app/public/lib] [--tax taxonomy/vocab] [--force]
 import { createHash } from 'node:crypto';
 import { mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { join, resolve, dirname } from 'node:path';
@@ -15,10 +17,25 @@ const arg = (name, def) => {
   return i > 0 ? resolve(process.argv[i + 1]) : def;
 };
 
-export async function buildAppLibrary({ src = join(root, 'library'), out = join(root, 'app/public/lib'), force = false } = {}) {
+/** Añade a las etiquetas del catálogo los campos estructurales de la taxonomía. */
+export function enrichVocab(catalog, taxVocab) {
+  for (const [name, fields] of Object.entries({ muscles: ['parent'], equipment: ['category'] })) {
+    for (const [k, label] of Object.entries(catalog.vocab[name] || {})) {
+      for (const f of fields) if (taxVocab[name]?.[k]?.[f] != null) label[f] = taxVocab[name][k][f];
+    }
+  }
+  return catalog;
+}
+
+export async function buildAppLibrary({ src = join(root, 'library'), out = join(root, 'app/public/lib'), tax = join(root, 'taxonomy/vocab'), force = false } = {}) {
   const svgNames = (await readdir(join(src, 'svg'))).filter(n => n.endsWith('.svg')).sort();
   const files = new Map(); // ruta relativa → Buffer
-  files.set('catalog.json', await readFile(join(src, 'catalog.json')));
+  const taxVocab = {
+    muscles: JSON.parse(await readFile(join(tax, 'muscles.json'), 'utf8')),
+    equipment: JSON.parse(await readFile(join(tax, 'equipment.json'), 'utf8')),
+  };
+  const catalogIn = enrichVocab(JSON.parse(await readFile(join(src, 'catalog.json'), 'utf8')), taxVocab);
+  files.set('catalog.json', Buffer.from(JSON.stringify(catalogIn)));
   files.set('viewer.js', await readFile(join(src, 'viewer.js')));
   for (const n of svgNames) files.set(`svg/${n}`, await readFile(join(src, 'svg', n)));
   const poses = JSON.parse(await readFile(join(src, 'poses.json'), 'utf8'));
@@ -46,6 +63,6 @@ export async function buildAppLibrary({ src = join(root, 'library'), out = join(
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  const r = await buildAppLibrary({ src: arg('--src'), out: arg('--out'), force: process.argv.includes('--force') });
+  const r = await buildAppLibrary({ src: arg('--src'), out: arg('--out'), tax: arg('--tax'), force: process.argv.includes('--force') });
   console.log(`biblioteca ${r.version}: ${r.exercises} ejercicios, ${r.svg} figuras, ${r.poses} posturas${r.written ? '' : ' (sin cambios)'}`);
 }
