@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Enlaces universales de pauta. Dominio PROVISIONAL: cambiar junto a VITE_SERVER_URL.
+	     El servidor publica /.well-known/apple-app-site-association con IOS_APP_IDS. -->
+	<key>com.apple.developer.associated-domains</key>
+	<array>
+		<string>applinks:pautas.maroto.es</string>
+	</array>
+</dict>
+</plist>

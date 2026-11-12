@@ -233,7 +233,7 @@ export function createApp(config, store, { now = () => Date.now() } = {}) {
   };
   const wellKnown = path => {
     if (path === '/.well-known/apple-app-site-association' && config.iosAppIds.length)
-      return { applinks: { details: [{ appIDs: config.iosAppIds, components: [{ '/': '/p/*' }, { '/': '/c/*' }] }] } };
+      return { applinks: { details: [{ appIDs: config.iosAppIds, components: [{ '/': '/p' }, { '/': '/p/*' }, { '/': '/c/*' }] }] } };
     if (path === '/.well-known/assetlinks.json' && config.androidPackage)
       return [{ relation: ['delegate_permission/common.handle_all_urls'], target: { namespace: 'android_app', package_name: config.androidPackage, sha256_cert_fingerprints: config.androidSha256 } }];
     return null;

@@ -15,6 +15,8 @@ import { Paciente } from './Paciente.jsx';
 import { NavPro } from './NavPro.jsx';
 import { Envio } from './Envio.jsx';
 import { Seguimiento } from './Seguimiento.jsx';
+import { PautaRecibida, FichaPaciente } from './PautaRecibida.jsx';
+import { Sesion } from './Sesion.jsx';
 
 /** Rutas: `lado` decide el tema (profesional o paciente). */
 export const ROUTES = [
@@ -28,6 +30,9 @@ export const ROUTES = [
   { path: '/pro/pacientes', lado: 'pro', Screen: Pacientes },
   { path: '/pro/paciente/:id', lado: 'pro', Screen: Paciente },
   { path: '/paciente', lado: 'paciente', Screen: PacienteInicio },
+  { path: '/paciente/p/:clave', lado: 'paciente', Screen: PautaRecibida },
+  { path: '/paciente/p/:clave/e/:i', lado: 'paciente', Screen: FichaPaciente },
+  { path: '/paciente/p/:clave/sesion', lado: 'paciente', Screen: Sesion },
   { path: '/ajustes', lado: 'pro', Screen: Ajustes, nav: true },
 ];
 
