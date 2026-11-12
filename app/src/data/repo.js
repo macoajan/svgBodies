@@ -64,5 +64,48 @@ export async function duplicatePauta(id) {
 
 export async function deletePauta(id) {
   await storage.update('pautas', d => { delete d[id]; });
+  await storage.update('respuestas', d => { delete d[id]; });
   bump();
 }
+
+// ---------- Envío y respuestas ----------
+
+/**
+ * Guarda (o quita, con null) los datos del envío: { code, key, token, link, offline?, enviada,
+ * huella, visibility }. La clave y el token solo existen en este dispositivo.
+ * @param {string} id @param {object|null} envio
+ */
+export async function setEnvio(id, envio) {
+  await storage.update('pautas', d => {
+    if (!d[id]) return;
+    if (envio) { d[id].envio = envio; d[id].estado = 'enviada'; } else { delete d[id].envio; d[id].estado = 'borrador'; }
+  });
+  bump();
+}
+
+/** Respuestas guardadas de una pauta: { after, items: [{ id, at, respuesta }], vistas }. */
+export const getRespuestas = id => storage.get('respuestas')[id] || { after: 0, items: [], vistas: 0 };
+
+/** Añade respuestas nuevas (sin duplicar por id). */
+export async function addRespuestas(id, nuevas) {
+  if (!nuevas.length) return;
+  await storage.update('respuestas', d => {
+    const r = d[id] || { after: 0, items: [], vistas: 0 };
+    const ids = new Set(r.items.map(x => x.id));
+    for (const n of nuevas) if (!ids.has(n.id)) r.items.push(n);
+    r.items.sort((a, b) => a.id - b.id);
+    r.after = Math.max(r.after, ...r.items.map(x => x.id));
+    d[id] = r;
+  });
+  bump();
+}
+
+/** Marca como vistas todas las respuestas de la pauta. */
+export async function marcarVistas(id) {
+  const r = getRespuestas(id);
+  if (r.vistas === r.items.length) return;
+  await storage.update('respuestas', d => { d[id] = { ...r, vistas: r.items.length }; });
+  bump();
+}
+
+export const nuevasRespuestas = id => { const r = getRespuestas(id); return r.items.length - r.vistas; };

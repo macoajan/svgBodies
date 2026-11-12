@@ -4,11 +4,12 @@ App para iOS y Android hecha con **Capacitor 8 + Preact + Vite**. Un solo binari
 papeles: el profesional crea y envía pautas; el paciente las abre por enlace o QR y las hace.
 Diseño completo y fases en [`docs/app-diseno-tecnico.md`](../docs/app-diseno-tecnico.md).
 
-Estado: **F0 (esqueleto)**, **F1 (biblioteca)** y **F2 (editor)** hechas — arranque, router,
+Estado: **F0 (esqueleto)**, **F1 (biblioteca)**, **F2 (editor)** y **F3 (envío y seguimiento)** hechas — arranque, router,
 temas, datos locales con migraciones, apertura de una pauta por enlace, catálogo con búsqueda y
 filtros, ficha de ejercicio con vistas 2D/3D, pacientes por alias y editor de pautas con guardado
-automático. Pruebas de interfaz: `test/e2e-smoke.mjs`, `test/e2e-catalogo.mjs` y
-`test/e2e-editor.mjs`.
+automático, envío con QR, visibilidad, actualización y retirada, y respuestas del paciente.
+Pruebas de interfaz: `test/e2e-smoke.mjs`, `test/e2e-catalogo.mjs`, `test/e2e-editor.mjs` y
+`test/e2e-envio.mjs` (esta, contra un servidor local; instrucciones en el propio archivo).
 
 ## Uso
 
@@ -34,7 +35,10 @@ La biblioteca (`public/lib/`) se genera desde `../library/` con `tools/build-app
 - `src/lib/library.js` acceso a la biblioteca empaquetada (catálogo, figuras, visor 3D, posturas).
 - `src/domain/` lógica pura: `catalogo.js` (búsqueda, filtros, recuentos, kcal) y `pautas.js`
   (crear y editar pautas, valores por defecto, resumen, búsqueda).
-- `src/data/repo.js` pacientes y pautas sobre el almacenamiento local.
+- `src/data/repo.js` pacientes, pautas, envío y respuestas sobre el almacenamiento local.
+- `src/data/envio-service.js` publicar, actualizar, retirar y leer respuestas (servidor provisional).
+- `src/domain/envio.js` lógica pura del envío: firma, huella, visibilidad por fechas, resumen de respuestas.
+- `src/lib/qr.js` QR en el dispositivo; `src/platform/share.js` compartir y copiar.
 - Las pruebas resuelven `@shared` con `test/register.mjs`.
 - `src/ui/` pantallas.
 - Código compartido con el servidor y el visor web: alias `@shared` → `../server/public/`.

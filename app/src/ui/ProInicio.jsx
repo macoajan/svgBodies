@@ -1,10 +1,14 @@
-import { useMemo, useState } from 'preact/hooks';
+import { useEffect, useMemo, useState } from 'preact/hooks';
 import { Barra } from './Barra.jsx';
 import { useLibrary } from './useLibrary.js';
 import { figureUrls } from '../lib/library.js';
 import { navigate } from '../router.js';
 import { version, listPautas, listPacientes, createPauta } from '../data/repo.js';
 import { newPauta, scheduleText, searchPautas } from '../domain/pautas.js';
+import { estadoEnvio, ESTADO_LABEL } from '../domain/envio.js';
+import { ajustes } from '../data/app-store.js';
+import { nuevasRespuestas } from '../data/repo.js';
+import { leerTodas } from '../data/envio-service.js';
 
 const fechaCorta = iso => new Date(iso).toLocaleDateString('es-ES', { day: 'numeric', month: 'short' });
 
@@ -12,6 +16,7 @@ const fechaCorta = iso => new Date(iso).toLocaleDateString('es-ES', { day: 'nume
 export function ProInicio() {
   const { lib } = useLibrary();
   const [q, setQ] = useState('');
+  useEffect(() => { leerTodas(); }, []);
   version.value; // repinta al cambiar los datos
   const pacientes = Object.fromEntries(listPacientes().map(p => [p.id, p]));
   const lista = useMemo(() => searchPautas(listPautas(), q, pacientes, lib?.byId), [q, lib, version.value]);
@@ -44,7 +49,10 @@ export function ProInicio() {
                   <strong>{r.pauta.title || 'Sin título'}{pacientes[r.pacienteId] ? ` · ${pacientes[r.pacienteId].alias}` : ''}</strong>
                   <span>{r.pauta.items.length} {r.pauta.items.length === 1 ? 'ejercicio' : 'ejercicios'} · {scheduleText(r.pauta.schedule)}</span>
                 </span>
-                <span class="fila-estado"><span class="sello">{r.estado === 'borrador' ? 'Borrador' : 'Enviada'}</span><small>{fechaCorta(r.editada)}</small></span>
+                <span class="fila-estado">
+                  <span class="sello">{ESTADO_LABEL[estadoEnvio(r, ajustes.value)]}</span>
+                  {nuevasRespuestas(r.id) ? <span class="punto-nuevo">{nuevasRespuestas(r.id)} {nuevasRespuestas(r.id) === 1 ? 'respuesta' : 'respuestas'}</span> : <small>{fechaCorta(r.editada)}</small>}
+                </span>
               </a>
             </li>
           );

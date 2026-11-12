@@ -213,8 +213,16 @@ Código en `server/` (Node ≥ 22.5, sin dependencias):
    descanso, carga, notas, calendario, mensaje, `show.kcal`/`show.proText`, ordenar, duplicar,
    quitar), estimación de minutos y kcal, y selección de ejercicios desde el catálogo
    (`?para=<pauta>`). Barra inferior de secciones. Valores por defecto según el ejercicio en
-   `app/src/domain/pautas.js`; datos en `app/src/data/repo.js`. Siguiente: **F3 Envío y
-   seguimiento**.
+   `app/src/domain/pautas.js`; datos en `app/src/data/repo.js`.
+10. **F3 hecha**: envío al servidor (`app/src/data/envio-service.js`), con la firma del
+    profesional (nombre y centro de Ajustes); QR generado en el dispositivo
+    (`qrcode-generator`); compartir enlace o QR (`@capacitor/share`, Web Share o portapapeles);
+    visibilidad (ya, desde un día, último día, oculta); «cambios sin enviar» por huella del
+    contenido y actualización con el mismo enlace; retirar el enlace (también al borrar la pauta o
+    el paciente); respuestas con resumen por ejercicio (último dolor, máximo, tendencia) y aviso de
+    respuestas nuevas en «Mis pautas» (como mucho una comprobación cada 5 min). Clave y token solo
+    en el dispositivo. Prueba de interfaz contra un servidor local: `app/test/e2e-envio.mjs`.
+    Siguiente: **F4 Paciente** (enlaces universales y ejecución guiada).
 
 ## Cómo revisar visualmente
 

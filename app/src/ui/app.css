@@ -244,3 +244,28 @@ a.boton[aria-disabled="true"] { opacity: .55; pointer-events: none; }
 .ficha-mini-sel { display: flex; flex-direction: column; gap: 4px; cursor: pointer; position: relative; }
 .ficha-mini-sel input { position: absolute; top: 6px; left: 6px; width: 26px; height: 26px; accent-color: var(--primary); z-index: 1; }
 .ficha-mini a.ficha-mini-meta { color: var(--ink); font-weight: 600; min-height: 32px; display: flex; align-items: center; }
+
+/* ---------- Envío y seguimiento ---------- */
+.acciones-envio { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.punto-nuevo { display: inline-flex; align-items: center; justify-content: center; min-width: 22px; height: 22px; padding: 0 7px; margin-left: 6px; border-radius: 999px; background: var(--accent); color: var(--on-accent); font-size: 12px; font-weight: 700; }
+.fila-estado .punto-nuevo { margin-left: 0; }
+.qr { display: block; width: min(100%, 280px); height: auto; margin: 0 auto; border: 2px solid var(--line); border-radius: var(--radius); background: #FFFFFF; }
+.enlace-texto { font-size: 13px; color: var(--muted); word-break: break-all; text-align: center; user-select: all; -webkit-user-select: all; }
+.aviso.ok { background: var(--done); color: var(--ink); }
+.visibilidad .opcion { border: 2px solid var(--line); }
+.visibilidad .opcion input { accent-color: var(--primary); width: 22px; height: 22px; }
+input[type="date"] { font: 17px var(--font); color: var(--ink); background: var(--surface); border: 2px solid var(--line); border-radius: var(--radius); padding: 10px 14px; min-height: 52px; width: 100%; }
+.fila-resumen { display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--surface); border: 2px solid var(--line); border-radius: var(--radius-lg); }
+.dolor-ultimo { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 11px; color: var(--muted); }
+.dolor-n { min-width: 40px; height: 40px; border-radius: var(--pill); display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 18px; background: var(--surface-2); color: var(--ink); flex: none; }
+.dolor-n.bajo { background: #E4F6EE; color: #14532D; }
+.dolor-n.medio { background: #FFE7C2; color: #7C2D12; }
+.dolor-n.alto { background: #FDE8E8; color: #7F1D1D; }
+.sesiones { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.sesion-r { padding: 12px 14px; background: var(--surface); border: 2px solid var(--line); border-radius: var(--radius-lg); }
+.sesion-fecha { font-weight: 700; margin-bottom: 8px; }
+.sesion-r ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.sesion-r li { display: flex; align-items: center; gap: 10px; }
+.nota-r { font-style: italic; color: var(--ink) !important; }
+.sello.diff-dificil { background: #FDE8E8; color: #7F1D1D; }
+.sello.diff-facil { background: #E4F6EE; color: #14532D; }
