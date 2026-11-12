@@ -7,9 +7,13 @@ import { navigate } from '../router.js';
 import { version, getPauta, savePauta, listPacientes, savePaciente, duplicatePauta, deletePauta, nuevasRespuestas, getRespuestas } from '../data/repo.js';
 import { retirar, mensajeError } from '../data/envio-service.js';
 import { ajustes } from '../data/app-store.js';
-import { estadoEnvio, ESTADO_LABEL } from '../domain/envio.js';
+import { estadoEnvio, ESTADO_LABEL, pautaParaEnviar } from '../domain/envio.js';
+import { esPro } from '../data/pro.js';
+import { savePlantilla } from '../data/repo.js';
+import { compartirArchivo } from '../platform/share.js';
 import { updatePauta, updateItem, moveItem, removeItem, duplicateItem, scheduleText, doseShort, summary, problems, PAUTA_RANGES, ITEM_RANGES } from '../domain/pautas.js';
 import { LIMITS } from '@shared/pauta-schema.js';
+import { BloqueoPro } from './ProCompra.jsx';
 
 /** Selector de paciente con opción de crear uno nuevo en el momento. */
 function SelectorPaciente({ value, onChange }) {
@@ -94,6 +98,8 @@ export function PautaEditor({ params }) {
   const [abierto, setAbierto] = useState(null);
   const [confirmar, setConfirmar] = useState(false);
   const [errorBorrar, setErrorBorrar] = useState('');
+  const [aviso, setAviso] = useState('');
+  const [generando, setGenerando] = useState(false);
   version.value;
 
   // Guardado automático: inmediato para botones, con retardo para lo que se escribe.
@@ -187,6 +193,26 @@ export function PautaEditor({ params }) {
         })()}
       </div>
 
+      <section class="bloque" aria-labelledby="pro-t">
+        <h2 id="pro-t">Más</h2>
+        {esPro.value ? (
+          <div class="item-acciones">
+            <button type="button" class="boton secundario" disabled={!pauta.items.length} onClick={async () => { await savePlantilla(pauta, pauta.title); setAviso('Guardada como plantilla. La tienes en «Mis pautas».'); }}>Guardar como plantilla</button>
+            <button type="button" class="boton secundario" disabled={!pauta.items.length || !lib || generando} onClick={async () => {
+              setGenerando(true); setAviso('');
+              try {
+                const { generarPdf } = await import('../lib/pdf.js');
+                const rec = getPauta(id);
+                const base64 = await generarPdf({ pauta: pautaParaEnviar(pauta, ajustes.value), byId: lib.byId, ajustes: ajustes.value, link: rec?.envio?.link });
+                const nombre = `${(pauta.title || 'pauta').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^\w-]+/g, '-').replace(/^-|-$/g, '').toLowerCase() || 'pauta'}.pdf`;
+                await compartirArchivo({ base64, nombre, mime: 'application/pdf', title: pauta.title || 'Pauta' });
+              } catch (e) { setAviso(`No se pudo crear el PDF (${e?.message || e}).`); }
+              setGenerando(false);
+            }}>{generando ? 'Creando PDF…' : 'PDF'}</button>
+          </div>
+        ) : <BloqueoPro texto="Plantillas y PDF de la pauta" />}
+        <div aria-live="polite">{aviso ? <p class="aviso ok">{aviso}</p> : null}</div>
+      </section>
       <div class="item-acciones">
         <button type="button" class="boton secundario" onClick={async () => { guardar.flush(); const nid = await duplicatePauta(id); navigate(`/pro/pauta/${nid}`); }}>Duplicar pauta</button>
         {confirmar ? (

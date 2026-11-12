@@ -17,6 +17,7 @@ import { Envio } from './Envio.jsx';
 import { Seguimiento } from './Seguimiento.jsx';
 import { PautaRecibida, FichaPaciente } from './PautaRecibida.jsx';
 import { Sesion } from './Sesion.jsx';
+import { ProCompra } from './ProCompra.jsx';
 
 /** Rutas: `lado` decide el tema (profesional o paciente). */
 export const ROUTES = [
@@ -28,6 +29,7 @@ export const ROUTES = [
   { path: '/pro/pauta/:id/enviar', lado: 'pro', Screen: Envio },
   { path: '/pro/pauta/:id/respuestas', lado: 'pro', Screen: Seguimiento },
   { path: '/pro/pacientes', lado: 'pro', Screen: Pacientes },
+  { path: '/pro/pro', lado: 'pro', Screen: ProCompra },
   { path: '/pro/paciente/:id', lado: 'pro', Screen: Paciente },
   { path: '/paciente', lado: 'paciente', Screen: PacienteInicio },
   { path: '/paciente/p/:clave', lado: 'paciente', Screen: PautaRecibida },

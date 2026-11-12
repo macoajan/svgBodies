@@ -84,7 +84,22 @@ export function createStorage({ backend, migrations = MIGRATIONS }) {
       await this.flush();
       for (const name of COLLECTIONS) { await backend.remove(name); mem.set(name, DEFAULTS[name]()); }
     },
-    /** Instantánea de todo, para la copia de seguridad (F5 la cifra). */
+    /**
+     * Sustituye todos los datos por los de una instantánea (copia de seguridad), aplicando las
+     * migraciones. Comprueba todo antes de escribir nada.
+     */
+    async restore(snap) {
+      need('ajustes');
+      if (!snap || snap.v !== 1 || typeof snap.collections !== 'object') throw new StorageError('corrupto', 'copia no válida');
+      const docs = {};
+      for (const name of COLLECTIONS) {
+        const doc = snap.collections[name];
+        docs[name] = doc ? migrate(name, doc, migrations).doc : { v: latestVersion(name, migrations), data: DEFAULTS[name]() };
+      }
+      await this.flush();
+      for (const name of COLLECTIONS) { mem.set(name, docs[name].data); await persist(name); }
+    },
+    /** Instantánea de todo, para la copia de seguridad cifrada (domain/copia.js). */
     snapshot() {
       need('ajustes');
       return { v: 1, collections: Object.fromEntries(COLLECTIONS.map(n => [n, { v: latestVersion(n, migrations), data: structuredClone(mem.get(n)) }])) };

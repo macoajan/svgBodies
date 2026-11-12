@@ -182,8 +182,8 @@ preparar → trabajo ─┬→ descansoRep ──→ trabajo
 - **Derecho en caché**: se guarda en `compra` y se vuelve a comprobar al arrancar si hay red.
   Sin red, se confía en la caché. Botón «Restaurar compras» en Ajustes (obligatorio en Apple).
 - **Qué desbloquea**: pautas activas ilimitadas, plantillas, logo propio y PDF. Los límites
-  gratuitos están en `domain/limites.js` como constantes **pendientes de decisión** (propuesta:
-  3 pacientes con pauta activa). Lo ya publicado nunca se bloquea: si se superan los límites
+  gratuitos están en `domain/limites.js` como constantes **decididos: 3 pacientes con pauta activa** (constante
+  fácil de cambiar). Lo ya publicado nunca se bloquea: si se superan los límites
   gratuitos, solo se impide crear más.
 - **PDF de la pauta** (Pro): se genera en el dispositivo con `jspdf` + `svg2pdf.js` (figuras
   vectoriales) y se comparte con la hoja del sistema.
@@ -225,7 +225,7 @@ preparar → trabajo ─┬→ descansoRep ──→ trabajo
 | F2 Editor (hecha) | Pacientes por alias; pauta con dosis, descansos de tres niveles, notas, calendario y `show`; estimación de duración y kcal | Crear y editar pautas en local | 500–800 k |
 | F3 Envío y seguimiento (hecha) | Publicar, QR, compartir, actualizar, retirar, visibilidad; leer respuestas | El paciente recibe el enlace y el profesional ve su respuesta | 300–500 k |
 | F4 Paciente (hecha) | Enlaces universales, pauta recibida, ejecución guiada, valoración, resumen, cola sin red | Hacer una pauta completa con descansos y avisos | 600–900 k |
-| F5 Pro | Compra, restauración, límites, logo, plantillas, PDF, copia de seguridad | Comprar en el entorno de pruebas y desbloquear | 400–600 k |
+| F5 Pro (hecha) | Compra, restauración, límites, logo, plantillas, PDF, copia de seguridad | Comprar en el entorno de pruebas y desbloquear | 400–600 k |
 | F6 Tiendas | Iconos, pantalla de inicio, configuración de enlaces, textos de privacidad, compilación firmada, TestFlight y prueba interna | Versión de prueba instalable desde las tiendas | 200–400 k |
 
 Total: unos 2,5–4 M tokens. El orden F0 → F4 da una app útil sin compras; F5 y F6 la llevan a
