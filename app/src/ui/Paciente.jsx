@@ -3,11 +3,13 @@ import { Barra } from './Barra.jsx';
 import { navigate } from '../router.js';
 import { version, getPaciente, listPautas, savePaciente, deletePaciente, createPauta } from '../data/repo.js';
 import { newPauta, scheduleText } from '../domain/pautas.js';
+import { retirar, mensajeError } from '../data/envio-service.js';
 
 export function Paciente({ params }) {
   version.value;
   const p = getPaciente(params.id);
   const [confirmar, setConfirmar] = useState(false);
+  const [error, setError] = useState('');
   if (!p) return <main class="pantalla con-nav"><Barra titulo="Paciente" volver="/pro/pacientes" ajustes={false} /><h1>Paciente no encontrado</h1></main>;
   const pautas = listPautas().filter(r => r.pacienteId === p.id).sort((a, b) => b.editada.localeCompare(a.editada));
   const guardar = patch => savePaciente({ ...p, ...patch }).catch(() => {});
@@ -35,8 +37,12 @@ export function Paciente({ params }) {
       ) : <p class="apagado">Sin pautas todavía.</p>}
       {confirmar ? (
         <div class="aviso error campo" role="alert">
-          <p><strong>¿Borrar a {p.alias} y sus {pautas.length} pautas de este dispositivo?</strong></p>
-          <button type="button" class="boton peligro" onClick={async () => { await deletePaciente(p.id); navigate('/pro/pacientes', undefined, { replace: true }); }}>Sí, borrar</button>
+          <p><strong>¿Borrar a {p.alias} y sus {pautas.length} pautas de este dispositivo?</strong> Se retirarán los enlaces enviados.</p>
+          {error ? <p>{error}</p> : null}
+          <button type="button" class="boton peligro" onClick={async () => {
+            try { for (const r of pautas) if (r.envio) await retirar(r.id); } catch (e) { setError(`No se pudo retirar algún enlace: ${mensajeError(e)}`); return; }
+            await deletePaciente(p.id); navigate('/pro/pacientes', undefined, { replace: true });
+          }}>Sí, borrar</button>
           <button type="button" class="boton secundario" onClick={() => setConfirmar(false)}>Cancelar</button>
         </div>
       ) : <button type="button" class="boton peligro" onClick={() => setConfirmar(true)}>Borrar paciente</button>}

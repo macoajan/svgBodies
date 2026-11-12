@@ -11,6 +11,8 @@
 // horaria del gimnasio o del profesional y el servidor compara instantes.
 
 export const MODES = ['auto', 'show', 'hide'];
+/** @typedef {{ mode: 'auto' | 'show' | 'hide', from?: string, until?: string }} Visibility */
+/** @type {Readonly<Visibility>} */
 export const ALWAYS = Object.freeze({ mode: 'auto' });
 const ISO = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2}(\.\d{1,3})?)?(Z|[+-]\d{2}:\d{2})$/;
 

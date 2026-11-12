@@ -13,6 +13,8 @@ import { PautaEditor } from './PautaEditor.jsx';
 import { Pacientes } from './Pacientes.jsx';
 import { Paciente } from './Paciente.jsx';
 import { NavPro } from './NavPro.jsx';
+import { Envio } from './Envio.jsx';
+import { Seguimiento } from './Seguimiento.jsx';
 
 /** Rutas: `lado` decide el tema (profesional o paciente). */
 export const ROUTES = [
@@ -21,6 +23,8 @@ export const ROUTES = [
   { path: '/pro/catalogo', lado: 'pro', Screen: Catalogo },
   { path: '/pro/ejercicio/:id', lado: 'pro', Screen: Ejercicio },
   { path: '/pro/pauta/:id', lado: 'pro', Screen: PautaEditor },
+  { path: '/pro/pauta/:id/enviar', lado: 'pro', Screen: Envio },
+  { path: '/pro/pauta/:id/respuestas', lado: 'pro', Screen: Seguimiento },
   { path: '/pro/pacientes', lado: 'pro', Screen: Pacientes },
   { path: '/pro/paciente/:id', lado: 'pro', Screen: Paciente },
   { path: '/paciente', lado: 'paciente', Screen: PacienteInicio },

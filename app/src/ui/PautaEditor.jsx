@@ -4,7 +4,10 @@ import { Stepper, Interruptor, debounce } from './controles.jsx';
 import { useLibrary } from './useLibrary.js';
 import { figureUrls } from '../lib/library.js';
 import { navigate } from '../router.js';
-import { version, getPauta, savePauta, listPacientes, savePaciente, duplicatePauta, deletePauta } from '../data/repo.js';
+import { version, getPauta, savePauta, listPacientes, savePaciente, duplicatePauta, deletePauta, nuevasRespuestas, getRespuestas } from '../data/repo.js';
+import { retirar, mensajeError } from '../data/envio-service.js';
+import { ajustes } from '../data/app-store.js';
+import { estadoEnvio, ESTADO_LABEL } from '../domain/envio.js';
 import { updatePauta, updateItem, moveItem, removeItem, duplicateItem, scheduleText, doseShort, summary, problems, PAUTA_RANGES, ITEM_RANGES } from '../domain/pautas.js';
 import { LIMITS } from '@shared/pauta-schema.js';
 
@@ -90,6 +93,8 @@ export function PautaEditor({ params }) {
   const [pacienteId, setPacienteId] = useState(inicial?.pacienteId ?? null);
   const [abierto, setAbierto] = useState(null);
   const [confirmar, setConfirmar] = useState(false);
+  const [errorBorrar, setErrorBorrar] = useState('');
+  version.value;
 
   // Guardado automático: inmediato para botones, con retardo para lo que se escribe.
   const guardar = useRef(debounce(p => savePauta(id, { pauta: p }), 400)).current;
@@ -160,17 +165,42 @@ export function PautaEditor({ params }) {
       </section>
 
       {avisos.length ? <ul class="aviso error" role="status">{avisos.map(a => <li key={a}>{a}</li>)}</ul> : null}
-      <p class="apagado">Se guarda sola en este dispositivo. El envío al paciente llega en la fase F3.</p>
+      <p class="apagado">Se guarda sola en este dispositivo.</p>
+      <div class="acciones-envio">
+        {(() => {
+          const rec = getPauta(id);
+          const est = estadoEnvio({ ...rec, pauta }, ajustes.value);
+          const total = getRespuestas(id).items.length, nuevas = nuevasRespuestas(id);
+          return (
+            <>
+              <a class="boton" href={`#/pro/pauta/${id}/enviar`} onClick={() => guardar.flush()}>
+                {est === 'borrador' ? 'Enviar al paciente' : est === 'cambios' ? 'Actualizar envío' : 'Ver envío y QR'}
+              </a>
+              {est !== 'borrador' ? <span class="sello">{ESTADO_LABEL[est]}</span> : null}
+              {rec?.envio && !rec.envio.offline ? (
+                <a class="boton secundario" href={`#/pro/pauta/${id}/respuestas`}>
+                  Respuestas{total ? ` (${total})` : ''}{nuevas ? <span class="punto-nuevo" aria-label={`${nuevas} nuevas`}>{nuevas}</span> : null}
+                </a>
+              ) : null}
+            </>
+          );
+        })()}
+      </div>
 
       <div class="item-acciones">
         <button type="button" class="boton secundario" onClick={async () => { guardar.flush(); const nid = await duplicatePauta(id); navigate(`/pro/pauta/${nid}`); }}>Duplicar pauta</button>
         {confirmar ? (
           <>
-            <button type="button" class="boton peligro" onClick={async () => { await deletePauta(id); navigate('/pro', undefined, { replace: true }); }}>Sí, eliminar</button>
+            <button type="button" class="boton peligro" onClick={async () => {
+              try { if (getPauta(id)?.envio) await retirar(id); } catch (e) { setErrorBorrar(`No se pudo retirar el enlace: ${mensajeError(e)}`); return; }
+              await deletePauta(id); navigate('/pro', undefined, { replace: true });
+            }}>Sí, eliminar</button>
             <button type="button" class="boton secundario" onClick={() => setConfirmar(false)}>Cancelar</button>
           </>
         ) : <button type="button" class="boton peligro" onClick={() => setConfirmar(true)}>Eliminar pauta</button>}
       </div>
+      {confirmar && getPauta(id)?.envio ? <p class="apagado">Se retirará también el enlace que tiene el paciente.</p> : null}
+      {errorBorrar ? <p class="aviso error" role="alert">{errorBorrar}</p> : null}
     </main>
   );
 }
