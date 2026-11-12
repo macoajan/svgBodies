@@ -349,3 +349,14 @@ details.texto ol, details.texto ul { margin-left: 0; padding-left: 22px; }
   .sesion-figura .figura-3d { height: 420px; }
 }
 .sesion-cuerpo > h1 { font-size: 28px; }
+
+/* ---------- Pro ---------- */
+.bloqueo { display: flex; align-items: center; justify-content: space-between; gap: 12px; text-decoration: none; color: var(--ink); border: 2px dashed var(--line); }
+.bloqueo strong { white-space: nowrap; }
+.lista-pro { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.lista-pro li { padding: 12px 14px 12px 44px; position: relative; background: var(--surface); border-radius: var(--radius); }
+.lista-pro li::before { content: '✓'; position: absolute; left: 16px; font-weight: 700; }
+.logo-prev { width: 72px; height: 72px; object-fit: contain; background: #FFFFFF; border: 2px solid var(--line); border-radius: var(--radius); }
+input[type="file"] { font: 15px var(--font); color: var(--ink); }
+input[type="password"] { font: 17px var(--font); color: var(--ink); background: var(--surface); border: 2px solid var(--line); border-radius: var(--radius); padding: 12px 14px; min-height: 52px; width: 100%; }
+.fila-pauta .icono-btn { flex: none; }

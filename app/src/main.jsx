@@ -12,6 +12,7 @@ import './themes/themes.css';
 import './ui/app.css';
 import { App } from './ui/App.jsx';
 import { initStore } from './data/app-store.js';
+import { cargarCompra, iniciarCompras } from './data/pro.js';
 import { pickBackend } from './platform/backend.js';
 import { listenLinks } from './platform/links.js';
 import { startRouter } from './router.js';
@@ -19,9 +20,11 @@ import { startRouter } from './router.js';
 const root = document.getElementById('app');
 try {
   await initStore(await pickBackend());
+  cargarCompra();
   startRouter();
   render(<App />, root);
   listenLinks();
+  iniciarCompras();
 } catch (e) {
   // Datos de una versión más nueva o corruptos: no se escribe nada y se avisa.
   root.textContent = `No se pudieron abrir los datos de la app (${e?.code || e?.message || e}). Actualiza la app o contacta con soporte.`;

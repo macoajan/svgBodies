@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'preact/hooks';
 import { Barra } from './Barra.jsx';
+import { BloqueoPro } from './ProCompra.jsx';
 import { useLibrary } from './useLibrary.js';
 import { figureUrls } from '../lib/library.js';
 import { navigate } from '../router.js';
@@ -9,6 +10,9 @@ import { estadoEnvio, ESTADO_LABEL } from '../domain/envio.js';
 import { ajustes } from '../data/app-store.js';
 import { nuevasRespuestas } from '../data/repo.js';
 import { leerTodas } from '../data/envio-service.js';
+import { esPro } from '../data/pro.js';
+import { listPlantillas, deletePlantilla, pautaDesdePlantilla } from '../data/repo.js';
+import { uso } from '../domain/limites.js';
 
 const fechaCorta = iso => new Date(iso).toLocaleDateString('es-ES', { day: 'numeric', month: 'short' });
 
@@ -59,6 +63,23 @@ export function ProInicio() {
         })}
       </ul>
       {total && !lista.length ? <p class="apagado">Ninguna pauta coincide con «{q}».</p> : null}
+      <section class="bloque" aria-labelledby="pl-t">
+        <h2 id="pl-t">Plantillas</h2>
+        {esPro.value ? (
+          listPlantillas().length ? (
+            <ul class="lista-pautas">
+              {listPlantillas().map(t => (
+                <li key={t.id} class="fila-pauta">
+                  <span class="fila-texto"><strong>{t.nombre}</strong><span>{t.pauta.items.length} ejercicios</span></span>
+                  <button type="button" class="boton secundario" onClick={async () => navigate(`/pro/pauta/${await pautaDesdePlantilla(t.id)}`)}>Usar</button>
+                  <button type="button" class="icono-btn" aria-label={`Borrar la plantilla ${t.nombre}`} onClick={() => deletePlantilla(t.id)}>✕</button>
+                </li>
+              ))}
+            </ul>
+          ) : <p class="apagado">Guarda una pauta como plantilla desde el editor para reutilizarla.</p>
+        ) : <BloqueoPro texto="Guarda pautas como plantillas para reutilizarlas" />}
+      </section>
+      {!esPro.value ? (() => { const u = uso(listPautas()); return <BloqueoPro texto={`${u.usados} de ${u.limite} pacientes con pauta activa (versión gratuita)`} />; })() : null}
     </main>
   );
 }

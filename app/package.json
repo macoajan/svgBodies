@@ -27,6 +27,8 @@
     "@fontsource/barlow-condensed": "^5.3.0",
     "@fontsource/lexend": "^5.3.0",
     "@preact/signals": "^2.11.4",
+    "capacitor-plugin-cdv-purchase": "^13.20.0",
+    "jspdf": "^4.2.1",
     "preact": "^11.2.0",
     "qrcode-generator": "^2.0.4"
   },

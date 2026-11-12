@@ -4,13 +4,14 @@ App para iOS y Android hecha con **Capacitor 8 + Preact + Vite**. Un solo binari
 papeles: el profesional crea y envía pautas; el paciente las abre por enlace o QR y las hace.
 Diseño completo y fases en [`docs/app-diseno-tecnico.md`](../docs/app-diseno-tecnico.md).
 
-Estado: **F0 (esqueleto)**, **F1 (biblioteca)**, **F2 (editor)**, **F3 (envío y seguimiento)** y **F4 (paciente)** hechas — arranque, router,
+Estado: **F0 (esqueleto)**, **F1 (biblioteca)**, **F2 (editor)**, **F3 (envío y seguimiento)**, **F4 (paciente)** y **F5 (Pro)** hechas — arranque, router,
 temas, datos locales con migraciones, apertura de una pauta por enlace, catálogo con búsqueda y
 filtros, ficha de ejercicio con vistas 2D/3D, pacientes por alias y editor de pautas con guardado
 automático, envío con QR, visibilidad, actualización y retirada, respuestas del paciente y, en el
-lado del paciente, pautas recibidas, sesión guiada con descansos ajustables, avisos y valoración.
+lado del paciente, pautas recibidas, sesión guiada con descansos ajustables, avisos y valoración;
+compra Pro, límite gratuito, plantillas, logo, PDF y copia de seguridad cifrada.
 Pruebas de interfaz: `test/e2e-smoke.mjs`, `test/e2e-catalogo.mjs`, `test/e2e-editor.mjs` y
-`test/e2e-envio.mjs` y `test/e2e-paciente.mjs` (estas dos, contra un servidor local; instrucciones
+`test/e2e-pro.mjs`, `test/e2e-envio.mjs` y `test/e2e-paciente.mjs` (estas dos, contra un servidor local; instrucciones
 en `e2e-envio.mjs`).
 
 ## Uso
@@ -44,6 +45,10 @@ La biblioteca (`public/lib/`) se genera desde `../library/` con `tools/build-app
 - `src/domain/ejecucion.js` plan y máquina de estados de la sesión guiada (pura, probada).
 - `src/data/recibidas.js` pautas del paciente, sesión en curso y cola de respuestas.
 - `src/platform/avisos.js` sonido, vibración, pantalla encendida y notificaciones locales.
+- `src/domain/limites.js` **límite gratuito (`FREE_LIMITS`, hoy 3 pacientes con pauta activa)** y
+  funciones Pro; `src/data/pro.js` y `src/platform/compras.js` compra y restauración
+  (`VITE_PRO_ID`, id del producto en las tiendas, provisional).
+- `src/domain/copia.js` copia de seguridad cifrada; `src/lib/pdf.js` PDF de la pauta (jsPDF).
 - Las pruebas resuelven `@shared` con `test/register.mjs`.
 - `src/ui/` pantallas.
 - Código compartido con el servidor y el visor web: alias `@shared` → `../server/public/`.

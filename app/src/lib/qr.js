@@ -36,3 +36,19 @@ export function qrPng(text, { px = 10, pie = '' } = {}) {
   }
   return canvas.toDataURL('image/png');
 }
+
+/** PNG del QR con el logo del profesional encima (Pro). */
+export async function qrPngConLogo(text, { pie = '', logo = null, px = 10 } = {}) {
+  if (!logo) return qrPng(text, { px, pie });
+  const { cargarImagen } = await import('./imagenes.js');
+  const [qrImg, logoImg] = await Promise.all([cargarImagen(qrPng(text, { px, pie })), cargarImagen(logo)]);
+  const cab = Math.round(px * 12);
+  const c = Object.assign(document.createElement('canvas'), { width: qrImg.width, height: qrImg.height + cab });
+  const ctx = c.getContext('2d');
+  ctx.fillStyle = '#FFFFFF'; ctx.fillRect(0, 0, c.width, c.height);
+  const k = Math.min((cab - px * 2) / logoImg.height, (c.width * 0.6) / logoImg.width);
+  const w = logoImg.width * k, h = logoImg.height * k;
+  ctx.drawImage(logoImg, (c.width - w) / 2, px * 2, w, h);
+  ctx.drawImage(qrImg, 0, cab);
+  return c.toDataURL('image/png');
+}

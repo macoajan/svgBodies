@@ -6,7 +6,11 @@ import { ajustes } from '../data/app-store.js';
 import { enviar, actualizar, retirar, mensajeError } from '../data/envio-service.js';
 import { estadoEnvio, formAVisibilidad, visibilidadAForm, visibilidadTexto, huella, ESTADO_LABEL } from '../domain/envio.js';
 import { problems, scheduleText } from '../domain/pautas.js';
-import { qrPath, qrPng } from '../lib/qr.js';
+import { qrPath, qrPngConLogo } from '../lib/qr.js';
+import { listPautas } from '../data/repo.js';
+import { esPro } from '../data/pro.js';
+import { puedeEnviar, FREE_LIMITS } from '../domain/limites.js';
+import { BloqueoPro } from './ProCompra.jsx';
 import { compartirEnlace, compartirImagen, copiar } from '../platform/share.js';
 
 function Qr({ link, label }) {
@@ -90,7 +94,7 @@ export function Envio({ params }) {
           <div class="item-acciones">
             <button type="button" class="boton" onClick={async () => setEstado({ ...estado, ok: (await compartirEnlace({ title: titulo, text: textoCompartir, url: env.link })) === 'copiado' ? 'Enlace copiado.' : '' })}>Compartir enlace</button>
             <button type="button" class="boton secundario" onClick={async () => setEstado({ ...estado, ok: (await copiar(env.link)) === 'copiado' ? 'Enlace copiado.' : 'No se pudo copiar.' })}>Copiar</button>
-            <button type="button" class="boton secundario" onClick={() => compartirImagen(qrPng(env.link, { pie: titulo }), 'pauta-qr.png', titulo)}>Compartir QR</button>
+            <button type="button" class="boton secundario" onClick={async () => compartirImagen(await qrPngConLogo(env.link, { pie: titulo, logo: esPro.value ? ajustes.value?.logo : null }), 'pauta-qr.png', titulo)}>Compartir QR</button>
           </div>
           {env.offline ? (
             <p class="aviso">No había conexión con el servidor y se ha creado un <strong>enlace largo</strong>: funciona sin servidor, pero no podrás cambiar la pauta con él ni recibir respuestas. Cuando haya conexión, retíralo y vuelve a enviarla.</p>
@@ -107,7 +111,9 @@ export function Envio({ params }) {
       {vis.error ? <p class="aviso error" role="alert">{vis.error}</p> : null}
 
 
-      {!env ? (
+      {!env && !puedeEnviar(listPautas(), id, esPro.value) ? (
+        <BloqueoPro texto={`La versión gratuita permite ${FREE_LIMITS.pacientesActivos} pacientes con pauta activa. Retira el enlace de otro paciente o pásate a Pro.`} />
+      ) : !env ? (
         <>
           <p class="apagado">La pauta viaja cifrada: el servidor no puede leerla. La clave va dentro del enlace, así que compártelo solo con tu paciente.</p>
           <button type="button" class="boton" disabled={estado.ocupado || avisos.length > 0 || !vis.visibility}

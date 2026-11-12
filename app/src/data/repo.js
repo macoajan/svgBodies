@@ -109,3 +109,26 @@ export async function marcarVistas(id) {
 }
 
 export const nuevasRespuestas = id => { const r = getRespuestas(id); return r.items.length - r.vistas; };
+
+// ---------- Plantillas (Pro) ----------
+export const listPlantillas = () => Object.values(storage.get('plantillas')).sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
+
+export async function savePlantilla(pauta, nombre) {
+  const id = newId();
+  const n = String(nombre || pauta.title || 'Plantilla').trim().slice(0, 60) || 'Plantilla';
+  await storage.update('plantillas', d => { d[id] = { id, nombre: n, pauta: structuredClone(pauta), creada: now() }; });
+  bump();
+  return id;
+}
+
+export async function deletePlantilla(id) {
+  await storage.update('plantillas', d => { delete d[id]; });
+  bump();
+}
+
+/** Nueva pauta a partir de una plantilla. */
+export async function pautaDesdePlantilla(id, pacienteId = null) {
+  const t = storage.get('plantillas')[id];
+  if (!t) return null;
+  return createPauta({ ...structuredClone(t.pauta), title: t.nombre }, pacienteId);
+}

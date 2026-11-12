@@ -233,7 +233,16 @@ Código en `server/` (Node ≥ 22.5, sin dependencias):
     `AndroidManifest.xml` y `App.entitlements` (iOS) con `pautas.maroto.es` (provisional); el AASA
     del servidor admite también `/p` (enlace largo). **Pendiente de probar en dispositivo**:
     enlaces universales (requieren `IOS_APP_IDS`/`ANDROID_*` y firma), notificaciones (en Android
-    sin alarmas exactas pueden retrasarse) y sonido con el modo silencio. Siguiente: **F5 Pro**.
+    sin alarmas exactas pueden retrasarse) y sonido con el modo silencio.
+12. **F5 hecha**: compra única Pro con `capacitor-plugin-cdv-purchase` (StoreKit 2 y Play
+    Billing 8, sin validador externo; id del producto en `VITE_PRO_ID`, por defecto `pro`,
+    provisional) y «Restaurar compras». **Límite gratuito: 3 pacientes con pauta activa**,
+    constante `FREE_LIMITS` en `app/src/domain/limites.js` (fácil de cambiar); lo enviado nunca se
+    bloquea. Pro desbloquea plantillas, logo (en el PDF y el QR; no se envía al paciente) y PDF
+    de la pauta (jsPDF, en el dispositivo). Copia de seguridad cifrada con frase
+    (PBKDF2 + AES-GCM, `app/src/domain/copia.js`), gratuita; al restaurar no se copia la compra.
+    Pendiente: probar la compra en TestFlight/prueba interna con el producto creado por el
+    publisher. Siguiente: **F6 Tiendas**.
 
 ## Cómo revisar visualmente
 
