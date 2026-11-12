@@ -226,7 +226,7 @@ preparar → trabajo ─┬→ descansoRep ──→ trabajo
 | F3 Envío y seguimiento (hecha) | Publicar, QR, compartir, actualizar, retirar, visibilidad; leer respuestas | El paciente recibe el enlace y el profesional ve su respuesta | 300–500 k |
 | F4 Paciente (hecha) | Enlaces universales, pauta recibida, ejecución guiada, valoración, resumen, cola sin red | Hacer una pauta completa con descansos y avisos | 600–900 k |
 | F5 Pro (hecha) | Compra, restauración, límites, logo, plantillas, PDF, copia de seguridad | Comprar en el entorno de pruebas y desbloquear | 400–600 k |
-| F6 Tiendas | Iconos, pantalla de inicio, configuración de enlaces, textos de privacidad, compilación firmada, TestFlight y prueba interna | Versión de prueba instalable desde las tiendas | 200–400 k |
+| F6 Tiendas (preparada; faltan decisiones) | Iconos, pantalla de inicio, configuración de enlaces, textos de privacidad, compilación firmada, TestFlight y prueba interna | Versión de prueba instalable desde las tiendas | 200–400 k |
 
 Total: unos 2,5–4 M tokens. El orden F0 → F4 da una app útil sin compras; F5 y F6 la llevan a
 las tiendas.

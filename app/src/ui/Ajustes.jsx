@@ -148,6 +148,7 @@ export function Ajustes({ version }) {
           </div>
         ) : <button class="boton peligro" type="button" onClick={() => setConfirmar(true)}>Borrar todos los datos</button>}
       </fieldset>
+      <p class="pie">Esta app organiza los ejercicios que indica un profesional; no diagnostica ni sustituye su valoración.</p>
       <p class="pie">Versión {version.app} · biblioteca {version.lib}</p>
     </main>
   );
