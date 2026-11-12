@@ -269,3 +269,83 @@ input[type="date"] { font: 17px var(--font); color: var(--ink); background: var(
 .nota-r { font-style: italic; color: var(--ink) !important; }
 .sello.diff-dificil { background: #FDE8E8; color: #7F1D1D; }
 .sello.diff-facil { background: #E4F6EE; color: #14532D; }
+
+/* ---------- Lado del paciente ---------- */
+.boton.grande { min-height: 64px; font-size: 19px; width: 100%; }
+.sello.hecho { background: var(--done); }
+.pro { display: flex; align-items: center; gap: 10px; }
+.pro .quien { display: flex; flex-direction: column; line-height: 1.3; }
+.pro .quien span { font-size: 14px; color: var(--muted); }
+.logo { flex: none; width: 42px; height: 42px; border-radius: var(--pill); background: var(--primary); color: var(--on-primary); display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; }
+.mensaje { display: flex; gap: 10px; align-items: flex-start; }
+.mensaje p { padding: 10px 16px; border-radius: 4px var(--radius) var(--radius) var(--radius); background: var(--surface); }
+.mensaje .logo { width: 36px; height: 36px; font-size: 13px; }
+.lista-ej { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.fila-img.grande { width: 72px; height: 72px; }
+.nota-ej { font-style: italic; color: var(--ink) !important; }
+details.texto summary { cursor: pointer; font-weight: 600; min-height: 44px; display: flex; align-items: center; gap: 8px; list-style: none; }
+details.texto summary::-webkit-details-marker { display: none; }
+details.texto summary::after { content: '▾'; color: var(--muted); }
+details.texto[open] summary::after { content: '▴'; }
+details.texto > * + * { margin-top: 8px; }
+details.texto ol, details.texto ul { margin-left: 0; padding-left: 22px; }
+
+/* Sesión guiada */
+.pantalla.sesion { gap: 12px; padding-bottom: calc(env(safe-area-inset-bottom) + 120px); }
+.sesion-cab { display: flex; align-items: center; gap: 12px; min-height: 48px; }
+.sesion-prog { flex: 1; height: 10px; border-radius: var(--pill); background: var(--surface); overflow: hidden; }
+.sesion-prog span { display: block; height: 100%; background: var(--primary); transition: width .3s; }
+.sesion-n { font-weight: 600; font-size: 15px; white-space: nowrap; }
+.sesion-figura .figura-lienzo { background: var(--warm); border-color: transparent; min-height: 200px; }
+.sesion-figura .figura-svg svg { max-height: 230px; }
+.sesion-figura .figura-3d { height: 240px; }
+.sesion-cuerpo { display: flex; flex-direction: column; gap: 14px; }
+.sesion-cuerpo.centrado { align-items: center; text-align: center; padding-top: 12px; }
+.h1-sesion { font-size: 28px; }
+.etiqueta-paso { font-weight: 700; font-size: 18px; }
+.contadores { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.contadores div { padding: 10px 16px; border-radius: var(--radius); background: var(--surface); display: flex; flex-direction: column; }
+.contadores small { font-size: 13px; }
+.contadores b { font-size: 32px; line-height: 1.1; }
+.contadores b span { font-size: 16px; font-weight: 400; }
+.aguante { padding: 12px 16px; border-radius: var(--radius); border: 3px solid var(--ink); display: flex; flex-direction: column; gap: 6px; }
+.aguante-fila { display: flex; justify-content: space-between; font-size: 20px; font-weight: 700; }
+.aguante-barra { height: 14px; border-radius: var(--pill); background: var(--surface); overflow: hidden; }
+.aguante-barra span { display: block; height: 100%; background: var(--primary); transition: width .25s linear; }
+.sesion-acciones {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 5; display: flex; gap: 10px; justify-content: center;
+  padding: 12px 16px calc(env(safe-area-inset-bottom) + 16px); background: var(--bg);
+}
+.sesion-cuerpo .sesion-acciones { position: static; padding: 0; }
+.sesion-acciones .boton { flex: 1; max-width: 360px; }
+.reloj { position: relative; width: min(70vw, 260px); aspect-ratio: 1; }
+.reloj svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.reloj circle { fill: none; stroke-width: 8; }
+.reloj-fondo { stroke: var(--surface); }
+.reloj-arco { stroke: var(--primary); stroke-linecap: round; stroke-dasharray: 283; transition: stroke-dashoffset .25s linear; }
+.descanso .reloj-fondo { stroke: var(--warm); }
+.reloj-n { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 64px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.ajuste { display: flex; gap: 10px; }
+.ajuste .boton { min-width: 110px; }
+.opciones3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.pastilla, .dolor-op { position: relative; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+.pastilla input, .dolor-op input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.pastilla { min-height: 52px; border-radius: var(--pill); border: 2px solid var(--faint); font-weight: 600; }
+.dolor-grid { display: grid; grid-template-columns: repeat(11, minmax(0, 1fr)); gap: 3px; }
+.dolor-op { min-height: 44px; border-radius: 10px; font-size: 15px; font-weight: 600; }
+.dolor-op.bajo { background: #E4F6EE; color: #14532D; }
+.dolor-op.medio { background: #FFE7C2; color: #7C2D12; }
+.dolor-op.alto { background: #FDE8E8; color: #7F1D1D; }
+.pastilla:has(input:checked), .dolor-op:has(input:checked) { background: var(--primary); color: var(--on-primary); border-color: var(--primary); }
+.pastilla:has(input:focus-visible), .dolor-op:has(input:focus-visible) { outline: 3px solid var(--ink); outline-offset: 2px; }
+.medalla { width: 96px; height: 96px; border-radius: 50%; background: var(--done); color: var(--ink); display: flex; align-items: center; justify-content: center; font-size: 48px; font-weight: 700; }
+@media (min-width: 900px) {
+  .pantalla.sesion { max-width: 1000px; display: grid; grid-template-columns: 1fr 1fr; column-gap: 28px; align-content: start; }
+  .sesion > .sesion-cab { grid-column: 1 / -1; }
+  .sesion > .sesion-figura { grid-column: 1; }
+  .sesion > .sesion-cuerpo { grid-column: 2; }
+  .sesion.descanso > .sesion-cuerpo, .sesion > .sesion-cuerpo.centrado { grid-column: 1 / -1; }
+  .sesion-figura .figura-svg svg { max-height: 420px; }
+  .sesion-figura .figura-3d { height: 420px; }
+}
+.sesion-cuerpo > h1 { font-size: 28px; }

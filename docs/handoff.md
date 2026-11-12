@@ -222,7 +222,18 @@ Código en `server/` (Node ≥ 22.5, sin dependencias):
     el paciente); respuestas con resumen por ejercicio (último dolor, máximo, tendencia) y aviso de
     respuestas nuevas en «Mis pautas» (como mucho una comprobación cada 5 min). Clave y token solo
     en el dispositivo. Prueba de interfaz contra un servidor local: `app/test/e2e-envio.mjs`.
-    Siguiente: **F4 Paciente** (enlaces universales y ejecución guiada).
+11. **F4 hecha**: lado del paciente. Pautas recibidas guardadas en el dispositivo
+    (`app/src/data/recibidas.js`), se refrescan al abrirlas (avisa si se retiró o se pausó).
+    Sesión guiada con máquina de estados pura (`app/src/domain/ejecucion.js`): aguantes con
+    tiempo, «Serie hecha», cambio de lado, descansos de los tres niveles con −15/+15 s, saltar y
+    pausa; tiempo por marcas absolutas (se pone al día tras bloquear el teléfono) y sesión
+    guardada para continuarla. Avisos: sonido, vibración, pantalla encendida y notificaciones
+    locales en segundo plano (`app/src/platform/avisos.js`). Valoración por ejercicio y resumen;
+    la respuesta se envía o queda en cola sin red. Enlaces universales: intent-filter en
+    `AndroidManifest.xml` y `App.entitlements` (iOS) con `pautas.maroto.es` (provisional); el AASA
+    del servidor admite también `/p` (enlace largo). **Pendiente de probar en dispositivo**:
+    enlaces universales (requieren `IOS_APP_IDS`/`ANDROID_*` y firma), notificaciones (en Android
+    sin alarmas exactas pueden retrasarse) y sonido con el modo silencio. Siguiente: **F5 Pro**.
 
 ## Cómo revisar visualmente
 

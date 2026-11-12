@@ -22,6 +22,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
+            <!-- Enlaces de pauta (App Links). Dominio PROVISIONAL: cambiar junto a VITE_SERVER_URL.
+                 El servidor publica /.well-known/assetlinks.json con ANDROID_PACKAGE y ANDROID_SHA256. -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https" android:host="pautas.maroto.es" android:pathPrefix="/p" />
+            </intent-filter>
+
         </activity>
 
         <provider
