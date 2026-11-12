@@ -69,7 +69,7 @@ export function PautaRecibida({ params }) {
         })}
       </ol>
       {cola ? <p class="apagado">{cola === 1 ? 'Hay 1 valoración' : `Hay ${cola} valoraciones`} pendiente{cola === 1 ? '' : 's'} de enviar: se enviará{cola === 1 ? '' : 'n'} cuando haya conexión.</p> : null}
-      <p class="apagado">{(rec.sesiones || []).length} {(rec.sesiones || []).length === 1 ? 'sesión hecha' : 'sesiones hechas'}. Lo que valoras solo lo ve tu profesional.</p>
+      <p class="apagado">{(rec.sesiones || []).length} {(rec.sesiones || []).length === 1 ? 'sesión hecha' : 'sesiones hechas'}. Lo que valoras solo lo ve tu profesional. Si un ejercicio te causa dolor, detente y consúltale.</p>
       {confirmar ? (
         <div class="item-acciones">
           <button type="button" class="boton peligro" onClick={async () => { await borrarRecibida(clave); navigate('/paciente', undefined, { replace: true }); }}>Sí, quitarla</button>

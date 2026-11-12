@@ -242,7 +242,17 @@ Código en `server/` (Node ≥ 22.5, sin dependencias):
     de la pauta (jsPDF, en el dispositivo). Copia de seguridad cifrada con frase
     (PBKDF2 + AES-GCM, `app/src/domain/copia.js`), gratuita; al restaurar no se copia la compra.
     Pendiente: probar la compra en TestFlight/prueba interna con el producto creado por el
-    publisher. Siguiente: **F6 Tiendas**.
+    publisher.
+13. **F6 preparada (lo que no depende de decisiones)**: iconos y pantallas de inicio
+    provisionales generados desde `app/resources/figura.svg` con `app/tools/iconos.mjs`;
+    `PrivacyInfo.xcprivacy` en el target de iOS e `ITSAppUsesNonExemptEncryption = NO` (a confirmar
+    por el publisher); firma de Android desde `android/keystore.properties` (fuera del repositorio);
+    quitado `SCHEDULE_EXACT_ALARM` (política de Google Play). Guía y borradores en `docs/tiendas/`:
+    `publicar.md` (compilar, firmar, subir, enlaces universales, capturas), `ficha.md` (textos de
+    la ficha, notas para la revisión, clasificación) y `privacidad.md` (política y respuestas de
+    privacidad de Apple y Google). **Bloqueado por decisiones**: nombre, identificador, dominio,
+    id y precio de Pro, cuentas del publisher, icono definitivo y textos legales finales. Falta
+    también publicar la política de privacidad en una URL (la piden las dos tiendas).
 
 ## Cómo revisar visualmente
 

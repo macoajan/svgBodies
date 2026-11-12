@@ -56,6 +56,10 @@ La biblioteca (`public/lib/`) se genera desde `../library/` con `tools/build-app
 
 ## Compilar en el dispositivo
 
+Guía completa para compilar, firmar y publicar: [`docs/tiendas/publicar.md`](../docs/tiendas/publicar.md).
+Iconos y pantallas de inicio: `node tools/iconos.mjs` (a partir de `resources/figura.svg`).
+
+
 - **Android**: Android Studio (`npx cap open android`). En el contenedor de Claude no se puede
   compilar sin permitir `dl.google.com` y `maven.google.com`.
 - **iOS**: en un Mac con Xcode (`npx cap open ios`). Usa Swift Package Manager (sin CocoaPods).

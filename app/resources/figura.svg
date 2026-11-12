@@ -1,0 +1,11 @@
+<!-- Figura del icono PROVISIONAL (sin marca: el nombre de la app no está decidido).
+     Dibujo en un lienzo de 1024 × 1024; tools/iconos.mjs la coloca sobre el fondo. -->
+<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <line x1="300" y1="812" x2="724" y2="812" stroke="#D4FF3A" stroke-width="40"/>
+  <g stroke="#FFD2B3" stroke-width="58">
+    <circle cx="512" cy="258" r="60"/>
+    <path d="M512 350 L512 600"/>
+    <path d="M512 430 L330 250 M512 430 L694 250"/>
+    <path d="M512 600 L418 790 M512 600 L606 790"/>
+  </g>
+</g>
