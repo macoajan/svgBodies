@@ -10,7 +10,7 @@
     "build": "npm run lib && vite build",
     "preview": "vite preview",
     "typecheck": "tsc -p jsconfig.json",
-    "test": "node --test test/*.test.mjs",
+    "test": "node --import ./test/register.mjs --test test/*.test.mjs",
     "cap:sync": "npm run build && cap sync",
     "e2e": "node test/e2e-smoke.mjs"
   },

@@ -2,7 +2,7 @@ import { useState } from 'preact/hooks';
 import { Barra } from './Barra.jsx';
 import { Figura } from './Figura.jsx';
 import { useLibrary } from './useLibrary.js';
-import { catalogoMemoria } from './Catalogo.jsx';
+import { catalogoMemoria, anadirAPauta } from './Catalogo.jsx';
 import { href } from '../router.js';
 import { ajustes } from '../data/app-store.js';
 import { kcalPerMin } from '../domain/catalogo.js';
@@ -89,13 +89,13 @@ function Datos({ ex, vocab }) {
 export function Ejercicio({ params }) {
   const { lib, error } = useLibrary();
   const volver = href('/pro/catalogo', catalogoMemoria.query).slice(1);
-  if (error) return <main class="pantalla"><Barra titulo="Ejercicio" volver={volver} /><p class="aviso error">{error}</p></main>;
-  if (!lib) return <main class="pantalla"><Barra titulo="Ejercicio" volver={volver} /><p class="apagado">Cargando…</p></main>;
+  if (error) return <main class="pantalla"><Barra titulo="Ejercicio" volver={volver} ajustes={false} /><p class="aviso error">{error}</p></main>;
+  if (!lib) return <main class="pantalla"><Barra titulo="Ejercicio" volver={volver} ajustes={false} /><p class="apagado">Cargando…</p></main>;
   const ex = lib.byId.get(params.id);
   if (!ex) {
     return (
       <main class="pantalla">
-        <Barra titulo="Ejercicio" volver={volver} />
+        <Barra titulo="Ejercicio" volver={volver} ajustes={false} />
         <h1>Ejercicio no disponible</h1>
         <p>Esta versión de la app no tiene este ejercicio. Actualiza la app.</p>
       </main>
@@ -110,8 +110,8 @@ export function Ejercicio({ params }) {
     vocab.actions?.[ex.action]?.es,
   ].filter(Boolean);
   return (
-    <main class="pantalla ancha ficha">
-      <Barra titulo="Ejercicio" volver={volver} />
+    <main class={`pantalla ancha ficha con-nav${catalogoMemoria.para ? ' con-barra-sel' : ''}`}>
+      <Barra titulo="Ejercicio" volver={volver} ajustes={false} />
       <Figura ex={ex} />
       <div class="cabecera-ej">
         <h1 class="h1-ej">{ex.name.es}</h1>
@@ -123,6 +123,14 @@ export function Ejercicio({ params }) {
       <Musculos ex={ex} vocab={vocab} />
       <Textos ex={ex} byId={lib.byId} />
       <Datos ex={ex} vocab={vocab} />
+      {catalogoMemoria.para ? (
+        <div class="barra-sel">
+          <span>{catalogoMemoria.sel.size ? `${catalogoMemoria.sel.size} ya elegidos` : ''}</span>
+          <button type="button" class="boton" onClick={() => anadirAPauta(catalogoMemoria.para, [...new Set([...catalogoMemoria.sel, ex.id])].map(id => lib.byId.get(id)).filter(Boolean))}>
+            Añadir a la pauta
+          </button>
+        </div>
+      ) : null}
     </main>
   );
 }

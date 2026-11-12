@@ -9,6 +9,10 @@ import { PacienteInicio } from './PacienteInicio.jsx';
 import { Ajustes } from './Ajustes.jsx';
 import { Catalogo } from './Catalogo.jsx';
 import { Ejercicio } from './Ejercicio.jsx';
+import { PautaEditor } from './PautaEditor.jsx';
+import { Pacientes } from './Pacientes.jsx';
+import { Paciente } from './Paciente.jsx';
+import { NavPro } from './NavPro.jsx';
 
 /** Rutas: `lado` decide el tema (profesional o paciente). */
 export const ROUTES = [
@@ -16,8 +20,11 @@ export const ROUTES = [
   { path: '/pro', lado: 'pro', Screen: ProInicio },
   { path: '/pro/catalogo', lado: 'pro', Screen: Catalogo },
   { path: '/pro/ejercicio/:id', lado: 'pro', Screen: Ejercicio },
+  { path: '/pro/pauta/:id', lado: 'pro', Screen: PautaEditor },
+  { path: '/pro/pacientes', lado: 'pro', Screen: Pacientes },
+  { path: '/pro/paciente/:id', lado: 'pro', Screen: Paciente },
   { path: '/paciente', lado: 'paciente', Screen: PacienteInicio },
-  { path: '/ajustes', lado: 'pro', Screen: Ajustes },
+  { path: '/ajustes', lado: 'pro', Screen: Ajustes, nav: true },
 ];
 
 function NoEncontrada() {
@@ -36,5 +43,11 @@ export function App() {
 
   if (!m) return <NoEncontrada />;
   const { Screen } = m.route;
-  return <Screen params={m.params} query={location.value.query} version={{ app: __APP_VERSION__, lib: libVersion }} />;
+  const nav = m.route.nav || m.route.path.startsWith('/pro');
+  return (
+    <>
+      <Screen key={location.value.path} params={m.params} query={location.value.query} version={{ app: __APP_VERSION__, lib: libVersion }} />
+      {nav ? <NavPro /> : null}
+    </>
+  );
 }

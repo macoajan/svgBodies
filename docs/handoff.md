@@ -207,7 +207,14 @@ Código en `server/` (Node ≥ 22.5, sin dependencias):
    objetivo, músculo (con jerarquía), material (por categorías), lugar, posición y nivel, con
    recuentos; filtros en la URL; ficha con vistas 2D, 3D, pausa, músculos, textos profesional y
    paciente, MET y kcal/min con el peso del usuario. En tablet, ficha a dos columnas.
-   Lógica en `app/src/domain/catalogo.js`. Siguiente: **F2 Editor de pautas**.
+   Lógica en `app/src/domain/catalogo.js`.
+9. **F2 hecha**: «Mis pautas» con búsqueda (título, alias, ejercicio), pacientes por alias con
+   nota privada, editor con guardado automático (dosis, «con cada lado», tres niveles de
+   descanso, carga, notas, calendario, mensaje, `show.kcal`/`show.proText`, ordenar, duplicar,
+   quitar), estimación de minutos y kcal, y selección de ejercicios desde el catálogo
+   (`?para=<pauta>`). Barra inferior de secciones. Valores por defecto según el ejercicio en
+   `app/src/domain/pautas.js`; datos en `app/src/data/repo.js`. Siguiente: **F3 Envío y
+   seguimiento**.
 
 ## Cómo revisar visualmente
 

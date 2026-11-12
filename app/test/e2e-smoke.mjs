@@ -11,10 +11,11 @@ const errs = []; pg.on('pageerror', e => errs.push(e.message)); pg.on('console',
 const shot = n => pg.screenshot({ path: `${out}/${n}.png` });
 await pg.goto(url); await pg.waitForSelector('h1'); await shot('1-inicio');
 console.log('tema inicio', await pg.evaluate(() => document.documentElement.dataset.theme));
-await pg.click('text=Crear pautas'); await pg.waitForSelector('.miniaturas img');
-await pg.waitForFunction(() => [...document.querySelectorAll('.miniaturas img')].every(i => i.complete && i.naturalWidth > 0));
-console.log('pro:', await pg.textContent('#bib + p')); await shot('2-pro');
-await pg.click('[aria-label=Ajustes]'); await pg.waitForSelector('text=Tema del profesional');
+await pg.click('text=Crear pautas'); await pg.waitForSelector('h1:has-text("Mis pautas")');
+await pg.click('.nav-pro a:has-text("Catálogo")'); await pg.waitForSelector('.rejilla img');
+await pg.waitForFunction(() => [...document.querySelectorAll('.rejilla img')].slice(0, 4).every(i => i.complete && i.naturalWidth > 0));
+console.log('catálogo:', await pg.textContent('.recuento')); await shot('2-pro');
+await pg.click('.nav-pro a:has-text("Ajustes")'); await pg.waitForSelector('text=Tema del profesional');
 await pg.click('label.tema:has-text("Cercano noche")'); await pg.fill('input[autocomplete=name]', 'Ana Pérez'); await pg.press('input[autocomplete=name]', 'Tab');
 await pg.waitForTimeout(200); await pg.reload(); await pg.waitForSelector('text=Tema del profesional');
 console.log('tras recargar: tema', await pg.evaluate(() => document.documentElement.dataset.theme), 'nombre', await pg.inputValue('input[autocomplete=name]'));
