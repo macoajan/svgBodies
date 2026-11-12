@@ -56,7 +56,8 @@ La biblioteca (`public/lib/`) se genera desde `../library/` con `tools/build-app
 
 ## Compilar en el dispositivo
 
-Guía completa para compilar, firmar y publicar: [`docs/tiendas/publicar.md`](../docs/tiendas/publicar.md).
+Paso a paso para compilar y probar en Android, iPhone/iPad y Mac: [`docs/compilar.md`](../docs/compilar.md).
+Guía completa para firmar y publicar: [`docs/tiendas/publicar.md`](../docs/tiendas/publicar.md).
 Iconos y pantallas de inicio: `node tools/iconos.mjs` (a partir de `resources/figura.svg`).
 
 

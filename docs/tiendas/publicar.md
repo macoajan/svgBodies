@@ -1,5 +1,7 @@
 # Publicar la app en las tiendas (guía)
 
+Para compilar y probar en un dispositivo propio, empieza por [`../compilar.md`](../compilar.md).
+
 Pasos para compilar, firmar y subir la app a TestFlight (iOS) y a la prueba interna de Google
 Play. **Requiere decisiones pendientes**; mientras tanto, lo provisional está marcado.
 
