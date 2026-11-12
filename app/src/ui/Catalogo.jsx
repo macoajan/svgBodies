@@ -3,10 +3,24 @@ import { Barra } from './Barra.jsx';
 import { useLibrary } from './useLibrary.js';
 import { figureUrls } from '../lib/library.js';
 import { navigate } from '../router.js';
+import { getPauta, savePauta } from '../data/repo.js';
+import { addItems } from '../domain/pautas.js';
+import { LIMITS } from '@shared/pauta-schema.js';
 import { FACETS, FACET, EQUIPMENT_CATEGORY, search, facetCounts, facetOptions, parseFilters, toQuery, mainEquipment } from '../domain/catalogo.js';
 
 // Se recuerdan la consulta y el desplazamiento para volver desde la ficha al mismo sitio.
-export const catalogoMemoria = { query: {}, scroll: 0 };
+export const catalogoMemoria = { query: {}, scroll: 0, sel: new Set(), para: null };
+
+/** Añade los ejercicios elegidos a la pauta y vuelve al editor. */
+export async function anadirAPauta(pautaId, exercises) {
+  const r = getPauta(pautaId);
+  if (!r) return 0;
+  const { pauta, added } = addItems(r.pauta, exercises);
+  await savePauta(pautaId, { pauta });
+  catalogoMemoria.sel = new Set();
+  navigate(`/pro/pauta/${pautaId}`, undefined, { replace: true });
+  return added;
+}
 
 const Lupa = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-4-4" /></svg>;
 
@@ -56,7 +70,16 @@ export function Catalogo({ query }) {
   const [texto, setTexto] = useState(q);
   useEffect(() => setTexto(q), [q]);
 
-  const go = next => navigate('/pro/catalogo', toQuery(next), { replace: true });
+  // Modo selección: se llega desde el editor con ?para=<pauta>.
+  const para = query.para && getPauta(query.para) ? query.para : null;
+  if (catalogoMemoria.para !== para) { catalogoMemoria.para = para; catalogoMemoria.sel = new Set(); }
+  const [sel, setSelState] = useState(catalogoMemoria.sel);
+  const setSel = s => { catalogoMemoria.sel = s; setSelState(s); };
+  const destino = para ? getPauta(para) : null;
+  const hueco = destino ? LIMITS.items - destino.pauta.items.length : 0;
+  const toggleSel = id => { const n = new Set(sel); if (n.has(id)) n.delete(id); else if (n.size < hueco) n.add(id); setSel(n); };
+
+  const go = next => navigate('/pro/catalogo', { ...toQuery(next), ...(para ? { para } : {}) }, { replace: true });
   // La búsqueda actualiza la URL al escribir (sin añadir entradas al historial).
   useEffect(() => {
     if (texto === q) return;
@@ -79,9 +102,10 @@ export function Catalogo({ query }) {
   };
 
   return (
-    <main class="pantalla ancha">
-      <Barra titulo="Biblioteca" volver="/pro" />
+    <main class={`pantalla ancha con-nav${para ? ' con-barra-sel' : ''}`}>
+      <Barra titulo={para ? 'Añadir ejercicios' : 'Biblioteca'} volver={para ? `/pro/pauta/${para}` : '/pro'} ajustes={false} />
       <h1>Catálogo</h1>
+      {para ? <p class="aviso">Añadiendo a <strong>{destino.pauta.title || 'la pauta'}</strong>. Toca los ejercicios para elegirlos (caben {hueco}).</p> : null}
       <label class="buscador">
         <Lupa />
         <input type="search" value={texto} onInput={e => setTexto(e.currentTarget.value)} placeholder="Buscar: rodilla, puente, banda…"
@@ -109,16 +133,34 @@ export function Catalogo({ query }) {
           <ul class="rejilla">
             {results.map(ex => (
               <li key={ex.id}>
-                <a class="ficha-mini" href={`#/pro/ejercicio/${ex.id}`} onClick={() => { catalogoMemoria.scroll = window.scrollY; }}>
-                  <img src={figureUrls(ex)[0]} alt="" loading="lazy" width="120" height="120" />
-                  <span class="ficha-mini-nombre">{ex.name.es}</span>
-                  <span class="ficha-mini-meta">Nivel {ex.level} · {mainEquipment(lib.catalog, ex)}</span>
-                </a>
+                {para ? (
+                  <div class={`ficha-mini${sel.has(ex.id) ? ' elegido' : ''}`}>
+                    <label class="ficha-mini-sel">
+                      <input type="checkbox" checked={sel.has(ex.id)} disabled={!sel.has(ex.id) && sel.size >= hueco} onChange={() => toggleSel(ex.id)} />
+                      <img src={figureUrls(ex)[0]} alt="" loading="lazy" width="120" height="120" />
+                      <span class="ficha-mini-nombre">{ex.name.es}</span>
+                    </label>
+                    <a class="ficha-mini-meta" href={`#/pro/ejercicio/${ex.id}`} onClick={() => { catalogoMemoria.scroll = window.scrollY; }}>Ver ficha · Nivel {ex.level}</a>
+                  </div>
+                ) : (
+                  <a class="ficha-mini" href={`#/pro/ejercicio/${ex.id}`} onClick={() => { catalogoMemoria.scroll = window.scrollY; }}>
+                    <img src={figureUrls(ex)[0]} alt="" loading="lazy" width="120" height="120" />
+                    <span class="ficha-mini-nombre">{ex.name.es}</span>
+                    <span class="ficha-mini-meta">Nivel {ex.level} · {mainEquipment(lib.catalog, ex)}</span>
+                  </a>
+                )}
               </li>
             ))}
           </ul>
         </>
       )}
+      {para && lib ? (
+        <div class="barra-sel">
+          <span><strong>{sel.size}</strong> {sel.size === 1 ? 'elegido' : 'elegidos'}</span>
+          <button type="button" class="boton" disabled={!sel.size}
+            onClick={() => anadirAPauta(para, [...sel].map(id => lib.byId.get(id)).filter(Boolean))}>Añadir a la pauta</button>
+        </div>
+      ) : null}
       {hoja && lib ? (
         <HojaFiltro facetKey={hoja} catalog={lib.catalog} index={lib.index} state={state} onClose={() => setHoja(null)}
           onApply={vals => go({ q, filters: { ...filters, [hoja]: vals } })} />

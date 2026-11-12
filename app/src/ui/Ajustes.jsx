@@ -24,8 +24,8 @@ export function Ajustes({ version }) {
   const a = ajustes.value;
   const [confirmar, setConfirmar] = useState(false);
   return (
-    <main class="pantalla">
-      <Barra titulo="Ajustes" volver="/" ajustes={false} />
+    <main class="pantalla con-nav">
+      <Barra titulo="Ajustes" volver="/pro" ajustes={false} />
       <Temas legend="Tema del profesional" name="temaPro" lista={THEMES_PRO} valor={themeFor('pro', a)} onChange={id => saveAjustes({ temaPro: id })} />
       <Temas legend="Tema del paciente" name="temaPaciente" lista={THEMES_PACIENTE} valor={themeFor('paciente', a)} onChange={id => saveAjustes({ temaPaciente: id })} />
       <fieldset>
