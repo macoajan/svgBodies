@@ -4,8 +4,9 @@ App para iOS y Android hecha con **Capacitor 8 + Preact + Vite**. Un solo binari
 papeles: el profesional crea y envía pautas; el paciente las abre por enlace o QR y las hace.
 Diseño completo y fases en [`docs/app-diseno-tecnico.md`](../docs/app-diseno-tecnico.md).
 
-Estado: **F0 (esqueleto)** — arranque, router, temas, datos locales con migraciones,
-biblioteca sin conexión y apertura de una pauta por enlace (solo título y número de ejercicios).
+Estado: **F0 (esqueleto)** y **F1 (biblioteca)** hechas — arranque, router, temas, datos locales
+con migraciones, apertura de una pauta por enlace, catálogo con búsqueda y filtros, y ficha de
+ejercicio con vistas 2D/3D. Pruebas de interfaz: `test/e2e-smoke.mjs` y `test/e2e-catalogo.mjs`.
 
 ## Uso
 
@@ -28,7 +29,8 @@ La biblioteca (`public/lib/`) se genera desde `../library/` con `tools/build-app
   archivos en la app nativa, IndexedDB en el navegador) y `migraciones.js`.
 - `src/themes/` tokens de los temas A1, A, A2, C, C1, C2. El paciente solo ve temas de fondo blanco.
 - `src/platform/` envoltorios de plugins nativos (almacenamiento, enlaces universales).
-- `src/lib/library.js` acceso a la biblioteca empaquetada.
+- `src/lib/library.js` acceso a la biblioteca empaquetada (catálogo, figuras, visor 3D, posturas).
+- `src/domain/` lógica pura: `catalogo.js` (búsqueda, filtros, recuentos, kcal).
 - `src/ui/` pantallas.
 - Código compartido con el servidor y el visor web: alias `@shared` → `../server/public/`.
 - `.env`: `VITE_SERVER_URL` (servidor **provisional**, también entra en la CSP de `index.html`).

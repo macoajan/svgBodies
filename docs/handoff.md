@@ -202,7 +202,12 @@ Código en `server/` (Node ≥ 22.5, sin dependencias):
    temas, almacenamiento local con migraciones, biblioteca sin conexión
    (`tools/build-app-library.mjs`), apertura de una pauta por enlace y proyectos `ios/`
    (SPM) y `android/`. Identificador provisional `es.maroto.pautas`. El APK no se puede compilar
-   en el contenedor (red sin `dl.google.com`/`maven.google.com`). Siguiente: **F1 Biblioteca**.
+   en el contenedor (red sin `dl.google.com`/`maven.google.com`).
+8. **F1 hecha**: catálogo con búsqueda (sin tildes, por varias palabras) y filtros por región,
+   objetivo, músculo (con jerarquía), material (por categorías), lugar, posición y nivel, con
+   recuentos; filtros en la URL; ficha con vistas 2D, 3D, pausa, músculos, textos profesional y
+   paciente, MET y kcal/min con el peso del usuario. En tablet, ficha a dos columnas.
+   Lógica en `app/src/domain/catalogo.js`. Siguiente: **F2 Editor de pautas**.
 
 ## Cómo revisar visualmente
 

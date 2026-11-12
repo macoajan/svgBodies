@@ -11,17 +11,18 @@ export function ProInicio() {
       <Barra titulo="Profesional" volver="/" />
       <h1>Tus pautas</h1>
       <div class="aviso">Aún no tienes pautas. El editor llega en la fase F2.</div>
-      <section class="tarjeta" aria-labelledby="bib">
-        <h2 id="bib">Biblioteca sin conexión</h2>
+      <a class="tarjeta" href="#/pro/catalogo" aria-labelledby="bib">
+        <h2 id="bib">Biblioteca</h2>
         {error ? <p class="aviso error">No se pudo cargar la biblioteca: {error}</p>
           : !lib ? <p class="apagado">Cargando…</p>
           : <>
-              <p>{lib.manifest.exercises} ejercicios con {lib.manifest.svg} figuras y {lib.manifest.poses} posturas 3D.</p>
+              <p>{lib.manifest.exercises} ejercicios con figuras animadas y 3D, sin conexión.</p>
               <div class="miniaturas">
-                {lib.catalog.exercises.slice(0, 8).map(e => <img key={e.id} src={figureUrls(e)[0]} alt={e.name.es} loading="lazy" />)}
+                {lib.catalog.exercises.slice(0, 6).map(e => <img key={e.id} src={figureUrls(e)[0]} alt="" loading="lazy" />)}
               </div>
+              <span class="flecha" aria-hidden="true">Ver catálogo →</span>
             </>}
-      </section>
+      </a>
     </main>
   );
 }
