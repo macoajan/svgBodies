@@ -2,7 +2,7 @@
 // Descifra en el navegador con la clave del fragmento del enlace; el servidor nunca la recibe.
 // Construye el DOM con textContent: nada de lo que viene cifrado se interpreta como HTML.
 import { fetchPauta, fetchCanal, sendRespuesta, ApiError } from './api-client.js';
-import { checkPauta, doseText, estimateSession, FORMAT_LABEL } from './pauta-schema.js';
+import { checkPauta, doseText, estimateSession, FORMAT_LABEL, isRestItem, itemName, REST_TYPES } from './pauta-schema.js';
 
 const app = document.getElementById('app');
 
@@ -126,7 +126,8 @@ function howTo(ex, proText) {
 
 function feedbackForm(pauta, cat, code, key) {
   const fields = pauta.items.map((it, i) => {
-    const name = cat.get(it.id)?.name?.es ?? it.id;
+    if (isRestItem(it)) return null; // los descansos no se valoran
+    const name = itemName(it, cat);
     return h('fieldset', {},
       h('legend', {}, name),
       h('div', { class: 'opciones', role: 'radiogroup', 'aria-label': `Cómo te ha resultado ${name}` },
@@ -141,12 +142,13 @@ function feedbackForm(pauta, cat, code, key) {
   const form = h('form', { class: 'respuesta', onsubmit: async ev => {
     ev.preventDefault();
     const data = new FormData(form);
-    const items = pauta.items.map((_, i) => ({
+    const items = pauta.items.map((it, i) => isRestItem(it) ? {} : ({
       i,
       diff: data.get(`d${i}`) || undefined,
       pain: data.get(`p${i}`) === null ? undefined : Number(data.get(`p${i}`)),
       note: (data.get(`n${i}`) || '').trim() || undefined,
     })).filter(r => r.diff || r.pain !== undefined || r.note);
+    // (los descansos dan objetos vacíos y se descartan aquí)
     if (!items.length) { status.className = 'error'; status.textContent = 'Marca al menos un ejercicio.'; return; }
     button.disabled = true;
     try {
@@ -177,7 +179,7 @@ async function showPauta() {
 
   const render = () => {
     stopLoops();
-    const n = pauta.items.length;
+    const n = pauta.items.filter(it => !isRestItem(it)).length;
     const current = pauta.items.findIndex((_, i) => !done.has(i));
     const all = current === -1;
     const meta = [`${done.size} ${done.size === 1 ? 'hecho' : 'hechos'}`, `unos ${est.minutes} min`, pauta.show?.kcal && `~${est.kcal} kcal`].filter(Boolean).join(' · ');
@@ -193,6 +195,12 @@ async function showPauta() {
         h('span', { class: 'texto' }, meta, pauta.show?.kcal && h('small', {}, ' (estimado para 70 kg)'))),
       pauta.note && h('div', { class: 'mensaje' }, h('div', { class: 'logo', 'aria-hidden': 'true' }, logo), h('p', {}, pauta.note)),
       h('ol', { class: 'lista' }, pauta.items.map((it, i) => {
+        if (isRestItem(it)) {
+          return h('li', { class: `ej descanso-item${done.has(i) ? ' hecho' : ''}` },
+            h('span', { class: 'icono-descanso', 'aria-hidden': 'true' }, '⏸'),
+            h('div', {}, h('h2', {}, REST_TYPES[it.id].es), h('p', { class: 'dosis' }, doseText(it)), it.note && h('p', { class: 'nota-ej' }, it.note)),
+            h('div', { class: 'acciones' }, h('button', { type: 'button', class: 'btn-hecho', 'aria-pressed': String(done.has(i)), onclick: () => { done.toggle(i); render(); } }, done.has(i) ? 'Deshacer' : 'Marcar como hecho')));
+        }
         const ex = cat.get(it.id);
         const view = ex?.animation?.views?.[0];
         const state = done.has(i) ? 'hecho' : i === current ? 'actual' : 'pendiente';
@@ -235,7 +243,7 @@ async function showCanal() {
             const ex = cat.get(it.id);
             const view = ex?.animation?.views?.[0];
             return h('li', {}, view && h('img', { src: `/lib/${view}`, alt: '', loading: 'lazy' }),
-              h('div', {}, h('strong', {}, ex?.name?.es ?? it.id), h('br'), doseText(it, pauta.format)));
+              h('div', {}, h('strong', {}, itemName(it, cat)), h('br'), doseText(it, pauta.format)));
           }))))
       : h('p', { class: 'estado' }, 'No hay sesiones publicadas ahora mismo.'));
 }

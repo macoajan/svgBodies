@@ -4,21 +4,43 @@ import { Figura } from './Figura.jsx';
 import { ComoSeHace } from './PautaRecibida.jsx';
 import { navigate } from '../router.js';
 import { ajustes } from '../data/app-store.js';
+import { figureUrls } from '../lib/library.js';
 import { getRecibida, guardarSesion, terminarSesion } from '../data/recibidas.js';
-import { buildPlan, start, next, tick, remaining, fractionLeft, adjust, skip, pause, resume, rate, toRespuesta, progress, current, upcomingTimers, REST, SIDE_LABEL } from '../domain/ejecucion.js';
-import { doseText, estimateSession, DEFAULTS } from '@shared/pauta-schema.js';
+import { buildPlan, start, next, prev, tick, remaining, overtime, fractionLeft, adjust, skip, pause, resume, rate, toRespuesta, progress, current, upcomingTimers, setAuto, REST, SIDE_LABEL } from '../domain/ejecucion.js';
+import { doseText, estimateSession, fmtDur, REST_TYPES, DEFAULTS } from '@shared/pauta-schema.js';
 import { sonar, vibrar, pantallaEncendida, programarAvisos } from '../platform/avisos.js';
 
 const Cerrar = () => <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>;
-const REST_LABEL = { descansoRep: 'Pausa entre repeticiones', descansoSerie: 'Descanso entre series', descansoEjercicio: 'Descanso', cambioLado: 'Cambia de lado' };
+const Atras = () => <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14 4 9l5-5" /><path d="M4 9h10a6 6 0 0 1 0 12h-2" /></svg>;
 const mmss = s => (s >= 60 ? `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}` : String(s));
 
+/** Título de un paso de descanso. */
+function tituloDescanso(step) {
+  switch (step.type) {
+    case 'descansoRep': return 'Pausa entre repeticiones';
+    case 'cambioLado': return `Cambia de lado: ${SIDE_LABEL[step.side]?.toLowerCase()}`;
+    case 'descansoSerie': return step.restType && step.restType !== 'descanso' ? `${REST_TYPES[step.restType].es} entre series` : 'Descanso entre series';
+    case 'descansoItem': return REST_TYPES[step.restType]?.es ?? 'Descanso';
+    default: return 'Descanso';
+  }
+}
+
 /** Recupera la sesión guardada si corresponde a esta misma pauta; si no, empieza una nueva. */
-function cargar(rec, now) {
+function cargar(rec, now, auto) {
   const plan = buildPlan(rec.pauta);
   const s = rec.sesion;
-  if (s && s.plan?.length === plan.length && s.plan.every((p, k) => p.type === plan[k].type && p.i === plan[k].i)) return s;
-  return start(plan, now);
+  if (s && s.plan?.length === plan.length && s.plan.every((p, k) => p.type === plan[k].type && p.i === plan[k].i)) return setAuto(s, auto);
+  return start(plan, now, { auto });
+}
+
+/** Siguiente paso de trabajo (para enseñar «qué viene» durante un descanso). */
+function siguienteTrabajo(s) {
+  for (let k = s.idx + 1; k < s.plan.length; k++) {
+    const st = s.plan[k];
+    if (['preparar', 'trabajo', 'mantener', 'trabajoTiempo'].includes(st.type)) return st;
+    if (st.type === 'resumen' || st.type === 'descansoItem') return st;
+  }
+  return null;
 }
 
 function Valorar({ nombre, v, onRate, onNext }) {
@@ -54,14 +76,15 @@ export function Sesion({ params }) {
   const { lib } = useLibrary();
   const clave = params.clave;
   const rec = getRecibida(clave);
-  const [s, setS] = useState(() => (rec ? cargar(rec, Date.now()) : null));
+  const auto = !!ajustes.value?.autoDescanso;
+  const [s, setS] = useState(() => (rec ? cargar(rec, Date.now(), auto) : null));
   const [now, setNow] = useState(Date.now());
   const [envio, setEnvio] = useState(null); // null | 'enviando' | 'enviada' | 'pendiente'
   const ref = useRef(s);
   ref.current = s;
   const ultimoAviso = useRef(null);
 
-  const cambiar = (fn) => {
+  const cambiar = fn => {
     const t = Date.now();
     const n = fn(ref.current, t);
     if (n === ref.current) return;
@@ -77,18 +100,19 @@ export function Sesion({ params }) {
     guardarSesion(clave, s);
     const iv = setInterval(() => {
       const t = Date.now();
-      const prev = ref.current;
-      const n = tick(prev, t);
+      const anterior = ref.current;
+      const n = tick(anterior, t);
       setNow(t);
-      if (n !== prev) {
+      if (n !== anterior) {
         ref.current = n; setS(n);
         const tipo = current(n)?.type;
-        if (tipo === 'mantener') { sonar('inicio'); vibrar('fin'); }
+        if (n.espera && !anterior.espera) { sonar('fin'); vibrar('fin'); } // descanso terminado: espera al paciente
+        else if (tipo === 'mantener' || tipo === 'trabajoTiempo') { sonar('inicio'); vibrar('fin'); }
         else { sonar('fin'); vibrar('fin'); }
         if (tipo !== 'resumen') guardarSesion(clave, n);
       } else {
         const rem = remaining(n, t);
-        if (n.terminaEn != null && rem > 0 && rem <= 3 && ultimoAviso.current !== `${n.idx}:${rem}`) {
+        if (n.terminaEn != null && !n.espera && rem > 0 && rem <= 3 && ultimoAviso.current !== `${n.idx}:${rem}`) {
           ultimoAviso.current = `${n.idx}:${rem}`;
           sonar('cuenta'); vibrar('cuenta');
         }
@@ -101,8 +125,8 @@ export function Sesion({ params }) {
         const nombre = i => lib?.byId.get(rec.pauta.items[i]?.id)?.name.es || 'el ejercicio';
         programarAvisos(upcomingTimers(st, Date.now(), 12).map(u => ({
           at: u.at,
-          title: u.manual ? 'Te toca' : REST.has(u.step.type) ? 'Fin del descanso' : 'Tiempo',
-          body: u.manual ? `Vuelve a la app para seguir con ${nombre(u.step.i ?? 0)}.` : 'Sigue con tu sesión.',
+          title: u.espera ? 'Descanso terminado' : u.manual ? 'Te toca' : 'Tiempo',
+          body: u.espera ? 'Vuelve a la app y pulsa «Continuar con el siguiente».' : u.manual ? `Vuelve a la app para seguir con ${nombre(u.step.i ?? 0)}.` : 'Sigue con tu sesión.',
         })));
       } else programarAvisos([]);
     };
@@ -126,10 +150,12 @@ export function Sesion({ params }) {
   const nombre = ex?.name.es || 'Ejercicio';
   const rem = remaining(s, now);
   const salir = () => { if (step.type !== 'resumen') guardarSesion(clave, ref.current); navigate(`/paciente/p/${clave}`); };
+  const puedeAtras = s.idx > 0 && step.type !== 'resumen';
 
   const cabecera = (
     <header class="sesion-cab">
       <button type="button" class="icono-btn" aria-label="Salir (se guarda dónde vas)" onClick={salir}><Cerrar /></button>
+      {puedeAtras ? <button type="button" class="icono-btn" aria-label="Volver al paso anterior" onClick={() => cambiar(prev)}><Atras /></button> : null}
       <span class="sesion-prog" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(prog.fraccion * 100)} aria-label="Progreso de la sesión">
         <span style={{ width: `${prog.fraccion * 100}%` }} />
       </span>
@@ -147,7 +173,7 @@ export function Sesion({ params }) {
         <div class="sesion-cuerpo centrado">
           <div class="medalla" aria-hidden="true">✓</div>
           <h1>¡Hecho por hoy!</h1>
-          <p>{min} min{p.show?.kcal && est ? ` · unas ${est.kcal} kcal` : ''} · {p.items.length} ejercicios</p>
+          <p>{min} min{p.show?.kcal && est ? ` · unas ${est.kcal} kcal` : ''} · {prog.total} ejercicios</p>
           <p aria-live="polite" class={envio === 'pendiente' ? 'aviso' : 'apagado'}>
             {envio === 'enviando' ? 'Enviando tu valoración…' : envio === 'enviada' ? 'Tu valoración ha llegado a tu profesional.' : envio === 'pendiente' ? 'Sin conexión: tu valoración se enviará en cuanto haya red.' : ''}
           </p>
@@ -167,34 +193,59 @@ export function Sesion({ params }) {
   }
 
   if (REST.has(step.type)) {
-    const siguiente = step.type === 'descansoEjercicio' ? lib?.byId.get(p.items[step.next]?.id) : null;
+    const sig = siguienteTrabajo(s);
+    const sigIt = sig?.i != null ? p.items[sig.i] : null;
+    const sigEx = sigIt ? lib?.byId.get(sigIt.id) : null;
     const frac = fractionLeft(s, now);
+    const parado = s.pausa != null;
+    const extra = overtime(s, now);
+    const detalleSig = sig?.type === 'resumen' ? 'Fin de la sesión'
+      : sig?.type === 'descansoItem' ? `${REST_TYPES[sig.restType]?.es} · ${fmtDur(sig.dur)}`
+      : sig?.type === 'preparar' ? doseText(sigIt, p.format)
+      : sig ? `Serie ${sig.set} de ${sig.sets}${sig.side ? ` · ${SIDE_LABEL[sig.side].toLowerCase()}` : ''} · ${sig.type === 'trabajoTiempo' ? fmtDur(sig.dur)
+        : sig.type === 'mantener' ? `repetición ${sig.rep} de ${sig.reps} · mantén ${sig.dur} s`
+        : `${sig.reps} ${sig.reps === 1 ? 'repetición' : 'repeticiones'}`}` : '';
     return (
       <main class="pantalla paciente sesion descanso">
         {cabecera}
         <div class="sesion-cuerpo centrado">
-          <p class="etiqueta-paso">{step.type === 'cambioLado' ? `${REST_LABEL.cambioLado}: ${SIDE_LABEL[step.side]?.toLowerCase()}` : REST_LABEL[step.type]}</p>
-          <div class="reloj" role="timer" aria-live="off" aria-label={`Quedan ${rem} segundos`}>
+          <p class="etiqueta-paso">{tituloDescanso(step)}</p>
+          {step.type === 'descansoItem' && it?.note ? <div class="mensaje"><p>{it.note}</p></div> : null}
+          <div class={`reloj${s.espera ? ' terminado' : ''}${parado ? ' parado' : ''}`} role="timer" aria-live="off"
+            aria-label={s.espera ? `Descanso terminado hace ${extra} segundos` : `Quedan ${rem} segundos${parado ? ', reloj parado' : ''}`}>
             <svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="45" class="reloj-fondo" /><circle cx="50" cy="50" r="45" class="reloj-arco" style={{ strokeDashoffset: `${283 * (1 - frac)}` }} /></svg>
-            <span class="reloj-n">{mmss(rem)}</span>
+            <span class="reloj-n">{s.espera ? <><small>¡Tiempo!</small>+{mmss(extra)}</> : mmss(rem)}</span>
           </div>
-          {siguiente ? <p>Siguiente: <strong>{siguiente.name.es}</strong></p>
-            : step.type !== 'cambioLado' ? <p>{nombre}{step.type === 'descansoSerie' ? ` · serie ${step.set + 1} de ${it.sets}` : ''}</p> : <p>{nombre}</p>}
+          {parado ? <p class="aviso">Reloj parado: tómate el tiempo que necesites.</p> : null}
           <div class="ajuste" role="group" aria-label="Ajustar el descanso">
-            <button type="button" class="boton secundario" onClick={() => cambiar((st, t) => adjust(st, -15, t))}>−15 s</button>
+            {!s.espera ? <button type="button" class="boton secundario" onClick={() => cambiar((st, t) => adjust(st, -15, t))}>−15 s</button> : null}
             <button type="button" class="boton secundario" onClick={() => cambiar((st, t) => adjust(st, 15, t))}>+15 s</button>
+            {!s.espera ? <button type="button" class="boton secundario" onClick={() => cambiar(parado ? resume : pause)}>{parado ? 'Seguir el reloj' : 'Parar el reloj'}</button> : null}
           </div>
+          {sig ? (
+            <section class="que-viene" aria-label="Qué viene">
+              <p class="grupo-t">Después</p>
+              <div class="fila-pauta">
+                <span class="fila-img">{sigEx ? <img src={figureUrls(sigEx)[0]} alt="" /> : <span class="icono-descanso" aria-hidden="true">{sig.type === 'resumen' ? '✓' : '⏸'}</span>}</span>
+                <span class="fila-texto"><strong>{sigEx?.name.es ?? (sig.type === 'resumen' ? '¡Terminas!' : REST_TYPES[sig.restType]?.es)}</strong><span>{detalleSig}</span></span>
+              </div>
+              {sigEx ? <ComoSeHace ex={sigEx} proText={!!p.show?.proText} abierto={false} /> : null}
+            </section>
+          ) : null}
         </div>
         <div class="sesion-acciones">
-          <button type="button" class="boton secundario grande" onClick={() => cambiar(s.pausa != null ? resume : pause)}>{s.pausa != null ? 'Seguir' : 'Pausar'}</button>
-          <button type="button" class="boton grande" onClick={() => cambiar(skip)}>Saltar</button>
+          {s.espera
+            ? <button type="button" class="boton grande" onClick={() => cambiar(next)}>Continuar con el siguiente</button>
+            : <button type="button" class="boton grande secundario" onClick={() => cambiar(skip)}>Saltar descanso</button>}
         </div>
       </main>
     );
   }
 
-  // preparar, trabajo, mantener
+  // preparar, trabajo, mantener, trabajoTiempo
   const lado = step.side ? SIDE_LABEL[step.side] : null;
+  const conReloj = step.type === 'mantener' || step.type === 'trabajoTiempo';
+  const parado = s.pausa != null;
   return (
     <main class="pantalla paciente sesion">
       {cabecera}
@@ -212,14 +263,21 @@ export function Sesion({ params }) {
         ) : (
           <>
             <div class="contadores">
-              <div><small>Serie</small><b>{step.set} <span>de {it.sets}</span></b></div>
-              <div><small>{step.type === 'mantener' ? 'Repetición' : 'Repeticiones'}</small>
-                <b>{step.type === 'mantener' ? <>{step.rep} <span>de {step.reps}</span></> : step.reps}</b></div>
+              <div><small>Serie</small><b>{step.set} <span>de {step.sets}</span></b></div>
+              {step.type === 'trabajoTiempo' ? <div><small>Tiempo</small><b>{fmtDur(step.dur)}</b></div>
+                : <div><small>{step.type === 'mantener' ? 'Repetición' : 'Repeticiones'}</small>
+                    <b>{step.type === 'mantener' ? <>{step.rep} <span>de {step.reps}</span></> : step.reps}</b></div>}
             </div>
-            {step.type === 'mantener' ? (
-              <div class="aguante" role="timer" aria-label={`Mantén, quedan ${rem} segundos`}>
-                <div class="aguante-fila"><span>Mantén</span><span>{rem} s</span></div>
+            {conReloj ? (
+              <div class="aguante" role="timer" aria-label={`${step.type === 'mantener' ? 'Mantén' : 'Trabaja'}, quedan ${rem} segundos`}>
+                <div class="aguante-fila"><span>{step.type === 'mantener' ? 'Mantén' : 'Trabaja'}{parado ? ' (parado)' : ''}</span><span>{mmss(rem)}{rem < 60 ? ' s' : ''}</span></div>
                 <div class="aguante-barra"><span style={{ width: `${(1 - fractionLeft(s, now)) * 100}%` }} /></div>
+              </div>
+            ) : null}
+            {conReloj ? (
+              <div class="ajuste" role="group" aria-label="Ajustar el tiempo">
+                <button type="button" class="boton secundario" onClick={() => cambiar((st, t) => adjust(st, -5, t))}>−5 s</button>
+                <button type="button" class="boton secundario" onClick={() => cambiar((st, t) => adjust(st, 5, t))}>+5 s</button>
               </div>
             ) : null}
             {it.load ? <p class="apagado">{it.load}</p> : null}
@@ -232,7 +290,7 @@ export function Sesion({ params }) {
           : step.type === 'trabajo' ? <button type="button" class="boton grande" onClick={() => cambiar(next)}>{step.side === 'derecho' ? 'Lado hecho' : 'Serie hecha'}</button>
           : (
             <>
-              <button type="button" class="boton secundario grande" onClick={() => cambiar(s.pausa != null ? resume : pause)}>{s.pausa != null ? 'Seguir' : 'Pausar'}</button>
+              <button type="button" class="boton secundario grande" onClick={() => cambiar(parado ? resume : pause)}>{parado ? 'Seguir' : 'Parar'}</button>
               <button type="button" class="boton grande" onClick={() => cambiar(skip)}>Hecho</button>
             </>
           )}

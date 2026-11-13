@@ -29,6 +29,24 @@ await pg.fill('.item-panel input[placeholder^="Banda"]', 'Banda roja');
 ok((await pg.textContent('.item.abierto .fila-texto span')).startsWith('4 × 12 por lado'), 'dosis actualizada: ' + await pg.textContent('.item.abierto .fila-texto span'));
 await shot('5-item');
 await pg.click('.item.abierto button:has-text("Subir")'); ok((await pg.textContent('.items > li:first-child strong')).includes('Puente'), 'subir');
+// Descanso detrás del primero, con tipo y duración.
+await pg.click('.item.abierto button:has-text("+ Descanso detrás")'); await pg.waitForSelector('.item.abierto.item-descanso');
+await pg.selectOption('#tipo-1', 'descanso-caminando'); await pg.fill('#dur-1', '120'); await pg.press('#dur-1', 'Tab');
+ok((await pg.textContent('.items > li:nth-child(2) strong')) === 'Descanso caminando' && (await pg.textContent('.items > li:nth-child(2) .fila-texto span')).startsWith('2 min'), 'descanso suelto con tipo y duración');
+await shot('5b-descanso');
+// Series a medida en la sentadilla (ahora 3.ª): 12 repeticiones en la 1.ª y la 3.ª por tiempo.
+await pg.click('.item-cab >> nth=2'); await pg.click('.item.abierto .interruptor:has-text("Series a medida")');
+await pg.fill('#ps-r-2-0', '12'); await pg.press('#ps-r-2-0', 'Tab');
+await pg.click('.item.abierto .serie-fila >> nth=2 >> button:has-text("Por tiempo")');
+const dosisSent = await pg.textContent('.item.abierto .fila-texto span');
+ok(dosisSent.includes('12/3/30 s'), 'series a medida: ' + dosisSent);
+await shot('5c-series');
+// Ejercicio por tiempo (talones, 4.º).
+await pg.click('.item-cab >> nth=3'); await pg.click('.item.abierto .segmentos.modo button:has-text("Por tiempo")');
+ok((await pg.textContent('.item.abierto .fila-texto span')).includes('30 s'), 'ejercicio por tiempo');
+await pg.click('button:has-text("+ Añadir descanso")'); ok((await pg.$$('.items > li')).length === 5, 'añadir descanso al final');
+await pg.click('.item.abierto button:has-text("Quitar")'); ok((await pg.$$('.items > li')).length === 4, 'quitar el descanso');
+ok(!(await pg.$('.aviso.error li')), 'la pauta sigue siendo válida');
 await pg.fill('#perWeek', '7'); await pg.press('#perWeek', 'Tab');
 await pg.click('.interruptor:has-text("calorías")');
 await pg.fill('textarea[placeholder^="Si molesta la rodilla"]', 'Nos vemos el día 24.');

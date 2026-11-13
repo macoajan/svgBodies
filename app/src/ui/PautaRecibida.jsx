@@ -6,8 +6,8 @@ import { figureUrls } from '../lib/library.js';
 import { navigate } from '../router.js';
 import { ajustes } from '../data/app-store.js';
 import { versionRecibidas, getRecibida, refrescar, borrarRecibida, hechasHoy, pendientes, enviarPendientes } from '../data/recibidas.js';
-import { doseText, estimateSession, DEFAULTS } from '@shared/pauta-schema.js';
-import { scheduleText } from '../domain/pautas.js';
+import { doseText, estimateSession, DEFAULTS, isRestItem, REST_TYPES } from '@shared/pauta-schema.js';
+import { scheduleText, numEjercicios } from '../domain/pautas.js';
 
 const iniciales = s => String(s || '').split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0]).join('').toUpperCase() || 'P';
 
@@ -40,7 +40,7 @@ export function PautaRecibida({ params }) {
           <span class="quien"><b>{p.pro.name}</b>{p.pro.center ? <span>{p.pro.center}</span> : null}</span>
         </div>
       ) : null}
-      <h1>{hoy ? '¡Hecho por hoy!' : `Hoy te tocan ${p.items.length} ${p.items.length === 1 ? 'ejercicio' : 'ejercicios'}`}</h1>
+      <h1>{hoy ? '¡Hecho por hoy!' : `Hoy te tocan ${numEjercicios(p)} ${numEjercicios(p) === 1 ? 'ejercicio' : 'ejercicios'}`}</h1>
       <p class="apagado">{p.title ? `${p.title} · ` : ''}{scheduleText(p.schedule)}{est ? ` · unos ${est.minutes} min` : ''}{est && p.show?.kcal ? ` · ~${est.kcal} kcal` : ''}</p>
       {aviso === 'retirada' ? <p class="aviso error">Tu profesional ha retirado esta pauta. Puedes seguir viéndola, pero ya no recibirá tus valoraciones.</p> : null}
       {aviso === 'oculta' ? <p class="aviso">Tu profesional ha pausado esta pauta por ahora.</p> : null}
@@ -53,6 +53,14 @@ export function PautaRecibida({ params }) {
       <a class="boton grande" href={`#/paciente/p/${clave}/sesion`}>{rec.sesion ? 'Continuar la sesión' : hoy ? 'Hacerla otra vez' : 'Empezar'}</a>
       <ol class="lista-ej">
         {p.items.map((it, i) => {
+          if (isRestItem(it)) {
+            return (
+              <li key={i} class="fila-pauta item-descanso">
+                <span class="fila-img"><span class="icono-descanso" aria-hidden="true">⏸</span></span>
+                <span class="fila-texto"><strong>{REST_TYPES[it.id].es}</strong><span>{doseText(it)}</span>{it.note ? <span class="nota-ej">{it.note}</span> : null}</span>
+              </li>
+            );
+          }
           const ex = lib?.byId.get(it.id);
           return (
             <li key={i}>
@@ -92,7 +100,7 @@ export function FichaPaciente({ params }) {
   if (!lib) return <main class="pantalla"><Barra titulo="Ejercicio" volver={volver} /><p class="apagado">Cargando…</p></main>;
   return (
     <main class="pantalla paciente ficha ancha">
-      <Barra titulo={`Ejercicio ${i + 1} de ${rec.pauta.items.length}`} volver={volver} />
+      <Barra titulo="Ejercicio" volver={volver} />
       {ex ? <Figura ex={ex} /> : null}
       <div class="cabecera-ej">
         <h1 class="h1-ej">{ex?.name.es ?? 'Ejercicio no disponible'}</h1>

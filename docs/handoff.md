@@ -266,3 +266,23 @@ coger el fotograma y llamar a `renderView` con todos los fotogramas iguales a es
 - Rama designada `claude/eager-heisenberg-cgodjv`; no tocar `claude/magical-galileo-y9nh2n`. Si su PR ya se fusionó, se reinicia desde
   `origin/main` antes del trabajo nuevo.
 - Las PR se abren sólo cuando el propietario lo pide; se fusionan sólo cuando lo pide.
+
+## Cambios tras la primera prueba del propietario (noviembre de 2026)
+
+- **Descansos como elementos de la pauta** (`REST_TYPES` en `server/public/pauta-schema.js`:
+  descanso, caminando, activo, respiración, beber agua; `{ id, time, note? }`). Cuentan como un
+  elemento más (duración y kcal con el MET de su tipo) y sustituyen al descanso entre ejercicios
+  si van justo detrás de uno.
+- **Series cronometradas** (`time`) y **series a medida** (`perSet: [{ reps?, time?, rest?,
+  restType? }]`), y tipo del descanso entre series (`restType`). `setSpec(it, k)` da la serie k.
+  El visor web y la app los muestran; el formato sigue siendo v1 (campos opcionales nuevos).
+- **Sesión del paciente**: los descansos **no avanzan solos**; al llegar a cero suena, cuentan el
+  tiempo extra y piden «Continuar con el siguiente» (opción «Avanzar solo» en Ajustes, desactivada
+  por defecto). El reloj se puede parar, alargar o acortar; «Anterior» vuelve al paso de trabajo
+  previo; durante el descanso se ve qué viene y cómo se hace.
+- **Escanear QR** dentro de la app (`@capacitor/barcode-scanner`; permiso de cámara en
+  `Info.plist` y `AndroidManifest.xml`).
+- **Botón «Desbloquear» de pruebas** en la pantalla Pro: `DESBLOQUEO_PRUEBAS` en
+  `app/src/config.js`. **Ponerlo a `false` antes de publicar.**
+- Corregido: en el editor, un cambio podía perderse si se pulsaban dos controles muy seguidos o si
+  la pantalla se repintaba mientras se escribía un número.

@@ -29,4 +29,7 @@ export async function iniciarCompras() {
 }
 
 export async function comprar() { await comprarNativo(); }
+
+/** SOLO PRUEBAS (config DESBLOQUEO_PRUEBAS): activa o quita Pro sin compra. */
+export const desbloquearPruebas = on => marcarPro(!!on);
 export async function restaurar() { return restaurarNativo(); }
