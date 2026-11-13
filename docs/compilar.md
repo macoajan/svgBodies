@@ -49,14 +49,29 @@ Hace falta el repositorio **entero**, no solo la carpeta `app/`: la app copia la
 ejercicios de `library/` y `taxonomy/`, y comparte código con `server/`.
 
 ```bash
-git clone https://github.com/macoajan/svgBodies.git
+git clone -b main https://github.com/macoajan/svgBodies.git
+```
+
+El `-b main` importa: la rama por defecto del repositorio en GitHub no es `main`, y sin él se
+descarga una rama antigua. Para comprobar en qué rama estás:
+
+```bash
+git branch --show-current
 ```
 
 ```bash
 cd svgBodies/app
 ```
 
-Si ya lo tenías, actualízalo:
+Si ya lo tenías (o se bajó otra rama), cambia a `main` y actualízalo:
+
+```bash
+git fetch origin
+```
+
+```bash
+git checkout main
+```
 
 ```bash
 git pull origin main
@@ -208,6 +223,7 @@ Lo mismo que en iOS, y además:
 | Problema | Solución |
 |---|---|
 | La app muestra una versión antigua | `npm run build` y `npx cap sync` otra vez, y vuelve a pulsar ▶ |
+| Se ha descargado otra rama (no `main`) | `git fetch origin`, `git checkout main` y `git pull origin main` |
 | `npm run build` falla con «no such file … library» | Falta el repositorio completo: hay que clonar `svgBodies`, no solo `app/` |
 | Xcode: *Signing requires a development team* | Elige tu *Team* en *Signing & Capabilities* (paso 4.3) |
 | Xcode: *Failed to register bundle identifier* | Cambia el *Bundle Identifier* por uno tuyo para pruebas |
@@ -220,7 +236,7 @@ Lo mismo que en iOS, y además:
 ## 7. Resumen rápido (cuando ya está todo instalado)
 
 ```bash
-cd svgBodies && git pull origin main && cd app
+cd svgBodies && git checkout main && git pull origin main && cd app
 ```
 
 ```bash
