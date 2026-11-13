@@ -1,7 +1,7 @@
 // PDF de la pauta (Pro), generado en el dispositivo con jsPDF: cabecera con logo, nombre y
 // centro, mensaje, cada ejercicio con su figura, dosis, nota e instrucciones, y QR del enlace.
-import { doseText } from '@shared/pauta-schema.js';
-import { scheduleText } from '../domain/pautas.js';
+import { doseText, isRestItem, REST_TYPES } from '@shared/pauta-schema.js';
+import { scheduleText, ejerciciosTexto } from '../domain/pautas.js';
 import { figureUrls } from './library.js';
 import { svgAJpeg } from './imagenes.js';
 import { qrPng } from './qr.js';
@@ -40,7 +40,7 @@ export async function generarPdf({ pauta, byId, ajustes = {}, link = null }) {
   if (ajustes.centro) { texto(ajustes.centro, { size: 10, color: MUTED, x: xTxt, width: W - xTxt - M }); }
   y = Math.max(y, y0 + (ajustes.logo ? 20 : 0)) + 4;
   texto(pauta.title || 'Tu pauta de ejercicios', { size: 20, bold: true });
-  texto(`${scheduleText(pauta.schedule)} · ${pauta.items.length} ejercicios`, { size: 10, color: MUTED });
+  texto(`${scheduleText(pauta.schedule)} · ${ejerciciosTexto(pauta)}`, { size: 10, color: MUTED });
   y += 3;
   if (pauta.note) {
     doc.setFillColor(238, 241, 247);
@@ -51,7 +51,15 @@ export async function generarPdf({ pauta, byId, ajustes = {}, link = null }) {
   }
 
   // Ejercicios
-  for (const [i, it] of pauta.items.entries()) {
+  let num = 0;
+  for (const it of pauta.items) {
+    if (isRestItem(it)) {
+      salto(10);
+      doc.setFillColor(238, 241, 247); doc.roundedRect(M, y, W - 2 * M, 9, 2, 2, 'F');
+      y += 1.5; texto(`${doseText(it)}${it.note ? ` · ${it.note}` : ''}`, { size: 10.5, x: M + 4, width: W - 2 * M - 8 }); y += 4;
+      continue;
+    }
+    const i = num++;
     const ex = byId.get(it.id);
     const fig = 34;
     salto(fig + 4);

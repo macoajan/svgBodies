@@ -48,6 +48,9 @@
     <!-- Permissions -->
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Cámara solo para leer el QR de la pauta (no es obligatoria para instalar la app). -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
     <!-- Google Play reserva las alarmas exactas a apps de alarma o calendario: los avisos de fin de
          descanso con la app cerrada usan alarmas normales (pueden retrasarse un poco). -->
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" tools:node="remove" />

@@ -5,7 +5,7 @@ import { version, getPauta, getPaciente } from '../data/repo.js';
 import { ajustes } from '../data/app-store.js';
 import { enviar, actualizar, retirar, mensajeError } from '../data/envio-service.js';
 import { estadoEnvio, formAVisibilidad, visibilidadAForm, visibilidadTexto, huella, ESTADO_LABEL } from '../domain/envio.js';
-import { problems, scheduleText } from '../domain/pautas.js';
+import { problems, scheduleText, ejerciciosTexto } from '../domain/pautas.js';
 import { qrPath, qrPngConLogo } from '../lib/qr.js';
 import { listPautas } from '../data/repo.js';
 import { esPro } from '../data/pro.js';
@@ -74,7 +74,7 @@ export function Envio({ params }) {
       <h1>{env ? 'Pauta enviada' : 'Enviar pauta'}</h1>
       <section class="tarjeta">
         <h2>{titulo}</h2>
-        <p>{paciente ? `${paciente.alias} · ` : ''}{rec.pauta.items.length} ejercicios · {scheduleText(rec.pauta.schedule)}</p>
+        <p>{paciente ? `${paciente.alias} · ` : ''}{ejerciciosTexto(rec.pauta)} · {scheduleText(rec.pauta.schedule)}</p>
         {env ? <p><span class="sello">{ESTADO_LABEL[est]}</span> {!env.offline ? visibilidadTexto(env.visibility) : null}</p> : null}
         {quien ? <p class="apagado">Firmada como {quien}.</p>
           : <p class="apagado">Añade tu nombre en <a href="#/ajustes">Ajustes</a> para que el paciente sepa quién se la envía.</p>}

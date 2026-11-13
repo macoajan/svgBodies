@@ -130,6 +130,14 @@ export function Ajustes({ version }) {
         <a class="fila-pauta" href="#/pro/pro"><span class="fila-texto"><strong>{esPro.value ? 'Tienes Pro' : 'Versión gratuita'}</strong><span>Comprar o restaurar compras</span></span><span aria-hidden="true">→</span></a>
       </fieldset>
       <fieldset>
+        <legend>Sesión guiada</legend>
+        <label class="interruptor">
+          <span class="interruptor-texto">Avanzar solo al terminar los descansos<small>Si está desactivado, al acabar cada descanso la app espera a que pulses «Continuar con el siguiente».</small></span>
+          <input type="checkbox" role="switch" checked={!!a.autoDescanso} onChange={e => saveAjustes({ autoDescanso: e.currentTarget.checked })} />
+          <span class="interruptor-pista" aria-hidden="true" />
+        </label>
+      </fieldset>
+      <fieldset>
         <legend>Calorías</legend>
         <label class="campo"><span>Tu peso en kg (solo se guarda en este dispositivo)</span>
           <input type="number" inputMode="decimal" min="25" max="250" step="0.5" value={a.pesoKg ?? ''}

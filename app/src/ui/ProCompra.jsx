@@ -1,6 +1,7 @@
 import { useState } from 'preact/hooks';
 import { Barra } from './Barra.jsx';
-import { esPro, tienda, comprar, restaurar } from '../data/pro.js';
+import { esPro, tienda, comprar, restaurar, desbloquearPruebas } from '../data/pro.js';
+import { DESBLOQUEO_PRUEBAS } from '../config.js';
 import { version, listPautas } from '../data/repo.js';
 import { PRO_FEATURES, uso } from '../domain/limites.js';
 
@@ -38,6 +39,14 @@ export function ProCompra() {
         </button>
       ) : null}
       {t.estado === 'error' ? <p class="aviso error">No se pudo conectar con la tienda ({t.error}).</p> : null}
+      {DESBLOQUEO_PRUEBAS ? (
+        <div class="aviso pruebas campo">
+          <p><strong>Modo pruebas</strong> (se quitará antes de publicar)</p>
+          <button type="button" class="boton secundario" onClick={() => hacer(() => desbloquearPruebas(!esPro.value), () => (esPro.value ? 'Pro desbloqueado para pruebas.' : 'Vuelves a la versión gratuita.'))}>
+            {esPro.value ? 'Volver a la versión gratuita' : 'Desbloquear'}
+          </button>
+        </div>
+      ) : null}
       <div aria-live="polite">{estado.texto ? <p class={`aviso${estado.error ? ' error' : ' ok'}`}>{estado.texto}</p> : null}</div>
     </main>
   );

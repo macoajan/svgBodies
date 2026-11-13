@@ -15,6 +15,7 @@ Play. **Requiere decisiones pendientes**; mientras tanto, lo provisional está m
 | Producto Pro (id) | `app/.env` (`VITE_PRO_ID`) y la consola de cada tienda | `pro` |
 | Precio de Pro | Consola de cada tienda | sin fijar |
 | Límite gratuito | `app/src/domain/limites.js` (`FREE_LIMITS`) | 3 pacientes con pauta activa |
+| **Botón «Desbloquear» de pruebas** | `app/src/config.js` (`DESBLOQUEO_PRUEBAS`): **poner a `false` antes de publicar** | `true` |
 | Icono definitivo | `app/resources/figura.svg` y colores en `app/tools/iconos.mjs`; luego `node tools/iconos.mjs` | figura provisional |
 
 Las cuentas de desarrollador son **las del publisher**; el propietario entra como miembro del

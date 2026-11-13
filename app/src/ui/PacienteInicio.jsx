@@ -4,7 +4,8 @@ import { navigate } from '../router.js';
 import { pendingLink, isPautaLink } from '../platform/links.js';
 import { versionRecibidas, listRecibidas, abrirEnlace, enviarTodasPendientes, hechasHoy } from '../data/recibidas.js';
 import { ApiError } from '@shared/api-client.js';
-import { scheduleText } from '../domain/pautas.js';
+import { scheduleText, ejerciciosTexto } from '../domain/pautas.js';
+import { escanerDisponible, escanearQr } from '../platform/escaner.js';
 
 export function mensajeApertura(e) {
   if (e instanceof ApiError && e.status === 404) return 'Esta pauta ya no existe. Pide a tu profesional que te la envíe de nuevo.';
@@ -46,14 +47,22 @@ export function PacienteInicio() {
                 <span class="inicial" aria-hidden="true">{(r.pauta.pro?.name || r.pauta.title || 'P').slice(0, 2).toUpperCase()}</span>
                 <span class="fila-texto">
                   <strong>{r.pauta.title || 'Tu pauta'}</strong>
-                  <span>{r.pauta.pro?.name ? `${r.pauta.pro.name} · ` : ''}{r.pauta.items.length} ejercicios · {scheduleText(r.pauta.schedule)}</span>
+                  <span>{r.pauta.pro?.name ? `${r.pauta.pro.name} · ` : ''}{ejerciciosTexto(r.pauta)} · {scheduleText(r.pauta.schedule)}</span>
                 </span>
                 {r.sesion ? <span class="sello">A medias</span> : hechasHoy(r.clave) ? <span class="sello hecho">Hecha hoy</span> : null}
               </a>
             </li>
           ))}
         </ul>
-      ) : <p>Toca el enlace o lee el QR que te ha enviado tu profesional. También puedes pegar el enlace aquí.</p>}
+      ) : <p>Escanea el QR o toca el enlace que te ha enviado tu profesional. También puedes pegar el enlace aquí.</p>}
+      {escanerDisponible() ? (
+        <button type="button" class="boton grande" disabled={estado.tipo === 'cargando'} onClick={async () => {
+          try {
+            const texto = await escanearQr();
+            if (texto) abrir(texto.trim());
+          } catch { setEstado({ tipo: 'error', texto: 'No se pudo usar la cámara. Revisa el permiso de cámara de la app en los ajustes del teléfono.' }); }
+        }}>Escanear QR</button>
+      ) : null}
       <form class="campo" onSubmit={e => { e.preventDefault(); abrir(link.trim()); }}>
         <label class="campo"><span>{lista.length ? 'Abrir otro enlace' : 'Enlace'}</span>
           <input type="url" inputMode="url" autoComplete="off" value={link} onInput={e => setLink(e.currentTarget.value)} placeholder="https://…" />

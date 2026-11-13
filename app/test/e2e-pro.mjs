@@ -50,8 +50,9 @@ await pg.click('.nav-pro a:has-text("Pautas")'); await pg.click('.bloqueo >> nth
 ok((await pg.textContent('main')).includes('disponible en la app para iPhone'), 'pantalla Pro en el navegador');
 await shot('2-pro');
 
-// Con Pro.
-await seed({ compra: doc({ pro: true, comprobado: new Date().toISOString() }) });
+// Con Pro: botón «Desbloquear» de pruebas (DESBLOQUEO_PRUEBAS).
+await pg.click('button:text-is("Desbloquear")'); await pg.waitForSelector('h1:has-text("Tienes Pro")');
+ok(true, 'desbloqueo de pruebas');
 await pg.goto(url + '#/pro/pauta/dddd/enviar'); await pg.reload(); await pg.waitForSelector('h1');
 ok(!!(await pg.$('button:text-is("Enviar")')), 'con Pro: sin límite');
 await pg.goto(url + '#/pro/pauta/dddd'); await pg.waitForSelector('.items');

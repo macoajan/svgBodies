@@ -360,3 +360,22 @@ details.texto ol, details.texto ul { margin-left: 0; padding-left: 22px; }
 input[type="file"] { font: 15px var(--font); color: var(--ink); }
 input[type="password"] { font: 17px var(--font); color: var(--ink); background: var(--surface); border: 2px solid var(--line); border-radius: var(--radius); padding: 12px 14px; min-height: 52px; width: 100%; }
 .fila-pauta .icono-btn { flex: none; }
+
+/* Descansos y series a medida en el editor */
+.item-descanso { background: var(--bg); border-style: dashed; }
+.icono-descanso { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 22px; background: var(--surface-2); }
+.segmentos.modo { flex: none; }
+.series-medida { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.serie-fila { padding: 10px 12px 12px; border: 2px solid var(--line); border-radius: var(--radius); display: flex; flex-direction: column; gap: 8px; background: var(--bg); }
+.serie-fila .grupo-t { margin: 0; }
+
+/* Sesión: fin de descanso, reloj parado y «qué viene» */
+.reloj.terminado .reloj-fondo { stroke: var(--done); }
+.reloj.terminado .reloj-n { flex-direction: column; font-size: 48px; color: var(--ink); }
+.reloj-n small { font-size: 18px; font-weight: 700; }
+.reloj.parado .reloj-arco { stroke: var(--faint); }
+.que-viene { width: 100%; text-align: left; display: flex; flex-direction: column; gap: 8px; }
+.que-viene .grupo-t { margin: 0; }
+.ajuste { flex-wrap: wrap; justify-content: center; }
+.sesion-cab .icono-btn + .icono-btn { margin-left: -4px; }
+.aviso.pruebas { border: 2px dashed var(--bad); }

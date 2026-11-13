@@ -5,7 +5,7 @@ import { useLibrary } from './useLibrary.js';
 import { figureUrls } from '../lib/library.js';
 import { navigate } from '../router.js';
 import { version, listPautas, listPacientes, createPauta } from '../data/repo.js';
-import { newPauta, scheduleText, searchPautas } from '../domain/pautas.js';
+import { newPauta, scheduleText, searchPautas, ejerciciosTexto } from '../domain/pautas.js';
 import { estadoEnvio, ESTADO_LABEL } from '../domain/envio.js';
 import { ajustes } from '../data/app-store.js';
 import { nuevasRespuestas } from '../data/repo.js';
@@ -51,7 +51,7 @@ export function ProInicio() {
                 <span class="fila-img">{ex0 ? <img src={figureUrls(ex0)[0]} alt="" loading="lazy" /> : null}</span>
                 <span class="fila-texto">
                   <strong>{r.pauta.title || 'Sin título'}{pacientes[r.pacienteId] ? ` · ${pacientes[r.pacienteId].alias}` : ''}</strong>
-                  <span>{r.pauta.items.length} {r.pauta.items.length === 1 ? 'ejercicio' : 'ejercicios'} · {scheduleText(r.pauta.schedule)}</span>
+                  <span>{ejerciciosTexto(r.pauta)} · {scheduleText(r.pauta.schedule)}</span>
                 </span>
                 <span class="fila-estado">
                   <span class="sello">{ESTADO_LABEL[estadoEnvio(r, ajustes.value)]}</span>
@@ -70,7 +70,7 @@ export function ProInicio() {
             <ul class="lista-pautas">
               {listPlantillas().map(t => (
                 <li key={t.id} class="fila-pauta">
-                  <span class="fila-texto"><strong>{t.nombre}</strong><span>{t.pauta.items.length} ejercicios</span></span>
+                  <span class="fila-texto"><strong>{t.nombre}</strong><span>{ejerciciosTexto(t.pauta)}</span></span>
                   <button type="button" class="boton secundario" onClick={async () => navigate(`/pro/pauta/${await pautaDesdePlantilla(t.id)}`)}>Usar</button>
                   <button type="button" class="icono-btn" aria-label={`Borrar la plantilla ${t.nombre}`} onClick={() => deletePlantilla(t.id)}>✕</button>
                 </li>

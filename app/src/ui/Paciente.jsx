@@ -2,7 +2,7 @@ import { useState } from 'preact/hooks';
 import { Barra } from './Barra.jsx';
 import { navigate } from '../router.js';
 import { version, getPaciente, listPautas, savePaciente, deletePaciente, createPauta } from '../data/repo.js';
-import { newPauta, scheduleText } from '../domain/pautas.js';
+import { newPauta, scheduleText, ejerciciosTexto } from '../domain/pautas.js';
 import { retirar, mensajeError } from '../data/envio-service.js';
 
 export function Paciente({ params }) {
@@ -30,7 +30,7 @@ export function Paciente({ params }) {
         <ul class="lista-pautas">
           {pautas.map(r => (
             <li key={r.id}><a class="fila-pauta" href={`#/pro/pauta/${r.id}`}>
-              <span class="fila-texto"><strong>{r.pauta.title || 'Sin título'}</strong><span>{r.pauta.items.length} ejercicios · {scheduleText(r.pauta.schedule)}</span></span>
+              <span class="fila-texto"><strong>{r.pauta.title || 'Sin título'}</strong><span>{ejerciciosTexto(r.pauta)} · {scheduleText(r.pauta.schedule)}</span></span>
             </a></li>
           ))}
         </ul>

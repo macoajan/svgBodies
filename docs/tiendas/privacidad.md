@@ -80,5 +80,6 @@ profesional decide si envía una pauta a un menor y es responsable de contar con
   - el usuario puede pedir que se borren (retirada del enlace por el profesional y borrado local).
 - **Permisos de Android**: Internet; notificaciones (`POST_NOTIFICATIONS`, con
   `RECEIVE_BOOT_COMPLETED` y `WAKE_LOCK` del plugin) para avisar del fin de los descansos;
-  vibración; facturación de Google Play (compra Pro). Se ha quitado `SCHEDULE_EXACT_ALARM`.
-  No usa ubicación, cámara, contactos ni micrófono.
+  vibración; facturación de Google Play (compra Pro); cámara, solo para leer el QR de la pauta
+  (las imágenes no se guardan ni se envían). Se ha quitado `SCHEDULE_EXACT_ALARM`.
+  No usa ubicación, contactos ni micrófono.

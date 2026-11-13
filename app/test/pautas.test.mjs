@@ -88,3 +88,40 @@ test('buscar pautas por título, alias o ejercicio; las más recientes primero',
   assert.deepEqual(searchPautas(list, 'violin', pac, byId).map(r => r.id), ['b']);
   assert.deepEqual(searchPautas(list, 'sentadilla', pac, byId).map(r => r.id), ['a']);
 });
+
+import { insertRest, updateSet, newRestItem } from '../src/domain/pautas.js';
+
+test('descansos como elementos: insertar, cambiar tipo y tiempo', () => {
+  let p = addItems(newPauta(), [ex('sentadilla-pared'), ex('plancha')]).pauta;
+  p = insertRest(p, 1, 'descanso-caminando', 120).pauta;
+  assert.deepEqual(p.items.map(i => i.id), ['sentadilla-pared', 'descanso-caminando', 'plancha']);
+  p = updateItem(p, 1, { time: 9999, id: 'respiracion', note: 'Respira por la nariz' });
+  assert.deepEqual(p.items[1], { id: 'respiracion', time: 3600, note: 'Respira por la nariz' });
+  assert.deepEqual(checkPauta(p, known), []);
+  assert.equal(doseShort(p.items[1]), '1 min · Respira por la nariz'.replace('1 min', '60 min'));
+  assert.equal(newRestItem('raro', 1).id, 'descanso'); assert.equal(newRestItem('raro', 1).time, 5);
+  assert.deepEqual(problems({ ...newPauta(), items: [newRestItem()] }, known), ['Añade al menos un ejercicio.']);
+});
+
+test('series por tiempo y series a medida', () => {
+  let p = addItems(newPauta(), [ex('plancha')]).pauta;
+  p = updateItem(p, 0, { modo: 'tiempo' });
+  assert.equal(p.items[0].time, 30); assert.equal(p.items[0].reps, undefined); assert.equal(p.items[0].hold, undefined);
+  p = updateItem(p, 0, { time: 45, restType: 'descanso-caminando' });
+  assert.deepEqual(checkPauta(p, known), []);
+  p = updateItem(p, 0, { modo: 'reps' });
+  assert.equal(p.items[0].reps, 10); assert.equal(p.items[0].time, undefined);
+  p = updateItem(p, 0, { perSet: true });
+  assert.equal(p.items[0].perSet.length, 3);
+  p = updateSet(p, 0, 0, { reps: 12, rest: 90 });
+  p = updateSet(p, 0, 2, { modo: 'tiempo' });
+  p = updateSet(p, 0, 2, { time: 20 });
+  assert.deepEqual(p.items[0].perSet, [{ reps: 12, rest: 90 }, {}, { time: 20 }]);
+  assert.deepEqual(checkPauta(p, known), []);
+  p = updateItem(p, 0, { sets: 4 });
+  assert.equal(p.items[0].perSet.length, 4); assert.deepEqual(p.items[0].perSet[3], { time: 20 });
+  p = updateItem(p, 0, { sets: 2 });
+  assert.equal(p.items[0].perSet.length, 2);
+  assert.deepEqual(checkPauta(p, known), []);
+  p = updateItem(p, 0, { perSet: false }); assert.equal(p.items[0].perSet, undefined);
+});

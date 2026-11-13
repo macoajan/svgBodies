@@ -105,3 +105,5 @@ textarea { font: 15px Lexend, sans-serif; color: var(--ink); background: var(--b
   .ej.actual img { width: 76px; height: 76px; }
 }
 .sesion .pill, main > .pill { align-self: flex-start; }
+.ej.descanso-item { background: var(--soft); border-color: transparent; }
+.icono-descanso { width: 64px; height: 64px; border-radius: 18px; background: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 26px; }

@@ -4,18 +4,24 @@
 //
 // Pasos:
 //   preparar           (manual)  presentación del ejercicio, «Empezar»
-//   trabajo            (manual)  una serie (o un lado) de repeticiones sin aguante: «Serie hecha»
+//   trabajo            (manual)  una serie (o un lado) de repeticiones: «Serie hecha»
 //   mantener           (tiempo)  una repetición con aguante (hold)
-//   descansoRep        (tiempo)  entre repeticiones con aguante
+//   trabajoTiempo      (tiempo)  serie cronometrada (time)
+//   descansoRep        (tiempo)  pausa entre repeticiones con aguante
 //   cambioLado         (tiempo)  al pasar al otro lado
-//   descansoSerie      (tiempo)  entre series
+//   descansoSerie      (tiempo)  entre series (con su tipo: normal, caminando…)
 //   valorar            (manual)  fácil/bien/difícil, dolor y nota de ese ejercicio
 //   descansoEjercicio  (tiempo)  antes del siguiente ejercicio
+//   descansoItem       (tiempo)  descanso puesto como un elemento más de la pauta
 //   resumen            (manual)  fin de la sesión
-import { DEFAULTS } from '@shared/pauta-schema.js';
+//
+// Los descansos NO avanzan solos al llegar a cero: quedan en espera («Continuar con el
+// siguiente») y cuentan el tiempo extra, salvo que el paciente active el avance automático.
+// Los pasos de trabajo con tiempo (mantener, trabajoTiempo) sí avanzan solos.
+import { DEFAULTS, isRestItem, setSpec } from '@shared/pauta-schema.js';
 
-export const TIMED = Object.freeze(new Set(['mantener', 'descansoRep', 'cambioLado', 'descansoSerie', 'descansoEjercicio']));
-export const REST = Object.freeze(new Set(['descansoRep', 'cambioLado', 'descansoSerie', 'descansoEjercicio']));
+export const TIMED = Object.freeze(new Set(['mantener', 'trabajoTiempo', 'descansoRep', 'cambioLado', 'descansoSerie', 'descansoEjercicio', 'descansoItem']));
+export const REST = Object.freeze(new Set(['descansoRep', 'cambioLado', 'descansoSerie', 'descansoEjercicio', 'descansoItem']));
 export const SIDE_LABEL = Object.freeze({ derecho: 'Lado derecho', izquierdo: 'Lado izquierdo' });
 const MIN_SIDE = 5; // sin descanso indicado, unos segundos para cambiar de lado
 
@@ -24,91 +30,117 @@ export function buildPlan(pauta) {
   const steps = [];
   const n = pauta.items.length;
   pauta.items.forEach((it, i) => {
+    if (isRestItem(it)) { steps.push({ type: 'descansoItem', i, restType: it.id, dur: it.time }); return; }
     steps.push({ type: 'preparar', i });
     const sides = it.perSide ? ['derecho', 'izquierdo'] : [null];
-    const reps = it.reps ?? 1;
     for (let set = 1; set <= it.sets; set++) {
+      const sp = setSpec(it, set - 1);
       sides.forEach((side, k) => {
-        if (it.hold) {
-          for (let rep = 1; rep <= reps; rep++) {
-            steps.push({ type: 'mantener', i, set, side, rep, reps, dur: it.hold });
-            if (rep < reps && it.restRep > 0) steps.push({ type: 'descansoRep', i, set, side, rep, reps, dur: it.restRep });
+        if (sp.time != null) steps.push({ type: 'trabajoTiempo', i, set, sets: it.sets, side, dur: sp.time });
+        else if (it.hold) {
+          for (let rep = 1; rep <= sp.reps; rep++) {
+            steps.push({ type: 'mantener', i, set, sets: it.sets, side, rep, reps: sp.reps, dur: it.hold });
+            if (rep < sp.reps && it.restRep > 0) steps.push({ type: 'descansoRep', i, set, side, rep, reps: sp.reps, dur: it.restRep });
           }
-        } else {
-          steps.push({ type: 'trabajo', i, set, side, reps });
-        }
+        } else steps.push({ type: 'trabajo', i, set, sets: it.sets, side, reps: sp.reps });
         if (k < sides.length - 1) steps.push({ type: 'cambioLado', i, set, side: sides[k + 1], dur: Math.max(it.restSide ?? MIN_SIDE, MIN_SIDE) });
       });
-      if (set < it.sets && it.restSet > 0) steps.push({ type: 'descansoSerie', i, set, dur: it.restSet });
+      if (set < it.sets && sp.rest > 0) steps.push({ type: 'descansoSerie', i, set, restType: sp.restType, dur: sp.rest });
     }
     steps.push({ type: 'valorar', i });
     const rest = it.restAfter ?? pauta.restBetween ?? DEFAULTS.restBetween;
-    if (i < n - 1 && rest > 0) steps.push({ type: 'descansoEjercicio', i, next: i + 1, dur: rest });
+    // Si el siguiente elemento es un descanso, ese sustituye al descanso entre ejercicios.
+    if (i < n - 1 && rest > 0 && !isRestItem(pauta.items[i + 1])) steps.push({ type: 'descansoEjercicio', i, next: i + 1, dur: rest });
   });
   steps.push({ type: 'resumen' });
   return steps;
 }
 
-/** Estado serializable (se guarda en el dispositivo en cada cambio). */
-export function start(plan, now) {
-  return enter({ plan, idx: -1, terminaEn: null, pausa: null, inicio: now, fin: null, valoraciones: {} }, 0, now);
+/**
+ * Estado serializable (se guarda en el dispositivo en cada cambio).
+ * `auto`: los descansos avanzan solos al terminar (por defecto, no: esperan al paciente).
+ */
+export function start(plan, now, { auto = false } = {}) {
+  return enter({ plan, idx: -1, terminaEn: null, pausa: null, espera: false, auto, inicio: now, fin: null, valoraciones: {} }, 0, now);
 }
 
 function enter(s, idx, base) {
   const step = s.plan[idx];
   const terminaEn = step && TIMED.has(step.type) ? base + step.dur * 1000 : null;
-  return { ...s, idx, terminaEn, pausa: null, dur: step?.dur ?? 0, fin: step?.type === 'resumen' ? (s.fin ?? base) : s.fin };
+  return { ...s, idx, terminaEn, pausa: null, espera: false, dur: step?.dur ?? 0, fin: step?.type === 'resumen' ? (s.fin ?? base) : s.fin };
 }
 
 export const current = s => s.plan[s.idx];
 export const isTimed = s => TIMED.has(current(s)?.type);
+export const isRest = s => REST.has(current(s)?.type);
+export const enEspera = s => !!s.espera;
 
-/** Avanza al paso siguiente (botón del paciente o fin del tiempo). */
+/** Avanza al paso siguiente («Continuar con el siguiente», «Serie hecha», «Saltar»…). */
 export function next(s, now) {
   if (current(s)?.type === 'resumen') return s;
   return enter(s, s.idx + 1, now);
 }
+export const skip = next;
+
+/** Vuelve al paso de trabajo anterior (para repetir una serie o un ejercicio). */
+export function prev(s, now) {
+  let idx = s.idx - 1;
+  while (idx > 0 && (REST.has(s.plan[idx].type) || s.plan[idx].type === 'valorar')) idx--;
+  if (idx < 0 || idx === s.idx) return s;
+  return enter({ ...s, fin: null }, idx, now);
+}
 
 /**
  * Pone al día los pasos con tiempo. Si ha pasado más de uno (app en segundo plano), encadena
- * sus duraciones desde el fin del anterior, sin perder segundos. Para en el primer paso manual.
+ * sus duraciones desde el fin del anterior, sin perder segundos. Se detiene en el primer paso
+ * manual y, salvo avance automático, al terminar un descanso (queda en espera).
  */
 export function tick(s, now) {
   let st = s;
-  while (st.pausa == null && st.terminaEn != null && now >= st.terminaEn) st = enter(st, st.idx + 1, st.terminaEn);
+  while (st.pausa == null && !st.espera && st.terminaEn != null && now >= st.terminaEn) {
+    if (REST.has(current(st).type) && !st.auto) { st = { ...st, espera: true }; break; }
+    st = enter(st, st.idx + 1, st.terminaEn);
+  }
   return st;
 }
 
 /** Fracción que queda del paso con tiempo (1 al empezar, 0 al acabar), con los ajustes del paciente. */
 export function fractionLeft(s, now) {
+  if (s.espera) return 0;
   const total = s.dur || current(s)?.dur || 0;
   return total ? Math.min(1, Math.max(0, (s.pausa != null ? s.pausa : (s.terminaEn ?? now) - now) / 1000 / total)) : 0;
 }
 
-/** Segundos que quedan del paso actual (0 si no tiene tiempo). */
+/** Segundos que quedan del paso actual (0 si no tiene tiempo o ya terminó). */
 export function remaining(s, now) {
+  if (s.espera) return 0;
   if (s.pausa != null) return Math.ceil(s.pausa / 1000);
   if (s.terminaEn == null) return 0;
   return Math.max(0, Math.ceil((s.terminaEn - now) / 1000));
 }
 
-/** Alarga o acorta el paso con tiempo actual (el paciente decide sus descansos). */
+/** Segundos de más desde que terminó el descanso (en espera). */
+export const overtime = (s, now) => (s.espera && s.terminaEn != null ? Math.max(0, Math.floor((now - s.terminaEn) / 1000)) : 0);
+
+/**
+ * Alarga o acorta el paso con tiempo actual (el paciente decide sus descansos). En espera,
+ * «+15 s» vuelve a poner el reloj en marcha con ese tiempo.
+ */
 export function adjust(s, deltaSec, now) {
+  if (s.espera) return deltaSec > 0 ? { ...s, espera: false, terminaEn: now + deltaSec * 1000, dur: deltaSec } : s;
   if (s.terminaEn == null && s.pausa == null) return s;
-  // `dur` (duración total del paso, ajustes incluidos) sirve para dibujar el progreso.
   if (s.pausa != null) {
     const pausa = Math.max(1000, s.pausa + deltaSec * 1000);
     return { ...s, pausa, dur: Math.max(1, (s.dur ?? 0) + (pausa - s.pausa) / 1000) };
   }
   const t = s.terminaEn + deltaSec * 1000;
-  return t <= now ? next(s, now) : { ...s, terminaEn: t, dur: Math.max(1, (s.dur ?? 0) + deltaSec) };
+  if (t <= now) return isRest(s) && !s.auto ? { ...s, terminaEn: now, espera: true } : next(s, now);
+  return { ...s, terminaEn: t, dur: Math.max(1, (s.dur ?? 0) + deltaSec) };
 }
 
-export const skip = (s, now) => next(s, now);
-
-/** Pausa el reloj del paso actual (los pasos manuales ya esperan al paciente). */
+/** Para el reloj del paso actual (los pasos manuales ya esperan al paciente). */
 export function pause(s, now) {
-  if (s.pausa != null || s.terminaEn == null) return s;
+  if (s.pausa != null || s.terminaEn == null || s.espera) return s;
   return { ...s, pausa: Math.max(0, s.terminaEn - now), terminaEn: null };
 }
 
@@ -118,6 +150,9 @@ export function resume(s, now) {
 }
 
 export const paused = s => s.pausa != null;
+
+/** Cambia el avance automático de los descansos durante la sesión. */
+export const setAuto = (s, auto) => ({ ...s, auto: !!auto });
 
 /** Guarda la valoración de un ejercicio: { diff?, pain?, note? }. */
 export function rate(s, i, v) {
@@ -136,26 +171,36 @@ export function toRespuesta(s, at = new Date().toISOString()) {
   return { v: 1, kind: 'respuesta', at, items };
 }
 
-/** Progreso para la cabecera: ejercicio actual (1…n) y fracción de pasos hechos. */
+/**
+ * Progreso para la cabecera: ejercicio actual (1…n, sin contar los descansos sueltos), total y
+ * fracción de pasos hechos.
+ */
 export function progress(s) {
   const step = current(s);
-  const n = Math.max(...s.plan.map(p => (p.i ?? -1) + 1));
-  const i = step?.type === 'resumen' ? n : step?.type === 'descansoEjercicio' ? step.next : step?.i ?? 0;
-  return { ejercicio: Math.min(i + 1, n), total: n, fraccion: s.idx / Math.max(1, s.plan.length - 1) };
+  const exIdx = [...new Set(s.plan.filter(p => p.type === 'preparar').map(p => p.i))];
+  const n = exIdx.length;
+  const i = step?.type === 'descansoEjercicio' ? step.next : step?.i;
+  let pos = step?.type === 'resumen' ? n - 1 : exIdx.findIndex(x => x >= (i ?? 0));
+  if (pos < 0) pos = n - 1;
+  return { ejercicio: Math.min(pos + 1, n), total: n, fraccion: s.idx / Math.max(1, s.plan.length - 1) };
 }
 
-/** Pasos con tiempo que empezarán en el futuro, para programar avisos con la app cerrada. */
+/**
+ * Fines de tiempo futuros, para avisar con la app en segundo plano. Encadena los pasos con
+ * tiempo y se detiene en el primero que espera al paciente (paso manual o fin de descanso).
+ */
 export function upcomingTimers(s, now, max = 20) {
   const out = [];
-  if (s.pausa != null || s.terminaEn == null) return out;
+  if (s.pausa != null || s.terminaEn == null || s.espera) return out;
   let t = s.terminaEn, idx = s.idx;
-  out.push({ at: t, step: s.plan[idx] });
-  while (out.length < max) {
-    idx++;
+  for (;;) {
     const st = s.plan[idx];
-    if (!st || !TIMED.has(st.type)) { if (st) out.push({ at: t, step: st, manual: true }); break; }
-    t += st.dur * 1000;
+    if (REST.has(st.type) && !s.auto) { out.push({ at: t, step: st, espera: true }); break; }
     out.push({ at: t, step: st });
+    const nx = s.plan[idx + 1];
+    if (!nx || !TIMED.has(nx.type) || out.length >= max) { if (nx && !TIMED.has(nx.type)) out.push({ at: t, step: nx, manual: true }); break; }
+    idx++;
+    t += nx.dur * 1000;
   }
   return out.filter(x => x.at > now);
 }

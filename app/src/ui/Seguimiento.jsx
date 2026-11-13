@@ -4,6 +4,7 @@ import { useLibrary } from './useLibrary.js';
 import { version, getPauta, getRespuestas, marcarVistas } from '../data/repo.js';
 import { leerRespuestas, mensajeError } from '../data/envio-service.js';
 import { resumenRespuestas, nivelDolor, DIFF_LABEL } from '../domain/envio.js';
+import { isRestItem } from '@shared/pauta-schema.js';
 
 const fecha = iso => new Date(iso).toLocaleString('es-ES', { weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' });
 const TENDENCIA = { sube: '↑ sube', baja: '↓ baja', igual: '= igual' };
@@ -54,7 +55,7 @@ export function Seguimiento({ params }) {
           <section class="bloque" aria-labelledby="res-t">
             <h2 id="res-t">Por ejercicio</h2>
             <ul class="lista-pautas">
-              {resumen.map((s, i) => (
+              {resumen.map((s, i) => isRestItem(rec.pauta.items[i]) ? null : (
                 <li key={i} class="fila-resumen">
                   <span class="fila-texto">
                     <strong>{nombre(i)}</strong>
